@@ -77,9 +77,12 @@
   position: relative; height: 100%; min-height: 0;
   display: grid; align-items: end; justify-items: start;
   perspective: 3200px; perspective-origin: 50% 40%;
-  --sw: min(100%, calc((100svh - 2 * var(--floor) - 6vh) * 1.5 / 1.2));   /* the screen fills the height left, above its reflection */
-  --pw: calc(var(--sw) * 0.2);
-  padding-block-end: calc(var(--sw) * 0.5625 * 0.2);   /* room for the reflection */
+  /* the screen fills the height left, with the phone's overhang below it;
+     the phone is 28% of the screen's width and hangs over its right corner
+     — two thirds of it on the pane, the rest past the edge and below */
+  --sw: min(91%, calc((100svh - 2 * var(--floor) - 6vh) / 0.74));
+  --pw: calc(var(--sw) * 0.28);
+  padding-block-end: calc(var(--sw) * 0.17);
 }
 .stage::before {
   /* the pool of light on the floor under the screen */
@@ -128,10 +131,10 @@
 }
 .screen iframe { width: 1440px; height: 900px; transform: scale(var(--zoom, 0.5)); transform-origin: 0 0; }   /* --zoom: the script, from the pane's real width */
 .stand--phone {
-  /* the phone rides onto the screen's right corner — about half its width
-     over the pane — and stands nearer the viewer, so it throws a shadow
-     across the screen behind it */
-  position: absolute; right: 7%; bottom: calc(var(--sw) * 0.5625 * 0.2 - 2%); z-index: 3;
+  /* the phone rides onto the screen's right corner — its right third past
+     the pane's edge, its lower quarter below the pane's foot — and stands
+     nearer the viewer, so it throws a shadow across the screen behind it */
+  position: absolute; right: calc(9% - var(--pw) * 0.3); bottom: calc(var(--sw) * 0.17 - var(--pw) * 2.164 * 0.24); z-index: 3;
   width: var(--pw);
   transform: rotateY(calc(-16deg + var(--ry, 0deg))) rotateX(calc(2deg + var(--rx, 0deg))) translate3d(0, 0, 60px);
 }
@@ -140,9 +143,9 @@
      to the left, under the phone and over the pane. A gradient, not a
      filter — it has no edge to begin with, and needs no blur length */
   content: ""; position: absolute; z-index: -1;
-  left: -55%; right: -35%; top: -10%; bottom: -16%;
-  background: radial-gradient(ellipse 42% 46% at 46% 52%, rgba(0, 0, 0, 0.82) 0%, rgba(0, 0, 0, 0.5) 34%, rgba(0, 0, 0, 0.18) 58%, rgba(0, 0, 0, 0) 78%);
-  transform: translate3d(-5%, 4%, -1px);
+  left: -50%; right: -50%; top: -22%; bottom: -30%;
+  background: radial-gradient(ellipse 36% 42% at 52% 54%, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.55) 32%, rgba(0, 0, 0, 0.2) 58%, rgba(0, 0, 0, 0) 80%);
+  transform: translate3d(0, 0, -1px);
 }
 .stand--phone .mirror { display: none; }   /* standing over the screen, the phone's reflection would land inside the screen's own — one reflection, the screen's */
 .phone {
@@ -228,8 +231,8 @@
   .deck__title span:last-child { display: none; }
   .dir .page { grid-template-columns: 1fr; row-gap: var(--space-7); align-content: center; height: auto; padding-block: var(--space-6) 0; }
   .dir__copy { max-width: none; }
-  .stage { height: auto; --sw: 86%; --pw: calc(var(--sw) * 0.24); align-items: start; perspective-origin: 50% 50%; padding: var(--space-6) 8% calc(var(--sw) * 0.5625 * 0.2 + var(--space-6)) 0; overflow: clip; }
-  .stand--phone { right: 4%; bottom: calc(var(--sw) * 0.5625 * 0.2 + var(--space-6) - 4%); transform: rotateY(-6deg) translate3d(0, 0, 30px); }
+  .stage { height: auto; --sw: 84%; --pw: calc(var(--sw) * 0.28); align-items: start; perspective-origin: 50% 50%; padding: var(--space-6) 8% calc(var(--sw) * 0.22 + var(--space-6)) 0; overflow: clip; }
+  .stand--phone { right: 0; bottom: var(--space-6); transform: rotateY(-8deg) translate3d(0, 0, 30px); }
   .deck__foot { display: none; }
   .four__row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .deck-close .page { grid-template-columns: 1fr; row-gap: var(--space-7); }
