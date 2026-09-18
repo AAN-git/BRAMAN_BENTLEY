@@ -9,6 +9,7 @@ Static mock-ups, no build step: open any `index*.html`, or serve the folder
 | `index2.html` | Cinematic dark hero, light page below |
 | `index3.html` | Offer-led, stepped display captions |
 | `index4.html` | **Dark** — one chapter per screen, full-screen slides, stacked chapters with their own openings |
+| `dashboard.html` | **The presentation** — the four directions as a deck for the retailer: cover, one chapter per direction with real renders, side by side, next steps |
 
 `css/system.css` carries the tokens (palette, type and spacing from the 2026
 Retailer Website Guidelines); each direction has its own stylesheet and script.
