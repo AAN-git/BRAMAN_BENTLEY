@@ -105,7 +105,7 @@
    mirror is the first screen, upside down, softened and fading — a floor
    gloss, not a second picture, so the moving page above it never argues with it. */
 .stand { position: relative; transform-style: preserve-3d; will-change: transform; }
-.stand--screen { width: var(--sw); transform: rotateY(calc(-3deg + var(--ry, 0deg))) rotateX(calc(1.5deg + var(--rx, 0deg))); }
+.stand--screen { width: var(--sw); transform: rotateY(calc(-11deg + var(--ry, 0deg))) rotateX(calc(3deg + var(--rx, 0deg))); }
 .mirror {
   position: absolute; left: 0; top: calc(100% + 2px); width: 100%; height: auto; z-index: 0;
   transform: scaleY(-1);   /* flipped in its own box, which sits under the device */
@@ -115,22 +115,45 @@
   pointer-events: none;
 }
 .stand--screen .mirror { top: calc(100% + 2px); aspect-ratio: 16 / 9; object-fit: cover; object-position: top; border-radius: 10px; }
+/* the body: turned as it is (right edge nearer, bottom edge nearer), the
+   right and bottom faces of the slab show — drawn as a stack of hairline
+   plates stepping out to the right and down, the last one lit */
 .screen {
   width: 100%; aspect-ratio: 16 / 9;
   border-radius: 10px;
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.10);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.10),
+    1px 1px 0 #2b2d30, 2px 2px 0 #292b2e, 3px 3px 0 #26282b, 4px 4px 0 #232528, 5px 5px 0 #202225, 6px 6px 0 #1d1f22, 7px 7px 0 #1a1c1f, 8px 8px 0 #17191b,
+    9px 9px 0 rgba(255, 255, 255, 0.10);
 }
 .screen iframe { width: 1440px; height: 900px; transform: scale(var(--zoom, 0.5)); transform-origin: 0 0; }   /* --zoom: the script, from the pane's real width */
 .stand--phone {
-  position: absolute; right: -1%; bottom: calc(var(--sw) * 0.5625 * 0.2 - 2%); z-index: 3;
+  /* the phone rides onto the screen's right corner — about half its width
+     over the pane — and stands nearer the viewer, so it throws a shadow
+     across the screen behind it */
+  position: absolute; right: 7%; bottom: calc(var(--sw) * 0.5625 * 0.2 - 2%); z-index: 3;
   width: var(--pw);
-  transform: rotateY(calc(-6deg + var(--ry, 0deg))) rotateX(calc(1deg + var(--rx, 0deg))) translate3d(0, 0, 60px);
+  transform: rotateY(calc(-16deg + var(--ry, 0deg))) rotateX(calc(2deg + var(--rx, 0deg))) translate3d(0, 0, 60px);
 }
-.stand--phone .mirror { top: calc(100% + var(--pw) * 0.06); aspect-ratio: 390 / 844; object-fit: cover; object-position: top; border-radius: calc(var(--pw) * 0.13); opacity: 0.22; }
+.stand--phone::before {
+  /* the shadow the phone casts on the screen: soft, thrown down and to the
+     left of it, under the phone and over the pane */
+  content: ""; position: absolute; z-index: -1;
+  left: -18%; right: -4%; top: 3%; bottom: 2%;
+  border-radius: calc(var(--pw) * 0.2);
+  background: rgba(0, 0, 0, 0.72);
+  filter: blur(calc(var(--pw) * 0.11));
+  transform: translate3d(calc(var(--pw) * -0.08), calc(var(--pw) * 0.05), -1px);
+}
+.stand--phone .mirror { display: none; }   /* standing over the screen, the phone's reflection would land inside the screen's own — one reflection, the screen's */
 .phone {
   width: 100%; aspect-ratio: 390 / 844;
   border-radius: calc(var(--pw) * 0.13);
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.26), 0 0 0 calc(var(--pw) * 0.028) #0c0c0d, 0 0 0 calc(var(--pw) * 0.028 + 1px) rgba(255, 255, 255, 0.12);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.26),
+    0 0 0 calc(var(--pw) * 0.028) #0c0c0d, 0 0 0 calc(var(--pw) * 0.028 + 1px) rgba(255, 255, 255, 0.12),
+    calc(var(--pw) * 0.028 + 2px) calc(var(--pw) * 0.028 + 2px) 0 #232528, calc(var(--pw) * 0.028 + 3px) calc(var(--pw) * 0.028 + 3px) 0 #1f2124, calc(var(--pw) * 0.028 + 4px) calc(var(--pw) * 0.028 + 4px) 0 #1b1d20,
+    calc(var(--pw) * 0.028 + 5px) calc(var(--pw) * 0.028 + 5px) 0 rgba(255, 255, 255, 0.10);
 }
 .phone::before {
   /* the island */
@@ -141,10 +164,20 @@
 
 /* arrival: the screen rises out of the floor and squares up, the phone
    follows; then the pages inside begin to move */
-.motion.ready .dir:not(.is-in) .stand--screen { opacity: 0; transform: rotateY(-12deg) rotateX(6deg) translate3d(0, 60px, -240px); }
-.motion.ready .dir:not(.is-in) .stand--phone { opacity: 0; transform: rotateY(-12deg) rotateX(3deg) translate3d(0, 90px, 0); }
+/* four intros, one per direction — the same two objects arriving four ways:
+   01 rises out of the floor and squares up · 02 swings in from the right ·
+   03 comes on like a light, from small · 04 drops from above and settles */
+.motion.ready .dir[data-intro="1"]:not(.is-in) .stand--screen { opacity: 0; transform: rotateY(-11deg) rotateX(14deg) translate3d(0, 80px, -240px); }
+.motion.ready .dir[data-intro="1"]:not(.is-in) .stand--phone { opacity: 0; transform: rotateY(-16deg) rotateX(3deg) translate3d(0, 110px, 0); }
+.motion.ready .dir[data-intro="2"]:not(.is-in) .stand--screen { opacity: 0; transform: rotateY(-40deg) rotateX(3deg) translate3d(28%, 0, -120px); }
+.motion.ready .dir[data-intro="2"]:not(.is-in) .stand--phone { opacity: 0; transform: rotateY(-40deg) rotateX(2deg) translate3d(60%, 0, 60px); }
+.motion.ready .dir[data-intro="3"]:not(.is-in) .stand--screen { opacity: 0; transform: rotateY(-11deg) rotateX(3deg) translate3d(0, 0, -520px); }
+.motion.ready .dir[data-intro="3"]:not(.is-in) .stand--phone { opacity: 0; transform: rotateY(74deg) rotateX(2deg) translate3d(0, 0, 60px); }
+.motion.ready .dir[data-intro="4"]:not(.is-in) .stand--screen { opacity: 0; transform: rotateY(-11deg) rotateX(-16deg) translate3d(0, -90px, -160px); }
+.motion.ready .dir[data-intro="4"]:not(.is-in) .stand--phone { opacity: 0; transform: rotateY(-16deg) rotateX(2deg) translate3d(-40%, 0, 60px); }
 .motion.ready .dir.is-in .stand--screen { opacity: 1; transition: opacity 1.2s var(--ease-out) 0.15s, transform 2s var(--ease-out) 0.15s; }
 .motion.ready .dir.is-in .stand--phone { opacity: 1; transition: opacity 1s var(--ease-out) 0.55s, transform 1.8s var(--ease-out) 0.55s; }
+.motion.ready .dir[data-intro="3"].is-in .stand--screen { transition: opacity 1.6s var(--ease-out) 0.15s, transform 2.4s var(--ease-reveal) 0.15s; }
 /* after the arrival the pointer turns the devices a degree or two (--rx/--ry from the script) */
 .dir.is-settled .stand { transition: transform 1.1s var(--ease-out); }
 
@@ -197,7 +230,7 @@
   .dir .page { grid-template-columns: 1fr; row-gap: var(--space-7); align-content: center; height: auto; padding-block: var(--space-6) 0; }
   .dir__copy { max-width: none; }
   .stage { height: auto; --sw: 86%; --pw: calc(var(--sw) * 0.24); align-items: start; perspective-origin: 50% 50%; padding: var(--space-6) 8% calc(var(--sw) * 0.5625 * 0.2 + var(--space-6)) 0; overflow: clip; }
-  .stand--phone { right: 0; bottom: calc(var(--sw) * 0.5625 * 0.2 + var(--space-6) - 4%); transform: rotateY(-6deg) translate3d(0, 0, 30px); }
+  .stand--phone { right: 4%; bottom: calc(var(--sw) * 0.5625 * 0.2 + var(--space-6) - 4%); transform: rotateY(-6deg) translate3d(0, 0, 30px); }
   .deck__foot { display: none; }
   .four__row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .deck-close .page { grid-template-columns: 1fr; row-gap: var(--space-7); }
