@@ -233,6 +233,9 @@ address { font-style: normal; }
   transition: opacity var(--dur-3) var(--ease-out);
 }
 .mh[data-scrolled]::before { opacity: 1; }
+/* shown inside the presentation's devices there is no backdrop blur, so the
+   ground goes solid — nothing reads through the bar */
+html[data-framed] .mh[data-scrolled]::before { background: var(--black); -webkit-backdrop-filter: none; backdrop-filter: none; }
 
 .mh__bar {
   display: grid;

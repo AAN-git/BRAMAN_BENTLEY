@@ -265,18 +265,23 @@
     }, { threshold: [0, 0.5, 1] });
     dirs.forEach(function (sec) { runner.observe(sec); });
 
-    /* the pointer turns the devices — a few degrees, eased by the stylesheet */
+  }
+
+  /* --- The hover tilt -----------------------------------------------------------
+         Flat at rest. While the pointer is over the stage the pane and the
+         phone turn a few degrees towards it; when it leaves they settle flat. */
+  if (live) {
     dirs.forEach(function (sec) {
       var stage = sec.querySelector(".stage");
       if (!stage) return;
-      sec.addEventListener("pointermove", function (e) {
+      stage.addEventListener("pointermove", function (e) {
         if (!sec.classList.contains("is-settled")) return;
         var r = stage.getBoundingClientRect();
         var px = (e.clientX - r.left) / r.width - 0.5, py = (e.clientY - r.top) / r.height - 0.5;
-        stage.style.setProperty("--ry", (px * 3).toFixed(2) + "deg");
-        stage.style.setProperty("--rx", (-py * 2).toFixed(2) + "deg");
+        stage.style.setProperty("--ry", (px * 12).toFixed(2) + "deg");
+        stage.style.setProperty("--rx", (-py * 8).toFixed(2) + "deg");
       });
-      sec.addEventListener("pointerleave", function () { stage.style.setProperty("--ry", "0deg"); stage.style.setProperty("--rx", "0deg"); });
+      stage.addEventListener("pointerleave", function () { stage.style.setProperty("--ry", "0deg"); stage.style.setProperty("--rx", "0deg"); });
     });
   }
 
