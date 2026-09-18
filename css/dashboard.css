@@ -63,12 +63,14 @@
 .dir .btn svg { margin-inline-start: var(--space-3); transition: transform var(--dur-2) var(--ease-out); }
 .dir .btn:hover svg { transform: translateX(3px); }
 
-/* the light: a beam from the top right, falling across the floor */
+/* the floor and the light: a dark grey floor rather than black, so a shadow
+   can fall on it, and a beam from the top right falling across it */
 .dir::after {
   content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
   background:
-    linear-gradient(248deg, rgba(255, 255, 255, 0.075) 0%, rgba(255, 255, 255, 0.02) 22%, rgba(255, 255, 255, 0) 40%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0) 55%, rgba(255, 255, 255, 0.035) 78%, rgba(255, 255, 255, 0) 100%);
+    linear-gradient(248deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.025) 22%, rgba(255, 255, 255, 0) 40%),
+    radial-gradient(ellipse 70% 55% at 62% 78%, #1e1f21 0%, #151617 45%, rgba(21, 22, 23, 0) 100%),
+    linear-gradient(180deg, #0b0b0c 0%, #111213 60%, #151617 100%);
 }
 
 /* the stage: a glossy floor, a screen standing on it almost square to the
@@ -127,7 +129,8 @@
   box-shadow:
     inset 0 0 0 1px rgba(255, 255, 255, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.10),
     1px 1px 0 #2b2d30, 2px 2px 0 #292b2e, 3px 3px 0 #26282b, 4px 4px 0 #232528, 5px 5px 0 #202225, 6px 6px 0 #1d1f22, 7px 7px 0 #1a1c1f, 8px 8px 0 #17191b,
-    9px 9px 0 rgba(255, 255, 255, 0.10);
+    9px 9px 0 rgba(255, 255, 255, 0.10),
+    30px 50px 90px 10px rgba(0, 0, 0, 0.55);
 }
 .screen iframe { width: 1440px; height: 900px; transform: scale(var(--zoom, 0.5)); transform-origin: 0 0; }   /* --zoom: the script, from the pane's real width */
 .stand--phone {
@@ -138,15 +141,7 @@
   width: var(--pw);
   transform: rotateY(calc(-16deg + var(--ry, 0deg))) rotateX(calc(2deg + var(--rx, 0deg))) translate3d(0, 0, 60px);
 }
-.stand--phone::before {
-  /* the shadow the phone casts on the screen: a soft pool, thrown down and
-     to the left, under the phone and over the pane. A gradient, not a
-     filter — it has no edge to begin with, and needs no blur length */
-  content: ""; position: absolute; z-index: -1;
-  left: -50%; right: -50%; top: -22%; bottom: -30%;
-  background: radial-gradient(ellipse 36% 42% at 52% 54%, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.55) 32%, rgba(0, 0, 0, 0.2) 58%, rgba(0, 0, 0, 0) 80%);
-  transform: translate3d(0, 0, -1px);
-}
+
 .stand--phone .mirror { display: none; }   /* standing over the screen, the phone's reflection would land inside the screen's own — one reflection, the screen's */
 .phone {
   width: 100%; aspect-ratio: 390 / 844;
@@ -155,7 +150,10 @@
     inset 0 0 0 1px rgba(255, 255, 255, 0.26),
     0 0 0 calc(var(--pw) * 0.028) #0c0c0d, 0 0 0 calc(var(--pw) * 0.028 + 1px) rgba(255, 255, 255, 0.12),
     calc(var(--pw) * 0.028 + 2px) calc(var(--pw) * 0.028 + 2px) 0 #232528, calc(var(--pw) * 0.028 + 3px) calc(var(--pw) * 0.028 + 3px) 0 #1f2124, calc(var(--pw) * 0.028 + 4px) calc(var(--pw) * 0.028 + 4px) 0 #1b1d20,
-    calc(var(--pw) * 0.028 + 5px) calc(var(--pw) * 0.028 + 5px) 0 rgba(255, 255, 255, 0.10);
+    calc(var(--pw) * 0.028 + 5px) calc(var(--pw) * 0.028 + 5px) 0 rgba(255, 255, 255, 0.10),
+    /* the shadow: two blurred layers, a close dark one and a wide soft one, both thrown down and to the right */
+    10px 18px 28px 4px rgba(0, 0, 0, 0.7),
+    28px 48px 90px 16px rgba(0, 0, 0, 0.6);
 }
 .phone::before {
   /* the island */
