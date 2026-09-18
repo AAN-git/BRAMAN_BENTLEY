@@ -177,6 +177,92 @@
     else if (e.key === "PageUp" || e.key === "ArrowLeft") { if (step(-1)) e.preventDefault(); }
   });
 
+  /* --- The devices ------------------------------------------------------------
+         Each direction's screen and phone hold the page itself in a frame.
+         The frames load when the chapter is one screen away, and the deck
+         scrolls them slowly while the chapter is on screen — down at a
+         reading pace, a pause, back up, a pause — so the page's own motion
+         plays inside the device. The pointer turns the devices a few
+         degrees. Pointer devices at desktop width only; elsewhere the still
+         of the first screen stands. ------------------------------------------- */
+  var live = motion && window.matchMedia("(min-width: 1024px) and (pointer: fine)").matches;
+  var dirs = Array.prototype.slice.call(document.querySelectorAll(".dir"));
+
+  function frameOf(device) { return device.querySelector("iframe"); }
+
+  function loadFrames(sec) {
+    Array.prototype.forEach.call(sec.querySelectorAll(".device iframe[data-src]"), function (f) {
+      f.src = f.getAttribute("data-src");
+      f.removeAttribute("data-src");
+      f.addEventListener("load", function () {
+        f.closest(".device").classList.add("is-live");
+      }, { once: true });
+    });
+  }
+
+  function scroller(device) {
+    var f = frameOf(device);
+    var running = false, raf = 0, y = 0, dir = 1, holdUntil = 0, last = 0;
+    var downSpeed = device.classList.contains("phone") ? 45 : 70;   /* px per second */
+    var upSpeed = 900;
+    function tick(now) {
+      if (!running) return;
+      raf = window.requestAnimationFrame(tick);
+      var win = f.contentWindow, doc = f.contentDocument;
+      if (!win || !doc || !doc.documentElement) return;
+      var max = doc.documentElement.scrollHeight - win.innerHeight;
+      if (max <= 0) return;
+      var dt = last ? Math.min(0.05, (now - last) / 1000) : 0;
+      last = now;
+      if (now < holdUntil) return;
+      y += (dir > 0 ? downSpeed : -upSpeed) * dt;
+      if (y >= max) { y = max; dir = -1; holdUntil = now + 2200; }
+      else if (y <= 0) { y = 0; dir = 1; holdUntil = now + 2600; }
+      win.scrollTo({ top: y, behavior: "instant" });
+    }
+    return {
+      start: function () { if (running) return; running = true; last = 0; holdUntil = performance.now() + 1800; raf = window.requestAnimationFrame(tick); },
+      stop: function () { running = false; window.cancelAnimationFrame(raf); }
+    };
+  }
+
+  if (live && "IntersectionObserver" in window) {
+    var scrollers = new Map();
+    dirs.forEach(function (sec) {
+      Array.prototype.forEach.call(sec.querySelectorAll(".device"), function (d) { scrollers.set(d, scroller(d)); });
+    });
+    /* load one screen ahead */
+    var loader = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) { loadFrames(e.target); loader.unobserve(e.target); } });
+    }, { rootMargin: "100% 0px 100% 0px" });
+    dirs.forEach(function (sec) { loader.observe(sec); });
+    /* run while the chapter is the one on screen */
+    var runner = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        Array.prototype.forEach.call(e.target.querySelectorAll(".device"), function (d) {
+          var s = scrollers.get(d);
+          if (e.intersectionRatio > 0.5) s.start(); else s.stop();
+        });
+        if (e.intersectionRatio > 0.5) window.setTimeout(function () { e.target.classList.add("is-settled"); }, 2200);
+      });
+    }, { threshold: [0, 0.5, 1] });
+    dirs.forEach(function (sec) { runner.observe(sec); });
+
+    /* the pointer turns the devices — a few degrees, eased by the stylesheet */
+    dirs.forEach(function (sec) {
+      var stage = sec.querySelector(".stage");
+      if (!stage) return;
+      sec.addEventListener("pointermove", function (e) {
+        if (!sec.classList.contains("is-settled")) return;
+        var r = stage.getBoundingClientRect();
+        var px = (e.clientX - r.left) / r.width - 0.5, py = (e.clientY - r.top) / r.height - 0.5;
+        stage.style.setProperty("--ry", (px * 6).toFixed(2) + "deg");
+        stage.style.setProperty("--rx", (-py * 4).toFixed(2) + "deg");
+      });
+      sec.addEventListener("pointerleave", function () { stage.style.setProperty("--ry", "0deg"); stage.style.setProperty("--rx", "0deg"); });
+    });
+  }
+
   /* the arrows in the running bar, and the way back to the top */
   Array.prototype.forEach.call(document.querySelectorAll("[data-step]"), function (b) {
     b.addEventListener("click", function () { if (!stops.length) readStops(); step(+b.dataset.step); });

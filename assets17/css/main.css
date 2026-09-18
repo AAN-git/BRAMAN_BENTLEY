@@ -825,3 +825,8 @@ a.reg__row:hover{background:rgba(255,255,255,.05)}
 
 .disp__say .t-label{color:rgba(232,229,213,.86)}
 .disp__say h2{color:var(--white);max-width:18ch}
+
+/* Shown inside the presentation's devices the page is scrolled by the deck:
+   no scrollbar of its own, ever. */
+html[data-framed] { scrollbar-width: none; -ms-overflow-style: none; }
+html[data-framed]::-webkit-scrollbar { display: none; }

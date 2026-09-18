@@ -104,3 +104,8 @@
   --ease: cubic-bezier(0.33, 0, 0.15, 1);
   --dur: 0.5s;
 }
+
+/* Shown inside the presentation's devices the page is scrolled by the deck:
+   no scrollbar of its own, ever. */
+html[data-framed] { scrollbar-width: none; -ms-overflow-style: none; }
+html[data-framed]::-webkit-scrollbar { display: none; }

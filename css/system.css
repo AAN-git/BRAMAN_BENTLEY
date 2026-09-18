@@ -145,3 +145,10 @@
   --retailer-hero:     url("../assets/v2/hero.jpg");
   --retailer-hero-alt: url("../assets/v2/hero-portrait.jpg");
 }
+
+/* Shown inside the presentation's devices the page is scrolled by the deck:
+   no scrollbar of its own, ever. (`data-framed` is set by the page's own
+   inline script when it finds itself in a frame.) */
+html[data-framed] { scrollbar-width: none; -ms-overflow-style: none; }
+html[data-framed]::-webkit-scrollbar { display: none; }
+html[data-framed] body::-webkit-scrollbar { display: none; }
