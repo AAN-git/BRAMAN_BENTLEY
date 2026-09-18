@@ -136,14 +136,13 @@
   transform: rotateY(calc(-16deg + var(--ry, 0deg))) rotateX(calc(2deg + var(--rx, 0deg))) translate3d(0, 0, 60px);
 }
 .stand--phone::before {
-  /* the shadow the phone casts on the screen: soft, thrown down and to the
-     left of it, under the phone and over the pane */
+  /* the shadow the phone casts on the screen: a soft pool, thrown down and
+     to the left, under the phone and over the pane. A gradient, not a
+     filter — it has no edge to begin with, and needs no blur length */
   content: ""; position: absolute; z-index: -1;
-  left: -18%; right: -4%; top: 3%; bottom: 2%;
-  border-radius: calc(var(--pw) * 0.2);
-  background: rgba(0, 0, 0, 0.72);
-  filter: blur(calc(var(--pw) * 0.11));
-  transform: translate3d(calc(var(--pw) * -0.08), calc(var(--pw) * 0.05), -1px);
+  left: -55%; right: -35%; top: -10%; bottom: -16%;
+  background: radial-gradient(ellipse 42% 46% at 46% 52%, rgba(0, 0, 0, 0.82) 0%, rgba(0, 0, 0, 0.5) 34%, rgba(0, 0, 0, 0.18) 58%, rgba(0, 0, 0, 0) 78%);
+  transform: translate3d(-5%, 4%, -1px);
 }
 .stand--phone .mirror { display: none; }   /* standing over the screen, the phone's reflection would land inside the screen's own — one reflection, the screen's */
 .phone {
