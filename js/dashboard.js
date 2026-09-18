@@ -190,6 +190,23 @@
 
   function frameOf(device) { return device.querySelector("iframe"); }
 
+  /* the page inside a device is laid out at its real size — 1440 on the
+     screen, 390 on the phone — and scaled to the pane; the factor comes from
+     the pane's measured width, on load and on every resize */
+  function zoomDevices() {
+    Array.prototype.forEach.call(document.querySelectorAll(".device"), function (d) {
+      var f = frameOf(d);
+      if (!f) return;
+      var natural = d.classList.contains("phone") ? 390 : 1440;
+      var w = d.clientWidth;
+      if (w > 0) d.style.setProperty("--zoom", (w / natural).toFixed(4));
+    });
+  }
+  zoomDevices();
+  window.addEventListener("resize", zoomDevices);
+  window.addEventListener("load", zoomDevices);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(zoomDevices);
+
   function loadFrames(sec) {
     Array.prototype.forEach.call(sec.querySelectorAll(".device iframe[data-src]"), function (f) {
       f.src = f.getAttribute("data-src");
@@ -203,8 +220,8 @@
   function scroller(device) {
     var f = frameOf(device);
     var running = false, raf = 0, y = 0, dir = 1, holdUntil = 0, last = 0;
-    var downSpeed = device.classList.contains("phone") ? 45 : 70;   /* px per second */
-    var upSpeed = 900;
+    var downSpeed = device.classList.contains("phone") ? 120 : 190;   /* px per second — a brisk read */
+    var upSpeed = 1400;
     function tick(now) {
       if (!running) return;
       raf = window.requestAnimationFrame(tick);
@@ -216,12 +233,12 @@
       last = now;
       if (now < holdUntil) return;
       y += (dir > 0 ? downSpeed : -upSpeed) * dt;
-      if (y >= max) { y = max; dir = -1; holdUntil = now + 2200; }
-      else if (y <= 0) { y = 0; dir = 1; holdUntil = now + 2600; }
+      if (y >= max) { y = max; dir = -1; holdUntil = now + 1400; }
+      else if (y <= 0) { y = 0; dir = 1; holdUntil = now + 1800; }
       win.scrollTo({ top: y, behavior: "instant" });
     }
     return {
-      start: function () { if (running) return; running = true; last = 0; holdUntil = performance.now() + 1800; raf = window.requestAnimationFrame(tick); },
+      start: function () { if (running) return; running = true; last = 0; holdUntil = performance.now() + 1200; raf = window.requestAnimationFrame(tick); },
       stop: function () { running = false; window.cancelAnimationFrame(raf); }
     };
   }
@@ -256,8 +273,8 @@
         if (!sec.classList.contains("is-settled")) return;
         var r = stage.getBoundingClientRect();
         var px = (e.clientX - r.left) / r.width - 0.5, py = (e.clientY - r.top) / r.height - 0.5;
-        stage.style.setProperty("--ry", (px * 6).toFixed(2) + "deg");
-        stage.style.setProperty("--rx", (-py * 4).toFixed(2) + "deg");
+        stage.style.setProperty("--ry", (px * 3).toFixed(2) + "deg");
+        stage.style.setProperty("--rx", (-py * 2).toFixed(2) + "deg");
       });
       sec.addEventListener("pointerleave", function () { stage.style.setProperty("--ry", "0deg"); stage.style.setProperty("--rx", "0deg"); });
     });
