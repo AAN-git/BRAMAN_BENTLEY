@@ -1,0 +1,12 @@
+# Confidential: the Bentley retailer guidelines live here, not in the repository.
+bentley guidlines/
+
+# Alex's raw source frames and Figma exports at the root — not part of the page.
+/*.png
+/*.PNG
+/*.jpg
+/*.JPG
+
+.DS_Store
+.playwright-mcp/
+.vscode/

@@ -1,0 +1,254 @@
+[
+  {
+    "name": "gt-speed-master.jpg",
+    "role": "hero candidate \u2014 GT Speed, 4K master",
+    "source": "models/27my/gt-speed/BY634_27_GT_Speed_AVP2D_A_8_000_HQ_Calvert_4K_v023x2.jpg",
+    "bytes": 207558
+  },
+  {
+    "name": "gt-s-front-16x9.jpg",
+    "role": "hero candidate \u2014 GT S front 3/4, 16:9",
+    "source": "models/27my/gt-s/week-4-crops/GT S Image Hotspot Front 3.4 V2 16x9 Highres.jpg",
+    "bytes": 175922
+  },
+  {
+    "name": "gt-s-media-1.jpg",
+    "role": "cinematic wide",
+    "source": "models/27my/gt-s/week-4-crops/GT S High Res Media Group 1 V2.jpg",
+    "bytes": 122035
+  },
+  {
+    "name": "gt-s-side.jpg",
+    "role": "proportion \u2014 full side profile",
+    "source": "models/27my/gt-s/week-4-crops/GT S Gallery Side Profile.jpg",
+    "bytes": 101689
+  },
+  {
+    "name": "gt-s-34.jpg",
+    "role": "three-quarter",
+    "source": "models/27my/gt-s/week-4-crops/3-4 New edit.jpg",
+    "bytes": 193549
+  },
+  {
+    "name": "gt-s-grille.jpg",
+    "role": "detail \u2014 grille",
+    "source": "models/27my/gt-s/week-4-crops/Media Group 3 Grille.jpg",
+    "bytes": 72046
+  },
+  {
+    "name": "detail-veneer.jpg",
+    "role": "craft \u2014 veneer close up",
+    "source": "models/27my/gt-s/week-4-crops/GT S Gallery Veneer Close Up 16x9.jpg",
+    "bytes": 204316
+  },
+  {
+    "name": "detail-console.jpg",
+    "role": "craft \u2014 centre console",
+    "source": "models/27my/gt-s/week-4-crops/GT S Gallery Veneer Centre Console 16x9.jpg",
+    "bytes": 176764
+  },
+  {
+    "name": "detail-speaker.jpg",
+    "role": "craft \u2014 speaker",
+    "source": "models/27my/gt-s/week-4-crops/GT S Speaker Card Item.jpg",
+    "bytes": 69798
+  },
+  {
+    "name": "detail-wheel.jpg",
+    "role": "detail \u2014 wheel",
+    "source": "models/27my/gt-s/week-4-crops/GT S Gallery Front Wheel Close up 16x9.jpg",
+    "bytes": 109767
+  },
+  {
+    "name": "detail-clock-1x2.jpg",
+    "role": "craft \u2014 clock, portrait 1:2",
+    "source": "models/27my/gt-s/week-4-crops/GT S Card Wall Clocks Interior 1x2.jpg",
+    "bytes": 85041
+  },
+  {
+    "name": "detail-wheel-1x2.jpg",
+    "role": "craft \u2014 steering wheel, portrait",
+    "source": "models/27my/gt-s/week-4-crops/GT S Card Wall Steering Wheel 1x2.jpg",
+    "bytes": 67535
+  },
+  {
+    "name": "interior-gt-s.jpg",
+    "role": "interior \u2014 cabin",
+    "source": "models/27my/gt-s/GT S Interior Hotspot.jpg",
+    "bytes": 297437
+  },
+  {
+    "name": "performance-portrait.jpg",
+    "role": "performance, portrait",
+    "source": "models/27my/gt-s/week-4-crops/GT S Performance Portrait Teaser Updated.jpg",
+    "bytes": 100476
+  },
+  {
+    "name": "texture-hide.jpg",
+    "role": "material \u2014 hide",
+    "source": "textures/Grey hide portrait.jpg",
+    "bytes": 193003
+  },
+  {
+    "name": "bentayga-stage.jpg",
+    "role": "hero candidate \u2014 Bentayga stage",
+    "source": "models/26my/bentayga-speed/Model Stage Main.jpg",
+    "bytes": 453587
+  },
+  {
+    "name": "bentayga-media-1.jpg",
+    "role": "cinematic wide",
+    "source": "models/26my/bentayga-speed/Media Group 1.jpg",
+    "bytes": 211474
+  },
+  {
+    "name": "bentayga-gallery-2.jpg",
+    "role": "wide",
+    "source": "models/26my/bentayga-speed/Gallery 2.jpg",
+    "bytes": 239752
+  },
+  {
+    "name": "bentayga-performance.jpg",
+    "role": "performance",
+    "source": "models/27my/bentayga/speed/Performance - 2.jpg",
+    "bytes": 120269
+  },
+  {
+    "name": "interior-rear.jpg",
+    "role": "interior \u2014 rear cabin",
+    "source": "models/27my/bentayga/ewb-mulliner/Gallery Rear Interior 16x9.jpg",
+    "bytes": 221407
+  },
+  {
+    "name": "detail-wings.jpg",
+    "role": "detail \u2014 wings on grille",
+    "source": "models/27my/bentayga/ewb-mulliner/Gallery Wings Front Grille 16x9.jpg",
+    "bytes": 346144
+  },
+  {
+    "name": "detail-badging.jpg",
+    "role": "detail \u2014 wheel badging",
+    "source": "models/27my/bentayga/ewb-mulliner/Gallery Front Wheel Badging 16x9.jpg",
+    "bytes": 235889
+  },
+  {
+    "name": "detail-speaker-7x3.jpg",
+    "role": "craft \u2014 speaker, panoramic",
+    "source": "models/mulliner/virtuoso/Speaker Detail 7x3.jpg",
+    "bytes": 341781
+  },
+  {
+    "name": "rail-bentayga-1x2.jpg",
+    "role": "rail option \u2014 portrait",
+    "source": "models/derivative-selectors/27my-bentayga/Card Wall 1100x2200px 27MY Bentayga.jpg",
+    "bytes": 58381
+  },
+  {
+    "name": "gt-speed-homepage.jpg",
+    "role": "wide banner",
+    "source": "models/27my/Main Homepage GT Speed.jpg",
+    "bytes": 180200
+  },
+  {
+    "name": "rail-continental-gt.jpg",
+    "role": "rail \u2014 official card wall 1:2",
+    "source": "models/27my/Card Wall 1100x2200px 27MY Continental GT Core.jpg",
+    "bytes": 85916
+  },
+  {
+    "name": "rail-continental-gtc.jpg",
+    "role": "rail",
+    "source": "models/27my/gtc-range/Card Wall 1100x2200px 27MY Continental GTC Core.jpg",
+    "bytes": 83463
+  },
+  {
+    "name": "rail-flying-spur.jpg",
+    "role": "rail",
+    "source": "models/27my/flying-spur-range-page/Card Wall 1100x2200px 27MY Spur Global.jpg",
+    "bytes": 87899
+  },
+  {
+    "name": "rail-bentayga.jpg",
+    "role": "rail",
+    "source": "models/derivative-selectors/27my-bentayga/Card Wall 1100x2200px 27MY Bentayga.jpg",
+    "bytes": 90619
+  },
+  {
+    "name": "preowned-official.jpg",
+    "role": "pre-owned \u2014 official Bentley asset",
+    "source": "models/pre-owned/Pre-Owned Gallery 2 .jpg",
+    "bytes": 50840
+  },
+  {
+    "name": "texture-headlight.jpg",
+    "role": "transition \u2014 headlight macro, portrait",
+    "source": "textures/Headlight Portrait Teasers.jpg",
+    "bytes": 247020
+  },
+  {
+    "name": "texture-grille.jpg",
+    "role": "transition \u2014 grille, landscape",
+    "source": "textures/Base Grille Landscape Teasers.jpg",
+    "bytes": 45468
+  },
+  {
+    "name": "texture-grille-16x9.jpg",
+    "role": "transition \u2014 grille 16:9",
+    "source": "models/27my/supersports/Grille 16x9 Texture.jpg",
+    "bytes": 21199
+  },
+  {
+    "name": "mulliner-bespoke.jpg",
+    "role": "commissioning story",
+    "source": "models/mulliner/article-teasers/bespoke-features/GT Bespoke Feature Article Teaser Main.jpg",
+    "bytes": 104964
+  },
+  {
+    "name": "interior-3x4.jpg",
+    "role": "interior, portrait 3:4",
+    "source": "models/27my/bentayga/ewb-mulliner/Media Group 2 3x4.jpg",
+    "bytes": 423959
+  },
+  {
+    "name": "gtc-mountains.webp",
+    "role": "hero slide \u2014 Continental GTC, front, mountain road; CTS banner package source (Bentleys_SoCal_180_extended.psd, flattened)",
+    "source": "_____MEDIA BENTLEY 2024/BEN_CF_US_12202686_CTS_GTC_Web_Banners_1920x1080 Folder/Links/Bentleys_SoCal_180_extended.psd",
+    "bytes": 417598
+  },
+  {
+    "name": "spur-norcal.webp",
+    "role": "hero slide \u2014 Flying Spur, dawn over the San Francisco skyline; CTS banner package source (Bentley_NorCal_03.jpg)",
+    "source": "_____MEDIA BENTLEY 2024/BEN_CF_US_12202686_CTS_FS_Web_Banners_1920x1080 Folder/Links/Bentley_NorCal_03.jpg",
+    "bytes": 460818
+  },
+  {
+    "name": "bentayga-sunset.webp",
+    "role": "pre-owned frame \u2014 Bentayga S at rest, sunset by the sea; CTS banner package source",
+    "source": "_____MEDIA BENTLEY 2024/BEN_CF_US_12202686_CTS_Bentayga_Web_Banners_1920x1080 Folder/Links/jpeg-Imagery_Bentayga S_23MY_Bentayga S - MEAI Social Assets hanger_GM.psd",
+    "bytes": 218414
+  },
+  {
+    "name": "torcal-rear.webp",
+    "role": "Torcal slide poster \u2014 rear reveal; from the Bentley Torcal reveal kit (via the FC Kerbeck Torcal page)",
+    "source": "FC KERBECK BENTLEY/torcal/assets/img/hero-rear.jpg",
+    "bytes": 80422
+  },
+  {
+    "name": "torcal-hero.mp4",
+    "role": "Torcal slide film \u2014 1564x1080, 28s, H.264; the reveal film supplied to retailers",
+    "source": "FC KERBECK BENTLEY/torcal/assets/video/torcal-hero.mp4",
+    "bytes": 9026883
+  },
+  {
+    "name": "gt-mountains.webp",
+    "role": "hero slide \u2014 Continental GT, rear three-quarter, mountain road, the car small in the frame with air on every side; CTS banner package source (Bentleys_SoCal_185_extended.psd, flattened)",
+    "source": "_____MEDIA BENTLEY 2024/BEN_CF_US_12202686_CTS_GT_Web_Banners_1920x1080 Folder/Links/Bentleys_SoCal_185_extended.psd",
+    "bytes": 290406
+  },
+  {
+    "name": "spur-autumn.webp",
+    "role": "pre-owned slide \u2014 Flying Spur driving through autumn trees; CTS banner package source (LIPMAN_JL12594.jpg)",
+    "source": "_____MEDIA BENTLEY 2024/BEN_CF_US_12202686_CTS_FS_Web_Banners_1920x1080 Folder/Links/LIPMAN_JL12594.jpg",
+    "bytes": 424826
+  }
+]

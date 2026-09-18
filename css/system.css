@@ -1,0 +1,147 @@
+/* ==========================================================================
+   Bentley retailer design system — tokens
+   Colour and type transcribed from the 2026 Retailer Website Guidelines.
+   Scale from the project brief, tuned optically where composition required it.
+
+   Retailer-swappable values are grouped under "RETAILER" at the end: a second
+   location (Bentley Los Gatos) changes those and nothing else.
+   ========================================================================== */
+
+@font-face {
+  font-family: "Bentley";
+  src: url("../assets/fonts/Bentley-Light.woff2") format("woff2");
+  font-weight: 300; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Bentley";
+  src: url("../assets/fonts/Bentley-Regular.woff2") format("woff2");
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+
+:root {
+  /* --- Approved palette -------------------------------------------------- */
+  --bentley-green:  #183319;
+  --heritage-white: #DCD8C0;
+  --white:          #FFFFFF;
+  --black:          #040404;
+
+  /* Percentage tints — permitted variants, not a second palette */
+  --teal-70:        #5E715E;
+  --satin-linen-40: #E8E5D5;
+  --light-grey-10:  #CDCDCD;
+  --dark-grey-40:   #585858;
+
+  /* Form states only */
+  --system-success: #2E8643;
+  --system-error:   #C1472D;
+
+  /* --- Grounds and ink --------------------------------------------------- */
+  --ground:         var(--white);
+  --ground-quiet:   var(--satin-linen-40);
+  --ground-deep:    var(--bentley-green);
+  --ground-night:   var(--black);
+  --ink:            var(--black);
+  --ink-secondary:  var(--dark-grey-40);
+  --ink-invert:     var(--white);
+  --ink-invert-2:   rgba(255, 255, 255, 0.78);   /* 8.9:1 on Bentley Green   */
+  --rule:           var(--light-grey-10);
+  --rule-invert:    rgba(255, 255, 255, 0.26);
+
+  /* --- Type. Licensed Bentley face, Arial as the required fallback ------- */
+  --font: "Bentley", Arial, Helvetica, sans-serif;
+
+  /* Matched step for step to bentleymotors.com, measured at 1440 and 516.
+     The one divergence is the floor: functional text never below 14px.     */
+  --text-xs:      0.875rem;                                   /* 14 — floor */
+  --text-sm:      0.9375rem;                                  /* 15         */
+  --text-nav:     0.9375rem;                                  /* 15         */
+  --text-body:    1.0625rem;                                  /* 17         */
+  --text-button:  clamp(0.875rem, 0.3vw + 0.8rem, 1rem);      /* 14 → 16    */
+  --text-lead:    clamp(1.0625rem, 0.7vw + 0.88rem, 1.375rem);/* 17 → 22    */
+  --text-h3:      clamp(1.375rem, 0.9vw + 1.15rem, 1.875rem); /* 22 → 30    */
+  --text-h2:      clamp(2rem, 2.4vw + 1.4rem, 3.5rem);        /* 32 → 56    */
+  --text-display: clamp(2.25rem, 2.8vw + 1.4rem, 4rem);       /* 36 → 64    */
+  --text-hero:    clamp(2.75rem, 5.4vw + 0.9rem, 6.75rem);    /* 44 → 108   */
+
+  --track-display: -0.015em;   /* the guideline's tracking value of -15      */
+  --track-label:    0.1em;     /* Bentley's uppercase label register         */
+  --track-body:     0.01em;
+
+  --leading-display: 1.08;
+  --leading-heading: 1.17;
+  --leading-body:    1.5;
+
+  /* --- Space — 4px base -------------------------------------------------- */
+  --space-1:  0.25rem;  --space-2:  0.5rem;   --space-3:  0.75rem;
+  --space-4:  1rem;     --space-5:  1.5rem;   --space-6:  2rem;
+  --space-7:  3rem;     --space-8:  4rem;     --space-9:  6rem;
+  --space-10: 8rem;     --space-11: 10rem;
+
+  /* --- Format ------------------------------------------------------------ */
+  --gutter:        clamp(1.5rem, 2.8vw, 2.5rem);   /* 24 → 40px             */
+  --gutter-wide:   clamp(2.5rem, 4vw, 4rem);       /* 40 → 64px on wide     */
+  --measure-page:  1320px;
+  --measure-edit:  1280px;
+  --measure-head:  660px;
+  --measure-body:  480px;
+
+  --section-y:     clamp(4rem, 9vw, 9rem);         /* 64 → 144px            */
+  --hero-h:        clamp(34rem, 62vw, 56rem);      /* → 893px at 1440       */
+
+  /* Header, measured off bentleymotors.com at 1440: one bar of 127px with the
+     wings at 110×55 centred and 48px of air above them. One bar, never two. */
+  --bar-h:         132px;
+  --bar-h-compact:  92px;
+  --mark-w:        146px;
+  --control-h:      50px;
+
+  /* Set by script to the real sticky height; anchors offset by it. */
+  --header-h:      132px;
+
+  /* Square corners throughout — the brand does not use rounded UI. */
+  --radius: 0;
+
+  /* --- Motion scale ------------------------------------------------------ */
+  /* Retimed for a smoother arrival. The old curves were quint-out — nearly
+     four fifths of the distance covered in the first quarter of the duration,
+     which reads as a snap followed by a long tail rather than as one movement.
+     Everything that arrives now runs on a cubic-out, which keeps the
+     deceleration entrances need but spends the time evenly, and the two long
+     durations are lengthened so the softer curves have room to glide instead
+     of merely being slower versions of the same snap.
+     Control feedback is deliberately NOT slowed: --dur-1 and --dur-2 answer
+     "is this live?", and a smoothed hover is a late hover. They inherit the
+     softer curve, not the longer clock. */
+  --dur-1: 0.15s;   /* state flick                                          */
+  --dur-2: 0.25s;   /* control feedback                                     */
+  --dur-3: 0.45s;   /* header ground, tonal overlays                        */
+  --dur-4: 0.9s;    /* section arrival                                      */
+  --dur-5: 9s;      /* the single ambient moment: the hero settling         */
+  --dur-reveal: 1.4s;   /* masked photographic reveal — slow and weighted   */
+  --ease-out: cubic-bezier(0.33, 1, 0.68, 1);    /* entering, expanding     */
+  --ease-in:  cubic-bezier(0.55, 0, 1, 0.45);    /* exiting, collapsing     */
+  /* A photograph uncovering is a camera move, not a state change: eased at
+     both ends so it starts and stops without an edge. */
+  --ease-reveal: cubic-bezier(0.4, 0, 0.2, 1);
+  --rise: 24px;                                   /* section arrival travel */
+
+  /* Header ground once scrolled: a Bentley Green tint over a real blur.
+     White on this composite clears 4.5:1 even against white content. */
+  --bar-tint: rgba(24, 51, 25, 0.72);
+  --bar-blur: 14px;
+
+  /* --- Image protection --------------------------------------------------
+     Measured, not eyeballed. Each value is the minimum black alpha that puts
+     white text at or above 4.5:1 over the worst pixel inside the actual
+     rendered text box of that crop. Tuned in tools/verify-contrast.mjs.    */
+  --protect-hero-landscape: 0.66;
+  --protect-hero-portrait:  0.72;
+  --protect-rail:           0.55;
+  --protect-story:          0.58;
+
+  /* --- RETAILER ----------------------------------------------------------
+     The only block that changes between Bentley Palm Beach and Bentley Los
+     Gatos. Imagery and copy are swapped alongside it.                      */
+  --retailer-hero:     url("../assets/v2/hero.jpg");
+  --retailer-hero-alt: url("../assets/v2/hero-portrait.jpg");
+}

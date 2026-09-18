@@ -1,0 +1,479 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bentley Palm Beach | Official Bentley Retailer, West Palm Beach</title>
+<meta name="description" content="Bentley Palm Beach is the official Bentley retailer for West Palm Beach, Florida. New Bentley motor cars, Bentley Approved pre-owned, service and parts.">
+<link rel="preload" href="assets/fonts/Bentley-Light.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/Bentley-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+<a class="sr-only" href="#main">Skip to content</a>
+
+<!-- MASS 1 — identification. Required header information sits here: retailer
+     name [Bentley City] and phone numbers. -->
+<header class="masthead" id="masthead">
+  <div class="shell">
+
+    <div class="masthead__utility">
+      <div class="masthead__where">Bentley Palm Beach<span class="masthead__city"> · West Palm Beach, Florida</span></div>
+      <div class="masthead__lines">
+        <div><span>Sales</span> <a href="tel:+15619269111">561 926 9111</a></div>
+        <div><span>Service</span> <a href="tel:+15619269110">561 926 9110</a></div>
+        <div><span>Parts</span> <a href="tel:+15619269112">561 926 9112</a></div>
+      </div>
+    </div>
+
+    <div class="masthead__bar">
+      <button class="masthead__toggle" type="button" aria-expanded="false" aria-controls="nav">
+        <svg width="18" height="12" viewBox="0 0 18 12" aria-hidden="true" fill="none">
+          <path d="M0 1h18M0 6h18M0 11h18" stroke="currentColor"/>
+        </svg>
+        Menu
+      </button>
+
+      <nav class="nav" id="nav" aria-label="Primary">
+        <ul>
+          <li><a href="#range">Models</a></li>
+          <li><a href="#service">Service</a></li>
+          <li><a href="#parts">Parts</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#retailer">Contact</a></li>
+        </ul>
+      </nav>
+
+      <a class="masthead__mark" href="/" aria-label="Bentley Palm Beach — home">
+        <img src="assets/img/logo-negative.png" alt="Bentley" width="116" height="52">
+      </a>
+
+      <div class="masthead__actions">
+        <a class="btn" href="#retailer">Book a Service</a>
+        <a class="btn" href="#retailer">Request a Test Drive</a>
+      </div>
+    </div>
+
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- MASS 2 — one lit field, inset in the page ground. The lockup along the
+       bottom of the frame is Bentley's: title, then its description beside it,
+       then the actions at the far edge, all on one line. -->
+  <section class="hero" aria-roledescription="carousel" aria-label="Bentley motor cars at Bentley Palm Beach">
+   <div class="hero__stage">
+
+    <div class="hero__frames" id="heroFrames">
+      <div class="hero__frame" data-current role="group" aria-roledescription="slide" aria-label="Continental GTC">
+        <img src="assets/bm/2026/gtc-atelier.webp" alt="A Bentley Continental GTC in blue with the roof lowered, standing alone in a pale concrete hall." fetchpriority="high" width="2400" height="1482" style="object-position:50% 42%">
+      </div>
+      <div class="hero__frame" role="group" aria-roledescription="slide" aria-label="Bentayga">
+        <img src="assets/bm/2026/bentayga-dusk.webp" alt="A Bentley Bentayga in dark red on a city road at dusk, the buildings behind it lit and blurred." loading="lazy" width="2400" height="1510" style="object-position:50% 40%">
+      </div>
+      <div class="hero__frame" role="group" aria-roledescription="slide" aria-label="Continental GT">
+        <img src="assets/bm/2026/gt-lineup.webp" alt="Six Bentley Continental GTs of the Bespoke Series by Mulliner arranged on a dark studio ground." loading="lazy" width="2400" height="1292" style="object-position:50% 50%">
+      </div>
+    </div>
+
+    <div class="hero__scrim" aria-hidden="true"></div>
+
+    <div class="hero__meter label">
+      <span class="hero__count" id="heroCount">01 / 03</span>
+      <div class="hero__ticks" id="heroTicks" role="tablist" aria-label="Choose a motor car"></div>
+    </div>
+
+    <div class="hero__steps">
+      <button class="hero__step" type="button" data-step="prev" aria-label="Previous motor car">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13.5 8h-11m0 0 3-3m-3 3 3 3"/>
+        </svg>
+      </button>
+      <button class="hero__step" type="button" data-step="next" aria-label="Next motor car">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.5 8h11m0 0-3-3m3 3-3 3"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="hero__lockup">
+      <h1>Bentley Palm Beach</h1>
+      <p class="hero__note">The official Bentley retailer for West Palm Beach, and for the marque across South Florida.</p>
+      <div class="actions">
+        <a class="btn btn--invert" href="#range">
+          <img class="btn__mark" src="assets/icons/b-mark.png" alt="" width="16" height="16">
+          Explore the Range
+        </a>
+        <a class="btn btn--invert" href="#retailer">Request a Test Drive</a>
+      </div>
+    </div>
+
+   </div>
+  </section>
+
+  <!-- The section index, on the page ground under the frame. -->
+  <nav class="anchors" aria-label="On this page">
+    <ul>
+      <li><a href="#range">The Range</a></li>
+      <li><a href="#service">Service</a></li>
+      <li><a href="#parts">Parts &amp; Accessories</a></li>
+      <li><a href="#ownership">Ownership</a></li>
+      <li><a href="#retailer">Visit Us</a></li>
+    </ul>
+  </nav>
+
+  <!-- MASS 3 — the range as one sequence, one framing throughout. -->
+  <section class="field" id="range">
+    <div class="shell">
+      <div class="field__open">
+        <div>
+          <p class="label">The Range</p>
+          <h2 style="margin-block-start: var(--space-3)">Four model lines, one commission each</h2>
+        </div>
+        <p class="body">Each car is specified before it is built. Our team takes you through paint, hide, veneer and Mulliner detailing, then keeps you with the car until it is handed over.</p>
+      </div>
+
+      <div class="range">
+        <a class="range__item" href="#retailer">
+          <img src="assets/img/r-continental-gt.jpg" alt="Bentley Continental GT" loading="lazy" width="900" height="600">
+          <span class="rule-label">
+            <span class="range__name label">Continental GT</span>
+            <span class="range__kind" style="display:block">Grand tourer</span>
+          </span>
+        </a>
+        <a class="range__item" href="#retailer">
+          <img src="assets/img/r-continental-gtc.jpg" alt="Bentley Continental GT Convertible" loading="lazy" width="900" height="600">
+          <span class="rule-label">
+            <span class="range__name label">Continental GT Convertible</span>
+            <span class="range__kind" style="display:block">Open-top grand tourer</span>
+          </span>
+        </a>
+        <a class="range__item" href="#retailer">
+          <img src="assets/img/r-flying-spur.jpg" alt="Bentley Flying Spur" loading="lazy" width="900" height="600">
+          <span class="rule-label">
+            <span class="range__name label">Flying Spur</span>
+            <span class="range__kind" style="display:block">Luxury saloon</span>
+          </span>
+        </a>
+        <a class="range__item" href="#retailer">
+          <img src="assets/img/r-bentayga.jpg" alt="Bentley Bentayga" loading="lazy" width="900" height="600">
+          <span class="rule-label">
+            <span class="range__name label">Bentayga</span>
+            <span class="range__kind" style="display:block">Luxury SUV</span>
+          </span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- MASS 4 — the aftersales interval. One dark field between two light ones,
+       and inside it a composition rather than a caption: two photographs offset
+       against each other, the material behind and the work in front, with the
+       copy holding the opposite side of the page. The two sections mirror, so
+       the eye crosses the page once instead of running down one gutter. -->
+  <section class="field field--night layers" aria-label="Service, parts and accessories">
+
+    <article class="layer" id="service">
+      <div class="layer__type">
+        <p class="label">Service</p>
+        <h2>Expert care<br>for your Bentley</h2>
+        <p class="body">Factory-trained technicians, marque-specific tooling and Bentley factory diagnostics. An estimate is written before any work begins, and nothing is done that was not agreed.</p>
+        <p class="body">Priority booking for owners on our file, a courtesy motor car arranged for the duration, and collection and delivery across Palm Beach County.</p>
+
+        <ul class="layer__spec">
+          <li><span>Maintenance</span>Scheduled by mileage and by time</li>
+          <li><span>Diagnostics</span>Bentley equipment, before any part is ordered</li>
+          <li><span>Body &amp; paint</span>Marque-approved refinishing</li>
+        </ul>
+
+        <div class="actions">
+          <a class="btn btn--solid" href="#retailer">
+            <svg class="btn__ico" viewBox="0 0 16 16" width="16" height="16" fill="none" aria-hidden="true">
+              <rect x="2" y="3" width="12" height="11" stroke="currentColor" stroke-width="1.2"/>
+              <path d="M2 6.5h12M5.5 1.5v3M10.5 1.5v3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+            </svg>
+            Book a Service
+          </a>
+          <a class="btn" href="tel:+15619269110">
+            <svg class="btn__ico" viewBox="0 0 16 16" width="16" height="16" fill="none" aria-hidden="true">
+              <path d="M3.2 2.5h2.4l1 2.6-1.5 1.1a8.4 8.4 0 0 0 3.7 3.7l1.1-1.5 2.6 1v2.4a1 1 0 0 1-1.1 1A11 11 0 0 1 2.2 3.6a1 1 0 0 1 1-1.1z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/>
+            </svg>
+            561 926 9110
+          </a>
+        </div>
+      </div>
+
+      <div class="layer__stack">
+        <div class="layer__plate">
+          <img src="assets/bm/texture-hide.jpg" alt="" aria-hidden="true" loading="lazy" width="1920" height="1080">
+        </div>
+        <div class="layer__front">
+          <img src="assets/bm/own-service.jpg" alt="A Bentley-trained technician working on a Continental GT." loading="lazy" width="1600" height="900">
+        </div>
+      </div>
+    </article>
+
+    <article class="layer layer--mirror" id="parts">
+      <div class="layer__type">
+        <p class="label">Parts &amp; Accessories</p>
+        <h2>Perfect fit,<br>factory integrity</h2>
+        <p class="body">Genuine components ordered against your chassis number, so a part arrives cut for your motor car rather than for the model it belongs to.</p>
+        <p class="body">Accessories fitted here by the department that already holds your specification, and written onto the file so the record of the car stays whole.</p>
+
+        <ul class="layer__spec">
+          <li><span>Genuine parts</span>Ordered to the chassis, not to the catalogue</li>
+          <li><span>Accessories</span>Fitted here and recorded on the file</li>
+          <li><span>Wheels &amp; tyres</span>Bentley specification, fitted and balanced</li>
+        </ul>
+
+        <div class="actions">
+          <a class="btn btn--solid" href="#retailer">
+            <svg class="btn__ico" viewBox="0 0 16 16" width="16" height="16" fill="none" aria-hidden="true">
+              <path d="M8.6 1.8H14v5.4l-6.6 6.6a1 1 0 0 1-1.4 0L1.9 9.7a1 1 0 0 1 0-1.4z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/>
+              <circle cx="11" cy="5" r="1.1" stroke="currentColor" stroke-width="1.2"/>
+            </svg>
+            Order Parts
+          </a>
+          <a class="btn" href="tel:+15619269112">
+            <svg class="btn__ico" viewBox="0 0 16 16" width="16" height="16" fill="none" aria-hidden="true">
+              <path d="M3.2 2.5h2.4l1 2.6-1.5 1.1a8.4 8.4 0 0 0 3.7 3.7l1.1-1.5 2.6 1v2.4a1 1 0 0 1-1.1 1A11 11 0 0 1 2.2 3.6a1 1 0 0 1 1-1.1z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/>
+            </svg>
+            561 926 9112
+          </a>
+        </div>
+      </div>
+
+      <div class="layer__stack">
+        <div class="layer__plate">
+          <img src="assets/bm/detail-speaker.jpg" alt="" aria-hidden="true" loading="lazy" width="1100" height="619">
+        </div>
+        <div class="layer__front">
+          <img src="assets/bm/detail-wheel.jpg" alt="The front wheel and tyre of a Bentley Continental GT S, the winged centre cap in the middle of the machined rim." loading="lazy" width="1920" height="1080">
+        </div>
+      </div>
+    </article>
+
+  </section>
+
+  <!-- MASS 4c — the quiet field with no image, so the meter has a rest. -->
+  <section class="field field--quiet" id="ownership">
+    <div class="shell">
+      <div class="field__open">
+        <div>
+          <p class="label">Ownership</p>
+          <h2 style="margin-block-start: var(--space-3)">The car is the beginning of the relationship</h2>
+        </div>
+      </div>
+
+      <div class="ledger">
+        <div class="ledger__item">
+          <span class="rule-label label">Service</span>
+          <h3>Bentley-trained technicians</h3>
+          <p class="body">Factory diagnostics, genuine parts and a courtesy motor car arranged for the duration.</p>
+          <p><a class="btn" href="#retailer">Book a Service</a></p>
+        </div>
+        <div class="ledger__item">
+          <span class="rule-label label">Parts &amp; Accessories</span>
+          <h3>Genuine Bentley parts</h3>
+          <p class="body">Ordered and fitted by the department that already holds your car's specification.</p>
+          <p><a class="btn" href="#retailer">Order Parts</a></p>
+        </div>
+        <div class="ledger__item">
+          <span class="rule-label label">Finance</span>
+          <h3>Bentley Financial Services</h3>
+          <p class="body">Purchase and lease agreements arranged in confidence, to suit how the car will be used.</p>
+          <p><a class="btn" href="#retailer">Speak to Our Team</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MASS 4d — About Us, standing open. It was folded into an accordion at the
+       foot of the page, which is where a business hides what it has to say; it
+       reads here, in full, directly after the ownership promise it explains. -->
+  <section class="field about-us" id="about">
+    <div class="shell">
+      <div class="field__open">
+        <div>
+          <p class="label">About Us</p>
+          <h2 style="margin-block-start: var(--space-3)">An official Bentley retailer<br>in West Palm Beach</h2>
+        </div>
+        <p class="body">Bentley Palm Beach represents Bentley Motors in West Palm Beach, Florida, and serves owners across Palm Beach County, the Treasure Coast and South Florida.</p>
+      </div>
+
+      <div class="about-us__frame">
+        <img src="assets/bm/2026/gallery-wide.webp" alt="A Bentley Continental GT in pale blue at rest on a city street outside a stone gallery building, traffic passing in front of it." loading="lazy" width="2400" height="1030">
+      </div>
+
+      <div class="about-us__body">
+        <article>
+          <h3>The showroom</h3>
+          <p>The showroom presents the current range — Continental GT, Continental GT Convertible, Flying Spur and Bentayga — alongside a selection of Bentley Approved pre-owned motor cars. One retailer carries the whole of it: exploration, specification, handover and aftercare, with the same people on the file throughout.</p>
+        </article>
+        <article>
+          <h3>New Bentley motor cars</h3>
+          <p>Each new Bentley is built to the specification of its owner at the factory in Crewe, England. Our specialists take you through the commissioning process, from exterior paint and hide colour to veneer and Mulliner detailing, and keep you informed at every stage through to handover.</p>
+        </article>
+        <article>
+          <h3>Bentley Approved pre-owned</h3>
+          <p>Bentley Approved motor cars are prepared to factory standard by Bentley-trained technicians and supplied with a comprehensive warranty and roadside assistance. Every car is inspected against a detailed Bentley checklist before it is presented for sale.</p>
+        </article>
+        <article>
+          <h3>Service, parts and accessories</h3>
+          <p>Our aftersales department is equipped with Bentley factory diagnostic systems and staffed by Bentley-trained technicians. We carry genuine Bentley parts and accessories, and can arrange collection and delivery of your motor car for scheduled maintenance.</p>
+        </article>
+        <article>
+          <h3>Finance and leasing</h3>
+          <p>Our business managers work with Bentley Financial Services to arrange purchase and lease agreements, discreetly and on terms suited to how you intend to use your motor car.</p>
+        </article>
+        <article>
+          <h3>The area we serve</h3>
+          <p>West Palm Beach, Palm Beach Gardens, Jupiter, Wellington and Boca Raton, and owners throughout South Florida who ask us to collect. Sales, service and parts are reached directly on the numbers listed below.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- MASS 5 — the record. The densest mass on the page and its centre of
+       action: this is where a visitor converts. -->
+  <section class="field" id="retailer">
+    <div class="shell record">
+      <div>
+        <p class="label">The Retailer</p>
+        <h2 style="margin-block-start: var(--space-3)">Bentley Palm Beach</h2>
+        <p class="body" style="margin-block-start: var(--space-5)">Our showroom on Okeechobee Boulevard serves West Palm Beach, Palm Beach Gardens, Jupiter, Wellington and Boca Raton.</p>
+        <div class="actions" style="margin-block-start: var(--space-7)">
+          <a class="btn btn--solid" href="#retailer">Contact Us</a>
+          <a class="btn" href="#retailer">Book a Service</a>
+        </div>
+      </div>
+
+      <dl class="plate">
+        <dt>Address</dt>
+        <dd><address style="font-style: normal">2801 Okeechobee Boulevard, West Palm Beach, Florida 33409</address></dd>
+
+        <dt>Sales</dt>
+        <dd>
+          <a href="tel:+15619269111">561 926 9111</a>
+          <span class="plate__pair" style="margin-block-start: var(--space-2)">
+            <span>Monday – Friday 9:00 – 18:00</span>
+            <span>Saturday 9:00 – 17:00</span>
+            <span>Sunday closed</span>
+          </span>
+        </dd>
+
+        <dt>Service</dt>
+        <dd>
+          <a href="tel:+15619269110">561 926 9110</a>
+          <span class="plate__pair" style="margin-block-start: var(--space-2)">
+            <span>Monday – Friday 7:30 – 17:30</span>
+            <span>Saturday 8:00 – 16:00</span>
+          </span>
+        </dd>
+
+        <dt>Parts</dt>
+        <dd><a href="tel:+15619269112">561 926 9112</a></dd>
+
+        <dt>Departments</dt>
+        <dd>New Sales · Bentley Approved Pre-Owned · Service · Parts &amp; Accessories · Bentley Financial Services</dd>
+      </dl>
+    </div>
+  </section>
+
+</main>
+
+<!-- MASS 6 — the closing field returns to the tone of the opening band. -->
+<footer class="colophon">
+  <div class="shell">
+
+    <div class="colophon__crown">
+      <ul class="label">
+        <li><a href="#retailer">Request a Test Drive</a></li>
+        <li><a href="#range">Models</a></li>
+      </ul>
+
+      <a class="colophon__mark" href="/" aria-label="Bentley Palm Beach — home">
+        <img src="assets/img/logo-negative.png" alt="Bentley" width="104" height="47">
+      </a>
+
+      <ul class="label">
+        <li><a href="#retailer">Opening Hours</a></li>
+        <li><a href="#retailer">Contact Us</a></li>
+      </ul>
+    </div>
+
+    <ul class="social">
+      <li><a href="#" aria-label="Bentley Palm Beach on Instagram"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 40 40" fill="none"><g clip-path="url(#clip0_234_119)"><path d="M20 0C14.5667 0 13.8883 0.025 11.755 0.12C9.625 0.22 8.175 0.555 6.9 1.05C5.585 1.56 4.46833 2.245 3.35667 3.35667C2.245 4.46833 1.55833 5.58333 1.05 6.9C0.555 8.175 0.218333 9.625 0.12 11.755C0.02 13.8883 0 14.5667 0 20C0 25.4333 0.025 26.1117 0.12 28.245C0.22 30.3733 0.555 31.825 1.05 33.1C1.56 34.4133 2.245 35.5317 3.35667 36.6433C4.46833 37.7533 5.58333 38.4417 6.9 38.95C8.17667 39.4433 9.62667 39.7817 11.755 39.88C13.8883 39.98 14.5667 40 20 40C25.4333 40 26.1117 39.975 28.245 39.88C30.3733 39.78 31.825 39.4433 33.1 38.95C34.4133 38.44 35.5317 37.7533 36.6433 36.6433C37.7533 35.5317 38.4417 34.4183 38.95 33.1C39.4433 31.825 39.7817 30.3733 39.88 28.245C39.98 26.1117 40 25.4333 40 20C40 14.5667 39.975 13.8883 39.88 11.755C39.78 9.62667 39.4433 8.17333 38.95 6.9C38.44 5.585 37.7533 4.46833 36.6433 3.35667C35.5317 2.245 34.4183 1.55833 33.1 1.05C31.825 0.555 30.3733 0.218333 28.245 0.12C26.1117 0.02 25.4333 0 20 0ZM20 3.6C25.3383 3.6 25.975 3.62667 28.0833 3.71833C30.0333 3.81 31.0917 4.13333 31.795 4.41C32.7317 4.77167 33.395 5.205 34.0983 5.90333C34.7967 6.60333 35.23 7.26833 35.5917 8.205C35.865 8.90833 36.1917 9.96667 36.28 11.9167C36.375 14.0267 36.3967 14.66 36.3967 20C36.3967 25.34 36.3717 25.975 36.2733 28.0833C36.1717 30.0333 35.8467 31.0917 35.5717 31.795C35.1983 32.7317 34.7733 33.395 34.0733 34.0983C33.375 34.7967 32.7 35.23 31.7733 35.5917C31.0733 35.865 29.9983 36.1917 28.0483 36.28C25.925 36.375 25.3 36.3967 19.95 36.3967C14.5983 36.3967 13.9733 36.3717 11.8517 36.2733C9.9 36.1717 8.825 35.8467 8.125 35.5717C7.17667 35.1983 6.525 34.7733 5.82667 34.0733C5.125 33.375 4.67667 32.7 4.32667 31.7733C4.05167 31.0733 3.72833 29.9983 3.62667 28.0483C3.55167 25.9483 3.525 25.3 3.525 19.975C3.525 14.6483 3.55167 13.9983 3.62667 11.8733C3.72833 9.92333 4.05167 8.85 4.32667 8.15C4.67667 7.2 5.125 6.55 5.82667 5.84833C6.525 5.15 7.17667 4.7 8.125 4.35167C8.825 4.075 9.87667 3.75 11.8267 3.65C13.9517 3.575 14.5767 3.55 19.925 3.55L20 3.6ZM20 9.73C14.325 9.73 9.73 14.33 9.73 20C9.73 25.675 14.33 30.27 20 30.27C25.675 30.27 30.27 25.67 30.27 20C30.27 14.325 25.67 9.73 20 9.73ZM20 26.6667C16.3167 26.6667 13.3333 23.6833 13.3333 20C13.3333 16.3167 16.3167 13.3333 20 13.3333C23.6833 13.3333 26.6667 16.3167 26.6667 20C26.6667 23.6833 23.6833 26.6667 20 26.6667ZM33.0767 9.325C33.0767 10.65 32 11.725 30.6767 11.725C29.3517 11.725 28.2767 10.6483 28.2767 9.325C28.2767 8.00167 29.3533 6.92667 30.6767 6.92667C31.9983 6.925 33.0767 8.00167 33.0767 9.325Z" fill="currentColor"/></g><defs><clipPath id="clip0_234_119"><rect width="40" height="40" fill="white"/></clipPath></defs></svg></a></li>
+      <li><a href="#" aria-label="Bentley Palm Beach on Facebook"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 40 40" fill="none"><g clip-path="url(#clip0_230_63)"><path d="M40 20.1217C40 9.07673 31.045 0.121735 20 0.121735C8.955 0.121735 0 9.07673 0 20.1217C0 30.1051 7.31333 38.3784 16.875 39.8784V25.9034H11.7967V20.1201H16.875V15.7167C16.875 10.7051 19.8617 7.93507 24.43 7.93507C26.6167 7.93507 28.9067 8.32673 28.9067 8.32673V13.2484H26.3833C23.8983 13.2484 23.1233 14.7901 23.1233 16.3717V20.1217H28.67L27.7833 25.9051H23.1233V39.8801C32.6867 38.3784 40 30.1034 40 20.1217Z" fill="currentColor"/></g><defs><clipPath id="clip0_230_63"><rect width="40" height="40" fill="white"/></clipPath></defs></svg></a></li>
+      <li><a href="#" aria-label="Bentley Palm Beach on YouTube"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 40 40" fill="none"><path d="M39.1633 10.31C38.9374 9.45878 38.4917 8.68189 37.871 8.0571C37.2503 7.43231 36.4764 6.98156 35.6267 6.74999C32.5083 5.90833 20 5.90833 20 5.90833C20 5.90833 7.49167 5.90833 4.37167 6.74999C3.52235 6.98197 2.74882 7.43288 2.12846 8.05763C1.5081 8.68238 1.06265 9.45906 0.836667 10.31C0 13.45 0 20 0 20C0 20 0 26.55 0.836667 29.69C1.06264 30.5412 1.50829 31.3181 2.12899 31.9429C2.74968 32.5677 3.52363 33.0184 4.37333 33.25C7.49167 34.0917 20 34.0917 20 34.0917C20 34.0917 32.5083 34.0917 35.6283 33.25C36.4781 33.0186 37.2521 32.5679 37.8729 31.9431C38.4936 31.3183 38.9392 30.5413 39.165 29.69C40 26.55 40 20 40 20C40 20 40 13.45 39.1633 10.31ZM15.9083 25.9467V14.0533L26.3633 20L15.9083 25.9467Z" fill="currentColor"/></svg></a></li>
+      <li><a href="#" aria-label="Bentley Palm Beach on LinkedIn"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 40 40" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M5 0H35C37.7614 0 40 2.23858 40 5V35C40 37.7614 37.7614 40 35 40H5C2.23858 40 0 37.7614 0 35V5C0 2.23858 2.23858 0 5 0ZM8.99308 12.4874C10.9148 12.4874 12.4726 10.9296 12.4726 9.00788C12.4726 7.08618 10.9148 5.52834 8.99308 5.52834C7.07138 5.52834 5.51353 7.08618 5.51353 9.00788C5.51353 10.9296 7.07138 12.4874 8.99308 12.4874ZM12.053 33.8706V14.8916H5.94387V33.8706H12.053ZM21.2479 14.8916H15.4375L15.4683 33.8706H21.5206V23.4789C21.5206 21.9511 22.3029 19.7799 24.9591 19.7799C27.2461 19.7799 27.8515 21.7285 27.8515 23.2139V33.8706H33.7725V22.5499C33.7725 19.3785 33.2992 18.0315 32.8036 17.2865C31.4275 15.2176 29.4592 14.3841 26.881 14.3841C24.3027 14.3841 22.2401 15.4975 21.2479 17.4043V14.8916Z" fill="currentColor"/></svg></a></li>
+    </ul>
+
+    <div class="colophon__index">
+      <div>
+        <h3>Models</h3>
+        <ul>
+          <li><a href="#range">Continental GT</a></li>
+          <li><a href="#range">Continental GT Convertible</a></li>
+          <li><a href="#range">Flying Spur</a></li>
+          <li><a href="#range">Bentayga</a></li>
+          <li><a href="#range">Bentayga EWB</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Inventory</h3>
+        <ul>
+          <li><a href="#service">Service</a></li>
+          <li><a href="#parts">Bentley Approved Pre-Owned</a></li>
+          <li><a href="#retailer">Value Your Bentley</a></li>
+          <li><a href="#retailer">Request a Quotation</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Ownership</h3>
+        <ul>
+          <li><a href="#ownership">Book a Service</a></li>
+          <li><a href="#ownership">Parts &amp; Accessories</a></li>
+          <li><a href="#ownership">Collection &amp; Delivery</a></li>
+          <li><a href="#ownership">Roadside Assistance</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Finance</h3>
+        <ul>
+          <li><a href="#ownership">Bentley Financial Services</a></li>
+          <li><a href="#ownership">Apply for Finance</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Company</h3>
+        <ul>
+          <li><a href="#retailer">About Us</a></li>
+          <li><a href="#retailer">Opening Hours &amp; Directions</a></li>
+          <li><a href="#retailer">Meet the Team</a></li>
+          <li><a href="#retailer">Careers</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="colophon__legal">
+      <address>Bentley Palm Beach · 2801 Okeechobee Boulevard, West Palm Beach, Florida 33409</address>
+      <ul>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms and Conditions</a></li>
+        <li><a href="#">Cookie Policy</a></li>
+        <li><a href="#">Accessibility</a></li>
+        <li><a href="#">Sitemap</a></li>
+      </ul>
+      <div>© 2026 Bentley Palm Beach · Powered by All Auto Network</div>
+    </div>
+
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

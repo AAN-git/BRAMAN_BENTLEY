@@ -1,0 +1,1459 @@
+/* ==========================================================================
+   Bentley retailer — home
+   A sequence, not a stack of modules:
+
+     1  cinematic     one vehicle, full-bleed, dusk, weight and speed
+     2  intimate      a panoramic craft macro — the tempo drops hard
+     3  catalogue     the range, calm, official, on seamless grey
+     4  editorial     commissioning, asymmetric, hide and cabin overlapping
+     5  cinematic     pre-owned, wide and dark again
+     6  detail        one headlight macro against the ownership ledger
+     7  local         the retailer, and the page's centre of action
+     8  close         Bentley Green
+
+   Dark / light and wide / close alternate deliberately. Nothing here repeats
+   the section before it.
+   ========================================================================== */
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--ground);
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: var(--text-body);
+  font-weight: 300;
+  line-height: var(--leading-body);
+  letter-spacing: var(--track-body);
+  font-variant-numeric: tabular-nums;
+  overflow-x: clip;
+}
+
+/* height:auto so the HTML width/height attributes stay hints and the CSS
+   aspect-ratio governs. Sections that need a fixed field override it. */
+img { display: block; max-width: 100%; height: auto; }
+a { color: inherit; }
+h1, h2, h3 {
+  margin: 0;
+  font-weight: 300;
+  letter-spacing: var(--track-display);
+  line-height: var(--leading-heading);
+  text-wrap: balance;
+}
+p { margin: 0; text-wrap: pretty; }
+
+:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+[id] { scroll-margin-top: calc(var(--header-h) + var(--space-4)); }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* --- Shared -------------------------------------------------------------- */
+
+.page { width: 100%; max-width: var(--measure-page); margin-inline: auto; padding-inline: var(--gutter); }
+.edit { width: 100%; max-width: var(--measure-edit); margin-inline: auto; padding-inline: var(--gutter); }
+@media (min-width: 1600px) { .page, .edit { padding-inline: var(--gutter-wide); } }
+
+.label {
+  font-size: var(--text-xs);
+  font-weight: 400;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  line-height: 1.3;
+}
+.body { max-width: var(--measure-body); color: var(--ink-secondary); }
+.on-dark .body { color: var(--ink-invert-2); }
+
+.skip {
+  position: absolute;
+  inset-inline-start: var(--space-4);
+  inset-block-start: -100%;
+  z-index: 200;
+  padding: var(--space-3) var(--space-5);
+  background: var(--bentley-green);
+  color: var(--white);
+  font-size: var(--text-xs);
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: inset-block-start var(--dur-2) var(--ease-out);
+}
+.skip:focus-visible { inset-block-start: var(--space-4); outline-color: var(--white); }
+
+/* --- Controls ------------------------------------------------------------ */
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--control-h);
+  padding-inline: var(--space-6);
+  border: 1px solid var(--bentley-green);
+  background: var(--bentley-green);
+  color: var(--white);
+  font: inherit;
+  font-size: var(--text-button);
+  font-weight: 400;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background-color var(--dur-2) var(--ease-out), border-color var(--dur-2) var(--ease-out);
+}
+.cta:hover { background: var(--teal-70); border-color: var(--teal-70); }
+.cta--quiet { background: transparent; color: var(--bentley-green); }
+.cta--quiet:hover { background: var(--bentley-green); color: var(--white); }
+.on-dark .cta { background: var(--white); border-color: var(--white); color: var(--bentley-green); }
+.on-dark .cta:hover { background: var(--heritage-white); border-color: var(--heritage-white); }
+
+.sub {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: var(--control-h);
+  font-size: var(--text-xs);
+  font-weight: 400;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  text-decoration: none;
+  border-block-end: 1px solid currentColor;
+  transition: opacity var(--dur-2) var(--ease-out);
+}
+.sub:hover { opacity: 0.72; }
+.sub svg { flex: none; }
+
+.actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3) var(--space-6); }
+
+/* --- Arrival -------------------------------------------------------------- */
+
+.rise { opacity: 1; }
+.js .rise { opacity: 0; transform: translateY(var(--rise)); }
+.js .rise[data-in] {
+  opacity: 1; transform: none;
+  transition: opacity var(--dur-4) var(--ease-out), transform var(--dur-4) var(--ease-out);
+}
+.js .rise[data-delay] { transition-delay: 0.28s; }
+
+/* --- Masked photographic reveal ------------------------------------------
+   The frame is already in place; the photograph is uncovered through it while
+   drifting a few per cent inside. Used on three compositions only. */
+
+.reveal { overflow: hidden; }
+.js .reveal > img { will-change: transform; }
+
+.js .reveal--up > img       { clip-path: inset(100% 0 0 0); transform: translateY(6%); }
+.js .reveal--right > img    { clip-path: inset(0 0 0 100%); transform: translateX(5%); }
+.js .reveal--curtain > img  { clip-path: inset(0 100% 0 0); transform: scale(1.045); }
+
+.js .reveal[data-in] > img {
+  clip-path: inset(0 0 0 0);
+  transform: none;
+  transition: clip-path var(--dur-reveal) var(--ease-reveal),
+              transform var(--dur-reveal) var(--ease-reveal);
+}
+.js .reveal[data-delay][data-in] > img { transition-delay: 0.18s; }
+
+/* !important because the directional modifiers (--in-side, --in-lead) are
+   defined further down the file at equal specificity, and would otherwise win
+   on source order and keep animating with motion switched off. */
+@media (prefers-reduced-motion: reduce) {
+  .js .rise { opacity: 1 !important; transform: none !important; }
+  .js .reveal > img,
+  .js .reveal[data-in] > img {
+    clip-path: none !important; transform: none !important; transition: none !important;
+  }
+}
+
+/* ==========================================================================
+   1 — the band
+   ========================================================================== */
+
+/* One bar. Navigation left, wings centred on the viewport, retailer utilities
+   right and visibly quieter. Nothing sits on a second line. */
+.band {
+  position: fixed; inset-block-start: 0; inset-inline: 0; z-index: 100;
+  color: var(--white);
+  transition: background-color var(--dur-3) var(--ease-out),
+              backdrop-filter var(--dur-3) var(--ease-out),
+              -webkit-backdrop-filter var(--dur-3) var(--ease-out),
+              box-shadow var(--dur-3) var(--ease-out);
+}
+
+/* At the top the band is an editorial overlay: no ground, only enough
+   directional shade for the type to hold against the hero. */
+.band::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(to bottom, rgba(4,4,4,0.72) 0%, rgba(4,4,4,0.46) 62%, rgba(4,4,4,0.16) 100%);
+  transition: opacity var(--dur-3) var(--ease-in);
+}
+
+/* Once scrolled it becomes an instrument: a real blur under a Bentley Green
+   tint, one hairline, and a little less height. */
+.band[data-solid] {
+  background: var(--bar-tint);
+  backdrop-filter: blur(var(--bar-blur)) saturate(1.08);
+  -webkit-backdrop-filter: blur(var(--bar-blur)) saturate(1.08);
+  box-shadow: inset 0 -1px 0 rgba(255,255,255,0.18);
+}
+.band[data-solid]::before { opacity: 0; }
+
+/* Where the blur is unsupported the tint becomes the solid brand ground. */
+@supports not ((backdrop-filter: blur(2px)) or (-webkit-backdrop-filter: blur(2px))) {
+  .band[data-solid] { background: var(--bentley-green); }
+}
+
+.band__bar {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  column-gap: var(--space-6);
+  min-height: var(--bar-h);
+  transition: min-height var(--dur-3) var(--ease-out);
+}
+.band__bar > .nav      { grid-column: 1; justify-self: start; }
+.band__bar > .band__mark {
+  position: relative;
+  display: flex; flex-direction: column; align-items: center; gap: var(--space-3);
+  text-decoration: none; line-height: 0;
+}
+.band__mark img { width: var(--mark-w); }
+
+.band__retailer {
+  font-size: var(--text-xs);
+  line-height: 1;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: rgba(255,255,255,0.86);
+}
+
+.nav ul { display: flex; gap: var(--space-6); margin: 0; padding: 0; list-style: none; }
+.nav a {
+  display: inline-block; padding-block: var(--space-3);
+  border-block-end: 1px solid transparent;
+  font-size: var(--text-nav); font-weight: 400;
+  letter-spacing: var(--track-label); text-transform: uppercase; text-decoration: none;
+  transition: border-color var(--dur-2) var(--ease-out);
+}
+.nav a:hover { border-block-end-color: currentColor; }
+
+/* Retailer utilities: a quiet phone link, then one action. Never a row of
+   competing micro-labels. */
+.band__act { display: flex; align-items: center; justify-content: flex-end; gap: var(--space-5); }
+.band__act .cta { white-space: nowrap; }
+.band__call {
+  font-size: var(--text-sm); letter-spacing: 0.04em; text-decoration: none;
+  color: rgba(255,255,255,0.88); white-space: nowrap;
+}
+.band__call span { opacity: 0.66; letter-spacing: var(--track-label); text-transform: uppercase; }
+.band__call:hover { color: var(--white); }
+.band__act .cta {
+  min-height: 46px; background: transparent;
+  border-color: rgba(255,255,255,0.5); color: var(--white);
+}
+.band__act .cta:hover { background: var(--white); border-color: var(--white); color: var(--bentley-green); }
+
+.band__toggle {
+  display: none; align-items: center; gap: var(--space-3);
+  padding: var(--space-3) 0; background: none; border: 0; color: inherit;
+  font: inherit; font-size: var(--text-xs);
+  letter-spacing: var(--track-label); text-transform: uppercase; cursor: pointer;
+}
+
+/* ==========================================================================
+   2 — the cinematic field
+   ========================================================================== */
+
+.hero { position: relative; background: var(--ground-night); overflow: hidden; }
+.hero__media { position: absolute; inset: 0; }
+.hero__media img {
+  width: 100%; height: 100%; object-fit: cover;
+  object-position: 50% 42%; transform-origin: 50% 42%;
+}
+.js .hero__media img { animation: settle var(--dur-5) var(--ease-out) both; }
+@keyframes settle { from { transform: scale(1.025); } to { transform: scale(1); } }
+@media (prefers-reduced-motion: reduce) { .js .hero__media img { animation: none; transform: none; } }
+
+/* Protection sized to the copy column, measured against this crop. */
+.hero__protect {
+  position: absolute; inset: 0; pointer-events: none;
+  background:
+    linear-gradient(to top,
+      rgba(4,4,4,var(--protect-hero-landscape)) 0%,
+      rgba(4,4,4,calc(var(--protect-hero-landscape) * 0.92)) 30%,
+      rgba(4,4,4,calc(var(--protect-hero-landscape) * 0.55)) 50%,
+      rgba(4,4,4,0.10) 70%,
+      rgba(4,4,4,0) 84%),
+    linear-gradient(to right,
+      rgba(4,4,4,calc(var(--protect-hero-landscape) * 0.72)) 0%,
+      rgba(4,4,4,calc(var(--protect-hero-landscape) * 0.30)) 30%,
+      rgba(4,4,4,0) 56%);
+}
+
+.hero__inner {
+  position: relative; display: flex; align-items: flex-end;
+  min-height: var(--hero-h); padding-block: var(--space-9) var(--space-9);
+}
+.hero__copy { color: var(--white); max-width: var(--measure-head); }
+.hero__copy .label { font-size: var(--text-sm); }
+.hero__copy .label { color: var(--white); display: inline-block; }
+.hero h1 { margin-block-start: var(--space-4); font-size: var(--text-hero); line-height: var(--leading-display); }
+.hero__line { margin-block-start: var(--space-5); max-width: 32ch; font-size: var(--text-lead); color: rgba(255,255,255,0.94); }
+.hero .actions { margin-block-start: var(--space-7); }
+.hero .cta { background: var(--white); border-color: var(--white); color: var(--bentley-green); }
+.hero .cta:hover { background: var(--heritage-white); border-color: var(--heritage-white); }
+.hero .sub { color: var(--white); }
+
+/* ==========================================================================
+   3 — the intimate band. Panoramic craft macro; the page goes quiet and close.
+   ========================================================================== */
+
+.macro { position: relative; background: var(--ground-night); overflow: hidden; }
+.macro__media img {
+  width: 100%; height: clamp(20rem, 34vw, 30rem); object-fit: cover; object-position: 22% 50%;
+}
+.macro__over {
+  position: absolute; inset: 0;
+  background: linear-gradient(to left, rgba(4,4,4,0.88) 0%, rgba(4,4,4,0.62) 30%, rgba(4,4,4,0.12) 58%, rgba(4,4,4,0) 74%);
+}
+.macro__copy {
+  position: absolute; inset-block: 0; inset-inline: 0;
+  display: flex; align-items: center; justify-content: flex-end; color: var(--white);
+}
+.macro__copy > * { max-width: 34rem; text-align: start; }
+/* a fine keyline carries the eye out of the hero and into the macro */
+.macro__copy > *::before { content: ""; display: block; width: 88px; height: 1px; background: var(--heritage-white); margin-block-end: var(--space-6); }
+.macro__copy h2 { font-size: var(--text-h2); max-width: 15ch; }
+.macro__copy .label { color: var(--heritage-white); margin-block-end: var(--space-4); display: block; }
+.macro__copy p { margin-block-start: var(--space-5); max-width: 38ch; color: rgba(255,255,255,0.86); font-size: var(--text-sm); }
+
+/* ==========================================================================
+   4 — the catalogue interval. Official card walls on seamless grey.
+   ========================================================================== */
+
+.field { padding-block: var(--section-y); }
+.field--quiet { background: var(--ground-quiet); }
+.field--night { background: var(--ground-night); color: var(--ink-invert); }
+.field--night .field__open .label { color: var(--heritage-white); }
+.field--night .body { color: var(--ink-invert-2); }
+.field--night .model__name { color: var(--white); }
+
+.field__open {
+  display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between;
+  gap: var(--space-5) var(--space-8); margin-block-end: var(--space-8);
+}
+.field__open h2 { font-size: var(--text-h2); max-width: var(--measure-head); }
+.field__open .label { margin-block-end: var(--space-3); color: var(--ink-secondary); }
+
+.rail {
+  display: flex; gap: var(--space-5);
+  overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain;
+  scrollbar-width: none; padding-inline-end: var(--gutter);
+}
+.rail::-webkit-scrollbar { display: none; }
+
+/* Held deliberately smaller than the cinematic fields either side of it: this
+   is the interval where the page stops performing. */
+.model { flex: none; width: clamp(20rem, 32vw, 30rem); scroll-snap-align: start; text-decoration: none; }
+/* The official card wall is 1:2 with the vehicle low in frame; cropped to 2:3
+   and biased downward the car fills the panel instead of floating in grey. */
+.model__img {
+  width: 100%; aspect-ratio: 2 / 3; object-fit: cover; object-position: 50% 76%;
+  transition: transform var(--dur-4) var(--ease-out);
+}
+.model:hover .model__img { transform: scale(1.025); }
+.model__cap { display: block; margin-block-start: var(--space-5); padding-block-start: var(--space-4); border-block-start: 1px solid var(--rule-invert); }
+.model__name { display: block; font-size: var(--text-h3); letter-spacing: var(--track-display); }
+.model__kind { display: block; margin-block-start: var(--space-2); color: var(--ink-invert-2); font-size: var(--text-sm); }
+
+.rail__hint {
+  display: flex; align-items: center; gap: var(--space-3);
+  margin-block-start: var(--space-6); color: var(--ink-secondary);
+  font-size: var(--text-xs); letter-spacing: var(--track-label); text-transform: uppercase;
+}
+
+/* ==========================================================================
+   5 — commissioning. Asymmetric, three masses, deliberate overlap.
+   ========================================================================== */
+
+.craft {
+  display: grid;
+  grid-template-columns: minmax(0, 0.36fr) minmax(0, 1fr);
+  align-items: end;
+  column-gap: 0;
+  row-gap: var(--space-7);
+}
+/* The hide runs off the leading edge as a tall strip; the cabin is the dominant
+   mass and overlaps it; the copy sits into the cabin's lower edge. */
+.craft__hide {
+  grid-column: 1; grid-row: 1; z-index: 1;
+  margin-inline-start: calc((max(0px, var(--vw, 100vw) - var(--measure-edit)) / -2) - var(--gutter));
+}
+.craft__hide img { width: 100%; aspect-ratio: 1 / 2.5; object-fit: cover; }
+
+.craft__cabin {
+  grid-column: 2; grid-row: 1;
+  margin-inline-start: calc(var(--space-8) * -1);
+  margin-inline-end: calc((max(0px, var(--vw, 100vw) - var(--measure-edit)) / -2) - var(--gutter));
+}
+.craft__cabin img { width: 100%; aspect-ratio: 5 / 4; object-fit: cover; }
+
+.craft__copy {
+  grid-column: 2; grid-row: 2;
+  justify-self: end;
+  max-width: 34rem;
+  margin-block-start: calc(var(--space-9) * -1);
+  margin-inline-end: 0;
+  padding: var(--space-7) var(--space-7) 0 var(--space-7);
+  background: var(--ground-quiet);
+  z-index: 2;
+}
+.craft__copy h2 { font-size: var(--text-h2); }
+.craft__copy .label { margin-block-end: var(--space-3); color: var(--ink-secondary); }
+.craft__copy .body { margin-block-start: var(--space-5); }
+.craft__copy .actions { margin-block-start: var(--space-7); }
+
+/* ==========================================================================
+   6 — pre-owned. Wide and dark, copy overlapping the image's leading edge.
+   ========================================================================== */
+
+.wide { position: relative; background: var(--ground-night); overflow: hidden; }
+.wide__media img { width: 100%; height: clamp(30rem, 58vw, 50rem); object-fit: cover; object-position: 72% 50%; }
+.wide__over {
+  position: absolute; inset: 0;
+  background: linear-gradient(to right,
+    rgba(4,4,4,0.90) 0%, rgba(4,4,4,0.78) 26%, rgba(4,4,4,0.44) 44%, rgba(4,4,4,0.10) 60%, rgba(4,4,4,0) 72%);
+}
+.wide__copy { position: absolute; inset: 0; display: flex; align-items: center; color: var(--white); }
+.wide__copy h2 { font-size: var(--text-display); max-width: 14ch; }
+.wide__copy .label { display: block; margin-block-end: var(--space-4); color: var(--heritage-white); }
+.wide__copy .body { margin-block-start: var(--space-5); }
+.wide__copy .actions { margin-block-start: var(--space-7); }
+
+/* ==========================================================================
+   7 — ownership. One tall detail against a ranked ledger.
+   ========================================================================== */
+
+.own { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: var(--space-8) var(--space-10); align-items: center; }
+.own__media { grid-column: 2; margin-inline-end: calc((max(0px, var(--vw, 100vw) - var(--measure-edit)) / -2) - var(--gutter)); }
+.own__ledger { grid-column: 1; grid-row: 1; }
+.own__media img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: 42% 50%; }
+
+.paths { border-block-start: 1px solid var(--rule); }
+.path {
+  display: block; padding-block: var(--space-6);
+  border-block-end: 1px solid var(--rule); text-decoration: none;
+  transition: padding-inline-start var(--dur-3) var(--ease-out);
+}
+.path:hover { padding-inline-start: var(--space-3); }
+.path .label { color: var(--ink-secondary); }
+.path h3 { margin-block-start: var(--space-3); font-size: var(--text-h3); letter-spacing: var(--track-display); }
+.path--lead h3 { font-size: var(--text-h2); }
+.path p { margin-block-start: var(--space-3); color: var(--ink-secondary); font-size: var(--text-sm); max-width: 46ch; }
+
+/* ==========================================================================
+   8 — the retailer
+   ========================================================================== */
+
+.local { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: var(--space-8) var(--space-9); align-items: start; }
+/* The frame starts on the eyebrow — top edges of photograph and record on one
+   line — and is then left to end where it ends. Matching the record's full
+   height instead would force a portrait frame on a horizontal subject, and the
+   car is what has to survive the crop, so the ratio is chosen to hold the whole
+   motor car: 4:3, not the 3:2 used elsewhere on the page. The frontage runs
+   from the wings on the fascia down to the wheels on the forecourt, and any
+   wider frame cuts one end or the other. */
+.local__media img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+
+/* Two photographs, the same three-mass idea as New Bentley: neither the size
+   of the other, neither on the other's axis, the record standing beside them
+   rather than under. The second one also puts the dead half of this column to
+   work — the frontage stops at the eyebrow's height while the record runs on
+   past it, and that gap was doing nothing.
+   The plate is set on the foot of the frontage and steps out past its trailing
+   edge, which is the one overlap available here: the motor car fills the frame
+   from the planting on the left to the far wing on the right, and anything
+   crossing higher would take a wheel with it. */
+.local__stack { position: relative; }
+.local__media { position: relative; z-index: 1; }
+.local__detail {
+  position: absolute; z-index: 2;
+  inset-inline-end: -6%; inset-block-start: 92%;
+  width: 54%; overflow: hidden;
+  box-shadow: 0 36px 80px rgba(4, 4, 4, 0.28);
+}
+.local__detail img { display: block; width: 100%; aspect-ratio: 1 / 1; object-fit: cover; }
+.local h2 { font-size: var(--text-h2); }
+.local .label { color: var(--ink-secondary); margin-block-end: var(--space-3); }
+.local .body { margin-block-start: var(--space-5); }
+
+.record { margin: var(--space-7) 0 0; display: grid; grid-template-columns: minmax(7rem, 10rem) 1fr; }
+.record dt, .record dd { margin: 0; padding-block: var(--space-4); border-block-start: 1px solid var(--rule); }
+.record dt { color: var(--ink-secondary); font-size: var(--text-xs); font-weight: 400; letter-spacing: var(--track-label); text-transform: uppercase; line-height: 1.5; }
+.record dd a { text-decoration: none; }
+.record dd a:hover { text-decoration: underline; }
+.record .stack { display: flex; flex-direction: column; gap: var(--space-1); }
+.local .actions { margin-block-start: var(--space-7); }
+
+/* ==========================================================================
+   9 — the close
+   ========================================================================== */
+
+.close { background: var(--ground-deep); color: var(--ink-invert); }
+.close a { text-decoration: none; }
+.close a:hover { opacity: 0.75; }
+
+.close__crown {
+  display: flex; flex-direction: column; align-items: center; gap: var(--space-6);
+  padding-block: var(--space-9) var(--space-8); text-align: center;
+}
+.close__crown img { width: 108px; }
+.close__crown p { max-width: 42ch; color: var(--ink-invert-2); }
+.social { display: flex; gap: var(--space-6); margin: 0; padding: 0; list-style: none; }
+.social img { width: 20px; height: 20px; }
+.social a { display: block; opacity: 0.8; transition: opacity var(--dur-2) var(--ease-out); }
+.social a:hover { opacity: 1; }
+
+.close__index {
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-8); padding-block: var(--space-8);
+  border-block-start: 1px solid var(--rule-invert);
+}
+.close__index h3 { font-size: var(--text-xs); font-weight: 400; letter-spacing: var(--track-label); text-transform: uppercase; margin-block-end: var(--space-5); }
+.close__index ul { margin: 0; padding: 0; list-style: none; }
+.close__index li + li { margin-block-start: var(--space-3); }
+.close__index a { font-size: var(--text-sm); color: var(--ink-invert-2); }
+.close__index a:hover { color: var(--white); opacity: 1; }
+
+.close__legal {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+  gap: var(--space-4) var(--space-7); padding-block: var(--space-6);
+  border-block-start: 1px solid var(--rule-invert);
+  font-size: var(--text-xs); color: var(--ink-invert-2);
+}
+.close__legal ul { display: flex; flex-wrap: wrap; gap: var(--space-3) var(--space-6); margin: 0; padding: 0; list-style: none; }
+.close__legal address { font-style: normal; }
+
+/* ==========================================================================
+   Responsive recomposition
+   ========================================================================== */
+
+@media (max-width: 78rem) {
+  .nav ul { gap: var(--space-5); }
+  .craft { grid-template-columns: minmax(0, 0.7fr) minmax(0, 1fr); }
+  .craft__copy { grid-column: 1 / -1; grid-row: 2; padding-block-start: 0; }
+  .craft__copy .body { max-width: 56ch; }
+}
+
+@media (max-width: 68rem) {
+  /* A deliberate mobile bar, not the desktop one squeezed: menu, wings with
+     the retailer name, one call link. 72px, dropping to 60px on scroll. */
+  :root { --bar-h: 72px; --bar-h-compact: 60px; --mark-w: 84px; }
+
+  .band__toggle { display: inline-flex; flex: 1 1 0; }
+  .band__bar > .nav { flex: none; }
+  .band__act .cta { display: none; }
+  .band__mark { gap: var(--space-2); }
+  .band__retailer { font-size: var(--text-xs); letter-spacing: 0.08em; }
+
+  .nav {
+    position: absolute; inset-inline: 0; inset-block-start: 100%; display: none;
+    background: var(--bentley-green); border-block-start: 1px solid var(--rule-invert);
+  }
+  .band[data-open] .nav { display: block; }
+  .nav ul { flex-direction: column; gap: 0; padding: var(--space-2) var(--gutter) var(--space-5); }
+  .nav li + li { border-block-start: 1px solid var(--rule-invert); }
+  .nav a { display: block; padding-block: var(--space-4); }
+
+  .hero__inner { padding-block: var(--space-8) var(--space-7); }
+
+  .macro__media img { height: clamp(20rem, 62vw, 26rem); }
+  .macro__over { background: linear-gradient(to top, rgba(4,4,4,0.90) 0%, rgba(4,4,4,0.66) 44%, rgba(4,4,4,0.18) 78%); }
+  .macro__copy { align-items: flex-end; padding-block-end: var(--space-7); }
+
+  .wide__media img { height: clamp(24rem, 74vw, 30rem); }
+  .wide__over { background: linear-gradient(to top, rgba(4,4,4,0.90) 0%, rgba(4,4,4,0.66) 46%, rgba(4,4,4,0.16) 80%); }
+  .wide__copy { align-items: flex-end; padding-block-end: var(--space-7); }
+
+  .own, .local { grid-template-columns: 1fr; gap: var(--space-7); }
+  .own__media img { aspect-ratio: 3 / 2; }
+  /* stacked, there is nothing to overlap: the detail falls in below the
+     frontage at the neighbours' ratio and keeps its full width */
+  .local__detail {
+    position: static; width: 100%; margin-block-start: var(--space-4);
+    box-shadow: none;
+  }
+  .local__detail img { aspect-ratio: 3 / 2; }
+  .close__index { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-7); }
+}
+
+@media (max-width: 48rem) {
+  .hero__inner { min-height: clamp(42.5rem, 100vw, 45rem); }
+  .hero__media img { object-position: 50% 40%; }
+  .hero__protect {
+    background:
+      linear-gradient(to top,
+        rgba(4,4,4,var(--protect-hero-portrait)) 0%,
+        rgba(4,4,4,var(--protect-hero-portrait)) 44%,
+        rgba(4,4,4,calc(var(--protect-hero-portrait) * 0.82)) 60%,
+        rgba(4,4,4,0.22) 78%,
+        rgba(4,4,4,0) 92%);
+  }
+  .craft { grid-template-columns: 1fr; }
+  .craft__hide { grid-row: auto; }
+  .craft__hide img { aspect-ratio: 3 / 2; }
+  .craft__cabin { grid-column: 1; margin-block-start: 0; }
+  .craft__cabin img { aspect-ratio: 3 / 2; }
+  .craft__copy { grid-column: 1; grid-row: auto; }
+}
+
+@media (max-width: 40rem) {
+  .band__call span { display: none; }
+  .band__retailer { display: none; }   /* the hero states it one line below */
+  .model { width: 62vw; }
+  .record { grid-template-columns: 1fr; }
+  .record dt { padding-block-end: 0; }
+  .record dd { border-block-start: 0; padding-block-start: var(--space-2); }
+  .hero .actions { flex-direction: column; align-items: stretch; gap: var(--space-4); }
+  .hero .cta { width: 100%; }
+  .hero .sub { justify-content: center; }
+  .close__legal { flex-direction: column; align-items: flex-start; }
+}
+
+/* ==========================================================================
+   Model Range — the horizontal instrument
+   The strip runs off the trailing edge so the part-revealed model reads as an
+   invitation rather than a clipped container.
+   ========================================================================== */
+
+.range__head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-6);
+  margin-block-end: var(--space-6);
+}
+.range__now { color: var(--ink-invert-2); }
+.range__now span { color: var(--white); }
+
+.range__ctrl { display: flex; gap: var(--space-3); }
+.range__ctrl button {
+  width: 52px; height: 52px;
+  display: grid; place-items: center;
+  border: 1px solid var(--rule-invert);
+  background: transparent;
+  color: var(--white);
+  cursor: pointer;
+  transition: background-color var(--dur-2) var(--ease-out),
+              border-color var(--dur-2) var(--ease-out),
+              opacity var(--dur-2) var(--ease-out);
+}
+.range__ctrl button:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.5); }
+.range__ctrl button[disabled] { opacity: 0.3; cursor: default; }
+.range__ctrl button:focus-visible { outline: 2px solid var(--white); outline-offset: 2px; }
+
+/* The strip spans the section; the rail carries the container inset as padding
+   so it can run to the viewport edge without ever overflowing the document. */
+.range__strip { max-width: none; padding-inline: 0; }
+.range__strip .rail {
+  margin: 0;
+  padding-inline-start: max(var(--gutter), calc((100vw - var(--measure-edit)) / 2 + var(--gutter)));
+  padding-inline-end: var(--gutter);
+  scroll-padding-inline-start: max(var(--gutter), calc((100vw - var(--measure-edit)) / 2 + var(--gutter)));
+  cursor: grab;
+}
+.range__strip .rail[data-dragging] { cursor: grabbing; scroll-snap-type: none; }
+.range__strip .rail:focus-visible { outline: 2px solid var(--white); outline-offset: 6px; }
+
+.model:focus-visible { outline: 2px solid var(--white); outline-offset: 4px; }
+
+/* ==========================================================================
+   The frosted panel — a UI surface, not an image
+   A semi-transparent field over photography with a localised backdrop blur,
+   a restrained tint, one fine keyline and square geometry. The photograph
+   stays visible through it, diffused. Used three times: the hero copy, the
+   scrolled band, and the Pre-Owned copy.
+   ========================================================================== */
+
+.plate {
+  position: relative;
+  isolation: isolate;
+  padding: var(--space-7) var(--space-8) var(--space-7) var(--space-7);
+}
+.plate::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: rgba(4, 4, 4, 0.32);
+  backdrop-filter: blur(12px) saturate(1.04);
+  -webkit-backdrop-filter: blur(12px) saturate(1.04);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.14);
+}
+@supports not ((backdrop-filter: blur(2px)) or (-webkit-backdrop-filter: blur(2px))) {
+  .plate::before { background: rgba(4, 4, 4, 0.66); }
+}
+
+.hero__plate { margin-inline-start: calc(var(--space-7) * -1); }
+.wide__plate { max-width: 40rem; margin-inline-start: calc(var(--space-7) * -1); }
+
+@media (max-width: 68rem) {
+  .range__head { flex-direction: column; align-items: flex-start; gap: var(--space-4); }
+  .range__ctrl { display: none; }        /* native swipe carries it */
+  .hero__plate { margin-inline-start: calc(var(--space-5) * -1); padding: var(--space-6) var(--space-6) var(--space-6) var(--space-5); }
+  .own { grid-template-columns: 1fr; }
+  .own__media, .own__ledger { grid-column: 1; }
+  .own__media { grid-row: 2; margin-inline-end: calc(var(--gutter) * -1); }
+  .own__ledger { grid-row: 1; }
+  .craft__hide, .craft__cabin { margin-inline: 0; }
+  .macro__copy { justify-content: flex-start; }
+}
+
+/* ==========================================================================
+   Hero and band, arranged as on bentleymotors.com
+   Measured at 1440: the band occupies the first 81px on the page's own dark
+   ground; the photograph begins beneath it and runs edge to edge. Nothing sits
+   over the type, so the header needs no scrim at all.
+   The lockup: headline left, its line beside it and lower, actions at the far
+   edge — one horizontal band across the foot of the frame.
+   ========================================================================== */
+
+:root { --bar-h: 81px; --bar-h-compact: 66px; --mark-w: 112px; }
+
+.band { color: var(--white); background: var(--ground-night); }
+.band::before { display: none; }
+.band[data-solid] {
+  background: rgba(10, 10, 10, 0.72);
+  backdrop-filter: blur(var(--bar-blur)) saturate(1.06);
+  -webkit-backdrop-filter: blur(var(--bar-blur)) saturate(1.06);
+  box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.14);
+}
+@supports not ((backdrop-filter: blur(2px)) or (-webkit-backdrop-filter: blur(2px))) {
+  .band[data-solid] { background: var(--ground-night); }
+}
+
+.nav ul { gap: var(--space-6); }
+.nav a { font-size: 0.8125rem; display: inline-flex; align-items: center; gap: 6px; }
+/* the caret their items carry */
+.nav a > i {
+  width: 0; height: 0; border-inline: 3px solid transparent;
+  border-block-start: 4px solid currentColor; opacity: 0.72;
+}
+.band__call { font-size: 0.8125rem; }
+.band__act .cta { min-height: 38px; font-size: 0.8125rem; }
+.band__retailer { font-size: 0.6875rem; letter-spacing: 0.16em; }
+
+/* the photograph starts below the band and fills the field */
+.hero { padding-block-start: var(--bar-h); background: var(--ground-night); }
+.hero__media { inset: var(--bar-h) 0 0 0; }
+.hero__media img { object-position: 50% 44%; }
+.hero__inner { min-height: clamp(30rem, 58vw, 52rem); align-items: flex-end; padding-block: var(--space-9) var(--space-8); }
+
+/* a low scrim only where the lockup sits — the frame stays continuous above it */
+.hero__protect {
+  inset: auto 0 0 0; height: 46%;
+  background: linear-gradient(to top,
+    rgba(4,4,4,0.80) 0%, rgba(4,4,4,0.58) 34%, rgba(4,4,4,0.20) 66%, rgba(4,4,4,0) 100%);
+}
+
+.hero__lock {
+  display: grid;
+  grid-template-columns: minmax(0, auto) minmax(0, 22rem) 1fr;
+  align-items: end;
+  gap: var(--space-4) var(--space-8);
+  width: 100%;
+  color: var(--white);
+}
+.hero__lock h1 {
+  grid-column: 1;
+  font-size: clamp(2.25rem, 3.3vw + 0.6rem, 3rem);   /* 36 → 48, as theirs */
+  line-height: 1.06;
+  margin: 0;
+  white-space: nowrap;
+}
+.hero__note {
+  grid-column: 2;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: rgba(255,255,255,0.88);
+  padding-block-end: 0.35em;
+}
+.hero__lock .actions { grid-column: 3; justify-content: flex-end; }
+.hero__lock .cta { background: var(--white); border-color: var(--white); color: var(--bentley-green); min-height: 46px; }
+.hero__lock .sub { color: var(--white); }
+
+@media (max-width: 68rem) {
+  :root { --bar-h: 66px; --bar-h-compact: 58px; }
+  .hero__lock { grid-template-columns: 1fr; gap: var(--space-5); }
+  .hero__lock h1 { white-space: normal; }
+  .hero__lock .actions { grid-column: 1; justify-content: flex-start; }
+  .hero__note { grid-column: 1; max-width: 34ch; }
+}
+
+/* six items, a centred mark and the retailer actions have to share one line */
+.band__bar { column-gap: var(--space-5); }
+.nav ul { flex-wrap: nowrap; gap: var(--space-5); }
+.nav li { flex: none; }
+.nav a { white-space: nowrap; }
+@media (max-width: 90rem) { .nav ul { gap: var(--space-4); } .nav a { font-size: 0.78125rem; } }
+
+/* ==========================================================================
+   Hero, arranged as on bentleymotors.com
+   A blurred copy of the frame fills the viewport; the sharp frame sits inset
+   on top of it. Counter and progress rule top left, steps top right, and one
+   horizontal lockup along the foot: title, its line beside it, one outlined
+   action at the far edge.
+   ========================================================================== */
+
+.hero { position: relative; padding: var(--bar-h) 0 0; background: var(--ground-night); overflow: hidden; }
+
+.hero__bleed { position: absolute; inset: 0; }
+.hero__bleed img {
+  width: 100%; height: 100%; object-fit: cover;
+  transform: scale(1.12);
+  filter: blur(38px) saturate(0.9) brightness(0.62);
+}
+
+.hero__stage {
+  position: relative;
+  margin: 0 var(--space-7) var(--space-7);
+  height: clamp(28rem, 48vw, 43rem);
+}
+.hero__frames { position: absolute; inset: 0; }
+.hero__frame { position: absolute; inset: 0; margin: 0; opacity: 0; transition: opacity 0.9s var(--ease-out); }
+.hero__frame[data-current] { opacity: 1; }
+.hero__frame img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 46%; }
+
+.hero__scrim {
+  position: absolute; inset: auto 0 0 0; height: 42%; pointer-events: none;
+  background: linear-gradient(to top, rgba(4,4,4,0.86) 0%, rgba(4,4,4,0.58) 38%, rgba(4,4,4,0) 100%);
+}
+
+.hero__meter {
+  position: absolute; inset-block-start: var(--space-6); inset-inline-start: var(--space-6);
+  display: flex; align-items: center; gap: var(--space-5); color: var(--white);
+  font-size: var(--text-xs); font-variant-numeric: tabular-nums;
+}
+.hero__track { display: flex; width: 260px; }
+.hero__track i { flex: 1; height: 1px; background: rgba(255,255,255,0.34); transition: background-color var(--dur-3) var(--ease-out); }
+.hero__track i[data-on] { background: var(--white); }
+
+.hero__steps { position: absolute; inset-block-start: var(--space-5); inset-inline-end: var(--space-5); display: flex; gap: var(--space-2); }
+.hero__steps button {
+  width: 40px; height: 40px; display: grid; place-items: center;
+  border: 0; background: rgba(4,4,4,0.42); color: var(--white); cursor: pointer;
+  transition: background-color var(--dur-2) var(--ease-out);
+}
+.hero__steps button:hover { background: rgba(4,4,4,0.72); }
+
+.hero__lock { position: absolute; inset: auto var(--space-7) var(--space-7) var(--space-7); }
+.hero__slot {
+  display: none;
+  grid-template-columns: minmax(0, auto) minmax(0, 26rem) 1fr;
+  align-items: end; gap: var(--space-4) var(--space-8);
+  color: var(--white);
+}
+.hero__slot[data-current] { display: grid; }
+.hero__title {
+  grid-column: 1; margin: 0;
+  font-size: clamp(2.25rem, 3.2vw + 0.7rem, 3rem); line-height: 1.05; white-space: nowrap;
+}
+.hero__note {
+  grid-column: 2; font-size: 1rem; line-height: 1.5;
+  color: rgba(255,255,255,0.9); padding-block-end: 0.3em;
+}
+.hero__cta {
+  grid-column: 3; justify-self: end;
+  display: inline-flex; align-items: center; gap: var(--space-3);
+  min-height: 50px; padding-inline: var(--space-6);
+  border: 1px solid rgba(255,255,255,0.85); color: var(--white);
+  font-size: var(--text-xs); font-weight: 400;
+  letter-spacing: var(--track-label); text-transform: uppercase; text-decoration: none;
+  transition: background-color var(--dur-2) var(--ease-out), color var(--dur-2) var(--ease-out);
+}
+.hero__cta:hover { background: var(--white); color: var(--bentley-green); }
+.hero__mark {
+  width: 15px; height: 15px; flex: none;
+  background: currentColor;
+  -webkit-mask: url("../assets/icons/b-mark.png") center/contain no-repeat;
+  mask: url("../assets/icons/b-mark.png") center/contain no-repeat;
+}
+
+@media (max-width: 68rem) {
+  .hero__stage { margin: 0 var(--space-4) var(--space-5); height: clamp(30rem, 96vw, 38rem); }
+  .hero__lock { inset: auto var(--space-5) var(--space-5) var(--space-5); }
+  .hero__slot { grid-template-columns: 1fr; gap: var(--space-4); }
+  .hero__title { white-space: normal; }
+  .hero__cta { grid-column: 1; justify-self: start; }
+  .hero__note { grid-column: 1; max-width: 36ch; }
+  .hero__track { width: 140px; }
+  .hero__steps { display: none; }
+}
+
+/* ==========================================================================
+   Band geometry copied from bentleymotors.com at 1440
+   Their measurements: gutter 48px, navigation 13px with ~32px gaps starting at
+   x=48, wings ~105px centred on the viewport, right group ending ~80px from
+   the edge. The mark is taken out of the flow so it can never squeeze the two
+   groups either side of it.
+   ========================================================================== */
+
+.band .page { max-width: none; padding-inline: 48px; }
+.band__bar { display: block; position: relative; }
+.band__bar > .nav { position: static; }
+
+.band__bar {
+  display: flex; align-items: center; justify-content: space-between;
+  column-gap: var(--space-6);
+}
+.band__mark {
+  position: absolute;
+  inset-inline-start: 50%; inset-block-start: 50%;
+  translate: -50% -50%;
+  display: flex; flex-direction: column; align-items: center; gap: 5px;
+  line-height: 0; text-decoration: none;
+}
+.band__mark img { width: 105px; }
+.band__retailer {
+  font-size: 0.5625rem;          /* the third line stays narrower than the wings */
+  letter-spacing: 0.13em;
+  line-height: 1;
+  color: rgba(255,255,255,0.72);
+  white-space: nowrap;
+}
+
+.nav ul { gap: 32px; }
+.nav a { font-size: 13px; letter-spacing: 0.08em; }
+.band__call { font-size: 13px; letter-spacing: 0.02em; }
+.band__act { gap: 28px; }
+.band__act .cta { min-height: 40px; padding-inline: var(--space-5); font-size: 13px; letter-spacing: 0.08em; }
+
+@media (max-width: 90rem) {
+  .band .page { padding-inline: 32px; }
+  .nav ul { gap: 24px; }
+  .nav a { font-size: 12.5px; }
+  .band__call { display: none; }          /* the number stays in the record and footer */
+}
+@media (max-width: 68rem) {
+  .band .page { padding-inline: var(--gutter); }
+  .band__mark img { width: 88px; }
+  .band__call { display: inline; font-size: 13px; }
+}
+
+/* the mark must leave the flow entirely, or it pushes the two groups apart */
+.band__bar > .band__mark { position: absolute; }
+.band__bar { min-height: 110px; }
+.band[data-solid] .band__bar { min-height: 84px; }
+@media (max-width: 82rem) {
+  .band .page { padding-inline: 32px; }
+  .nav ul { gap: 24px; }
+  .band__call { display: none; }
+}
+@media (min-width: 82.01rem) {
+  .band .page { padding-inline: 48px; }
+  .nav ul { gap: 32px; }
+  .band__call { display: inline; }
+}
+
+/* 1:1 corrections against the reference frame */
+.hero__bleed img { filter: blur(30px) saturate(0.95) brightness(0.86); transform: scale(1.14); }
+
+.hero__slot {
+  grid-template-columns: max-content minmax(0, 24rem) 1fr;
+  column-gap: var(--space-8);
+  align-items: end;
+}
+.hero__title { grid-column: 1; }
+.hero__note  { grid-column: 2; align-self: end; }
+.hero__cta   { grid-column: 3; justify-self: end; align-self: end; }
+
+.hero__meter { inset-block-start: 42px; inset-inline-start: 52px; }
+.hero__steps { inset-block-start: 34px; inset-inline-end: 34px; }
+
+@media (max-width: 68rem) {
+  .hero__slot { grid-template-columns: 1fr; }
+  .hero__title, .hero__note, .hero__cta { grid-column: 1; justify-self: start; }
+  .hero__meter { inset-block-start: 24px; inset-inline-start: 24px; }
+}
+
+/* the lock is a plain block; the slot inside it carries the three columns */
+.hero__lock { display: block; grid-template-columns: none; }
+.hero__slot { grid-template-columns: max-content minmax(18rem, 26rem) 1fr; }
+
+/* ==========================================================================
+   1:1 with bentleymotors.com, measured at a 1440 viewport
+     band          150 tall, nav from x=48 at 13px / 1.3px tracking / 32 gap,
+                   right group ending 80 from the edge, wings 110 centred
+     frame         x=48  y=150  w=1329  h=694
+     title         48px / 300 / normal tracking, 40 in from the frame edge
+     note          16px / 300, 429 in from the frame edge, 485 wide
+     action        162 x 50, filled, 40 in from the frame's trailing edge
+   ========================================================================== */
+
+@media (min-width: 80rem) {
+  .band .page { padding-inline: 48px; max-width: none; }
+  .band__bar  { min-height: 150px; }
+  .band[data-solid] .band__bar { min-height: 96px; }
+
+  .nav ul { gap: 32px; }
+  .nav a  { font-size: 13px; letter-spacing: 1.3px; font-weight: 400; }
+  .band__mark img { width: 110px; }
+
+  .band__act { gap: 34px; padding-inline-end: 32px; }   /* 48 + 32 = 80 from the edge */
+  .band__call { font-size: 13px; letter-spacing: 1.3px; text-transform: uppercase; }
+  .band__act .cta { min-height: 44px; padding-inline: 22px; font-size: 13px; letter-spacing: 1.3px; }
+
+  .hero { padding-block-start: 0; }
+  .hero__stage { margin: 150px 48px 0; height: 694px; }
+
+  .hero__lock { inset: auto 40px 40px 40px; }
+  .hero__slot { grid-template-columns: max-content 485px 1fr; column-gap: 0; align-items: end; }
+  .hero__title { font-size: 48px; letter-spacing: normal; line-height: 1.12; }
+  .hero__note  { font-size: 16px; letter-spacing: 0.16px; line-height: 1.5; width: 485px; padding-block-end: 4px; }
+  .hero__cta   { width: 162px; min-height: 50px; padding-inline: 0; justify-content: center;
+                 background: var(--bentley-green); border-color: var(--bentley-green);
+                 font-size: 13px; letter-spacing: 1.3px; }
+  .hero__cta:hover { background: var(--teal-70); border-color: var(--teal-70); color: var(--white); }
+  .hero__mark { display: none; }
+
+  .hero__meter { inset-block-start: 40px; inset-inline-start: 40px; }
+  .hero__steps { inset-block-start: 32px; inset-inline-end: 32px; }
+}
+
+/* the lock is sized by its insets, not by a leftover width */
+.hero__lock { width: auto; }
+
+/* no black bar: the band sits transparent over the blurred bleed, as theirs does */
+.band { background: transparent; }
+.band::before { display: none; }
+.hero { padding-block-start: 0; }
+
+/* ==========================================================================
+   Visual diff against the reference frame, corrected
+   ========================================================================== */
+@media (min-width: 80rem) {
+  /* 1 — the action is outlined, not filled, and sits at their 16px */
+  .hero__cta {
+    background: transparent;
+    border-color: rgba(255,255,255,0.9);
+    color: var(--white);
+    font-size: 16px;
+    letter-spacing: 0.16px;
+    text-transform: none;
+    width: 180px;
+    gap: 10px;
+  }
+  .hero__cta:hover { background: var(--white); color: var(--bentley-green); border-color: var(--white); }
+  .hero__mark { display: block; width: 16px; height: 16px; }
+
+  /* 2 — the foot of the frame carries the copy, so the fall-off is deeper */
+  .hero__scrim {
+    height: 56%;
+    background: linear-gradient(to top,
+      rgba(4,4,4,0.92) 0%, rgba(4,4,4,0.80) 26%, rgba(4,4,4,0.44) 56%, rgba(4,4,4,0) 100%);
+  }
+
+  /* 4 — the wings are centred on their own axis; the retailer line hangs
+         below without shifting them */
+  .band__mark { display: block; }
+  .band__mark img { display: block; margin-inline: auto; }
+  .band__retailer {
+    position: absolute; inset-inline: 0; inset-block-start: 100%;
+    margin-block-start: 6px; text-align: center;
+  }
+}
+
+.band__link {
+  font-size: 13px; letter-spacing: 1.3px; text-transform: uppercase;
+  text-decoration: none; white-space: nowrap; color: var(--white);
+}
+.band__link:hover { opacity: 0.75; }
+/* The number is the one action in the bar that is not a word, so it carries a
+   mark. Drawn on a 24 grid at 2.25 so it renders at the same 1.5 stroke as the
+   rest of the set once it is scaled into 16. */
+.band__link--tel { display: inline-flex; align-items: center; gap: var(--space-2); }
+.band__link--tel svg { flex: none; }
+@media (min-width: 80rem) { .band__act { gap: 34px; } }
+@media (max-width: 80rem) { .band__link { display: none; } }
+
+/* the B mask has no usable alpha channel — the action carries no icon */
+@media (min-width: 80rem) { .hero__mark { display: none; } .hero__cta { width: 162px; gap: 0; } }
+
+/* ==========================================================================
+   Overlay corrections — measured against the reference frame at 1440x900
+   ========================================================================== */
+@media (min-width: 80rem) {
+
+  /* 3 — two-line items in the reference's positions, same leading */
+  .nav ul { align-items: center; gap: 46px; }
+  .nav a { line-height: 24px; display: inline-block; }
+  .nav--two a { line-height: 24px; }
+  .nav a > i { display: inline-block; margin-inline-start: 6px; vertical-align: middle; }
+
+  /* 4 — the wings own the page axis; the retailer line is a separate layer
+         that cannot move or resize them */
+  .band__mark {
+    position: absolute;
+    inset-inline-start: 50%; inset-block-start: 48px;
+    translate: -50% 0;
+    display: block; width: 110px;
+  }
+  .band__mark img { width: 110px; height: auto; display: block; }
+  .band__retailer {
+    position: absolute; inset-inline-start: 50%; inset-block-start: 100%;
+    translate: -50% 0; margin-block-start: 7px;
+    font-size: 9px; letter-spacing: 0.14em; white-space: nowrap;
+    color: rgba(255,255,255,0.78);
+  }
+  .band[data-solid] .band__mark { inset-block-start: 22px; }
+
+  /* 1 — the surround is an enlarged continuation of the scene */
+  .hero__bleed img { filter: blur(34px) saturate(1.02) brightness(0.92); transform: scale(1.18); }
+
+  /* 2 — the icon sits left of the label at the reference's scale and gap */
+  .hero__cta { width: auto; min-width: 162px; padding-inline: 22px; gap: 10px; justify-content: center; }
+  .hero__ico { width: 16px; height: 16px; flex: none; filter: brightness(0) invert(1); }
+  .hero__cta:hover .hero__ico { filter: none; }
+}
+
+/* nav items placed on the reference's own left edges: 48 · 151 · 253 · 424 · 552,
+   the group closing at 657 */
+@media (min-width: 80rem) {
+  .nav ul { gap: 0; }
+  .nav li:nth-child(1) { margin-inline-start: 0; }
+  .nav li:nth-child(2) { margin-inline-start: 55px; }
+  .nav li:nth-child(3) { margin-inline-start: 0; }
+  .nav li:nth-child(4) { margin-inline-start: 18px; }
+  .nav li:nth-child(5) { margin-inline-start: 45px; padding-inline-end: 52px; }
+  .band__act { padding-inline-end: 32px; }
+}
+
+/* five single-word items, evenly spaced across the reference span 48 → 657 */
+@media (min-width: 80rem) {
+  .nav ul { gap: 0; }
+  .nav li { margin-inline-start: 0; padding-inline-end: 0; }
+  .nav li + li { margin-inline-start: 40px; }
+  .nav--two a { line-height: 24px; }
+}
+
+/* the blurred surround wraps the frame on all four sides — the next section
+   must not butt against the frame's lower edge */
+@media (min-width: 80rem) {
+  .hero__stage { margin: 150px 48px 56px; }
+}
+@media (max-width: 80rem) {
+  .hero__stage { margin-block-end: var(--space-5); }
+}
+
+/* ==========================================================================
+   Hero fills the viewport at any height — no fold, nothing of the next
+   section visible on load. Frame height = viewport − band − lower surround.
+   ========================================================================== */
+.hero { min-height: 100vh; min-height: 100svh; display: flex; flex-direction: column; }
+.hero__stage { flex: none; }
+
+@media (min-width: 80rem) {
+  .hero__stage { height: calc(100vh - 150px - 56px); height: calc(100svh - 150px - 56px); }
+  /* the five items sit evenly across the reference span, 48 → 657 */
+  .nav li:nth-child(1) { margin-inline-start: 0; padding-inline-end: 0; }
+  .nav li:nth-child(2),
+  .nav li:nth-child(3),
+  .nav li:nth-child(4),
+  .nav li:nth-child(5) { margin-inline-start: 56px; padding-inline-end: 0; }
+}
+@media (max-width: 80rem) {
+  .hero__stage { height: calc(100vh - var(--bar-h) - var(--space-5)); height: calc(100svh - var(--bar-h) - var(--space-5)); }
+}
+
+/* ==========================================================================
+   Hero lockup, restacked
+   The three-column horizontal lockup read as a caption strip. Set the title
+   over its sentence on a single left edge, and give the screen two ways out:
+   one filled action we want taken, one drawn beside it.
+   ========================================================================== */
+.hero__slot[data-current] {
+  display: flex; flex-direction: column; align-items: flex-start;
+  gap: var(--space-4); width: 100%;
+}
+.hero__title {
+  white-space: normal; max-width: 16ch; text-wrap: balance;
+  letter-spacing: var(--track-display);
+}
+/* in a column flex the cross axis is horizontal, so the old `align-self: end`
+   from the three-column lockup pushed the sentence to the right-hand edge */
+.hero__note {
+  width: auto; max-width: 46ch; padding-block-end: 0;
+  color: rgba(255,255,255,0.92);
+  align-self: flex-start; justify-self: start;
+}
+.hero__acts {
+  display: flex; flex-direction: row; flex-wrap: wrap;
+  gap: var(--space-4); margin-block-start: var(--space-2);
+}
+.hero__cta { width: auto; justify-self: start; align-self: auto; }
+
+.hero__cta--fill {
+  background: var(--white); border-color: var(--white); color: var(--bentley-green);
+}
+.hero__cta--fill:hover {
+  background: var(--heritage-white); border-color: var(--heritage-white);
+  color: var(--bentley-green);
+}
+/* the icon is inline SVG on currentColor now, so it follows the button in both
+   states; the old brightness/invert filter was written for an <img> and would
+   paint it white on the filled ground */
+.hero__ico { filter: none; width: 16px; height: 16px; flex: none; }
+.hero__cta:hover .hero__ico { filter: none; }
+
+.hero__cta--line {
+  background: transparent; border-color: rgba(255,255,255,0.7); color: var(--white);
+}
+.hero__cta--line:hover {
+  background: rgba(255,255,255,0.14); border-color: var(--white); color: var(--white);
+}
+
+@media (min-width: 80rem) {
+  .hero__slot { grid-template-columns: none; column-gap: 0; }
+  .hero__title { font-size: 56px; line-height: 1.06; letter-spacing: -0.015em; }
+  .hero__note  { font-size: 17px; line-height: 1.55; width: auto; max-width: 46ch; }
+  .hero__cta, .hero__cta--fill, .hero__cta--line {
+    width: auto; min-width: 178px; min-height: 52px; padding-inline: var(--space-6);
+    font-size: 15px; letter-spacing: 0.12px; text-transform: none;
+  }
+}
+
+@media (max-width: 40rem) {
+  .hero__title { font-size: clamp(1.9rem, 8vw, 2.6rem); max-width: 13ch; }
+  .hero__note  { font-size: 0.9375rem; max-width: 38ch; }
+  .hero__acts  { width: 100%; gap: var(--space-3); }
+  .hero__acts .hero__cta { flex: 1 1 9rem; min-width: 0; padding-inline: var(--space-4); }
+}
+
+/* ==========================================================================
+   New Bentley — recomposed
+   The old arrangement enlarged two extreme crops of hide until neither read as
+   anything: a 1:2.5 sliver bleeding off the leading edge and a 5:4 cabin twice
+   its size, with the copy dropped underneath. Same principle as the aftersales
+   panels now — the material behind, the cabin in front of it, and the copy
+   standing beside rather than under.
+   ========================================================================== */
+.craft {
+  display: grid; align-items: center;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 30rem);
+  column-gap: clamp(2.5rem, 5vw, 5rem);
+  row-gap: var(--space-7);
+}
+
+.craft__stack { grid-column: 1; grid-row: 1; position: relative; }
+
+.craft__cabin {
+  position: relative; z-index: 2;
+  width: 90%; margin: 0; overflow: hidden;
+  box-shadow: 0 36px 80px rgba(4,4,4,0.28);
+}
+.craft__cabin img {
+  display: block; width: 100%; height: auto;
+  aspect-ratio: 5 / 4; object-fit: cover;
+}
+
+.craft__hide {
+  position: absolute; z-index: 1;
+  inset-block: -9% 9%; inset-inline-end: 0;
+  width: 84%; margin: 0; overflow: hidden;
+}
+.craft__hide img {
+  display: block; width: 100%; height: 100%; object-fit: cover;
+  /* the ground here is Satin Linen, so the plate has to sit a step above it
+     rather than a step below — darkening it turned the panel into a slab */
+  filter: grayscale(1) contrast(0.92) brightness(1.06);
+}
+
+.craft__copy {
+  grid-column: 2; grid-row: 1;
+  justify-self: auto; max-width: none;
+  margin: 0; padding: 0; background: none;
+}
+
+@media (max-width: 60rem) {
+  .craft { grid-template-columns: 1fr; }
+  .craft__stack, .craft__copy { grid-column: 1; }
+  .craft__stack { grid-row: 1; }
+  .craft__copy  { grid-row: 2; }
+  .craft__hide { display: none; }
+  .craft__cabin { width: 100%; box-shadow: none; }
+  .craft__cabin img { aspect-ratio: 16 / 9; }
+}
+
+/* Every photograph now arrives the same way — uncovered from the bottom edge
+   of its own frame while drifting a few per cent up inside it. The horizontal
+   curtain and the slide from the right were two more directions than the page
+   needs, and neither read as the picture arriving. */
+.js .reveal--up > img,
+.js .reveal--right > img,
+.js .reveal--curtain > img {
+  clip-path: inset(100% 0 0 0);
+  transform: translateY(8%) scale(1.03);
+}
+/* and the landed state has to be restated after them, or the rule above — the
+   same specificity, written later — holds the photograph at the start frame */
+.js .reveal--up[data-in] > img,
+.js .reveal--right[data-in] > img,
+.js .reveal--curtain[data-in] > img {
+  clip-path: inset(0 0 0 0);
+  transform: none;
+}
+
+/* The icon files carry a flat black fill, so on Bentley Green they read as
+   three holes punched in the footer. Inlined now and taking their colour from
+   the link, in Heritage White at 10.9:1 on the green. */
+.social svg { width: 20px; height: 20px; display: block; }
+.social a { color: var(--heritage-white); opacity: 0.85; }
+.social a:hover { color: var(--white); opacity: 1; }
+
+/* The copy panel sits on the leading edge of this frame, and the car in the
+   photograph stood directly under it. Mirrored, the car moves to the trailing
+   half and the panel lands on the empty floor.
+
+   The mirror has to be carried in BOTH states of the arrival, or the picture
+   flips over halfway through the reveal: pre-state is the mirror plus the
+   travel, landed state is the mirror alone. */
+/* the window is moved with object-position, not with a translate: a translate
+   would drag the picture off its own frame and leave a band of ground */
+.wide__media img { transform: scaleX(-1); object-position: 26% 50%; }
+.js .wide__media > img {
+  clip-path: inset(100% 0 0 0);
+  transform: scaleX(-1) translateY(8%) scale(1.03);
+}
+.js .wide__media[data-in] > img {
+  clip-path: inset(0 0 0 0);
+  transform: scaleX(-1);
+}
+
+/* Ownership: the photograph lives on the trailing edge and bleeds off it, so
+   it enters from that edge rather than up from the floor — the one place on
+   the page where a sideways entrance is the honest one. Its own modifier, so
+   the rule that sends every other photograph up from the bottom leaves it be. */
+.js .reveal--in-side > img {
+  clip-path: inset(0 0 0 100%);
+  transform: translateX(9%) scale(1.03);
+}
+.js .reveal--in-side[data-in] > img {
+  clip-path: inset(0 0 0 0);
+  transform: none;
+  transition: clip-path var(--dur-reveal) var(--ease-reveal),
+              transform var(--dur-reveal) var(--ease-reveal);
+}
+
+/* The retailer: the same sideways entrance mirrored. This photograph sits on
+   the leading edge, so it comes in from the leading edge — uncovered from the
+   left while the frontage slides right into place behind the mask. Same
+   figures as --in-side, opposite sign; the scale is what guarantees the mask
+   never outruns the picture and shows bare ground at the edge. */
+.js .reveal--in-lead > img {
+  clip-path: inset(0 100% 0 0);
+  transform: translateX(-9%) scale(1.03);
+}
+.js .reveal--in-lead[data-in] > img {
+  clip-path: inset(0 0 0 0);
+  transform: none;
+  transition: clip-path var(--dur-reveal) var(--ease-reveal),
+              transform var(--dur-reveal) var(--ease-reveal);
+}
+
+/* New Bentley: the two actions stand side by side, filled then outlined, not
+   a button with a ruled link hanging under it */
+.craft__copy .actions { flex-wrap: nowrap; gap: var(--space-3); }
+.craft__copy .cta { padding-inline: var(--space-5); white-space: nowrap; gap: var(--space-2); }
+@media (max-width: 40rem) {
+  .craft__copy .actions { flex-wrap: wrap; }
+  .craft__copy .cta { flex: 1 1 10rem; }
+}
+
+/* Every pair of actions on the page stands side by side — filled first,
+   outlined second — and only breaks to two lines on a narrow screen, where
+   there is genuinely no room for them. */
+.actions { flex-wrap: nowrap; gap: var(--space-3); align-items: stretch; }
+.actions .cta { padding-inline: var(--space-5); white-space: nowrap; gap: var(--space-2); }
+.actions .cta svg { flex: none; }
+.on-dark .cta--quiet { background: transparent; border-color: rgba(255,255,255,0.7); color: var(--white); }
+.on-dark .cta--quiet:hover { background: rgba(255,255,255,0.14); border-color: var(--white); color: var(--white); }
+
+@media (max-width: 48rem) {
+  .actions { flex-wrap: wrap; }
+  .actions .cta { flex: 1 1 11rem; }
+}
+
+/* ==========================================================================
+   Frosted panels — the two-sheet treatment measured on bentleymotors.com
+   (models/flying-spur.html): the content panel blurs at 40px behind 48px of
+   padding, and a 240x240 square of the same glass at rgba(255,255,255,.2)
+   sits behind it, offset -32px on the top and the outer edge, so one corner
+   of it reads past the panel.
+
+   The glass is untinted, as theirs is — no colour cast on it at all. What
+   holds the white type is the 40px blur plus a neutral veil at .42, measured
+   inside the rendered text box rather than guessed. Green appears on this
+   screen only where Bentley put it: on the action.
+   ========================================================================== */
+.plate { padding: var(--space-7) var(--space-8); }
+.plate::before {
+  background: rgba(4, 4, 4, 0.25);
+  backdrop-filter: blur(40px) saturate(1.1);
+  -webkit-backdrop-filter: blur(40px) saturate(1.1);
+  -webkit-backdrop-filter: blur(40px) saturate(1.06);
+}
+.plate::after {
+  content: "";
+  position: absolute; z-index: -2; pointer-events: none;
+  inset-block-start: -32px; inset-inline-start: -32px;
+  width: clamp(9rem, 15vw, 15rem); aspect-ratio: 1;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(40px) saturate(1.06);
+  -webkit-backdrop-filter: blur(40px) saturate(1.06);
+}
+/* the pre-owned panel stands at the leading edge with the car to its right,
+   so its square leans the other way and does not sit over the subject */
+.wide__plate::after { inset-inline: auto -32px; }
+
+@supports not ((backdrop-filter: blur(2px)) or (-webkit-backdrop-filter: blur(2px))) {
+  .plate::before { background: rgba(4, 4, 4, 0.66); }
+  .plate::after  { background: rgba(232, 229, 213, 0.28); }
+}
+
+@media (max-width: 48rem) {
+  .plate { padding: var(--space-6); }
+  .plate::after { inset-block-start: -20px; inset-inline-start: -20px; width: 7rem; }
+  .wide__plate::after { inset-inline: auto -20px; }
+}
+
+/* ==========================================================================
+   Hero — the change of slide
+   A racked lens rather than a swap: the frame leaving goes soft and drifts
+   wider, the frame arriving is brought from out of focus to sharp. The blur is
+   on the image, so the scrim and the lockup over it stay crisp throughout.
+   ========================================================================== */
+.hero__frame { transition: opacity 1.15s var(--ease-out); }
+.hero__frame img {
+  filter: blur(18px);
+  transform: scale(1.07);
+  transition: filter 1.35s var(--ease-out), transform 1.6s var(--ease-out);
+}
+.hero__frame[data-current] img { filter: blur(0); transform: scale(1); }
+
+/* the blurred bleed behind the frame changes source on the same beat; without
+   this it cuts underneath a dissolve, which is the one thing that gives it away */
+.hero__bleed img { transition: opacity .45s var(--ease-out); }
+.hero__bleed[data-changing] img { opacity: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__frame, .hero__frame img, .hero__bleed img { transition: none; }
+  .hero__frame img { filter: none; transform: none; }
+}

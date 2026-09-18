@@ -1,0 +1,106 @@
+/* ==========================================================================
+   Bentley Palm Beach — tokens
+   Colour and type transcribed from "2026 Bentley Website Corporate Identity
+   Update" → Retailer Website Guidelines. Do not sample colours from imagery.
+   Spacing scale and type scale follow the 4px-base and fluid-step conventions.
+   ========================================================================== */
+
+/* --- Bentley typeface ------------------------------------------------------
+   Licensed for Bentley official communication. Supplied in CORP; converted to
+   woff2 here. Bentley Light carries display and body; Bentley Regular carries
+   the label register (uppercase, tracked). One family, two weights — the label
+   register is a register, not a second voice.                                */
+
+@font-face {
+  font-family: "Bentley";
+  src: url("../assets/fonts/Bentley-Light.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Bentley";
+  src: url("../assets/fonts/Bentley-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* --- Primary palette ------------------------------------------------- */
+  --bentley-green:  #183319; /* 24, 51, 25    */
+  --heritage-white: #DCD8C0; /* 220, 216, 192 */
+  --white:          #FFFFFF;
+  --black:          #040404; /* 4, 4, 4       */
+
+  /* --- Digital colour variants — percentage tints, not a second palette -- */
+  --teal-70:        #5E715E; /* 94, 113, 94   — Bentley Green hover        */
+  --satin-linen-40: #E8E5D5; /* 232, 229, 213 — quiet fields              */
+  --light-grey-10:  #CDCDCD; /* 205, 205, 205 — hairlines                 */
+  --dark-grey-40:   #585858; /* 88, 88, 88    — secondary copy            */
+
+  /* --- System colours — form states only -------------------------------- */
+  --system-success: #2E8643;
+  --system-error:   #C1472D;
+
+  /* --- Semantic --------------------------------------------------------- */
+  --ground:        var(--white);
+  --ground-quiet:  var(--satin-linen-40);
+  --ground-deep:   var(--bentley-green);
+  --ink:           var(--black);
+  --ink-secondary: var(--dark-grey-40);
+  --ink-invert:    var(--white);
+  --rule:          var(--light-grey-10);
+  --rule-invert:   rgba(255, 255, 255, 0.28);
+
+  /* --- Type ------------------------------------------------------------- */
+  --font: "Bentley", Arial, Helvetica, sans-serif;
+
+  /* Measured off bentleymotors.com at 1440 and at 516, then matched step for
+     step. Corporate desktop: display 48 · h2 38 · h3 24 · lead 20 · body 16 ·
+     label 13/16 at 0.1em. The one deliberate divergence is the label floor:
+     corporate runs navigation at 13px and legal at 10px, and functional text
+     here is held at 14px instead.                                          */
+  --text-xs:      0.875rem;                                    /* 14px floor */
+  --text-sm:      0.875rem;                                    /* 14px       */
+  --text-body:    1rem;                                        /* 16px       */
+  --text-button:  clamp(0.875rem, 0.3vw + 0.8rem, 1rem);       /* 14 → 16    */
+  --text-lead:    clamp(1rem, 0.55vw + 0.86rem, 1.25rem);      /* 16 → 20    */
+  --text-h3:      clamp(1.25rem, 0.55vw + 1.11rem, 1.5rem);    /* 20 → 24    */
+  --text-h2:      clamp(1.75rem, 1.4vw + 1.4rem, 2.375rem);    /* 28 → 38    */
+  --text-display: clamp(2rem, 2.2vw + 1.3rem, 3rem);           /* 32 → 48    */
+
+  /* Headlines carry the guide's tracking value of -15. The live corporate site
+     sets display tracking to 0; the written guideline is the mandate here. */
+  --track-display: -0.015em;
+  --track-label:   0.1em;   /* matches Bentley's uppercase label register     */
+  --track-body:    0.01em;  /* matches Bentley's body copy                    */
+
+  --leading-display: 1.13;
+  --leading-heading: 1.17;
+  --leading-body:    1.5;
+
+  /* --- Space — 4px base ------------------------------------------------- */
+  --space-1:  0.25rem;
+  --space-2:  0.5rem;
+  --space-3:  0.75rem;
+  --space-4:  1rem;
+  --space-5:  1.5rem;
+  --space-6:  2rem;
+  --space-7:  3rem;
+  --space-8:  4rem;
+  --space-9:  6rem;
+  --space-10: 8rem;
+  --space-11: 12rem;
+
+  /* --- Format ----------------------------------------------------------- */
+  --gutter: clamp(1.5rem, 4vw, 4.5rem);
+  --measure-max: 1560px;
+  --measure-text: 60ch;
+  --measure-display: 22ch;
+
+  /* Hairlines and alignment, never boxes — so no radius anywhere. */
+  --radius: 0;
+  --ease: cubic-bezier(0.33, 0, 0.15, 1);
+  --dur: 0.5s;
+}

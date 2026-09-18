@@ -1,0 +1,932 @@
+/* ==========================================================================
+   Bentley Palm Beach — home
+   Masses:  identification band · one lit image field · a range sequence ·
+            two alternating image/quiet fields · one dense record ·
+            one deep closing field.
+   ========================================================================== */
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--ground);
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: var(--text-body);
+  font-weight: 300;
+  line-height: var(--leading-body);
+  letter-spacing: var(--track-body);
+  font-variant-numeric: tabular-nums;
+}
+
+img { display: block; max-width: 100%; }
+a { color: inherit; }
+
+h1, h2, h3 {
+  margin: 0;
+  font-weight: 300;
+  letter-spacing: var(--track-display);
+  line-height: var(--leading-heading);
+  text-wrap: balance;
+}
+p { margin: 0; text-wrap: pretty; }
+
+:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* --- Shared -------------------------------------------------------------- */
+
+.shell {
+  width: 100%;
+  max-width: var(--measure-max);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+/* The label register: same family, uppercase and tracked. Never below 14px. */
+.label {
+  font-size: var(--text-xs);
+  font-weight: 400;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  line-height: 1.3;
+}
+
+.rule-label {
+  display: block;
+  padding-block-start: var(--space-3);
+  border-block-start: 1px solid var(--rule);
+}
+
+/* Text stack — gaps differentiated, internal smaller than external. */
+.stack > * + *              { margin-block-start: var(--space-4); }
+.stack > .label + *         { margin-block-start: var(--space-3); }
+.stack > h1 + .lead,
+.stack > h2 + .lead         { margin-block-start: var(--space-5); }
+.stack > .lead + *          { margin-block-start: var(--space-6); }
+.stack > * + .actions       { margin-block-start: var(--space-7); }
+
+.lead {
+  font-size: var(--text-lead);
+  line-height: 1.4;
+  max-width: 34ch;
+}
+.body { max-width: var(--measure-text); color: var(--ink-secondary); }
+.body + .body { margin-block-start: var(--space-4); }
+
+/* --- Controls ------------------------------------------------------------ */
+
+.actions { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: var(--space-3) var(--space-6);
+  border: 1px solid var(--bentley-green);
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--bentley-green);
+  font: inherit;
+  font-size: var(--text-button);
+  font-weight: 400;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color var(--dur) var(--ease),
+              color var(--dur) var(--ease),
+              border-color var(--dur) var(--ease);
+}
+.btn:hover { background: var(--bentley-green); color: var(--white); }
+
+.btn--solid { background: var(--bentley-green); color: var(--white); }
+.btn--solid:hover { background: var(--teal-70); border-color: var(--teal-70); }
+
+.btn--invert { border-color: var(--white); color: var(--white); }
+.btn--invert:hover { background: var(--white); color: var(--bentley-green); }
+
+.btn__mark { width: 16px; height: 16px; margin-inline-end: var(--space-2); }
+.btn--invert .btn__mark { filter: invert(1); }
+.btn--invert:hover .btn__mark { filter: none; }
+
+.link {
+  display: inline-block;
+  padding-block-end: var(--space-1);
+  border-block-end: 1px solid currentColor;
+  font-size: var(--text-xs);
+  font-weight: 400;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+/* ==========================================================================
+   MASS 1 — the identification band
+   ========================================================================== */
+
+/* A solid band, not a scrim. The carousel changes what is behind it, so a
+   gradient tuned to one frame would fail on the next; a ground makes the
+   contrast deterministic. This is the guideline's dark header variant. */
+.masthead {
+  position: sticky;
+  inset-block-start: 0;
+  z-index: 100;
+  background: var(--bentley-green);
+  color: var(--white);
+}
+
+.masthead__utility {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2) var(--space-6);
+  padding-block: var(--space-3);
+  font-size: var(--text-xs);
+  border-block-end: 1px solid var(--rule-invert);
+}
+
+.masthead__where { letter-spacing: var(--track-label); text-transform: uppercase; }
+.masthead__lines { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-6); }
+.masthead__lines a { text-decoration: none; }
+.masthead__lines a:hover { text-decoration: underline; }
+.masthead__lines span { opacity: 0.7; }
+
+.masthead__bar {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: var(--space-5);
+  padding-block: var(--space-4);
+}
+
+.masthead__mark { justify-self: center; line-height: 0; }
+.masthead__mark img { width: 116px; }
+
+.nav ul { display: flex; gap: var(--space-6); margin: 0; padding: 0; list-style: none; }
+.nav a {
+  display: inline-block;
+  padding-block: var(--space-2);
+  border-block-end: 1px solid transparent;
+  font-size: var(--text-xs);
+  font-weight: 400;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: border-color var(--dur) var(--ease);
+}
+.nav a:hover { border-block-end-color: currentColor; }
+
+.masthead__actions { display: flex; justify-content: flex-end; gap: var(--space-3); }
+.masthead__actions .btn { border-color: var(--white); color: var(--white); }
+.masthead__actions .btn:hover { background: var(--white); color: var(--bentley-green); }
+
+.masthead__toggle {
+  display: none;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) 0;
+  background: none;
+  border: 0;
+  color: inherit;
+  font: inherit;
+  font-size: var(--text-xs);
+  font-weight: 400;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   MASS 2 — the lit field
+   ========================================================================== */
+
+/* The frame is inset in the page ground rather than run to the viewport edge,
+   as in both guideline examples and on bentleymotors.com. */
+.hero {
+  background: var(--ground);
+  padding: var(--space-5) var(--gutter) 0;
+}
+.hero__stage {
+  position: relative;
+  max-width: var(--measure-max);
+  margin-inline: auto;
+  background: var(--black);
+  overflow: hidden;
+}
+
+.hero__frames { position: relative; }
+
+.hero__frame { position: absolute; inset: 0; opacity: 0; transition: opacity 0.9s var(--ease); }
+.hero__frame[data-current] { position: relative; opacity: 1; }
+
+.hero__frame img {
+  width: 100%;
+  height: clamp(520px, 66vh, 720px);
+  object-fit: cover;
+  object-position: 62% center;
+}
+
+/* The scrim exists so type meets AA on the composited render, and it falls off
+   toward the lit subject rather than flattening the whole frame. */
+.hero__scrim {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to top, rgba(4, 4, 4, 0.85) 0%, rgba(4, 4, 4, 0.45) 26%, rgba(4, 4, 4, 0) 52%),
+    linear-gradient(to bottom, rgba(4, 4, 4, 0.42) 0%, rgba(4, 4, 4, 0) 22%);
+  pointer-events: none;
+}
+
+/* The lockup: title, its description beside it, actions at the far edge —
+   one line along the bottom of the frame. */
+.hero__lockup {
+  position: absolute;
+  inset-block-end: 0;
+  inset-inline: 0;
+  display: grid;
+  grid-template-columns: max-content minmax(18ch, 26ch) 1fr;
+  align-items: end;
+  gap: var(--space-4) var(--space-6);
+  padding: var(--space-7);
+  color: var(--white);
+}
+.hero__lockup .actions { grid-column: 3; flex-wrap: nowrap; }
+.hero__lockup .btn {
+  font-size: var(--text-xs);
+  padding-inline: var(--space-4);
+  min-height: 44px;
+}
+.hero h1 {
+  font-size: var(--text-display);
+  line-height: var(--leading-display);
+  white-space: nowrap;
+}
+.hero__note {
+  font-size: var(--text-sm);
+  line-height: 1.45;
+  max-width: 32ch;
+  color: rgba(255, 255, 255, 0.86);
+  padding-block-end: 0.45em;
+}
+.hero__lockup .actions { justify-content: flex-end; }
+
+.hero__meter {
+  position: absolute;
+  inset-block-start: var(--space-6);
+  inset-inline-start: var(--space-7);
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  color: var(--white);
+}
+.hero__count { font-variant-numeric: tabular-nums; }
+
+/* A continuous track, segmented by slide — the progress rule from the
+   guideline's own hero. */
+.hero__ticks { display: flex; }
+.hero__ticks button {
+  width: 60px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+}
+.hero__ticks button::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.4);
+  transition: background-color var(--dur) var(--ease);
+}
+.hero__ticks button[aria-current="true"]::after { background: var(--white); }
+
+.hero__steps {
+  position: absolute;
+  inset-block-start: var(--space-6);
+  inset-inline-end: var(--space-6);
+  display: flex;
+  gap: var(--space-1);
+}
+.hero__step {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  background: none;
+  color: var(--white);
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity var(--dur) var(--ease);
+}
+.hero__step:hover { opacity: 1; }
+
+/* The section index, on the page ground under the frame. */
+.anchors {
+  padding: var(--space-6) var(--gutter);
+  border-block-end: 1px solid var(--rule);
+}
+.anchors ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-4) var(--space-8);
+  max-width: var(--measure-max);
+  margin-inline: auto;
+  padding: 0;
+  list-style: none;
+}
+.anchors a {
+  font-size: var(--text-xs);
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  text-decoration: none;
+  padding-block: var(--space-2);
+  border-block-end: 1px solid transparent;
+}
+.anchors a:hover { border-block-end-color: currentColor; }
+
+/* ==========================================================================
+   Sections — bottom-heavy, so each field ends before the next begins
+   ========================================================================== */
+
+.field { padding-block: var(--space-8) var(--space-10); }
+@media (min-width: 60rem) { .field { padding-block: var(--space-9) var(--space-11); } }
+
+.field--quiet { background: var(--ground-quiet); }
+.field--deep  { background: var(--ground-deep); color: var(--ink-invert); }
+
+.field__open {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 26rem);
+  align-items: end;
+  gap: var(--space-6) var(--space-8);
+  margin-block-end: var(--space-8);
+}
+.field__open h2 { font-size: var(--text-h2); max-width: 18ch; }
+.field__open .body { margin-block-start: 0; }
+
+/* ==========================================================================
+   MASS 3 — the range, as one sequence at one framing
+   ========================================================================== */
+
+.range {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(15rem, 1fr);
+  gap: var(--space-5);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  overscroll-behavior-x: contain;
+  padding-block-end: var(--space-2);
+}
+.range::-webkit-scrollbar { height: 2px; }
+.range::-webkit-scrollbar-thumb { background: var(--rule); }
+
+.range__item { scroll-snap-align: start; text-decoration: none; align-self: start; }
+.range__item img {
+  width: 100%;
+  height: auto;          /* the HTML size attributes are hints, not dimensions */
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+}
+.range__name { margin-block-start: var(--space-2); }
+.range__kind { color: var(--ink-secondary); font-size: var(--text-sm); }
+.range__item .rule-label { margin-block-start: var(--space-4); }
+.range__item:hover .range__name { text-decoration: underline; text-underline-offset: 0.35em; }
+
+/* The ledger — the same hairline register as the range, without imagery, so
+   the meter has one rest before the record. */
+.ledger {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: var(--space-7) var(--space-6);
+}
+.ledger__item h3 {
+  font-size: var(--text-h3);
+  margin-block-start: var(--space-4);
+}
+.ledger__item .body { margin-block-start: var(--space-4); }
+.ledger__item p:last-child { margin-block-start: var(--space-5); }
+
+/* ==========================================================================
+   MASS 4 — alternating image / quiet fields, one treatment throughout
+   ========================================================================== */
+
+.editorial__inner {
+  max-width: 1180px;
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.pair {
+  display: grid;
+  grid-template-columns: minmax(0, 46%) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(var(--space-7), 5vw, var(--space-9));
+}
+.pair + .pair { margin-block-start: var(--space-10); }
+
+/* The pairs are staggered rather than mirrored on a shared axis: the second
+   runs the other way and sits lower, so the field reads as one sequence
+   instead of two matching sections. */
+.pair--mirror { grid-template-columns: minmax(0, 1fr) minmax(0, 40%); }
+.pair--mirror .pair__media { order: 2; }
+.pair--mirror .pair__type { padding-block-end: var(--space-9); }
+
+.pair__media img { width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; }
+.pair--mirror .pair__media img { aspect-ratio: 4 / 3; }
+
+.pair__type { max-width: 36ch; }
+.pair__type h2 { font-size: var(--text-h2); margin-block-start: var(--space-3); }
+.pair__type .body { font-size: var(--text-sm); margin-block-start: var(--space-5); }
+.pair__type p:last-child { margin-block-start: var(--space-6); }
+
+/* ==========================================================================
+   MASS 5 — the record. The page's centre of action.
+   ========================================================================== */
+
+.record {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
+  gap: var(--space-8) var(--space-10);
+  align-items: start;
+}
+.record h2 { font-size: var(--text-h2); max-width: 14ch; }
+
+.plate { margin: 0; display: grid; grid-template-columns: minmax(9rem, 15rem) 1fr; }
+.plate dt,
+.plate dd {
+  margin: 0;
+  padding-block: var(--space-4);
+  border-block-start: 1px solid var(--rule);
+}
+.plate dt {
+  color: var(--ink-secondary);
+  font-size: var(--text-xs);
+  font-weight: 400;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  line-height: 1.5;
+}
+.plate dd a { text-decoration: none; }
+.plate dd a:hover { text-decoration: underline; }
+.plate__pair { display: flex; flex-wrap: wrap; gap: var(--space-1) var(--space-5); }
+
+/* ==========================================================================
+   The long-form record of the business
+   ========================================================================== */
+
+.about { max-width: 78ch; }
+.about summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-5);
+  padding-block: var(--space-5);
+  border-block: 1px solid var(--rule);
+  font-size: var(--text-xs);
+  font-weight: 400;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+}
+.about summary::-webkit-details-marker { display: none; }
+.about summary::after { content: "+"; font-size: var(--text-h3); line-height: 1; }
+.about[open] summary::after { content: "–"; }
+.about__body { padding-block-start: var(--space-7); }
+.about__body h3 { font-size: var(--text-h3); margin-block-start: var(--space-7); }
+.about__body h3:first-child { margin-block-start: 0; }
+.about__body p { margin-block-start: var(--space-4); color: var(--ink-secondary); max-width: var(--measure-text); }
+
+/* ==========================================================================
+   MASS 6 — the closing field
+   ========================================================================== */
+
+.colophon { background: var(--ground-deep); color: var(--ink-invert); }
+.colophon a { text-decoration: none; }
+.colophon a:hover { text-decoration: underline; }
+
+.colophon__crown {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: var(--space-8);
+  padding-block: var(--space-8);
+}
+.colophon__crown ul { display: flex; gap: var(--space-6); margin: 0; padding: 0; list-style: none; }
+.colophon__crown ul:first-child { justify-content: flex-end; }
+.colophon__mark img { width: 104px; }
+
+.social { display: flex; justify-content: center; gap: var(--space-6); margin: 0 0 var(--space-8); padding: 0; list-style: none; }
+.social svg { width: 20px; height: 20px; display: block; }
+/* Heritage White rather than the flat black the icon files carry: on the
+   closing field they were a hole in the ground instead of a mark on it */
+.social a { display: block; color: var(--heritage-white); opacity: 0.78;
+  transition: opacity var(--dur) var(--ease), color var(--dur) var(--ease); }
+.social a:hover { opacity: 1; color: var(--white); }
+
+.colophon__index {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+  gap: var(--space-7);
+  padding-block: var(--space-8);
+  border-block-start: 1px solid var(--rule-invert);
+}
+.colophon__index h3 { font-size: var(--text-xs); font-weight: 400; letter-spacing: var(--track-label); text-transform: uppercase; margin-block-end: var(--space-4); }
+.colophon__index ul { margin: 0; padding: 0; list-style: none; }
+.colophon__index li + li { margin-block-start: var(--space-3); }
+.colophon__index a { font-size: var(--text-sm); color: rgba(255, 255, 255, 0.78); }
+.colophon__index a:hover { color: var(--white); }
+
+.colophon__legal {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4) var(--space-7);
+  padding-block: var(--space-5);
+  border-block-start: 1px solid var(--rule-invert);
+  font-size: var(--text-xs);
+  color: rgba(255, 255, 255, 0.78);
+}
+.colophon__legal ul { display: flex; flex-wrap: wrap; gap: var(--space-3) var(--space-6); margin: 0; padding: 0; list-style: none; }
+.colophon__legal address { font-style: normal; }
+
+/* ==========================================================================
+   Responsive recomposition
+   ========================================================================== */
+
+@media (max-width: 75rem) {
+  .nav ul { gap: var(--space-5); }
+  .masthead__actions .btn:first-child { display: none; }
+}
+
+@media (max-width: 60rem) {
+  /* The counterweight that held the desktop asymmetry is gone at one column,
+     so the hero re-establishes its dominant by scale and tonal fall-off only. */
+  .masthead__toggle { display: inline-flex; }
+  .masthead__bar { padding-block: var(--space-3); }
+  .masthead__mark img { width: 96px; }
+  .masthead__actions .btn { display: none; }
+
+  .nav {
+    position: absolute;
+    inset-inline: 0;
+    inset-block-start: 100%;
+    display: none;
+    background: var(--white);
+    color: var(--ink);
+    border-block-end: 1px solid var(--rule);
+  }
+  .masthead[data-open] .nav { display: block; }
+  .nav ul { flex-direction: column; gap: 0; padding: var(--space-2) var(--gutter) var(--space-6); }
+  .nav li + li { border-block-start: 1px solid var(--rule); }
+  .nav a { display: block; padding-block: var(--space-4); }
+
+  .hero { padding-inline: 0; padding-block-start: 0; }
+  .hero__frame img { height: clamp(520px, 72vh, 680px); object-position: 58% center; }
+  .hero__lockup {
+    grid-template-columns: 1fr;
+    align-items: start;
+    padding: var(--space-6) var(--gutter);
+  }
+  .hero__lockup .actions {
+    grid-column: auto;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+  .hero__lockup .btn { min-height: 48px; padding-inline: var(--space-6); }
+  .hero h1 { white-space: normal; }
+  .hero__meter { inset-inline-start: var(--gutter); inset-block-start: var(--space-4); }
+  .hero__steps { display: none; }
+
+  .anchors { padding-block: var(--space-4); }
+  .anchors ul { justify-content: flex-start; gap: var(--space-3) var(--space-6); }
+
+  .field__open { grid-template-columns: 1fr; align-items: start; }
+  .pair, .pair--mirror { grid-template-columns: 1fr; gap: var(--space-6); }
+  .pair--mirror .pair__media { order: 0; }
+  .pair--mirror .pair__type { padding-block-end: 0; }
+  .pair--mirror .pair__media img { aspect-ratio: 4 / 3; }
+  .pair + .pair { margin-block-start: var(--space-9); }
+  .record { grid-template-columns: 1fr; gap: var(--space-7); }
+  .colophon__crown { grid-template-columns: 1fr; justify-items: center; gap: var(--space-5); }
+  .colophon__crown ul:first-child { justify-content: center; }
+}
+
+@media (max-width: 40rem) {
+  /* The band keeps the required retailer name and numbers; the city is already
+     said by the hero and the record, so it drops rather than forcing an
+     overflow. */
+  .masthead__city { display: none; }
+  .masthead__utility {
+    justify-content: center;
+    text-align: center;
+    gap: var(--space-1) var(--space-4);
+    padding-block: var(--space-2);
+  }
+  .masthead__where { width: 100%; }
+  .masthead__lines { justify-content: center; gap: var(--space-1) var(--space-4); }
+
+  .range { grid-auto-columns: 78%; }
+  .plate { grid-template-columns: 1fr; }
+  .plate dt { padding-block-end: 0; }
+  .plate dd { border-block-start: 0; padding-block-start: var(--space-2); }
+  .actions .btn { width: 100%; }
+  .colophon__legal { flex-direction: column; align-items: flex-start; }
+}
+
+/* ==========================================================================
+   ABOUT US
+   It used to sit folded into an accordion at the foot of the page. Standing
+   open it needs a shape of its own: one photograph across the measure, then
+   the record set in three columns so the whole of it is visible at once
+   rather than as a single long ribbon of text.
+   ========================================================================== */
+.about-us__frame {
+  margin-block-start: var(--space-8);
+  overflow: hidden;
+}
+.about-us__frame img {
+  display: block; width: 100%; height: auto;
+  aspect-ratio: 21 / 9; object-fit: cover; object-position: 50% 50%;
+}
+
+/* the columns had no air between them — one paragraph ended where the next
+   began, so the three read as one block of text in three pieces */
+.about-us__body {
+  margin-block-start: var(--space-9);
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  column-gap: clamp(3rem, 5.5vw, 7rem);
+  row-gap: var(--space-10);
+}
+/* a second line is held open whether the title needs it or not: the paragraphs
+   across a row then start on the same line, and the rules along the top read as
+   one horizontal band rather than as six separate starts. content-box so the
+   floor is exactly two lines of the title, clear of the rule and its padding. */
+.about-us__body h3 {
+  font-size: var(--text-h3); line-height: var(--leading-heading);
+  margin: 0 0 var(--space-5);
+  padding-block-start: var(--space-5);
+  border-block-start: 1px solid var(--rule);
+  max-width: 20ch;
+  box-sizing: content-box;
+  min-block-size: calc(var(--leading-heading) * 2em);
+}
+.about-us__body p {
+  margin: 0; color: var(--ink-secondary);
+  font-size: var(--text-body); line-height: 1.62;
+  max-width: 36ch;
+}
+
+@media (max-width: 68rem) {
+  .about-us__body { grid-template-columns: repeat(2, 1fr); row-gap: var(--space-7); }
+  .about-us__frame img { aspect-ratio: 16 / 9; }
+}
+@media (max-width: 48rem) {
+  .about-us__body { grid-template-columns: 1fr; row-gap: var(--space-6); }
+  /* one column has no row to align to, and the held line reads as a gap */
+  .about-us__body h3 { min-block-size: 0; }
+  .about-us__frame img { aspect-ratio: 4 / 3; }
+}
+
+/* ==========================================================================
+   MASS 4 — the aftersales interval
+
+   Two photographs offset against each other rather than one photograph beside
+   a paragraph: the material the department works in sits behind, desaturated
+   and pushed toward the page edge, and the work itself sits in front of it,
+   dropped and pulled inward so it covers most of the plate and leaves an L of
+   the material showing along the top and the outer edge. The copy holds the
+   opposite side. The second section mirrors the first, so the eye crosses the
+   page once instead of running down a single gutter.
+   ========================================================================== */
+
+.field--night { background: var(--black); color: var(--ink-invert); }
+.layers { padding-block: var(--space-11); overflow: hidden; }
+
+.layer {
+  width: 100%; max-width: var(--measure-max);
+  margin-inline: auto; padding-inline: var(--gutter);
+  display: grid; align-items: center;
+  grid-template-columns: minmax(0, 31rem) minmax(0, 1fr);
+  column-gap: clamp(2.5rem, 5vw, 5.5rem);
+}
+.layer + .layer { margin-block-start: var(--space-11); }
+
+/* the two actions belong on one line, as they do on the reference panel */
+.layer .actions { flex-wrap: nowrap; }
+.layer .btn { padding-inline: var(--space-5); white-space: nowrap; }
+
+/* mirroring swaps the tracks as well as the order — `order` alone left the
+   stack sitting in the narrow copy column */
+.layer--mirror { grid-template-columns: minmax(0, 1fr) minmax(0, 31rem); }
+/* the row has to be named too: the copy comes first in the source, so naming
+   only the columns pushed the stack onto a second row */
+.layer--mirror .layer__stack { grid-column: 1; grid-row: 1; }
+.layer--mirror .layer__type  { grid-column: 2; grid-row: 1; }
+
+/* --- the copy ----------------------------------------------------------- */
+.layer__type h2 {
+  font-size: var(--text-h2); line-height: var(--leading-heading);
+  letter-spacing: var(--track-display);
+  margin-block-start: var(--space-3);
+}
+.layer__type .body {
+  margin-block-start: var(--space-5);
+  color: rgba(255,255,255,0.78); max-width: 42ch;
+}
+.layer__type .actions { margin-block-start: var(--space-7); }
+
+/* the specifics, so the section carries substance and not only a photograph */
+.layer__spec {
+  list-style: none; margin: var(--space-7) 0 0; padding: 0;
+  border-block-start: 1px solid var(--rule-invert);
+}
+.layer__spec li {
+  display: grid; grid-template-columns: minmax(0, 9.5rem) minmax(0, 1fr);
+  gap: var(--space-4);
+  padding-block: var(--space-4);
+  border-block-end: 1px solid var(--rule-invert);
+  font-size: var(--text-sm); color: rgba(255,255,255,0.72);
+}
+.layer__spec li span {
+  font-size: var(--text-xs); letter-spacing: var(--track-label);
+  text-transform: uppercase; color: var(--white);
+}
+
+.btn__ico { width: 16px; height: 16px; flex: none; margin-inline-end: var(--space-2); }
+.field--night .btn { border-color: rgba(255,255,255,0.45); color: var(--white); }
+.field--night .btn:hover { background: var(--white); color: var(--black); border-color: var(--white); }
+.field--night .btn--solid { background: var(--bentley-green); border-color: var(--bentley-green); color: var(--white); }
+.field--night .btn--solid:hover { background: var(--teal-70); border-color: var(--teal-70); color: var(--white); }
+
+/* --- the stack ---------------------------------------------------------- */
+/* the photograph in front sets the height of the stack; the plate is hung
+   behind it, one tenth taller at the top and one tenth wider at the outer
+   edge, so what shows is an L and never a frame */
+.layer__stack { position: relative; }
+
+.layer__front {
+  position: relative; z-index: 2;
+  width: 88%; overflow: hidden;
+  /* on a black ground a drop shadow does nothing, so the card is separated
+     from the plate behind it by a hairline instead */
+  box-shadow: 0 40px 90px rgba(0,0,0,0.75), 0 0 0 1px rgba(255,255,255,0.10);
+}
+.layer--mirror .layer__front { margin-inline-start: auto; }
+.layer__front img {
+  display: block; width: 100%; height: auto;
+  aspect-ratio: 5 / 4; object-fit: cover;
+}
+
+.layer__plate {
+  position: absolute; z-index: 1;
+  inset-block: -12% 12%; inset-inline-end: 0;
+  width: 82%; overflow: hidden;
+}
+.layer--mirror .layer__plate { inset-inline: 0 auto; }
+/* the plate has to separate from a black ground as well as sit behind the
+   photograph, so it is lifted rather than darkened */
+.layer__plate img {
+  display: block; width: 100%; height: 100%; object-fit: cover;
+  filter: grayscale(1) contrast(1.02) brightness(1.45);
+}
+
+/* below the two-column measure the offset stops reading as a composition and
+   starts reading as a mistake, so the plate is dropped and the photograph
+   stands on its own */
+@media (max-width: 60rem) {
+  .layers { padding-block: var(--space-9); }
+  .layer {
+    grid-template-columns: 1fr; row-gap: var(--space-7);
+  }
+  .layer--mirror .layer__type  { order: 0; }
+  .layer--mirror .layer__stack { order: 0; }
+  .layer + .layer { margin-block-start: var(--space-10); }
+  .layer__plate { display: none; }
+  .layer__front {
+    position: static; width: 100%; box-shadow: none;
+  }
+  .layer__front img { aspect-ratio: 16 / 9; }
+  .layer__spec li { grid-template-columns: 1fr; gap: var(--space-1); }
+}
+
+/* every anchor target clears the sticky band instead of landing under it */
+#range, #service, #parts, #ownership, #about, #retailer { scroll-margin-block-start: 148px; }
+@media (max-width: 60rem) { #range, #service, #parts, #ownership, #about, #retailer { scroll-margin-block-start: 96px; } }
+
+/* ==========================================================================
+   Arrival
+
+   Copy rises the last 24px into place. Photographs slide up into their own
+   frame from below it — a plain transform on the image inside an overflow
+   hidden frame, which the compositor can carry on its own. The earlier version
+   animated clip-path, and clip-path on a filtered image is repainted every
+   frame; that is what made it stutter.
+
+   Nothing arrives at the same moment as anything else. Inside a stack the
+   material comes up first and settles before the photograph starts, so the two
+   read as two events; between the two stacks the whole sequence repeats, so
+   the section arrives one picture at a time.
+   ========================================================================== */
+
+.js [data-rise] {
+  opacity: 0; transform: translateY(24px);
+}
+.js [data-rise][data-in] {
+  opacity: 1; transform: none;
+  transition: opacity 0.72s var(--ease-arrive), transform 0.72s var(--ease-arrive);
+  transition-delay: var(--d, 0s);
+}
+
+:root { --ease-arrive: cubic-bezier(0.22, 1, 0.36, 1); }
+
+.js [data-slide] { overflow: hidden; }
+.js [data-slide] > img {
+  transform: translate3d(0, 101%, 0);
+  will-change: transform;
+}
+.js [data-slide][data-in] > img {
+  transform: translate3d(0, 0, 0);
+  transition: transform 1.05s var(--ease-arrive);
+  transition-delay: var(--d, 0s);
+}
+
+/* the two photographs of a stack, one after the other and not together:
+   the material, a beat, then the picture that sits on it */
+.js .layer__plate[data-in] > img {
+  transition-duration: 0.95s;
+  transition-delay: 0s;
+}
+.js .layer__front[data-in] > img {
+  transition-duration: 1.15s;
+  transition-delay: 0.55s;
+}
+
+/* the plate carries a filter, so it is given a layer of its own rather than
+   being re-rasterised against the section behind it on every frame */
+.js .layer__plate, .js .layer__front { will-change: transform; }
+.js .layer__plate[data-in], .js .layer__front[data-in] { will-change: auto; }
+
+@media (prefers-reduced-motion: reduce) {
+  .js [data-rise], .js [data-rise][data-in] { opacity: 1; transform: none; transition: none; }
+  .js [data-slide] > img, .js [data-slide][data-in] > img { transform: none; transition: none; }
+}
+
+/* A button is one line. If a label will not fit on one, the label is shortened
+   — the control is never allowed to become a two-line block. */
+.btn { white-space: nowrap; }
+.actions { flex-wrap: nowrap; }
+@media (max-width: 48rem) {
+  .actions { flex-wrap: wrap; }
+  .actions .btn { flex: 1 1 11rem; padding-inline: var(--space-4); }
+}
+
+/* ==========================================================================
+   Hero — the change of slide
+
+   Not a cut and not a plain dissolve: the outgoing frame goes soft and drifts
+   a little wider as it leaves, and the incoming one arrives out of focus and
+   is brought to sharp. It reads as a lens being racked rather than as two
+   pictures swapped, which is the only kind of movement this screen should own.
+
+   The blur sits on the image and not on the frame, so the scrim over it stays
+   crisp and the type never softens with the picture.
+   ========================================================================== */
+.hero__frame { transition: opacity 1.15s var(--ease); }
+.hero__frame img {
+  filter: blur(18px);
+  transform: scale(1.07);
+  transition: filter 1.35s var(--ease), transform 1.6s var(--ease);
+}
+.hero__frame[data-current] img {
+  filter: blur(0);
+  transform: scale(1);
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero__frame, .hero__frame img { transition: none; }
+  .hero__frame img { filter: none; transform: none; }
+}
