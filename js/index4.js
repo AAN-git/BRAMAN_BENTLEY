@@ -343,8 +343,9 @@
       var box = el.getBoundingClientRect();
       var top = Math.round(box.top + window.scrollY);
       list.push(top);
-      /* a chapter only a little taller than the screen has no second beat */
-      if (box.height > vh * 1.15) list.push(Math.round(top + box.height - vh));
+      /* a chapter taller than the screen by more than a hair has a second
+         beat at its foot, so nothing under the fold is left unreachable */
+      if (box.height > vh * 1.04) list.push(Math.round(top + box.height - vh));
     });
     var max = root.scrollHeight - vh;
     stops = list

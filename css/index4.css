@@ -739,10 +739,11 @@ main > section::before {
 .stock__rail.is-dragging { cursor: grabbing; scroll-snap-type: none; scroll-behavior: auto; user-select: none; }
 .stock__rail.is-dragging a { pointer-events: none; }
 /* the plates are wide — the photograph, the name, the facts and the
-   retailer's build need the room — so this is the one chapter allowed to be
-   taller than the screen: it sticks with its foot on the fold, and the
-   wheel's second beat lands there */
-main > section.stock { height: auto; min-height: 100svh; }
+   retailer's build need the room — so this is the one chapter that is not
+   pinned: as tall as it needs to be, it rises over the chapter before it and
+   scrolls away as any page does; the next chapter pins as usual */
+main > section.stock { position: relative; top: auto; height: auto; min-height: 100svh; }
+.stock .recede { transform: none; }
 /* the plates are exactly the inventory grid's: a third of the page column
    less two gutters, the same gap between them */
 .stock__car { flex: 0 0 calc((min(var(--page), 100vw - 2 * var(--gutter)) - 2 * var(--space-6)) / 3); scroll-snap-align: start; min-height: 0; }
