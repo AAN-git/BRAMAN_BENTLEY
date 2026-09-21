@@ -55,6 +55,7 @@
   -webkit-overflow-scrolling: touch;
 }
 .film__row::-webkit-scrollbar { display: none; }
+.film__row[hidden], .spin[hidden], .film__total[hidden] { display: none; }
 .film__row.is-dragging { cursor: grabbing; scroll-snap-type: none; user-select: none; }
 .film__row.is-dragging button { pointer-events: none; }
 .film__frame { flex: 0 0 auto; scroll-snap-align: start; height: min(58vh, 620px); }
@@ -64,11 +65,77 @@
 .film__open:hover img { opacity: 0.86; }
 .film__open:focus-visible { outline: 2px solid var(--white); outline-offset: -4px; }
 
+/* the arrows stand on the rail's edges at mid-height, on the plate's
+   ground: square, hairline, the glyph white — index4's arrows, over the
+   photographs; a touch screen drags the rail instead */
+main.vdp > section.film, html:not(.ready) main.vdp > section.film { position: relative; }   /* outranks the unpinning rules */
+.film__arrow {
+  position: absolute; top: calc(min(58vh, 620px) / 2 - 22px); z-index: 3;
+  background: var(--plate);
+  -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+}
+.film__arrow--prev { left: max(var(--gutter), calc((100% - var(--page)) / 2)); }
+.film__arrow--next { right: max(var(--gutter), calc((100% - var(--page)) / 2)); }
+@media (pointer: coarse) { .film__arrow { display: none; } }
+
 .film__foot {
   display: grid; grid-template-columns: minmax(0, 1fr) auto auto; align-items: center;
   column-gap: var(--space-6); row-gap: var(--space-3);
   margin-block-start: var(--space-5);
 }
+/* the switch: two labels in the caps register, the one in use white on a hairline */
+.film__mode { display: flex; gap: var(--space-5); }
+.film__mode-button {
+  background: none; border: 0; padding: var(--space-2) 0; cursor: pointer;
+  border-bottom: 1px solid transparent;
+  font: inherit; font-size: var(--text-xs); font-weight: 400; letter-spacing: var(--track-label); text-transform: uppercase;
+  color: var(--ink-2);
+  transition: color var(--dur-2) var(--ease-out), border-color var(--dur-2) var(--ease-out);
+}
+.film__mode-button:hover { color: var(--white); }
+.film__mode-button[aria-pressed="true"] { color: var(--white); border-bottom-color: var(--white); }
+
+/* the way in: the first frame of the turntable, dimmed, a hairline ring
+   that says 360° and a label beneath; without the script there is no spin,
+   so neither the tile nor the switch is shown */
+.film:not([data-js]) .film__frame--spin, .film:not([data-js]) .film__mode { display: none; }
+.film__launch { display: block; height: 100%; padding: 0; border: 0; background: var(--black); cursor: pointer; position: relative; }
+.film__launch img { height: 100%; width: auto; max-width: none; display: block; opacity: 0.45; transition: opacity var(--dur-3) var(--ease-out); }
+.film__launch:hover img { opacity: 0.6; }
+.film__launch-mark { position: absolute; inset: 0; display: grid; place-content: center; justify-items: center; gap: var(--space-4); color: var(--white); }
+.film__launch-ring {
+  display: grid; place-items: center; width: 96px; height: 96px;
+  border: 1px solid var(--white); border-radius: 50%;
+  font-size: var(--text-lead); font-weight: 300; letter-spacing: var(--track-display);
+  transition: transform var(--dur-3) var(--ease-out);
+}
+.film__launch:hover .film__launch-ring { transform: scale(1.06); }
+.film__launch-label { font-size: var(--text-xs); font-weight: 400; letter-spacing: var(--track-label); text-transform: uppercase; }
+.film__launch:focus-visible { outline: 2px solid var(--white); outline-offset: -4px; }
+
+/* the spin: one stage, the page's width, the frame's height; the car turns
+   under the pointer; a thin line says how much has arrived */
+.spin { padding-inline: max(var(--gutter), calc((100% - var(--page)) / 2)); }
+.spin__stage {
+  position: relative; height: min(58vh, 620px); overflow: hidden;
+  background: var(--black);
+  cursor: grab; user-select: none; touch-action: pan-y;
+}
+.spin__stage[data-dragging] { cursor: grabbing; }
+.spin__stage:focus-visible { outline: 2px solid var(--white); outline-offset: -4px; }
+.spin__image { height: 100%; width: auto; max-width: 100%; object-fit: contain; display: block; margin-inline: auto; pointer-events: none; }
+.spin__hint {
+  position: absolute; left: 50%; bottom: var(--space-5); transform: translateX(-50%);
+  padding: var(--space-2) var(--space-3);
+  background: var(--plate); color: var(--white);
+  font-size: var(--text-xs); font-weight: 400; letter-spacing: var(--track-label); text-transform: uppercase;
+  white-space: nowrap; pointer-events: none;
+  transition: opacity var(--dur-3) var(--ease-out);
+}
+.spin__stage[data-touched] .spin__hint { opacity: 0; }
+.spin__loading { position: absolute; left: 0; right: 0; bottom: 0; height: 1px; background: var(--rule); }
+.spin__loading span { display: block; height: 3px; margin-top: -1px; width: 0; background: var(--white); transition: width 120ms linear; }
+
 .film__track { position: relative; height: 1px; background: var(--rule); }
 .film__thumb { position: absolute; top: -1px; left: 0; height: 3px; width: 20%; background: var(--white); transition: left 80ms linear, width 80ms linear; }
 .film__count { font-size: var(--text-xs); letter-spacing: var(--track-label); font-variant-numeric: tabular-nums; color: var(--ink); }
@@ -240,6 +307,8 @@
 }
 @media (max-width: 1023px) {
   .vdp__top { padding-block-start: calc(var(--bar-h) + 1vh); }
+  .film__arrow { top: calc(min(48vh, 480px) / 2 - 22px); }
+  .spin__stage { height: min(48vh, 480px); }
   .vdp__head { grid-template-columns: 1fr; }
   .vdp__figure { text-align: left; }
   .vdp__price { align-items: flex-start; }
@@ -257,8 +326,11 @@
   .enquire__form { grid-template-columns: 1fr; }
   .enquire { padding: var(--space-5) var(--space-4); }
   .film__frame { height: 56vw; }
+  .spin__stage { height: 56vw; }
+  .film__arrow { display: none; }
   .film__foot { grid-template-columns: minmax(0, 1fr) auto; }
-  .film__nav { display: none; }
+  .film__mode { grid-column: 1 / -1; order: 2; }
+  .film__launch-ring { width: 72px; height: 72px; }
   .vdp__features { columns: 1; }
   .lightbox__image { max-width: 100vw; max-height: calc(100svh - 2 * var(--space-8)); }
   .lightbox__arrow { display: none; }

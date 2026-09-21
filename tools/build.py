@@ -92,7 +92,10 @@ def card(v, p='', eager=False):
     elif v['certified']: kind = 'Pre-owned · <b>Certified by Bentley</b>'
     elif v['one_owner']: kind = 'Pre-owned · One owner'
     else: kind = 'Pre-owned'
-    facts = f"{e(v['exterior'])} over {e(v['interior'])}, {'{:,}'.format(v['mileage'])} miles<br><span class=\"nowrap\">Stock {e(v['stock'])}</span>"
+    facts = (f"<span><b>Exterior</b>{e(v['exterior'])}</span>"
+             f"<span><b>Interior</b>{e(v['interior'])}</span>"
+             f"<span><b>Mileage</b>{'{:,}'.format(v['mileage'])} miles</span>"
+             f"<span><b>Stock</b>{e(v['stock'])}</span>")
     alt = f"{v['exterior']} {name_of(v)}{note}"
     build = [('Dealer service charge', '$1,189', ''), ('Electronic filing charge', '$514', '')]
     if v['sale_price_with_fees']:
@@ -234,10 +237,31 @@ def vehicle_page(v):
         src, w, h, _ = image_of(v)
         photos = [{'src': src, 'thumb': src, 'w': w, 'h': h}]
         stock_note = ' (Bentley image of the line; the retailer has no photograph of this car yet)'
+    spin = v.get('spin') or []
+    spin_tile = ''
+    if spin:
+        spin_tile = f'''
+      <li class="film__frame film__frame--spin" style="--i:1"><button class="film__launch" type="button" aria-label="View the car in 360 degrees"><img src="{p}{spin[0]}" width="1000" height="667" loading="lazy" decoding="async" alt=""><span class="film__launch-mark"><span class="film__launch-ring">360°</span><span class="film__launch-label">View in 360°</span></span></button></li>'''
     frames = '\n'.join(
-        f'''      <li class="film__frame" style="--i:{i}"><button class="film__open" type="button" data-index="{i}" aria-label="Photograph {i + 1} of {len(photos)}, open full screen"><img src="{p}{ph['src']}" width="{ph['w']}" height="{ph['h']}" loading="{'eager' if i < 2 else 'lazy'}" decoding="async" alt="{e(v['exterior'])} {e(name)}{stock_note if i == 0 else ''}"></button></li>'''
+        f'''      <li class="film__frame" style="--i:{i + (1 if spin and i > 0 else 0)}"><button class="film__open" type="button" data-index="{i}" aria-label="Photograph {i + 1} of {len(photos)}, open full screen"><img src="{p}{ph['src']}" width="{ph['w']}" height="{ph['h']}" loading="{'eager' if i < 2 else 'lazy'}" decoding="async" alt="{e(v['exterior'])} {e(name)}{stock_note if i == 0 else ''}"></button></li>''' + (spin_tile if i == 0 else '')
         for i, ph in enumerate(photos))
     sources = json.dumps([p + ph['src'] for ph in photos])
+    spin_json = json.dumps([p + f for f in spin])
+    spin_block = ''
+    mode_block = ''
+    if spin:
+        spin_block = f'''
+    <div class="spin" hidden>
+      <div class="spin__stage" tabindex="0" aria-label="The car in 360 degrees; drag to turn it">
+        <img class="spin__image" src="{p}{spin[0]}" width="1000" height="667" alt="{e(v['exterior'])} {e(name)}, turning" draggable="false">
+        <p class="spin__hint">Drag to turn</p>
+        <div class="spin__loading" hidden><span></span></div>
+      </div>
+    </div>'''
+        mode_block = '''<div class="film__mode" role="group" aria-label="View">
+        <button class="film__mode-button" type="button" data-mode="photos" aria-pressed="true">Photographs</button>
+        <button class="film__mode-button" type="button" data-mode="spin" aria-pressed="false">360° view</button>
+      </div>'''
     lease_row = f"{money(v['lease_month'])} / month" if v['lease_month'] else ''
 
     # the offer box: the headline figure large, then what the retailer shows around it
@@ -378,17 +402,16 @@ def vehicle_page(v):
   <!-- The photographs: one rail across the whole screen, running past its
        edge, every frame the same height. It drags, scrolls and snaps; the
        line beneath says where it is; any frame opens full screen. -->
-  <section class="film" aria-label="Photographs" data-reveal data-photos='{sources}'>
+  <section class="film" aria-label="Photographs" data-reveal data-photos='{sources}' data-spin='{spin_json}'>
     <ul class="film__row">
 {frames}
-    </ul>
+    </ul>{spin_block}
+    <button class="stock__arrow film__arrow film__arrow--prev" type="button" data-dir="-1" aria-label="Previous photograph" disabled>{CHEV_L}</button>
+    <button class="stock__arrow film__arrow film__arrow--next" type="button" data-dir="1" aria-label="Next photograph">{CHEV}</button>
     <div class="page film__foot">
       <div class="film__track" aria-hidden="true"><span class="film__thumb"></span></div>
+      {mode_block}
       <p class="film__count"><span data-index>01</span><span class="film__total"> / {len(photos):02d}</span></p>
-      <div class="stock__arrows film__nav">
-        <button class="stock__arrow" type="button" data-dir="-1" aria-label="Previous photograph" disabled>{CHEV_L}</button>
-        <button class="stock__arrow" type="button" data-dir="1" aria-label="Next photograph">{CHEV}</button>
-      </div>
       {f'<p class="film__note">{gallery_note}</p>' if gallery_note else ''}
     </div>
   </section>

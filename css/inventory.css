@@ -115,12 +115,16 @@ body { background: linear-gradient(180deg, var(--black) 0%, var(--black) 70%, #0
   min-height: 2.3em;   /* two lines kept: the long names have two */
   text-wrap: balance;
 }
+/* the facts as four short rows, each on its own line: exterior, interior,
+   mileage, stock; the labels in the small caps register */
 .card__facts {
-  display: block;
-  margin-block-start: var(--space-2);
-  min-height: 3em;     /* two lines kept */
+  display: grid; row-gap: 2px;
+  margin-block-start: var(--space-3);
+  min-height: 6em;     /* four lines kept */
   font-size: var(--text-xs); line-height: 1.5; color: var(--ink-2);
 }
+.card__facts > span { display: grid; grid-template-columns: 5.25rem minmax(0, 1fr); column-gap: var(--space-3); align-items: baseline; }
+.card__facts b { font-weight: 400; letter-spacing: var(--track-label); text-transform: uppercase; color: var(--ink-3); }
 /* 2 — the figure: on its own hairline, the label small, the number large */
 .card__price {
   display: flex; justify-content: space-between; align-items: baseline; gap: var(--space-4);
@@ -128,7 +132,7 @@ body { background: linear-gradient(180deg, var(--black) 0%, var(--black) 70%, #0
   padding-block-start: var(--space-4);
   border-top: 1px solid var(--rule);
 }
-.card__price-label { font-size: var(--text-xs); font-weight: 400; letter-spacing: var(--track-label); text-transform: uppercase; color: var(--ink-2); }
+.card__price-label { font-size: var(--text-xs); font-weight: 400; letter-spacing: var(--track-label); text-transform: uppercase; color: var(--ink-2); white-space: nowrap; }
 .card__price-label sup { font-size: 0.8em; color: var(--ink-3); margin-inline-start: 0.1em; line-height: 0; }
 .card__price-value { font-size: var(--text-h3); font-weight: 300; line-height: 1; letter-spacing: var(--track-display); font-variant-numeric: tabular-nums; color: var(--white); white-space: nowrap; }
 /* 3 — the build, as the retailer's card states it, quiet: no lines, the
@@ -174,8 +178,9 @@ body { background: linear-gradient(180deg, var(--black) 0%, var(--black) 70%, #0
 }
 
 /* --- Responsive — recomposed ------------------------------------------- */
-@media (max-width: 1279px) {
-  .grid { column-gap: var(--space-5); }
+@media (max-width: 1199px) {
+  /* under 1200 three plates would cramp the figure line: two across */
+  .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--space-5); }
 }
 @media (max-width: 1023px) {
   .srp__head { padding-block-start: calc(var(--bar-h) + 2vh); }
@@ -185,7 +190,7 @@ body { background: linear-gradient(180deg, var(--black) 0%, var(--black) 70%, #0
 @media (max-width: 639px) {
   .srp__tools { grid-template-columns: 1fr 1fr; column-gap: var(--space-4); }
   .grid { grid-template-columns: 1fr; row-gap: var(--space-5); }
-  .card__title, .card__facts, .card__extra { min-height: 0; }
+  .card__title, .card__extra { min-height: 0; }
   .card__body { padding: var(--space-4); }
 }
 @media (prefers-reduced-motion: reduce) {

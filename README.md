@@ -41,5 +41,16 @@ listing and vehicle pages, not in the repository) that made the data.
 Links: `inventory.html?condition=new|used|certified&model=Bentayga&year=2026&sort=price-asc`
 pre-select the picks.
 
+The 360 on each vehicle page is the retailer's own turntable (DealerMade
+Next HD viewer, ~54 positions × three cameras). The widget cannot be
+embedded off the retailer's domain, so `tools/spin.py` asks the viewer's API
+for each car's picture set (as the widget does) and keeps 24 frames of the
+middle camera, evenly around the turn, 1000 wide (`assets/img/spin/<stock>/`;
+`spin_source` records the picks). On the page the second frame of the rail is
+the way in and the "360° view" switch is the other; the car turns once by
+itself, then under the hand, a throw keeps it turning, the arrows and the
+keyboard step it. It needs one saved `LoadVehicle` request body from a
+browser session (`.playwright-mcp/drop/dm-post.json`, not in the repository).
+
 The Bentley typeface and the imagery are Bentley brand assets, here for the
 client's review only.

@@ -92,17 +92,22 @@
 
   /* --- The film -------------------------------------------------------------- */
   var film = document.querySelector(".film");
+  var mode = "photos", turn = null;
   if (film) {
+    film.setAttribute("data-js", "");
     var rail = film.querySelector(".film__row");
     var frames = Array.prototype.slice.call(rail.querySelectorAll(".film__frame"));
+    var photoFrames = frames.filter(function (f) { return !f.classList.contains("film__frame--spin"); });
     var sources = JSON.parse(film.getAttribute("data-photos") || "[]");
-    var arrows = Array.prototype.slice.call(film.querySelectorAll(".film__nav .stock__arrow"));
+    var arrows = Array.prototype.slice.call(film.querySelectorAll(".film__arrow"));
     var thumb = film.querySelector(".film__thumb");
+    var counter = film.querySelector(".film__count");
     var indexEls = Array.prototype.slice.call(document.querySelectorAll(".film__count [data-index]"));
     function pad(n) { return (n < 10 ? "0" : "") + n; }
     var current = 0;
 
     function settle() {
+      if (mode === "spin") return;
       var max = rail.scrollWidth - rail.clientWidth - 1;
       arrows.forEach(function (a) {
         var dir = +a.dataset.dir;
@@ -113,12 +118,16 @@
       var pos = max > 0 ? rail.scrollLeft / max : 0;
       thumb.style.width = (share * 100) + "%";
       thumb.style.left = (pos * (1 - share) * 100) + "%";
-      /* the frame at the rail's left edge is the one counted */
+      /* the frame at the rail's left edge is the one counted; the 360 tile counts as itself */
       var left = rail.getBoundingClientRect().left + parseFloat(getComputedStyle(rail).paddingLeft);
       var n = 0;
       frames.forEach(function (f, i) { if (f.getBoundingClientRect().left <= left + 8) n = i; });
       current = n;
-      indexEls.forEach(function (el) { el.textContent = pad(n + 1); });
+      var f = frames[n];
+      var onTile = f && f.classList.contains("film__frame--spin");
+      indexEls.forEach(function (el) { el.textContent = onTile ? "360°" : pad(photoFrames.indexOf(f) + 1); });
+      var total = counter && counter.querySelector(".film__total");
+      if (total) total.hidden = onTile;
     }
     function scrollToFrame(i, smooth) {
       var f = frames[Math.max(0, Math.min(frames.length - 1, i))];
@@ -127,7 +136,10 @@
       rail.scrollTo({ left: f.offsetLeft - padL, behavior: smooth && !reduced.matches ? "smooth" : "auto" });
     }
     arrows.forEach(function (a) {
-      a.addEventListener("click", function () { scrollToFrame(current + (+a.dataset.dir), true); });
+      a.addEventListener("click", function () {
+        if (mode === "spin") { if (turn) turn(+a.dataset.dir); return; }
+        scrollToFrame(current + (+a.dataset.dir), true);
+      });
     });
     /* drag with a fine pointer; a drag of more than a few pixels is not a click */
     var down = null, moved = false;
@@ -156,30 +168,37 @@
     window.addEventListener("load", settle);
     settle();
 
+    /* keyboard on the film */
+    film.addEventListener("keydown", function (e) {
+      if (box && box.open) return;
+      if (e.key === "ArrowRight") { if (mode === "spin" && turn) turn(1); else scrollToFrame(current + 1, true); e.preventDefault(); }
+      else if (e.key === "ArrowLeft") { if (mode === "spin" && turn) turn(-1); else scrollToFrame(current - 1, true); e.preventDefault(); }
+    });
+
     /* --- Full screen ------------------------------------------------------- */
     var box = document.querySelector(".lightbox");
     if (box && typeof box.showModal === "function") {
       var img = box.querySelector(".lightbox__image");
       var boxIndex = box.querySelector("[data-index]");
       var shown = 0;
-      function show(i) {
+      var show = function (i) {
         shown = (i + sources.length) % sources.length;
         img.src = sources[shown];
-        img.alt = frames[shown] ? frames[shown].querySelector("img").alt : "";
+        img.alt = photoFrames[shown] ? photoFrames[shown].querySelector("img").alt : "";
         boxIndex.textContent = pad(shown + 1);
-      }
-      frames.forEach(function (f, i) {
+      };
+      photoFrames.forEach(function (f, i) {
         f.querySelector(".film__open").addEventListener("click", function () {
           show(i);
           box.showModal();
           document.body.style.overflow = "hidden";
         });
       });
-      function close() { box.close(); }
+      var close = function () { box.close(); };
       box.addEventListener("close", function () {
         document.body.style.overflow = "";
-        scrollToFrame(shown, false);
-        var b = frames[shown] && frames[shown].querySelector(".film__open");
+        scrollToFrame(frames.indexOf(photoFrames[shown]), false);
+        var b = photoFrames[shown] && photoFrames[shown].querySelector(".film__open");
         if (b) b.focus({ preventScroll: true });
       });
       box.querySelector(".lightbox__close").addEventListener("click", close);
@@ -199,6 +218,118 @@
         var dx = e.changedTouches[0].clientX - tx; tx = null;
         if (Math.abs(dx) > 40) show(shown + (dx < 0 ? 1 : -1));
       });
+    }
+
+    /* --- 360°: the turntable ---------------------------------------------
+           Twenty-four frames of the retailer's turntable, fetched when the
+           view is first opened. It turns once by itself; then a drag turns
+           it (one stage width is one full turn), a throw keeps it turning
+           and slows, the arrows and the keyboard step it a frame, a sideways
+           wheel turns it too. Under reduced motion it stands, and turns only
+           under the hand. ------------------------------------------------- */
+    var spinFrames = [];
+    try { spinFrames = JSON.parse(film.getAttribute("data-spin") || "[]"); } catch (e) { spinFrames = []; }
+    var spin = film.querySelector(".spin");
+    var modes = Array.prototype.slice.call(film.querySelectorAll(".film__mode-button"));
+    var note = film.querySelector(".film__note");
+    var track = film.querySelector(".film__track");
+
+    if (spin && spinFrames.length > 1) {
+      var stage = spin.querySelector(".spin__stage");
+      var picture = spin.querySelector(".spin__image");
+      var loading = spin.querySelector(".spin__loading");
+      var loadBar = loading ? loading.querySelector("span") : null;
+      var n = spinFrames.length;
+      var angle = 0;                      /* in frames, fractional */
+      var loaded = 0, ready = false, cache = [];
+      var velocity = 0, raf = 0, auto = false;
+
+      var paintFrame = function () {
+        var i = ((Math.round(angle) % n) + n) % n;
+        var src = spinFrames[i];
+        if (picture.getAttribute("src") !== src) picture.src = src;
+      };
+      var fetchAll = function (done) {
+        if (ready) { done(); return; }
+        if (loading) loading.hidden = false;
+        spinFrames.forEach(function (src, i) {
+          var im = new Image();
+          im.onload = im.onerror = function () {
+            loaded += 1;
+            if (loadBar) loadBar.style.width = (loaded / n * 100) + "%";
+            if (loaded === n) { ready = true; if (loading) loading.hidden = true; done(); }
+          };
+          im.src = src; cache[i] = im;
+        });
+      };
+      var tick = function () {
+        raf = 0;
+        if (auto) { angle += 0.05; paintFrame(); raf = window.requestAnimationFrame(tick); return; }
+        if (Math.abs(velocity) > 0.002) {
+          angle += velocity; velocity *= 0.94; paintFrame();
+          raf = window.requestAnimationFrame(tick);
+        } else velocity = 0;
+      };
+      var stopAuto = function () { auto = false; stage.setAttribute("data-touched", ""); };
+      var start = function () {
+        fetchAll(function () {
+          if (!reduced.matches && !stage.hasAttribute("data-touched")) {
+            auto = true;
+            if (!raf) raf = window.requestAnimationFrame(tick);
+            window.setTimeout(function () { auto = false; }, 8000);
+          }
+        });
+      };
+
+      var hold = null;
+      stage.addEventListener("pointerdown", function (e) {
+        if (e.button !== 0) return;
+        stopAuto(); velocity = 0;
+        hold = { x: e.clientX, a: angle, t: performance.now(), v: 0, id: e.pointerId };
+        stage.setAttribute("data-dragging", "");
+        stage.setPointerCapture(e.pointerId);
+      });
+      stage.addEventListener("pointermove", function (e) {
+        if (!hold) return;
+        var per = stage.clientWidth / n;                 /* one stage width is one turn */
+        var next = hold.a - (e.clientX - hold.x) / per;
+        var now = performance.now();
+        hold.v = (next - angle) / Math.max(1, now - hold.t) * 16;   /* frames per tick */
+        hold.t = now; angle = next; paintFrame();
+      });
+      var letGo = function () {
+        if (!hold) return;
+        velocity = Math.max(-1.2, Math.min(1.2, hold.v));
+        hold = null;
+        stage.removeAttribute("data-dragging");
+        if (!raf && !reduced.matches) raf = window.requestAnimationFrame(tick);
+      };
+      stage.addEventListener("pointerup", letGo);
+      stage.addEventListener("pointercancel", letGo);
+      stage.addEventListener("wheel", function (e) {
+        if (Math.abs(e.deltaX) <= Math.abs(e.deltaY)) return;   /* sideways only */
+        stopAuto(); angle += e.deltaX / 40; paintFrame(); e.preventDefault();
+      }, { passive: false });
+
+      var setMode = function (next) {
+        mode = next;
+        var spinning = mode === "spin";
+        rail.hidden = spinning; spin.hidden = !spinning;
+        modes.forEach(function (b) { b.setAttribute("aria-pressed", b.dataset.mode === mode ? "true" : "false"); });
+        if (track) track.style.visibility = spinning ? "hidden" : "";
+        if (counter) counter.style.visibility = spinning ? "hidden" : "";
+        if (note) note.style.visibility = spinning ? "hidden" : "";
+        arrows.forEach(function (a) {
+          a.disabled = false;
+          a.setAttribute("aria-label", spinning ? (+a.dataset.dir < 0 ? "Turn the car left" : "Turn the car right") : (+a.dataset.dir < 0 ? "Previous photograph" : "Next photograph"));
+        });
+        if (spinning) { start(); stage.focus({ preventScroll: true }); }
+        else { auto = false; velocity = 0; settle(); }
+      };
+      modes.forEach(function (b) { b.addEventListener("click", function () { setMode(b.dataset.mode); }); });
+      var launch = film.querySelector(".film__launch");
+      if (launch) launch.addEventListener("click", function () { setMode("spin"); });
+      turn = function (dir) { stopAuto(); velocity = 0; angle = Math.round(angle) + dir; paintFrame(); };
     }
   }
 
