@@ -1,0 +1,1385 @@
+<!DOCTYPE html>
+<html lang="en" class="motion">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Inventory, New and Certified Pre-Owned Bentley in West Palm Beach | Bentley Palm Beach</title>
+<meta name="description" content="Every Bentley on the floor at Bentley Palm Beach, 2801 Okeechobee Boulevard, West Palm Beach: new Continental GT, Flying Spur and Bentayga, and Certified by Bentley pre-owned, with the retailer's own pricing.">
+<meta name="theme-color" content="#040404">
+<link rel="preload" href="assets/fonts/Bentley-Light.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/Bentley-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/system.css?v=20260921132756">
+<link rel="stylesheet" href="css/index4.css?v=20260921132756">
+<link rel="stylesheet" href="css/inventory.css?v=20260921132756">
+<script>
+  /* Motion is opt-in from the first paint: if the script never arrives, or the
+     visitor asked for less motion, the page is simply its finished composition. */
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) document.documentElement.classList.remove("motion");
+</script>
+<script>if (window.top !== window.self) document.documentElement.setAttribute("data-framed", "");</script>
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- The guideline's dark header, as on the home page: navigation left, wings
+     centred, retailer name and phone with the test-drive action right. -->
+<header class="mh" id="mh">
+  <div class="mh__bar">
+
+    <button class="mh__toggle" type="button" aria-expanded="false" aria-controls="nav">
+      <svg width="18" height="12" viewBox="0 0 18 12" fill="none" aria-hidden="true"><path d="M0 1h18M0 6h18M0 11h18" stroke="currentColor"/></svg>
+      <span>Menu</span>
+    </button>
+
+    <nav class="mh__nav" id="nav" aria-label="Primary">
+      <ul>
+        <li><a href="inventory.html" aria-current="page">Inventory</a></li>
+        <li><a href="index4.html#range">Range</a></li>
+        <li><a href="index4.html#care">Service</a></li>
+        <li><a href="https://www.bramanbentleypalmbeach.com/finance-department/">Finance</a></li>
+        <li><a href="https://www.bramanbentleypalmbeach.com/about-us/">About</a></li>
+      </ul>
+    </nav>
+
+    <a class="mh__mark" href="index4.html" aria-label="Bentley Palm Beach, home">
+      <img src="assets/img/logo-negative.png" alt="Bentley" width="112" height="50">
+    </a>
+
+    <div class="mh__act">
+      <a class="mh__retailer" href="tel:+15619269111"><span>Bentley Palm Beach</span><span class="mh__tel">561 926 9111</span></a>
+      <a class="btn btn--line" href="https://www.bramanbentleypalmbeach.com/schedule-new-vehicle-test-drive/"><span class="btn__long">Request test drive</span><span class="btn__short">Test drive</span></a>
+    </div>
+
+  </div>
+</header>
+
+<main id="main" class="srp">
+
+  <!-- The head: what this is and how many, the title at the left; the four
+       picks on one line at the right, sharing the title's bottom line. The
+       cards and the option lists are generated from data/inventory.json by
+       tools/build.py — edit the data, not the markup. -->
+  <section class="srp__head" id="top" aria-labelledby="srp-h">
+    <div class="page">
+      <div class="head">
+        <div class="head__main">
+          <h1 class="h2" id="srp-h">Inventory</h1>
+          <p class="srp__count body" aria-live="polite"><span data-count>60</span> Bentleys in West Palm Beach, <span data-split>42 new and 18 pre-owned</span></p>
+        </div>
+        <form class="srp__tools head__aside" aria-label="Refine the inventory" onsubmit="return false">
+          <label class="pick">
+            <span class="pick__label">Condition</span>
+            <select class="pick__select" name="condition" data-pick="condition">
+              <option value="">All</option>
+              <option value="new">New</option>
+              <option value="used">Pre-owned</option>
+              <option value="certified">Certified by Bentley</option>
+            </select>
+            <svg class="pick__glyph" width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 5.5 8 11l5.5-5.5" stroke="currentColor" stroke-width="1.25"/></svg>
+          </label>
+          <label class="pick">
+            <span class="pick__label">Model</span>
+            <select class="pick__select" name="model" data-pick="model">
+              <option value="">All models</option>
+              <option value="Continental GT">Continental GT</option>
+              <option value="Continental GTC">Continental GTC</option>
+              <option value="Flying Spur">Flying Spur</option>
+              <option value="Bentayga">Bentayga</option>
+              <option value="Bentayga EWB">Bentayga EWB</option>
+            </select>
+            <svg class="pick__glyph" width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 5.5 8 11l5.5-5.5" stroke="currentColor" stroke-width="1.25"/></svg>
+          </label>
+          <label class="pick">
+            <span class="pick__label">Year</span>
+            <select class="pick__select" name="year" data-pick="year">
+              <option value="">All years</option>
+              <option value="2026">2026</option>
+              <option value="2025">2025</option>
+              <option value="2024">2024</option>
+              <option value="2023">2023</option>
+              <option value="2022">2022</option>
+            </select>
+            <svg class="pick__glyph" width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 5.5 8 11l5.5-5.5" stroke="currentColor" stroke-width="1.25"/></svg>
+          </label>
+          <label class="pick">
+            <span class="pick__label">Sort by</span>
+            <select class="pick__select sort__select" name="sort">
+              <option value="featured">Featured</option>
+              <option value="price-asc">Price, low to high</option>
+              <option value="price-desc">Price, high to low</option>
+              <option value="year-desc">Year, newest first</option>
+              <option value="mileage-asc">Mileage, lowest first</option>
+              <option value="model">Model, A to Z</option>
+            </select>
+            <svg class="pick__glyph" width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 5.5 8 11l5.5-5.5" stroke="currentColor" stroke-width="1.25"/></svg>
+          </label>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section class="srp__list" aria-label="The cars">
+    <div class="page">
+      <ul class="grid" id="grid">
+        <li class="card" data-condition="used" data-certified="1" data-year="2022" data-price="237900" data-mileage="4095" data-model="Continental GTC" data-trim="V8" data-stock="VC-67909A" data-vin="SCBDG4ZG8NC098398">
+          <a class="card__link" href="vehicles/vc-67909a.html" aria-label="Used 2022 Bentley Continental GTC V8, Braman Price $237,900">
+            <span class="card__media"><img src="assets/img/inventory/vc-67909a.webp" width="840" height="630" loading="eager" decoding="async" alt="Jetstream II Metallic 2022 Bentley Continental GTC V8"></span>
+            <span class="card__row">
+              <h2 class="card__title">Used 2022 Bentley Continental GTC V8 <span class="card__place">in West Palm Beach, FL</span></h2>
+              <span class="card__price"><small>Braman Price</small>$237,900</span>
+            </span>
+            <span class="card__facts">Jetstream II Metallic over Linen · 4,095 miles · Stock VC-67909A<br><b>Certified by Bentley</b></span>
+          </a>
+          <dl class="card__stack">
+              <div><dt>Dealer service charge</dt><dd>$1,189</dd></div>
+              <div><dt>Electronic filing charge</dt><dd>$514</dd></div>
+              <div class="card__sale"><dt>Sale price</dt><dd>$239,603</dd></div>
+          </dl>
+          <div class="card__foot">
+            <a class="link" href="vehicles/vc-67909a.html">View details<i aria-hidden="true"></i></a>
+            <a class="asterisk" href="vehicles/vc-67909a.html#pricing" aria-label="Pricing details">* Pricing details</a>
+          </div>
+        </li>
+        <li class="card" data-condition="used" data-certified="0" data-year="2026" data-price="242900" data-mileage="349" data-model="Flying Spur" data-trim="" data-stock="VC-P35636" data-vin="SCBBP6ZG6TC026907">
+          <a class="card__link" href="vehicles/vc-p35636.html" aria-label="Used 2026 Bentley Flying Spur, Braman Price $242,900">
+            <span class="card__media"><span class="card__flag">Lease $3,519/mo</span><span class="card__flag card__flag--special">Internet special</span><img src="assets/img/inventory/vc-p35636.webp" width="840" height="630" loading="eager" decoding="async" alt="Moonbeam 2026 Bentley Flying Spur"></span>
+            <span class="card__row">
+              <h2 class="card__title">Used 2026 Bentley Flying Spur <span class="card__place">in West Palm Beach, FL</span></h2>
+              <span class="card__price"><small>Braman Price</small>$242,900</span>
+            </span>
+            <span class="card__facts">Moonbeam over Linen · 349 miles · Stock VC-P35636<br><b>One owner</b></span>
+          </a>
+          <dl class="card__stack">
+              <div><dt>MSRP</dt><dd>$292,035</dd></div>
+              <div class="card__save"><dt>You save</dt><dd>− $49,135</dd></div>
+              <div><dt>Dealer service charge</dt><dd>$1,189</dd></div>
+              <div><dt>Electronic filing charge</dt><dd>$514</dd></div>
+              <div class="card__sale"><dt>Sale price</dt><dd>$244,603</dd></div>
+              <div><dt>Lease</dt><dd>$3,519 / month</dd></div>
+          </dl>
+          <div class="card__foot">
+            <a class="link" href="vehicles/vc-p35636.html">View details<i aria-hidden="true"></i></a>
+            <a class="asterisk" href="vehicles/vc-p35636.html#pricing" aria-label="Pricing details">* Pricing details</a>
+          </div>
+        </li>
+        <li class="card" data-condition="used" data-certified="1" data-year="2025" data-price="237900" data-mileage="3548" data-model="Bentayga" data-trim="V8" data-stock="VC-P35187" data-vin="SJAAT2ZV9SC029439">
+          <a class="card__link" href="vehicles/vc-p35187.html" aria-label="Used 2025 Bentley Bentayga V8, Braman Price $237,900">
+            <span class="card__media"><img src="assets/img/inventory/vc-p35187.webp" width="840" height="630" loading="eager" decoding="async" alt="Marlin 2025 Bentley Bentayga V8"></span>
+            <span class="card__row">
+              <h2 class="card__title">Used 2025 Bentley Bentayga V8 <span class="card__place">in West Palm Beach, FL</span></h2>
+              <span class="card__price"><small>Braman Price</small>$237,900</span>
+            </span>
+            <span class="card__facts">Marlin over Linen · 3,548 miles · Stock VC-P35187<br><b>Certified by Bentley</b></span>
+          </a>
+          <dl class="card__stack">
+              <div><dt>Dealer service charge</dt><dd>$1,189</dd></div>
+              <div><dt>Electronic filing charge</dt><dd>$514</dd></div>
+              <div class="card__sale"><dt>Sale price</dt><dd>$239,603</dd></div>
+          </dl>
+          <div class="card__foot">
+            <a class="link" href="vehicles/vc-p35187.html">View details<i aria-hidden="true"></i></a>
+            <a class="asterisk" href="vehicles/vc-p35187.html#pricing" aria-label="Pricing details">* Pricing details</a>
+          </div>
+        </li>
+        <li class="card" data-condition="new" data-certified="0" data-year="2026" data-price="379085" data-mileage="30" data-model="Continental GT" data-trim="S" data-stock="V60065" data-vin="SCBDP4ZG8TC030065">
+          <a class="card__link" href="vehicles/v60065.html" aria-label="New 2026 Bentley Continental GT S, MSRP $379,085">
+            <span class="card__media"><img src="assets/img/inventory/v60065.webp" width="840" height="630" loading="lazy" decoding="async" alt="Jetstream 2026 Bentley Continental GT S"></span>
+            <span class="card__row">
+              <h2 class="card__title">New 2026 Bentley Continental GT S <span class="card__place">in West Palm Beach, FL</span></h2>
+              <span class="card__price"><small>MSRP</small>$379,085</span>
+            </span>
+            <span class="card__facts">Jetstream over Linen · 30 miles · Stock V60065</span>
+          </a>
+          <dl class="card__stack">
+              <div><dt>Dealer service charge</dt><dd>$1,189</dd></div>
+              <div><dt>Electronic filing charge</dt><dd>$514</dd></div>
+              <div class="card__sale"><dt>Sale price</dt><dd>$380,788</dd></div>
+          </dl>
+          <div class="card__foot">
+            <a class="link" href="vehicles/v60065.html">View details<i aria-hidden="true"></i></a>
+            <a class="asterisk" href="vehicles/v60065.html#pricing" aria-label="Pricing details">* Pricing details</a>
+          </div>
+        </li>
+        <li class="card" data-condition="new" data-certified="0" data-year="2026" data-price="391260" data-mileage="30" data-model="Continental GT" data-trim="Azure" data-stock="V69245" data-vin="SCBDP4ZG5TC029245">
+          <a class="card__link" href="vehicles/v69245.html" aria-label="New 2026 Bentley Continental GT Azure, MSRP $391,260">
+            <span class="card__media"><img src="assets/img/inventory/v69245.webp" width="840" height="630" loading="lazy" decoding="async" alt="Verdant 2026 Bentley Continental GT Azure"></span>
+            <span class="card__row">
+              <h2 class="card__title">New 2026 Bentley Continental GT Azure <span class="card__place">in West Palm Beach, FL</span></h2>
+              <span class="card__price"><small>MSRP</small>$391,260</span>
+            </span>
+            <span class="card__facts">Verdant over Linen · 30 miles · Stock V69245</span>
+          </a>
+          <dl class="card__stack">
+              <div><dt>Dealer service charge</dt><dd>$1,189</dd></div>
+              <div><dt>Electronic filing charge</dt><dd>$514</dd></div>
+              <div class="card__sale"><dt>Sale price</dt><dd>$392,963</dd></div>
+          </dl>
+          <div class="card__foot">
+            <a class="link" href="vehicles/v69245.html">View details<i aria-hidden="true"></i></a>
+            <a class="asterisk" href="vehicles/v69245.html#pricing" aria-label="Pricing details">* Pricing details</a>
+          </div>
+        </li>
+        <li class="card" data-condition="new" data-certified="0" data-year="2026" data-price="429175" data-mileage="30" data-model="Continental GT" data-trim="Mulliner" data-stock="V68412" data-vin="SCBDR4ZG1TC028412">
+          <a class="card__link" href="vehicles/v68412.html" aria-label="New 2026 Bentley Continental GT Mulliner, MSRP $429,175">
+            <span class="card__media"><img src="assets/img/inventory/v68412.webp" width="840" height="630" loading="lazy" decoding="async" alt="Glacier White 2026 Bentley Continental GT Mulliner"></span>
+            <span class="card__row">
+              <h2 class="card__title">New 2026 Bentley Continental GT Mulliner <span class="card__place">in West Palm Beach, FL</span></h2>
+              <span class="card__price"><small>MSRP</small>$429,175</span>
+            </span>
+            <span class="card__facts">Glacier White over Linen · 30 miles · Stock V68412</span>
+          </a>
+          <dl class="card__stack">
+              <div><dt>Dealer service charge</dt><dd>$1,189</dd></div>
+              <div><dt>Electronic filing charge</dt><dd>$514</dd></div>
+              <div class="card__sale"><dt>Sale price</dt><dd>$430,878</dd></div>
+          </dl>
+          <div class="card__foot">
+            <a class="link" href="vehicles/v68412.html">View details<i aria-hidden="true"></i></a>
+            <a class="asterisk" href="vehicles/v68412.html#pricing" aria-label="Pricing details">* Pricing details</a>
+          </div>
+        </li>
+        <li class="card" data-condition="new" data-certified="0" data-year="2026" data-price="431335" data-mileage="30" data-model="Continental GT" data-trim="Mulliner" data-stock="V69802" data-vin="SCBDR4ZG8TC029802">
+          <a class="card__link" href="vehicles/v69802.html" aria-label="New 2026 Bentley Continental GT Mulliner, MSRP $431,335">
+            <span class="card__media"><img src="assets/img/inventory/v69802.webp" width="840" height="630" loading="lazy" decoding="async" alt="Jetstream 2026 Bentley Continental GT Mulliner"></span>
+            <span class="card__row">
+              <h2 class="card__title">New 2026 Bentley Continental GT Mulliner <span class="card__place">in West Palm Beach, FL</span></h2>
+              <span class="card__price"><small>MSRP</small>$431,335</span>
+            </span>
+            <span class="card__facts">Jetstream over Linen · 30 miles · Stock V69802</span>
+          </a>
+          <dl class="card__stack">
+              <div><dt>Dealer service charge</dt><dd>$1,189</dd></div>
+              <div><dt>Electronic filing charge</dt><dd>$514</dd></div>
+              <div class="card__sale"><dt>Sale price</dt><dd>$433,038</dd></div>
+          </dl>
+          <div class="card__foot">
+            <a class="link" href="vehicles/v69802.html">View details<i aria-hidden="true"></i></a>
+            <a class="asterisk" href="vehicles/v69802.html#pricing" aria-label="Pricing details">* Pricing details</a>
+          </div>
+        </li>
+        <li class="card" data-condition="new" data-certified="0" data-year="2026" data-price="376270" data-mileage="30" data-model="Continental GT" data-trim="S" data-stock="V60107" data-vin="SCBDP4ZG9TC030107">
+          <a class="card__link" href="vehicles/v60107.html" aria-label="New 2026 Bentley Continental GT S, MSRP $376,270">
+            <span class="card__media"><img src="assets/img/inventory/v60107.webp" width="840" height="630" loading="lazy" decoding="async" alt="Gravity Grey 2026 Bentley Continental GT S"></span>
+            <span class="card__row">
+              <h2 class="card__title">New 2026 Bentley Continental GT S <span class="card__place">in West Palm Beach, FL</span></h2>
+              <span class="card__price"><small>MSRP</small>$376,270</span>
+            </span>
+            <span class="card__facts">Gravity Grey over Linen · 30 miles · Stock V60107</span>
+          </a>
+          <dl class="card__stack">
+              <div><dt>Dealer service charge</dt><dd>$1,189</dd></div>
+              <div><dt>Electronic filing charge</dt><dd>$514</dd></div>
+              <div class="card__sale"><dt>Sale price</dt><dd>$377,973</dd></div>
+          </dl>
+          <div class="card__foot">
+            <a class="link" href="vehicles/v60107.html">View details<i aria-hidden="true"></i></a>
+            <a class="asterisk" href="vehicles/v60107.html#pricing" aria-label="Pricing details">* Pricing details</a>
+          </div>
+        </li>
+        <li class="card" data-condition="new" data-certified="0" data-year="2026" data-price="402440" data-mileage="30" data-model="Continental GT" data-trim="Azure" data-stock="V60193" data-vin="SCBDP4ZG6TC030193">
+          <a class="card__link" href="vehicles/v60193.html" aria-label="New 2026 Bentley Continental GT Azure, MSRP $402,440">
+            <span class="card__media"><img src="assets/img/inventory/v60193.webp" width="840" height="630" loading="lazy" decoding="async" alt="Verdant 2026 Bentley Continental GT Azure"></span>
+            <span class="card__row">
+              <h2 class="card__title">New 2026 Bentley Continental GT Azure <span class="card__place">in West Palm Beach, FL</span></h2>
+              <span class="card__price"><small>MSRP</small>$402,440</span>
+            </span>
+            <span class="card__facts">Verdant over Linen · 30 miles · Stock V60193</span>
+          </a>
+          <dl class="card__stack">
+              <div><dt>Dealer service charge</dt><dd>$1,189</dd></div>
+              <div><dt>Electronic filing charge</dt><dd>$514</dd></div>
+              <div class="card__sale"><dt>Sale price</dt><dd>$404,143</dd></div>
+          </dl>
+          <div class="card__foot">
+            <a class="link" href="vehicles/v60193.html">View details<i aria-hidden="true"></i></a>
+            <a class="asterisk" href="vehicles/v60193.html#pricing" aria-label="Pricing details">* Pricing details</a>
+          </div>
+        </li>
+        <li class="card" data-condition="used" data-certified="0" data-year="2026" data-price="276900" data-mileage="285" data-model="Continental GT" data-trim="V8" data-stock="V67976" data-vin="SCBCP2ZG1TC027976">
+          <a class="card__link" href="vehicles/v67976.html" aria-label="Used 2026 Bentley Continental GT V8, Braman Price $276,900">
+            <span class="card__media"><span class="card__flag">Lease $2,722/mo</span><span class="card__flag card__flag--special">Internet special</span><img src="assets/img/inventory/v67976.webp" width="840" height="630" loading="lazy" decoding="async" alt="Dark Sapphire 2026 Bentley Continental GT V8"></span>
+            <span class="card__row">
+              <h2 class="card__title">Used 2026 Bentley Continental GT V8 <span class="card__place">in West Palm Beach, FL</span></h2>
+              <span class="card__price"><small>Braman Price</small>$276,900</span>
+            </span>
+            <span class="card__facts">Dark Sapphire over Linen · 285 miles · Stock V67976</span>
+          </a>
+          <dl class="card__stack">
+              <div><dt>MSRP</dt><dd>$321,410</dd></div>
+              <div class="card__save"><dt>You save</dt><dd>− $44,510</dd></div>
+              <div><dt>Dealer service charge</dt><dd>$1,189</dd></div>
+              <div><dt>Electronic filing charge</dt><dd>$514</dd></div>
+              <div class="card__sale"><dt>Sale price</dt><dd>$278,603</dd></div>
+              <div><dt>Lease</dt><dd>$2,722 / month</dd></div>
+          </dl>
+          <div class="card__foot">
+            <a class="link" href="vehicles/v67976.html">View details<i aria-hidden="true"></i></a>
+            <a class="asterisk" href="vehicles/v67976.html#pricing" aria-label="Pricing details">* Pricing details</a>
+          </div>
+        </li>
+        <li class="card" data-condition="used" data-certified="1" data-year="2024" data-price="257900" data-mileage="12645" data-model="Continental GTC" data-trim="Edition 8" data-stock="VC-30281A" data-vin="SCBDG4ZG3RC018320">
+          <a class="card__link" href="vehicles/vc-30281a.html" aria-label="Used 2024 Bentley Continental GTC Edition 8, Braman Price $257,900">
+            <span class="card__media"><img src="assets/img/inventory/vc-30281a.webp" width="840" height="630" loading="lazy" decoding="async" alt="Magnolia 2024 Bentley Continental GTC Edition 8"></span>
+            <span class="card__row">
+              <h2 class="card__title">Used 2024 Bentley Continental GTC Edition 8 <span class="card__place">in West Palm Beach, FL</span></h2>
+              <span class="card__price"><small>Braman Price</small>$257,900</span>
+            </span>
+            <span class="card__facts">Magnolia over Magnolia · 12,645 miles · Stock VC-30281A<br><b>Certified by Bentley · One owner</b></span>
+          </a>
+          <dl class="card__stack">
+              <div><dt>Dealer service charge</dt><dd>$1,189</dd></div>
+              <div><dt>Electronic filing charge</dt><dd>$514</dd></div>
+              <div class="card__sale"><dt>Sale price</dt><dd>$259,603</dd></div>
+          </dl>
+          <div class="card__foot">
+            <a class="link" href="vehicles/vc-30281a.html">View details<i aria-hidden="true"></i></a>
+            <a class="asterisk" href="vehicles/vc-30281a.html#pricing" aria-label="Pricing details">* Pricing details</a>
+          </div>
+        </li>
+        <li class="card" data-condition="used" data-certified="1" data-year="2022" data-price="227900" data-mileage="16994" data-model="Continental GTC" data-trim="V8" data-stock="VC-P35775" data-vin="SCBDG4ZG9NC097020">
+          <a class="card__link" href="vehicles/vc-p35775.html" aria-label="Used 2022 Bentley Continental GTC V8, Braman Price $227,900">
+            <span class="card__media"><span class="card__flag">Lease $3,520/mo</span><span class="card__flag card__flag--special">Internet special</span><img src="assets/img/inventory/vc-p35775.webp" width="840" height="630" loading="lazy" decoding="async" alt="Celeste 2022 Bentley Continental GTC V8"></span>
+            <span class="card__row">
+              <h2 class="card__title">Used 2022 Bentley Continental GTC V8 <span class="card__place">in West Palm Beach, FL</span></h2>
+              <span class="card__price"><small>Braman Price</small>$227,900</span>
+            </span>
+            <span class="card__facts">Celeste over Linen · 16,994 miles · Stock VC-P35775<br><b>Certified by Bentley · One owner</b></span>
+          </a>
+          <dl class="card__stack">
+              <div><dt>Dealer service charge</dt><dd>$1,189</dd></div>
+              <div><dt>Electronic filing charge</dt><dd>$514</dd></div>
+              <div class="card__sale"><dt>Sale price</dt><dd>$229,603</dd></div>
+              <div><dt>Lease</dt><dd>$3,520 / month</dd></div>
+          </dl>
+          <div class="card__foot">
+            <a class="link" href="vehicles/vc-p35775.html">View details<i aria-hidden="true"></i></a>
+            <a class="asterisk" href="vehicles/vc-p35775.html#pricing" aria-label="Pricing details">* Pricing details</a>
+          </div>
+        </li>
+        <li class="card" data-condition="new" data-certified="0" data-year="2026" data-price="352240" data-mileage="30" data-model="Continental GT" data-trim="V8" data-stock="V68270" data-vin="SCBDP4ZGXTC028270">
+          <a class="card__link" href="vehicles/v68270.html" aria-label="New 2026 Bentley Continental GT V8, MSRP $352,240">
+            <span class="card__media"><span class="card__flag">Lease $3,196/mo</span><span class="card__flag card__flag--special">Internet special</span><img src="assets/img/inventory/v68270.webp" width="840" height="630" loading="lazy" decoding="async" alt="Glacier White 2026 Bentley Continental GT V8"></span>
+            <span class="card__row">
+              <h2 class="card__title">New 2026 Bentley Continental GT V8 <span class="card__place">in West Palm Beach, FL</span></h2>
+              <span class="card__price"><small>MSRP</small>$352,240</span>
+            </span>
+            <span class="card__facts">Glacier White over Camel · 30 miles · Stock V68270</span>
+          </a>
+          <dl class="card__stack">
+              <div><dt>Dealer service charge</dt><dd>$1,189</dd></div>
+              <div><dt>Electronic filing charge</dt><dd>$514</dd></div>
+              <div class="card__sale"><dt>Final price</dt><dd>$353,943</dd></div>
+              <div><dt>Lease</dt><dd>$3,196 / month</dd></div>
+          </dl>
+          <div class="card__foot">
+            <a class="link" href="vehicles/v68270.html">View details<i aria-hidden="true"></i></a>
+            <a class="asterisk" href="vehicles/v68270.html#pricing" aria-label="Pricing details">* Pricing details</a>
+          </div>
+        </li>
+        <li class="card" data-condition="new" data-certified="0" data-year="2026" data-price="355485" data-mileage="30" data-model="Continental GT" data-trim="V8" data-stock="V69679" data-vin="SCBDP4ZG5TC029679">
+          <a class="card__link" href="vehicles/v69679.html" aria-label="New 2026 Bentley Continental GT V8, MSRP $355,485">
+            <span class="card__media"><img src="assets/img/inventory/v69679.webp" width="840" height="630" loading="lazy" decoding="async" alt="Glacier White 2026 Bentley Continental GT V8"></span>
+            <span class="card__row">
+              <h2 class="card__title">New 2026 Bentley Continental GT V8 <span class="card__place">in West Palm Beach, FL</span></h2>
+              <span class="card__price"><small>MSRP</small>$355,485</span>
+            </span>
+            <span class="card__facts">Glacier White over Linen · 30 miles · Stock V69679</span>
+          </a>
+          <dl class="card__stack">
+              <div><dt>Dealer service charge</dt><dd>$1,189</dd></div>
+              <div><dt>Electronic filing charge</dt><dd>$514</dd></div>
+              <div class="card__sale"><dt>Sale price</dt><dd>$357,188</dd></div>
+          </dl>
+          <div class="card__foot">
+            <a class="link" href="vehicles/v69679.html">View details<i aria-hidden="true"></i></a>
+            <a class="asterisk" href="vehicles/v69679.html#pricing" aria-label="Pricing details">* Pricing details</a>
+          </div>
+        </li>
+        <li class="card" data-condition="new" data-certified="0" data-year="2026" data-price="355485" data-mileage="30" data-model="Continental GT" data-trim="V8" data-stock="V68522" data-vin="SCBDP4ZG0TC028522">
+          <a class="card__link" href="vehicles/v68522.html" aria-label="New 2026 Bentley Continental GT V8, MSRP $355,485">
+            <span class="card__media"><img src="assets/img/inventory/v68522.webp" width="840" height="630" loading="lazy" decoding="async" alt="Dark Sapphire 2026 Bentley Continental GT V8"></span>
+            <span class="card__row">
+              <h2 class="card__title">New 2026 Bentley Continental GT V8 <span class="card__place">in West Palm Beach, FL</span></h2>
+              <span class="card__price"><small>MSRP</small>$355,485</span>
+            </span>
+            <span class="card__facts">Dark Sapphire over Linen · 30 miles · Stock V68522</span>
+          </a>
+          <dl class="card__stack">
+              <div><dt>Dealer service charge</dt><dd>$1,189</dd></div>
+              <div><dt>Electronic filing charge</dt><dd>$514</dd></div>
+              <div class="card__sale"><dt>Sale price</dt><dd>$357,188</dd></div>
+          </dl>
+          <div class="card__foot">
+            <a class="link" href="vehicles/v68522.html">View details<i aria-hidden="true"></i></a>
+            <a class="asterisk" href="vehicles/v68522.html#pricing" aria-label="Pricing details">* Pricing details</a>
+          </div>
+        </li>
+        <li class="card" data-condition="new" data-certified="0" data-year="2026" data-price="287010" data-mileage="30" data-model="Flying Spur" data-trim="V8" data-stock="V60190" data-vin="SCBBP6ZG7TC030190">
+          <a class="card__link" href="vehicles/v60190.html" aria-label="New 2026 Bentley Flying Spur V8, MSRP $287,010">
+            <span class="card__media"><img src="assets/img/inventory/v60190.webp" width="840" height="630" loading="lazy" decoding="async" alt="Dark Sapphire 2026 Bentley Flying Spur V8"></span>
+            <span class="card__row">
+              <h2 class="card__title">New 2026 Bentley Flying Spur V8 <span class="card__place">in West Palm Beach, FL</span></h2>
+              <span class="card__price"><small>MSRP</small>$287,010</span>
+            </span>
+            <span class="card__facts">Dark Sapphire over Linen · 30 miles · Stock V60190</span>
+          </a>
+          <dl class="card__stack">
+              <div><dt>Dealer service charge</dt><dd>$1,189</dd></div>
+              <div><dt>Electronic filing charge</dt><dd>$514</dd></div>
+              <div class="card__sale"><dt>Sale price</dt><dd>$288,713</dd></div>
+          </dl>
+          <div class="card__foot">
+            <a class="link" href="vehicles/v60190.html">View details<i aria-hidden="true"></i></a>
+            <a class="asterisk" href="vehicles/v60190.html#pricing" aria-label="Pricing details">* Pricing details</a>
+          </div>
+        </li>
+        <li class="card" data-condition="new" data-certified="0" data-year="2026" data-price="295365" data-mileage="30" data-model="Bentayga" data-trim="Azure" data-stock="V63986" data-vin="SJAAT2ZV1TC033986">
+          <a class="card__link" href="vehicles/v63986.html" aria-label="New 2026 Bentley Bentayga Azure, MSRP $295,365">
+            <span class="card__media"><img src="assets/img/inventory/v63986.webp" width="840" height="630" loading="lazy" decoding="async" alt="Verdant 2026 Bentley Bentayga Azure"></span>
+            <span class="card__row">
+              <h2 class="card__title">New 2026 Bentley Bentayga Azure <span class="card__place">in West Palm Beach, FL</span></h2>
+              <span class="card__price"><small>MSRP</small>$295,365</span>
+            </span>
+            <span class="card__facts">Verdant over Linen · 30 miles · Stock V63986</span>
+          </a>
+          <dl class="card__stack">
+              <div><dt>Dealer service charge</dt><dd>$1,189</dd></div>
+              <div><dt>Electronic filing charge</dt><dd>$514</dd></div>
+              <div class="card__sale"><dt>Sale price</dt><dd>$297,068</dd></div>
+          </dl>
+          <div class="card__foot">
+            <a class="link" href="vehicles/v63986.html">View details<i aria-hidden="true"></i></a>
+            <a class="asterisk" href="vehicles/v63986.html#pricing" aria-label="Pricing details">* Pricing details</a>
+          </div>
+        </li>
+        <li class="card" data-condition="new" data-certified="0" data-year="2026" data-price="295465" data-mileage="30" data-model="Flying Spur" data-trim="V8" data-stock="V69602" data-vin="SCBBP6ZGXTC029602">
+          <a class="card__link" href="vehicles/v69602.html" aria-label="New 2026 Bentley Flying Spur V8, MSRP $295,465">
+            <span class="card__media"><img src="assets/img/inventory/v69602.webp" width="840" height="630" loading="lazy" decoding="async" alt="Dark Sapphire 2026 Bentley Flying Spur V8"></span>
+            <span class="card__row">
+              <h2 class="card__title">New 2026 Bentley Flying Spur V8 <span class="card__place">in West Palm Beach, FL</span></h2>
+              <span class="card__price"><small>MSRP</small>$295,465</span>
+            </span>
+            <span class="card__facts">Dark Sapphire over Saddle · 30 miles · Stock V69602</span>
+          </a>
+          <dl class="card__stack">
+              <div><dt>Dealer service charge</dt><dd>$1,189</dd></div>
+              <div><dt>Electronic filing charge</dt><dd>$514</dd></div>
+              <div class="card__sale"><dt>Sale price</dt><dd>$297,168</dd></div>
+          </dl>
+          <div class="card__foot">
+            <a class="link" href="vehicles/v69602.html">View details<i aria-hidden="true"></i></a>
+            <a class="asterisk" href="vehicles/v69602.html#pricing" aria-label="Pricing details">* Pricing details</a>
+          </div>
+        </li>
+        <li class="card" data-condition="used" data-certified="1" data-year="2024" data-price="227900" data-mileage="2738" data-model="Bentayga EWB" data-trim="Azure" data-stock="RU-65263A" data-vin="SJAHT2ZV8RC027528">
+          <a class="card__link" href="vehicles/ru-65263a.html" aria-label="Used 2024 Bentley Bentayga EWB Azure, Braman Price $227,900">
+            <span class="card__media"><span class="card__flag">Lease $2,812/mo</span><span class="card__flag card__flag--special">Internet special</span><img src="assets/img/inventory/ru-65263a.webp" width="840" height="630" loading="lazy" decoding="async" alt="Glacier White 2024 Bentley Bentayga EWB Azure"></span>
+            <span class="card__row">
+              <h2 class="card__title">Used 2024 Bentley Bentayga EWB Azure <span class="card__place">in West Palm Beach, FL</span></h2>
+              <span class="card__price"><small>Braman Price</small>$227,900</span>
+            </span>
+            <span class="card__facts">Glacier White over Linen · 2,738 miles · Stock RU-65263A<br><b>Certified by Bentley · One owner</b></span>
+          </a>
+          <dl class="card__stack">
+              <div><dt>Dealer service charge</dt><dd>$1,189</dd></div>
+              <div><dt>Electronic filing charge</dt><dd>$514</dd></div>
+              <div class="card__sale"><dt>Sale price</dt><dd>$229,603</dd></div>
+              <div><dt>Lease</dt><dd>$2,812 / month</dd></div>
+          </dl>
+          <div class="card__foot">
+            <a class="link" href="vehicles/ru-65263a.html">View details<i aria-hidden="true"></i></a>
+            <a class="asterisk" href="vehicles/ru-65263a.html#pricing" aria-label="Pricing details">* Pricing details</a>
+          </div>
+        </li>
+        <li class="card" data-condition="used" data-certified="1" data-year="2026" data-price="327900" data-mileage="62" data-model="Bentayga EWB" data-trim="Azure" data-stock="VC-P35875" data-vin="SJAHT2ZV1TC033985">
+          <a class="card__link" href="vehicles/vc-p35875.html" aria-label="Used 2026 Bentley Bentayga EWB Azure, Braman Price $327,900">
+            <span class="card__media"><img src="assets/img/inventory/vc-p35875.webp" width="840" height="630" loading="lazy" decoding="async" alt="Dark Sapphire 2026 Bentley Bentayga EWB Azure"></span>
+            <span class="card__row">
+              <h2 class="card__title">Used 2026 Bentley Bentayga EWB Azure <span class="card__place">in West Palm Beach, FL</span></h2>
+              <span class="card__price"><small>Braman Price</small>$327,900</span>
+            </span>
+            <span class="card__facts">Dark Sapphire over Magnolia · 62 miles · Stock VC-P35875<br><b>Certified by Bentley · One owner</b></span>
+          </a>
+          <dl class="card__stack">
+              <div><dt>MSRP</dt><dd>$341,855</dd></div>
+              <div class="card__save"><dt>You save</dt><dd>− $13,955</dd></div>
+              <div><dt>Dealer service charge</dt><dd>$1,189</dd></div>
+              <div><dt>Electronic filing charge</dt><dd>$514</dd></div>
+              <div class="card__sale"><dt>Sale price</dt><dd>$329,603</dd></div>
+          </dl>
+          <div class="card__foot">
+            <a class="link" href="vehicles/vc-p35875.html">View details<i aria-hidden="true"></i></a>
+            <a class="asterisk" href="vehicles/vc-p35875.html#pricing" aria-label="Pricing details">* Pricing details</a>
+          </div>
+        </li>
+        <li class="card" data-condition="used" data-certified="1" data-year="2023" data-price="187900" data-mileage="14318" data-model="Bentayga" data-trim="S" data-stock="VC-P35846" data-vin="SJAAT2ZV7PC022190">
+          <a class="card__link" href="vehicles/vc-p35846.html" aria-label="Used 2023 Bentley Bentayga S, Braman Price $187,900">
+            <span class="card__media"><img src="assets/img/inventory/vc-p35846.webp" width="840" height="630" loading="lazy" decoding="async" alt="Glacier White 2023 Bentley Bentayga S"></span>
+            <span class="card__row">
+              <h2 class="card__title">Used 2023 Bentley Bentayga S <span class="card__place">in West Palm Beach, FL</span></h2>
+              <span class="card__price"><small>Braman Price</small>$187,900</span>
+            </span>
+            <span class="card__facts">Glacier White over Linen · 14,318 miles · Stock VC-P35846<br><b>Certified by Bentley · One owner</b></span>
+          </a>
+          <dl class="card__stack">
+              <div><dt>Dealer service charge</dt><dd>$1,189</dd></div>
+              <div><dt>Electronic filing charge</dt><dd>$514</dd></div>
+              <div class="card__sale"><dt>Sale price</dt><dd>$189,603</dd></div>
+          </dl>
+          <div class="card__foot">
+            <a class="link" href="vehicles/vc-p35846.html">View details<i aria-hidden="true"></i></a>
+            <a class="asterisk" href="vehicles/vc-p35846.html#pricing" aria-label="Pricing details">* Pricing details</a>
+          </div>
+        </li>
+        <li class="card" data-condition="new" data-certified="0" data-year="2026" data-price="348940" data-mileage="30" data-model="Continental GT" data-trim="S" data-stock="V60235" data-vin="SCBCP2ZG7TC030235">
+          <a class="card__link" href="vehicles/v60235.html" aria-label="New 2026 Bentley Continental GT S, MSRP $348,940">
+            <span class="card__media"><img src="assets/img/inventory/v60235.webp" width="840" height="630" loading="lazy" decoding="async" alt="Gravity Grey 2026 Bentley Continental GT S"></span>
+            <span class="card__row">
+              <h2 class="card__title">New 2026 Bentley Continental GT S <span class="card__place">in West Palm Beach, FL</span></h2>
+              <span class="card__price"><small>MSRP</small>$348,940</span>
+            </span>
+            <span class="card__facts">Gravity Grey over Linen · 30 miles · Stock V60235</span>
+          </a>
+          <dl class="card__stack">
+              <div><dt>Dealer service charge</dt><dd>$1,189</dd></div>
+              <div><dt>Electronic filing charge</dt><dd>$514</dd></div>
+              <div class="card__sale"><dt>Sale price</dt><dd>$350,643</dd></div>
+          </dl>
+          <div class="card__foot">
+            <a class="link" href="vehicles/v60235.html">View details<i aria-hidden="true"></i></a>
+            <a class="asterisk" href="vehicles/v60235.html#pricing" aria-label="Pricing details">* Pricing details</a>
+          </div>
+        </li>
+        <li class="card" data-condition="new" data-certified="0" data-year="2026" data-price="382945" data-mileage="30" data-model="Continental GT" data-trim="Azure" data-stock="V66142T" data-vin="SCBCP2ZG2TC026142">
+          <a class="card__link" href="vehicles/v66142t.html" aria-label="New 2026 Bentley Continental GT Azure, MSRP $382,945">
+            <span class="card__media"><span class="card__flag">Lease $3,442/mo</span><span class="card__flag card__flag--special">Internet special</span><img src="assets/img/inventory/v66142t.webp" width="840" height="630" loading="lazy" decoding="async" alt="Ice 2026 Bentley Continental GT Azure"></span>
+            <span class="card__row">
+              <h2 class="card__title">New 2026 Bentley Continental GT Azure <span class="card__place">in West Palm Beach, FL</span></h2>
+              <span class="card__price"><small>MSRP</small>$382,945</span>
+            </span>
+            <span class="card__facts">Ice over Linen · 30 miles · Stock V66142T</span>
+          </a>
+          <dl class="card__stack">
+              <div><dt>Dealer service charge</dt><dd>$1,189</dd></div>
+              <div><dt>Electronic filing charge</dt><dd>$514</dd></div>
+              <div class="card__sale"><dt>Final price</dt><dd>$384,648</dd></div>
+              <div><dt>Lease</dt><dd>$3,442 / month</dd></div>
+          </dl>
+          <div class="card__foot">
+            <a class="link" href="vehicles/v66142t.html">View details<i aria-hidden="true"></i></a>
+            <a class="asterisk" href="vehicles/v66142t.html#pricing" aria-label="Pricing details">* Pricing details</a>
+          </div>
+        </li>
+        <li class="card" data-condition="new" data-certified="0" data-year="2026" data-price="290390" data-mileage="30" data-model="Flying Spur" data-trim="V8" data-stock="V69319" data-vin="SCBBP6ZG4TC029319">
+          <a class="card__link" href="vehicles/v69319.html" aria-label="New 2026 Bentley Flying Spur V8, MSRP $290,390">
+            <span class="card__media"><span class="card__flag">Lease $2,622/mo</span><span class="card__flag card__flag--special">Internet special</span><img src="assets/img/inventory/v69319.webp" width="840" height="630" loading="lazy" decoding="async" alt="Dark Sapphire 2026 Bentley Flying Spur V8"></span>
+            <span class="card__row">
+              <h2 class="card__title">New 2026 Bentley Flying Spur V8 <span class="card__place">in West Palm Beach, FL</span></h2>
+              <span class="card__price"><small>MSRP</small>$290,390</span>
+            </span>
+            <span class="card__facts">Dark Sapphire over Linen · 30 miles · Stock V69319</span>
+          </a>
+          <dl class="card__stack">
+              <div><dt>Dealer service charge</dt><dd>$1,189</dd></div>
+              <div><dt>Electronic filing charge</dt><dd>$514</dd></div>
+              <div class="card__sale"><dt>Final price</dt><dd>$292,093</dd></div>
+              <div><dt>Lease</dt><dd>$2,622 / month</dd></div>
+          </dl>
+          <div class="card__foot">
+            <a class="link" href="vehicles/v69319.html">View details<i aria-hidden="true"></i></a>
+            <a class="asterisk" href="vehicles/v69319.html#pricing" aria-label="Pricing details">* Pricing details</a>
+          </div>
+        </li>
+        <li class="card" data-condition="new" data-certified="0" data-year="2026" data-price="291445" data-mileage="30" data-model="Flying Spur" data-trim="V8" data-stock="V69472" data-vin="SCBBP6ZG1TC029472">
+          <a class="card__link" href="vehicles/v69472.html" aria-label="New 2026 Bentley Flying Spur V8, MSRP $291,445">
+            <span class="card__media"><img src="assets/img/inventory/v69472.webp" width="840" height="630" loading="lazy" decoding="async" alt="Dark Sapphire 2026 Bentley Flying Spur V8"></span>
+            <span class="card__row">
+              <h2 class="card__title">New 2026 Bentley Flying Spur V8 <span class="card__place">in West Palm Beach, FL</span></h2>
+              <span class="card__price"><small>MSRP</small>$291,445</span>
+            </span>
+            <span class="card__facts">Dark Sapphire over Camel · 30 miles · Stock V69472</span>
+          </a>
+          <dl class="card__stack">
+              <div><dt>Dealer service charge</dt><dd>$1,189</dd></div>
+              <div><dt>Electronic filing charge</dt><dd>$514</dd></div>
+              <div class="card__sale"><dt>Sale price</dt><dd>$293,148</dd></div>
+          </dl>
+          <div class="card__foot">
+            <a class="link" href="vehicles/v69472.html">View details<i aria-hidden="true"></i></a>
+            <a class="asterisk" href="vehicles/v69472.html#pricing" aria-label="Pricing details">* Pricing details</a>
+          </div>
+        </li>
+        <li class="card" data-condition="new" data-certified="0" data-year="2026" data-price="309315" data-mileage="30" data-model="Bentayga" data-trim="Azure" data-stock="V63929" data-vin="SJAAT2ZV0TC033929">
+          <a class="card__link" href="vehicles/v63929.html" aria-label="New 2026 Bentley Bentayga Azure, MSRP $309,315">
+            <span class="card__media"><img src="assets/img/inventory/v63929.webp" width="840" height="630" loading="lazy" decoding="async" alt="Rose Gold Over Magnetic 2026 Bentley Bentayga Azure"></span>
+            <span class="card__row">
+              <h2 class="card__title">New 2026 Bentley Bentayga Azure <span class="card__place">in West Palm Beach, FL</span></h2>
+              <span class="card__price"><small>MSRP</small>$309,315</span>
+            </span>
+            <span class="card__facts">Rose Gold Over Magnetic over Camel · 30 miles · Stock V63929</span>
+          </a>
+          <dl class="card__stack">
+              <div><dt>Dealer service charge</dt><dd>$1,189</dd></div>
+              <div><dt>Electronic filing charge</dt><dd>$514</dd></div>
+              <div class="card__sale"><dt>Sale price</dt><dd>$311,018</dd></div>
+          </dl>
+          <div class="card__foot">
+            <a class="link" href="vehicles/v63929.html">View details<i aria-hidden="true"></i></a>
+            <a class="asterisk" href="vehicles/v63929.html#pricing" aria-label="Pricing details">* Pricing details</a>
+          </div>
+        </li>
+        <li class="card" data-condition="new" data-certified="0" data-year="2026" data-price="284415" data-mileage="150" data-model="Flying Spur" data-trim="V8" data-stock="V60166" data-vin="SCBBP6ZGXTC030166">
+          <a class="card__link" href="vehicles/v60166.html" aria-label="New 2026 Bentley Flying Spur V8, MSRP $284,415">
+            <span class="card__media"><img src="assets/img/inventory/v60166.webp" width="840" height="630" loading="lazy" decoding="async" alt="Moonbeam 2026 Bentley Flying Spur V8"></span>
+            <span class="card__row">
+              <h2 class="card__title">New 2026 Bentley Flying Spur V8 <span class="card__place">in West Palm Beach, FL</span></h2>
+              <span class="card__price"><small>MSRP</small>$284,415</span>
+            </span>
+            <span class="card__facts">Moonbeam over Linen · 150 miles · Stock V60166</span>
+          </a>
+          <dl class="card__stack">
+              <div><dt>Dealer service charge</dt><dd>$1,189</dd></div>
+              <div><dt>Electronic filing charge</dt><dd>$514</dd></div>
+              <div class="card__sale"><dt>Sale price</dt><dd>$286,118</dd></div>
+          </dl>
+          <div class="card__foot">
+            <a class="link" href="vehicles/v60166.html">View details<i aria-hidden="true"></i></a>
+            <a class="asterisk" href="vehicles/v60166.html#pricing" aria-label="Pricing details">* Pricing details</a>
+          </div>
+        </li>
+        <li class="card" data-condition="used" data-certified="0" data-year="2025" data-price="277900" data-mileage="10155" data-model="Continental GT" data-trim="Speed First Edition" data-stock="VC-P35787" data-vin="SCBCR2ZG9SC018113">
+          <a class="card__link" href="vehicles/vc-p35787.html" aria-label="Used 2025 Bentley Continental GT Speed First Edition, Braman Price $277,900">
+            <span class="card__media"><span class="card__flag">Lease $3,990/mo</span><span class="card__flag card__flag--special">Internet special</span><img src="assets/img/inventory/vc-p35787.webp" width="840" height="630" loading="lazy" decoding="async" alt="Kingfisher 2025 Bentley Continental GT Speed First Edition"></span>
+            <span class="card__row">
+              <h2 class="card__title">Used 2025 Bentley Continental GT Speed First Edition <span class="card__place">in West Palm Beach, FL</span></h2>
+              <span class="card__price"><small>Braman Price</small>$277,900</span>
+            </span>
+            <span class="card__facts">Kingfisher over Imperial Blue · 10,155 miles · Stock VC-P35787<br><b>One owner</b></span>
+          </a>
+          <dl class="card__stack">
+              <div><dt>MSRP</dt><dd>$412,890</dd></div>
+              <div class="card__save"><dt>You save</dt><dd>− $134,990</dd></div>
+              <div><dt>Dealer service charge</dt><dd>$1,189</dd></div>
+              <div><dt>Electronic filing charge</dt><dd>$514</dd></div>
+              <div><dt>Lease</dt><dd>$3,990 / month</dd></div>
+          </dl>
+          <div class="card__foot">
+            <a class="link" href="vehicles/vc-p35787.html">View details<i aria-hidden="true"></i></a>
+            <a class="asterisk" href="vehicles/vc-p35787.html#pricing" aria-label="Pricing details">* Pricing details</a>
+          </div>
+        </li>
+        <li class="card" data-condition="used" data-certified="1" data-year="2022" data-price="164900" data-mileage="4359" data-model="Flying Spur" data-trim="Hybrid" data-stock="VC-97990A" data-vin="SCBBR6ZG0NC096173">
+          <a class="card__link" href="vehicles/vc-97990a.html" aria-label="Used 2022 Bentley Flying Spur Hybrid, Braman Price $164,900">
+            <span class="card__media"><span class="card__flag">Lease $2,568/mo</span><span class="card__flag card__flag--special">Internet special</span><img src="assets/img/inventory/vc-97990a.webp" width="840" height="630" loading="lazy" decoding="async" alt="Glacier White 2022 Bentley Flying Spur Hybrid"></span>
+            <span class="card__row">
+              <h2 class="card__title">Used 2022 Bentley Flying Spur Hybrid <span class="card__place">in West Palm Beach, FL</span></h2>
+              <span class="card__price"><small>Braman Price</small>$164,900</span>
+            </span>
+            <span class="card__facts">Glacier White over Porpoise · 4,359 miles · Stock VC-97990A<br><b>Certified by Bentley · One owner</b></span>
+          </a>
+          <dl class="card__stack">
+              <div><dt>Dealer service charge</dt><dd>$1,189</dd></div>
+              <div><dt>Electronic filing charge</dt><dd>$514</dd></div>
+              <div class="card__sale"><dt>Sale price</dt><dd>$166,603</dd></div>
+              <div><dt>Lease</dt><dd>$2,568 / month</dd></div>
+          </dl>
+          <div class="card__foot">
+            <a class="link" href="vehicles/vc-97990a.html">View details<i aria-hidden="true"></i></a>
+            <a class="asterisk" href="vehicles/vc-97990a.html#pricing" aria-label="Pricing details">* Pricing details</a>
+          </div>
+        </li>
+        <li class="card" data-condition="used" data-certified="0" data-year="2026" data-price="287900" data-mileage="382" data-model="Continental GT" data-trim="" data-stock="VC-33322A" data-vin="SCBCP2ZGXTC025787">
+          <a class="card__link" href="vehicles/vc-33322a.html" aria-label="Used 2026 Bentley Continental GT, Braman Price $287,900">
+            <span class="card__media"><span class="card__flag">Lease $4,299/mo</span><span class="card__flag card__flag--special">Internet special</span><img src="assets/img/inventory/vc-33322a.webp" width="840" height="630" loading="lazy" decoding="async" alt="Verdant 2026 Bentley Continental GT"></span>
+            <span class="card__row">
+              <h2 class="card__title">Used 2026 Bentley Continental GT <span class="card__place">in West Palm Beach, FL</span></h2>
+              <span class="card__price"><small>Braman Price</small>$287,900</span>
+            </span>
+            <span class="card__facts">Verdant over Saddle · 382 miles · Stock VC-33322A<br><b>One owner</b></span>
+          </a>
+          <dl class="card__stack">
+              <div><dt>MSRP</dt><dd>$345,830</dd></div>
+              <div class="card__save"><dt>You save</dt><dd>− $57,930</dd></div>
+              <div><dt>Dealer service charge</dt><dd>$1,189</dd></div>
+              <div><dt>Electronic filing charge</dt><dd>$514</dd></div>
+              <div class="card__sale"><dt>Sale price</dt><dd>$289,603</dd></div>
+              <div><dt>Lease</dt><dd>$4,299 / month</dd></div>
+          </dl>
+          <div class="card__foot">
+            <a class="link" href="vehicles/vc-33322a.html">View details<i aria-hidden="true"></i></a>
+            <a class="asterisk" href="vehicles/vc-33322a.html#pricing" aria-label="Pricing details">* Pricing details</a>
+          </div>
+        </li>
+        <li class="card" data-condition="new" data-certified="0" data-year="2026" data-price="311560" data-mileage="30" data-model="Bentayga" data-trim="Azure" data-stock="V63966" data-vin="SJAAT2ZV6TC033966">
+          <a class="card__link" href="vehicles/v63966.html" aria-label="New 2026 Bentley Bentayga Azure, MSRP $311,560">
+            <span class="card__media"><img src="assets/img/inventory/v63966.webp" width="840" height="630" loading="lazy" decoding="async" alt="Moonbeam Over Moroccan Blue 2026 Bentley Bentayga Azure"></span>
+            <span class="card__row">
+              <h2 class="card__title">New 2026 Bentley Bentayga Azure <span class="card__place">in West Palm Beach, FL</span></h2>
+              <span class="card__price"><small>MSRP</small>$311,560</span>
+            </span>
+            <span class="card__facts">Moonbeam Over Moroccan Blue over Linen · 30 miles · Stock V63966</span>
+          </a>
+          <dl class="card__stack">
+              <div><dt>Dealer service charge</dt><dd>$1,189</dd></div>
+              <div><dt>Electronic filing charge</dt><dd>$514</dd></div>
+              <div class="card__sale"><dt>Sale price</dt><dd>$313,263</dd></div>
+          </dl>
+          <div class="card__foot">
+            <a class="link" href="vehicles/v63966.html">View details<i aria-hidden="true"></i></a>
+            <a class="asterisk" href="vehicles/v63966.html#pricing" aria-label="Pricing details">* Pricing details</a>
+          </div>
+        </li>
+        <li class="card" data-condition="new" data-certified="0" data-year="2026" data-price="318850" data-mileage="30" data-model="Continental GT" data-trim="V8" data-stock="V69374" data-vin="SCBCP2ZG5TC029374">
+          <a class="card__link" href="vehicles/v69374.html" aria-label="New 2026 Bentley Continental GT V8, MSRP $318,850">
+            <span class="card__media"><span class="card__flag">Lease $2,698/mo</span><span class="card__flag card__flag--special">Internet special</span><img src="assets/img/inventory/v69374.webp" width="840" height="630" loading="lazy" decoding="async" alt="Glacier White 2026 Bentley Continental GT V8"></span>
+            <span class="card__row">
+              <h2 class="card__title">New 2026 Bentley Continental GT V8 <span class="card__place">in West Palm Beach, FL</span></h2>
+              <span class="card__price"><small>MSRP</small>$318,850</span>
+            </span>
+            <span class="card__facts">Glacier White over Imperial Blue · 30 miles · Stock V69374</span>
+          </a>
+          <dl class="card__stack">
+              <div><dt>Dealer service charge</dt><dd>$1,189</dd></div>
+              <div><dt>Electronic filing charge</dt><dd>$514</dd></div>
+              <div class="card__sale"><dt>Final price</dt><dd>$320,553</dd></div>
+              <div><dt>Lease</dt><dd>$2,698 / month</dd></div>
+          </dl>
+          <div class="card__foot">
+            <a class="link" href="vehicles/v69374.html">View details<i aria-hidden="true"></i></a>
+            <a class="asterisk" href="vehicles/v69374.html#pricing" aria-label="Pricing details">* Pricing details</a>
+          </div>
+        </li>
+        <li class="card" data-condition="new" data-certified="0" data-year="2026" data-price="342175" data-mileage="30" data-model="Continental GT" data-trim="V8" data-stock="V68454" data-vin="SCBCP2ZG9TC028454">
+          <a class="card__link" href="vehicles/v68454.html" aria-label="New 2026 Bentley Continental GT V8, MSRP $342,175">
+            <span class="card__media"><img src="assets/img/inventory/v68454.webp" width="840" height="630" loading="lazy" decoding="async" alt="Gravity Grey 2026 Bentley Continental GT V8"></span>
+            <span class="card__row">
+              <h2 class="card__title">New 2026 Bentley Continental GT V8 <span class="card__place">in West Palm Beach, FL</span></h2>
+              <span class="card__price"><small>MSRP</small>$342,175</span>
+            </span>
+            <span class="card__facts">Gravity Grey over Hotspur · 30 miles · Stock V68454</span>
+          </a>
+          <dl class="card__stack">
+              <div><dt>Dealer service charge</dt><dd>$1,189</dd></div>
+              <div><dt>Electronic filing charge</dt><dd>$514</dd></div>
+              <div class="card__sale"><dt>Sale price</dt><dd>$343,878</dd></div>
+          </dl>
+          <div class="card__foot">
+            <a class="link" href="vehicles/v68454.html">View details<i aria-hidden="true"></i></a>
+            <a class="asterisk" href="vehicles/v68454.html#pricing" aria-label="Pricing details">* Pricing details</a>
+          </div>
+        </li>
+        <li class="card" data-condition="new" data-certified="0" data-year="2026" data-price="359295" data-mileage="30" data-model="Continental GT" data-trim="V8" data-stock="V69347" data-vin="SCBDP4ZG2TC029347">
+          <a class="card__link" href="vehicles/v69347.html" aria-label="New 2026 Bentley Continental GT V8, MSRP $359,295">
+            <span class="card__media"><img src="assets/img/inventory/v69347.webp" width="840" height="630" loading="lazy" decoding="async" alt="Verdant 2026 Bentley Continental GT V8"></span>
+            <span class="card__row">
+              <h2 class="card__title">New 2026 Bentley Continental GT V8 <span class="card__place">in West Palm Beach, FL</span></h2>
+              <span class="card__price"><small>MSRP</small>$359,295</span>
+            </span>
+            <span class="card__facts">Verdant over Camel · 30 miles · Stock V69347</span>
+          </a>
+          <dl class="card__stack">
+              <div><dt>Dealer service charge</dt><dd>$1,189</dd></div>
+              <div><dt>Electronic filing charge</dt><dd>$514</dd></div>
+              <div class="card__sale"><dt>Sale price</dt><dd>$360,998</dd></div>
+          </dl>
+          <div class="card__foot">
+            <a class="link" href="vehicles/v69347.html">View details<i aria-hidden="true"></i></a>
+            <a class="asterisk" href="vehicles/v69347.html#pricing" aria-label="Pricing details">* Pricing details</a>
+          </div>
+        </li>
+        <li class="card" data-condition="new" data-certified="0" data-year="2026" data-price="362000" data-mileage="30" data-model="Continental GT" data-trim="V8" data-stock="V60863" data-vin="SCBDP4ZG3TC030863">
+          <a class="card__link" href="vehicles/v60863.html" aria-label="New 2026 Bentley Continental GT V8, MSRP $362,000">
+            <span class="card__media"><img src="assets/img/inventory/v60863.webp" width="840" height="630" loading="lazy" decoding="async" alt="Silverlake 2026 Bentley Continental GT V8"></span>
+            <span class="card__row">
+              <h2 class="card__title">New 2026 Bentley Continental GT V8 <span class="card__place">in West Palm Beach, FL</span></h2>
+              <span class="card__price"><small>MSRP</small>$362,000</span>
+            </span>
+            <span class="card__facts">Silverlake over Linen · 30 miles · Stock V60863</span>
+          </a>
+          <dl class="card__stack">
+              <div><dt>Dealer service charge</dt><dd>$1,189</dd></div>
+              <div><dt>Electronic filing charge</dt><dd>$514</dd></div>
+              <div class="card__sale"><dt>Sale price</dt><dd>$363,703</dd></div>
+          </dl>
+          <div class="card__foot">
+            <a class="link" href="vehicles/v60863.html">View details<i aria-hidden="true"></i></a>
+            <a class="asterisk" href="vehicles/v60863.html#pricing" aria-label="Pricing details">* Pricing details</a>
+          </div>
+        </li>
+        <li class="card" data-condition="new" data-certified="0" data-year="2026" data-price="365310" data-mileage="30" data-model="Continental GT" data-trim="S" data-stock="V60310" data-vin="SCBDP4ZG6TC030310">
+          <a class="card__link" href="vehicles/v60310.html" aria-label="New 2026 Bentley Continental GT S, MSRP $365,310">
+            <span class="card__media"><img src="assets/img/inventory/v60310.webp" width="840" height="630" loading="lazy" decoding="async" alt="Glacier White 2026 Bentley Continental GT S"></span>
+            <span class="card__row">
+              <h2 class="card__title">New 2026 Bentley Continental GT S <span class="card__place">in West Palm Beach, FL</span></h2>
+              <span class="card__price"><small>MSRP</small>$365,310</span>
+            </span>
+            <span class="card__facts">Glacier White over Hotspur · 30 miles · Stock V60310</span>
+          </a>
+          <dl class="card__stack">
+              <div><dt>Dealer service charge</dt><dd>$1,189</dd></div>
+              <div><dt>Electronic filing charge</dt><dd>$514</dd></div>
+              <div class="card__sale"><dt>Sale price</dt><dd>$367,013</dd></div>
+          </dl>
+          <div class="card__foot">
+            <a class="link" href="vehicles/v60310.html">View details<i aria-hidden="true"></i></a>
+            <a class="asterisk" href="vehicles/v60310.html#pricing" aria-label="Pricing details">* Pricing details</a>
+          </div>
+        </li>
+        <li class="card" data-condition="used" data-certified="1" data-year="2024" data-price="204900" data-mileage="6671" data-model="Flying Spur" data-trim="V8" data-stock="VC-P35763" data-vin="SCBBG6ZG5RC015289">
+          <a class="card__link" href="vehicles/vc-p35763.html" aria-label="Used 2024 Bentley Flying Spur V8, Braman Price $204,900">
+            <span class="card__media"><span class="card__flag">Lease $3,835/mo</span><span class="card__flag card__flag--special">Internet special</span><img src="assets/img/inventory/vc-p35763.webp" width="840" height="630" loading="lazy" decoding="async" alt="Glacier White 2024 Bentley Flying Spur V8"></span>
+            <span class="card__row">
+              <h2 class="card__title">Used 2024 Bentley Flying Spur V8 <span class="card__place">in West Palm Beach, FL</span></h2>
+              <span class="card__price"><small>Braman Price</small>$204,900</span>
+            </span>
+            <span class="card__facts">Glacier White over Linen · 6,671 miles · Stock VC-P35763<br><b>Certified by Bentley</b></span>
+          </a>
+          <dl class="card__stack">
+              <div><dt>Dealer service charge</dt><dd>$1,189</dd></div>
+              <div><dt>Electronic filing charge</dt><dd>$514</dd></div>
+              <div class="card__sale"><dt>Sale price</dt><dd>$206,603</dd></div>
+              <div><dt>Lease</dt><dd>$3,835 / month</dd></div>
+          </dl>
+          <div class="card__foot">
+            <a class="link" href="vehicles/vc-p35763.html">View details<i aria-hidden="true"></i></a>
+            <a class="asterisk" href="vehicles/vc-p35763.html#pricing" aria-label="Pricing details">* Pricing details</a>
+          </div>
+        </li>
+        <li class="card" data-condition="used" data-certified="1" data-year="2022" data-price="217900" data-mileage="11122" data-model="Continental GT" data-trim="Speed" data-stock="VC-P35878A" data-vin="SCBCT2ZG2NC092253">
+          <a class="card__link" href="vehicles/vc-p35878a.html" aria-label="Used 2022 Bentley Continental GT Speed, Braman Price $217,900">
+            <span class="card__media"><img src="assets/img/inventory/vc-p35878a.webp" width="840" height="630" loading="lazy" decoding="async" alt="Glacier White 2022 Bentley Continental GT Speed"></span>
+            <span class="card__row">
+              <h2 class="card__title">Used 2022 Bentley Continental GT Speed <span class="card__place">in West Palm Beach, FL</span></h2>
+              <span class="card__price"><small>Braman Price</small>$217,900</span>
+            </span>
+            <span class="card__facts">Glacier White over Linen · 11,122 miles · Stock VC-P35878A<br><b>Certified by Bentley</b></span>
+          </a>
+          <dl class="card__stack">
+              <div><dt>Dealer service charge</dt><dd>$1,189</dd></div>
+              <div><dt>Electronic filing charge</dt><dd>$514</dd></div>
+              <div class="card__sale"><dt>Sale price</dt><dd>$219,603</dd></div>
+          </dl>
+          <div class="card__foot">
+            <a class="link" href="vehicles/vc-p35878a.html">View details<i aria-hidden="true"></i></a>
+            <a class="asterisk" href="vehicles/vc-p35878a.html#pricing" aria-label="Pricing details">* Pricing details</a>
+          </div>
+        </li>
+        <li class="card" data-condition="used" data-certified="1" data-year="2022" data-price="217900" data-mileage="7154" data-model="Flying Spur" data-trim="W12 Mulliner" data-stock="VC-P35891" data-vin="SCBBB6ZG3NC003554">
+          <a class="card__link" href="vehicles/vc-p35891.html" aria-label="Used 2022 Bentley Flying Spur W12 Mulliner, Braman Price $217,900">
+            <span class="card__media"><img src="assets/bm/2026/spur-norcal.webp" width="2400" height="1600" loading="lazy" decoding="async" alt="Hallmark 2022 Bentley Flying Spur W12 Mulliner (Bentley image of the line; the retailer has no photograph of this car yet)"></span>
+            <span class="card__row">
+              <h2 class="card__title">Used 2022 Bentley Flying Spur W12 Mulliner <span class="card__place">in West Palm Beach, FL</span></h2>
+              <span class="card__price"><small>Braman Price</small>$217,900</span>
+            </span>
+            <span class="card__facts">Hallmark over Linen · 7,154 miles · Stock VC-P35891<br><b>Certified by Bentley</b></span>
+          </a>
+          <dl class="card__stack">
+              <div><dt>Dealer service charge</dt><dd>$1,189</dd></div>
+              <div><dt>Electronic filing charge</dt><dd>$514</dd></div>
+              <div class="card__sale"><dt>Sale price</dt><dd>$219,603</dd></div>
+          </dl>
+          <div class="card__foot">
+            <a class="link" href="vehicles/vc-p35891.html">View details<i aria-hidden="true"></i></a>
+            <a class="asterisk" href="vehicles/vc-p35891.html#pricing" aria-label="Pricing details">* Pricing details</a>
+          </div>
+        </li>
+        <li class="card" data-condition="new" data-certified="0" data-year="2026" data-price="364565" data-mileage="30" data-model="Continental GT" data-trim="S" data-stock="V60284" data-vin="SCBDP4ZG9TC030284">
+          <a class="card__link" href="vehicles/v60284.html" aria-label="New 2026 Bentley Continental GT S, MSRP $364,565">
+            <span class="card__media"><img src="assets/img/inventory/v60284.webp" width="840" height="630" loading="lazy" decoding="async" alt="Glacier White 2026 Bentley Continental GT S"></span>
+            <span class="card__row">
+              <h2 class="card__title">New 2026 Bentley Continental GT S <span class="card__place">in West Palm Beach, FL</span></h2>
+              <span class="card__price"><small>MSRP</small>$364,565</span>
+            </span>
+            <span class="card__facts">Glacier White over Hotspur · 30 miles · Stock V60284</span>
+          </a>
+          <dl class="card__stack">
+              <div><dt>Dealer service charge</dt><dd>$1,189</dd></div>
+              <div><dt>Electronic filing charge</dt><dd>$514</dd></div>
+              <div class="card__sale"><dt>Sale price</dt><dd>$366,268</dd></div>
+          </dl>
+          <div class="card__foot">
+            <a class="link" href="vehicles/v60284.html">View details<i aria-hidden="true"></i></a>
+            <a class="asterisk" href="vehicles/v60284.html#pricing" aria-label="Pricing details">* Pricing details</a>
+          </div>
+        </li>
+        <li class="card" data-condition="new" data-certified="0" data-year="2026" data-price="360395" data-mileage="30" data-model="Continental GT" data-trim="V8" data-stock="V60210" data-vin="SCBDP4ZG2TC030210">
+          <a class="card__link" href="vehicles/v60210.html" aria-label="New 2026 Bentley Continental GT V8, MSRP $360,395">
+            <span class="card__media"><img src="assets/img/inventory/v60210.webp" width="840" height="630" loading="lazy" decoding="async" alt="Hallmark 2026 Bentley Continental GT V8"></span>
+            <span class="card__row">
+              <h2 class="card__title">New 2026 Bentley Continental GT V8 <span class="card__place">in West Palm Beach, FL</span></h2>
+              <span class="card__price"><small>MSRP</small>$360,395</span>
+            </span>
+            <span class="card__facts">Hallmark over Linen · 30 miles · Stock V60210</span>
+          </a>
+          <dl class="card__stack">
+              <div><dt>Dealer service charge</dt><dd>$1,189</dd></div>
+              <div><dt>Electronic filing charge</dt><dd>$514</dd></div>
+              <div class="card__sale"><dt>Sale price</dt><dd>$362,098</dd></div>
+          </dl>
+          <div class="card__foot">
+            <a class="link" href="vehicles/v60210.html">View details<i aria-hidden="true"></i></a>
+            <a class="asterisk" href="vehicles/v60210.html#pricing" aria-label="Pricing details">* Pricing details</a>
+          </div>
+        </li>
+        <li class="card" data-condition="new" data-certified="0" data-year="2026" data-price="365245" data-mileage="30" data-model="Continental GT" data-trim="V8" data-stock="V60186" data-vin="SCBDP4ZG9TC030186">
+          <a class="card__link" href="vehicles/v60186.html" aria-label="New 2026 Bentley Continental GT V8, MSRP $365,245">
+            <span class="card__media"><img src="assets/img/inventory/v60186.webp" width="840" height="630" loading="lazy" decoding="async" alt="Neptune 2026 Bentley Continental GT V8"></span>
+            <span class="card__row">
+              <h2 class="card__title">New 2026 Bentley Continental GT V8 <span class="card__place">in West Palm Beach, FL</span></h2>
+              <span class="card__price"><small>MSRP</small>$365,245</span>
+            </span>
+            <span class="card__facts">Neptune over Linen · 30 miles · Stock V60186</span>
+          </a>
+          <dl class="card__stack">
+              <div><dt>Dealer service charge</dt><dd>$1,189</dd></div>
+              <div><dt>Electronic filing charge</dt><dd>$514</dd></div>
+              <div class="card__sale"><dt>Sale price</dt><dd>$366,948</dd></div>
+          </dl>
+          <div class="card__foot">
+            <a class="link" href="vehicles/v60186.html">View details<i aria-hidden="true"></i></a>
+            <a class="asterisk" href="vehicles/v60186.html#pricing" aria-label="Pricing details">* Pricing details</a>
+          </div>
+        </li>
+        <li class="card" data-condition="new" data-certified="0" data-year="2026" data-price="293285" data-mileage="30" data-model="Flying Spur" data-trim="V8" data-stock="V69639" data-vin="SCBBP6ZG0TC029639">
+          <a class="card__link" href="vehicles/v69639.html" aria-label="New 2026 Bentley Flying Spur V8, MSRP $293,285">
+            <span class="card__media"><img src="assets/img/inventory/v69639.webp" width="840" height="630" loading="lazy" decoding="async" alt="Hallmark 2026 Bentley Flying Spur V8"></span>
+            <span class="card__row">
+              <h2 class="card__title">New 2026 Bentley Flying Spur V8 <span class="card__place">in West Palm Beach, FL</span></h2>
+              <span class="card__price"><small>MSRP</small>$293,285</span>
+            </span>
+            <span class="card__facts">Hallmark over Saddle · 30 miles · Stock V69639</span>
+          </a>
+          <dl class="card__stack">
+              <div><dt>Dealer service charge</dt><dd>$1,189</dd></div>
+              <div><dt>Electronic filing charge</dt><dd>$514</dd></div>
+              <div class="card__sale"><dt>Sale price</dt><dd>$294,988</dd></div>
+          </dl>
+          <div class="card__foot">
+            <a class="link" href="vehicles/v69639.html">View details<i aria-hidden="true"></i></a>
+            <a class="asterisk" href="vehicles/v69639.html#pricing" aria-label="Pricing details">* Pricing details</a>
+          </div>
+        </li>
+        <li class="card" data-condition="new" data-certified="0" data-year="2026" data-price="299820" data-mileage="30" data-model="Flying Spur" data-trim="V8" data-stock="V60228" data-vin="SCBBP6ZG6TC030228">
+          <a class="card__link" href="vehicles/v60228.html" aria-label="New 2026 Bentley Flying Spur V8, MSRP $299,820">
+            <span class="card__media"><img src="assets/img/inventory/v60228.webp" width="840" height="630" loading="lazy" decoding="async" alt="Glacier White 2026 Bentley Flying Spur V8"></span>
+            <span class="card__row">
+              <h2 class="card__title">New 2026 Bentley Flying Spur V8 <span class="card__place">in West Palm Beach, FL</span></h2>
+              <span class="card__price"><small>MSRP</small>$299,820</span>
+            </span>
+            <span class="card__facts">Glacier White over Linen · 30 miles · Stock V60228</span>
+          </a>
+          <dl class="card__stack">
+              <div><dt>Dealer service charge</dt><dd>$1,189</dd></div>
+              <div><dt>Electronic filing charge</dt><dd>$514</dd></div>
+              <div class="card__sale"><dt>Sale price</dt><dd>$301,523</dd></div>
+          </dl>
+          <div class="card__foot">
+            <a class="link" href="vehicles/v60228.html">View details<i aria-hidden="true"></i></a>
+            <a class="asterisk" href="vehicles/v60228.html#pricing" aria-label="Pricing details">* Pricing details</a>
+          </div>
+        </li>
+        <li class="card" data-condition="new" data-certified="0" data-year="2026" data-price="344630" data-mileage="30" data-model="Flying Spur" data-trim="Azure" data-stock="V69975" data-vin="SCBBP6ZG5TC029975">
+          <a class="card__link" href="vehicles/v69975.html" aria-label="New 2026 Bentley Flying Spur Azure, MSRP $344,630">
+            <span class="card__media"><img src="assets/img/inventory/v69975.webp" width="840" height="630" loading="lazy" decoding="async" alt="Glacier White 2026 Bentley Flying Spur Azure"></span>
+            <span class="card__row">
+              <h2 class="card__title">New 2026 Bentley Flying Spur Azure <span class="card__place">in West Palm Beach, FL</span></h2>
+              <span class="card__price"><small>MSRP</small>$344,630</span>
+            </span>
+            <span class="card__facts">Glacier White over Linen · 30 miles · Stock V69975</span>
+          </a>
+          <dl class="card__stack">
+              <div><dt>Dealer service charge</dt><dd>$1,189</dd></div>
+              <div><dt>Electronic filing charge</dt><dd>$514</dd></div>
+              <div class="card__sale"><dt>Sale price</dt><dd>$346,333</dd></div>
+          </dl>
+          <div class="card__foot">
+            <a class="link" href="vehicles/v69975.html">View details<i aria-hidden="true"></i></a>
+            <a class="asterisk" href="vehicles/v69975.html#pricing" aria-label="Pricing details">* Pricing details</a>
+          </div>
+        </li>
+        <li class="card" data-condition="used" data-certified="0" data-year="2025" data-price="277900" data-mileage="11765" data-model="Flying Spur" data-trim="Speed First Edition" data-stock="VC-P35947" data-vin="SCBBR6ZG2SC021437">
+          <a class="card__link" href="vehicles/vc-p35947.html" aria-label="Used 2025 Bentley Flying Spur Speed First Edition, Braman Price $277,900">
+            <span class="card__media"><img src="assets/bm/2026/spur-norcal.webp" width="2400" height="1600" loading="lazy" decoding="async" alt="Tungsten 2025 Bentley Flying Spur Speed First Edition (Bentley image of the line; the retailer has no photograph of this car yet)"></span>
+            <span class="card__row">
+              <h2 class="card__title">Used 2025 Bentley Flying Spur Speed First Edition <span class="card__place">in West Palm Beach, FL</span></h2>
+              <span class="card__price"><small>Braman Price</small>$277,900</span>
+            </span>
+            <span class="card__facts">Tungsten over Saddle · 11,765 miles · Stock VC-P35947<br><b>One owner</b></span>
+          </a>
+          <dl class="card__stack">
+              <div><dt>Dealer service charge</dt><dd>$1,189</dd></div>
+              <div><dt>Electronic filing charge</dt><dd>$514</dd></div>
+              <div class="card__sale"><dt>Sale price</dt><dd>$279,603</dd></div>
+          </dl>
+          <div class="card__foot">
+            <a class="link" href="vehicles/vc-p35947.html">View details<i aria-hidden="true"></i></a>
+            <a class="asterisk" href="vehicles/vc-p35947.html#pricing" aria-label="Pricing details">* Pricing details</a>
+          </div>
+        </li>
+        <li class="card" data-condition="used" data-certified="0" data-year="2025" data-price="287900" data-mileage="8978" data-model="Continental GT" data-trim="Speed First Edition" data-stock="VC-P35888" data-vin="SCBCR2ZGXSC018122">
+          <a class="card__link" href="vehicles/vc-p35888.html" aria-label="Used 2025 Bentley Continental GT Speed First Edition, Braman Price $287,900">
+            <span class="card__media"><img src="assets/bm/2026/gt-mountains.webp" width="2400" height="1600" loading="lazy" decoding="async" alt="Alpine Green Satin By Mulliner 2025 Bentley Continental GT Speed First Edition (Bentley image of the line; the retailer has no photograph of this car yet)"></span>
+            <span class="card__row">
+              <h2 class="card__title">Used 2025 Bentley Continental GT Speed First Edition <span class="card__place">in West Palm Beach, FL</span></h2>
+              <span class="card__price"><small>Braman Price</small>$287,900</span>
+            </span>
+            <span class="card__facts">Alpine Green Satin By Mulliner over Gravity Gray · 8,978 miles · Stock VC-P35888<br><b>One owner</b></span>
+          </a>
+          <dl class="card__stack">
+              <div><dt>Dealer service charge</dt><dd>$1,189</dd></div>
+              <div><dt>Electronic filing charge</dt><dd>$514</dd></div>
+              <div class="card__sale"><dt>Sale price</dt><dd>$289,603</dd></div>
+          </dl>
+          <div class="card__foot">
+            <a class="link" href="vehicles/vc-p35888.html">View details<i aria-hidden="true"></i></a>
+            <a class="asterisk" href="vehicles/vc-p35888.html#pricing" aria-label="Pricing details">* Pricing details</a>
+          </div>
+        </li>
+        <li class="card" data-condition="used" data-certified="0" data-year="2026" data-price="347900" data-mileage="4561" data-model="Continental GTC" data-trim="Azure" data-stock="VC-P35948" data-vin="SCBDP4ZG4TC023923">
+          <a class="card__link" href="vehicles/vc-p35948.html" aria-label="Used 2026 Bentley Continental GTC Azure, Braman Price $347,900">
+            <span class="card__media"><img src="assets/bm/2026/gtc-mountains.webp" width="2400" height="1600" loading="lazy" decoding="async" alt="Damson 2026 Bentley Continental GTC Azure (Bentley image of the line; the retailer has no photograph of this car yet)"></span>
+            <span class="card__row">
+              <h2 class="card__title">Used 2026 Bentley Continental GTC Azure <span class="card__place">in West Palm Beach, FL</span></h2>
+              <span class="card__price"><small>Braman Price</small>$347,900</span>
+            </span>
+            <span class="card__facts">Damson over Linen · 4,561 miles · Stock VC-P35948</span>
+          </a>
+          <dl class="card__stack">
+              <div><dt>MSRP</dt><dd>$416,280</dd></div>
+              <div class="card__save"><dt>You save</dt><dd>− $68,380</dd></div>
+              <div><dt>Dealer service charge</dt><dd>$1,189</dd></div>
+              <div><dt>Electronic filing charge</dt><dd>$514</dd></div>
+              <div class="card__sale"><dt>Sale price</dt><dd>$349,603</dd></div>
+          </dl>
+          <div class="card__foot">
+            <a class="link" href="vehicles/vc-p35948.html">View details<i aria-hidden="true"></i></a>
+            <a class="asterisk" href="vehicles/vc-p35948.html#pricing" aria-label="Pricing details">* Pricing details</a>
+          </div>
+        </li>
+        <li class="card" data-condition="new" data-certified="0" data-year="2026" data-price="406735" data-mileage="30" data-model="Continental GT" data-trim="Mulliner" data-stock="V60647" data-vin="SCBCR2ZG5TC030647">
+          <a class="card__link" href="vehicles/v60647.html" aria-label="New 2026 Bentley Continental GT Mulliner, MSRP $406,735">
+            <span class="card__media"><img src="assets/img/inventory/v60647.webp" width="840" height="630" loading="lazy" decoding="async" alt="Verdant 2026 Bentley Continental GT Mulliner"></span>
+            <span class="card__row">
+              <h2 class="card__title">New 2026 Bentley Continental GT Mulliner <span class="card__place">in West Palm Beach, FL</span></h2>
+              <span class="card__price"><small>MSRP</small>$406,735</span>
+            </span>
+            <span class="card__facts">Verdant over Linen · 30 miles · Stock V60647</span>
+          </a>
+          <dl class="card__stack">
+              <div><dt>Dealer service charge</dt><dd>$1,189</dd></div>
+              <div><dt>Electronic filing charge</dt><dd>$514</dd></div>
+              <div class="card__sale"><dt>Sale price</dt><dd>$408,438</dd></div>
+          </dl>
+          <div class="card__foot">
+            <a class="link" href="vehicles/v60647.html">View details<i aria-hidden="true"></i></a>
+            <a class="asterisk" href="vehicles/v60647.html#pricing" aria-label="Pricing details">* Pricing details</a>
+          </div>
+        </li>
+        <li class="card" data-condition="new" data-certified="0" data-year="2026" data-price="285745" data-mileage="30" data-model="Flying Spur" data-trim="V8" data-stock="V69771" data-vin="SCBBP6ZG0TC029771">
+          <a class="card__link" href="vehicles/v69771.html" aria-label="New 2026 Bentley Flying Spur V8, MSRP $285,745">
+            <span class="card__media"><img src="assets/img/inventory/v69771.webp" width="840" height="630" loading="lazy" decoding="async" alt="Beluga 2026 Bentley Flying Spur V8"></span>
+            <span class="card__row">
+              <h2 class="card__title">New 2026 Bentley Flying Spur V8 <span class="card__place">in West Palm Beach, FL</span></h2>
+              <span class="card__price"><small>MSRP</small>$285,745</span>
+            </span>
+            <span class="card__facts">Beluga over Saddle · 30 miles · Stock V69771</span>
+          </a>
+          <dl class="card__stack">
+              <div><dt>Dealer service charge</dt><dd>$1,189</dd></div>
+              <div><dt>Electronic filing charge</dt><dd>$514</dd></div>
+              <div class="card__sale"><dt>Sale price</dt><dd>$287,448</dd></div>
+          </dl>
+          <div class="card__foot">
+            <a class="link" href="vehicles/v69771.html">View details<i aria-hidden="true"></i></a>
+            <a class="asterisk" href="vehicles/v69771.html#pricing" aria-label="Pricing details">* Pricing details</a>
+          </div>
+        </li>
+        <li class="card" data-condition="new" data-certified="0" data-year="2026" data-price="296740" data-mileage="30" data-model="Bentayga" data-trim="Azure" data-stock="V64206" data-vin="SJAAT2ZV9TC034206">
+          <a class="card__link" href="vehicles/v64206.html" aria-label="New 2026 Bentley Bentayga Azure, MSRP $296,740">
+            <span class="card__media"><img src="assets/img/inventory/v64206.webp" width="840" height="630" loading="lazy" decoding="async" alt="Hallmark 2026 Bentley Bentayga Azure"></span>
+            <span class="card__row">
+              <h2 class="card__title">New 2026 Bentley Bentayga Azure <span class="card__place">in West Palm Beach, FL</span></h2>
+              <span class="card__price"><small>MSRP</small>$296,740</span>
+            </span>
+            <span class="card__facts">Hallmark over Camel · 30 miles · Stock V64206</span>
+          </a>
+          <dl class="card__stack">
+              <div><dt>Dealer service charge</dt><dd>$1,189</dd></div>
+              <div><dt>Electronic filing charge</dt><dd>$514</dd></div>
+              <div class="card__sale"><dt>Sale price</dt><dd>$298,443</dd></div>
+          </dl>
+          <div class="card__foot">
+            <a class="link" href="vehicles/v64206.html">View details<i aria-hidden="true"></i></a>
+            <a class="asterisk" href="vehicles/v64206.html#pricing" aria-label="Pricing details">* Pricing details</a>
+          </div>
+        </li>
+        <li class="card" data-condition="new" data-certified="0" data-year="2026" data-price="297550" data-mileage="30" data-model="Bentayga" data-trim="Azure" data-stock="V64301" data-vin="SJAAT2ZV3TC034301">
+          <a class="card__link" href="vehicles/v64301.html" aria-label="New 2026 Bentley Bentayga Azure, MSRP $297,550">
+            <span class="card__media"><img src="assets/img/inventory/v64301.webp" width="840" height="630" loading="lazy" decoding="async" alt="Cumbrian Green 2026 Bentley Bentayga Azure"></span>
+            <span class="card__row">
+              <h2 class="card__title">New 2026 Bentley Bentayga Azure <span class="card__place">in West Palm Beach, FL</span></h2>
+              <span class="card__price"><small>MSRP</small>$297,550</span>
+            </span>
+            <span class="card__facts">Cumbrian Green over Saddle · 30 miles · Stock V64301</span>
+          </a>
+          <dl class="card__stack">
+              <div><dt>Dealer service charge</dt><dd>$1,189</dd></div>
+              <div><dt>Electronic filing charge</dt><dd>$514</dd></div>
+              <div class="card__sale"><dt>Sale price</dt><dd>$299,253</dd></div>
+          </dl>
+          <div class="card__foot">
+            <a class="link" href="vehicles/v64301.html">View details<i aria-hidden="true"></i></a>
+            <a class="asterisk" href="vehicles/v64301.html#pricing" aria-label="Pricing details">* Pricing details</a>
+          </div>
+        </li>
+        <li class="card" data-condition="new" data-certified="0" data-year="2026" data-price="299820" data-mileage="30" data-model="Flying Spur" data-trim="V8" data-stock="V69761" data-vin="SCBBP6ZG8TC029761">
+          <a class="card__link" href="vehicles/v69761.html" aria-label="New 2026 Bentley Flying Spur V8, MSRP $299,820">
+            <span class="card__media"><img src="assets/img/inventory/v69761.webp" width="840" height="630" loading="lazy" decoding="async" alt="Beluga 2026 Bentley Flying Spur V8"></span>
+            <span class="card__row">
+              <h2 class="card__title">New 2026 Bentley Flying Spur V8 <span class="card__place">in West Palm Beach, FL</span></h2>
+              <span class="card__price"><small>MSRP</small>$299,820</span>
+            </span>
+            <span class="card__facts">Beluga over Linen · 30 miles · Stock V69761</span>
+          </a>
+          <dl class="card__stack">
+              <div><dt>Dealer service charge</dt><dd>$1,189</dd></div>
+              <div><dt>Electronic filing charge</dt><dd>$514</dd></div>
+              <div class="card__sale"><dt>Sale price</dt><dd>$301,523</dd></div>
+          </dl>
+          <div class="card__foot">
+            <a class="link" href="vehicles/v69761.html">View details<i aria-hidden="true"></i></a>
+            <a class="asterisk" href="vehicles/v69761.html#pricing" aria-label="Pricing details">* Pricing details</a>
+          </div>
+        </li>
+        <li class="card" data-condition="new" data-certified="0" data-year="2026" data-price="369220" data-mileage="30" data-model="Continental GT" data-trim="S" data-stock="V60081" data-vin="SCBCP2ZG6TC030081">
+          <a class="card__link" href="vehicles/v60081.html" aria-label="New 2026 Bentley Continental GT S, MSRP $369,220">
+            <span class="card__media"><img src="assets/img/inventory/v60081.webp" width="840" height="630" loading="lazy" decoding="async" alt="British Racing Green 4 Satin 2026 Bentley Continental GT S"></span>
+            <span class="card__row">
+              <h2 class="card__title">New 2026 Bentley Continental GT S <span class="card__place">in West Palm Beach, FL</span></h2>
+              <span class="card__price"><small>MSRP</small>$369,220</span>
+            </span>
+            <span class="card__facts">British Racing Green 4 Satin over Saddle · 30 miles · Stock V60081</span>
+          </a>
+          <dl class="card__stack">
+              <div><dt>Dealer service charge</dt><dd>$1,189</dd></div>
+              <div><dt>Electronic filing charge</dt><dd>$514</dd></div>
+              <div class="card__sale"><dt>Sale price</dt><dd>$370,923</dd></div>
+          </dl>
+          <div class="card__foot">
+            <a class="link" href="vehicles/v60081.html">View details<i aria-hidden="true"></i></a>
+            <a class="asterisk" href="vehicles/v60081.html#pricing" aria-label="Pricing details">* Pricing details</a>
+          </div>
+        </li>
+        <li class="card" data-condition="new" data-certified="0" data-year="2026" data-price="299100" data-mileage="30" data-model="Flying Spur" data-trim="V8" data-stock="V69927" data-vin="SCBBP6ZG5TC029927">
+          <a class="card__link" href="vehicles/v69927.html" aria-label="New 2026 Bentley Flying Spur V8, MSRP $299,100">
+            <span class="card__media"><img src="assets/img/inventory/v69927.webp" width="840" height="630" loading="lazy" decoding="async" alt="Glacier White 2026 Bentley Flying Spur V8"></span>
+            <span class="card__row">
+              <h2 class="card__title">New 2026 Bentley Flying Spur V8 <span class="card__place">in West Palm Beach, FL</span></h2>
+              <span class="card__price"><small>MSRP</small>$299,100</span>
+            </span>
+            <span class="card__facts">Glacier White over Linen · 30 miles · Stock V69927</span>
+          </a>
+          <dl class="card__stack">
+              <div><dt>Dealer service charge</dt><dd>$1,189</dd></div>
+              <div><dt>Electronic filing charge</dt><dd>$514</dd></div>
+              <div class="card__sale"><dt>Sale price</dt><dd>$300,803</dd></div>
+          </dl>
+          <div class="card__foot">
+            <a class="link" href="vehicles/v69927.html">View details<i aria-hidden="true"></i></a>
+            <a class="asterisk" href="vehicles/v69927.html#pricing" aria-label="Pricing details">* Pricing details</a>
+          </div>
+        </li>
+        <li class="card" data-condition="new" data-certified="0" data-year="2026" data-price="312145" data-mileage="30" data-model="Bentayga EWB" data-trim="Azure" data-stock="V64281" data-vin="SJAHT2ZV3TC034281">
+          <a class="card__link" href="vehicles/v64281.html" aria-label="New 2026 Bentley Bentayga EWB Azure, MSRP $312,145">
+            <span class="card__media"><img src="assets/img/inventory/v64281.webp" width="840" height="630" loading="lazy" decoding="async" alt="Blue 2026 Bentley Bentayga EWB Azure"></span>
+            <span class="card__row">
+              <h2 class="card__title">New 2026 Bentley Bentayga EWB Azure <span class="card__place">in West Palm Beach, FL</span></h2>
+              <span class="card__price"><small>MSRP</small>$312,145</span>
+            </span>
+            <span class="card__facts">Blue over Linen · 30 miles · Stock V64281</span>
+          </a>
+          <dl class="card__stack">
+              <div><dt>Dealer service charge</dt><dd>$1,189</dd></div>
+              <div><dt>Electronic filing charge</dt><dd>$514</dd></div>
+              <div class="card__sale"><dt>Sale price</dt><dd>$313,848</dd></div>
+          </dl>
+          <div class="card__foot">
+            <a class="link" href="vehicles/v64281.html">View details<i aria-hidden="true"></i></a>
+            <a class="asterisk" href="vehicles/v64281.html#pricing" aria-label="Pricing details">* Pricing details</a>
+          </div>
+        </li>
+        <li class="card" data-condition="new" data-certified="0" data-year="2026" data-price="319505" data-mileage="30" data-model="Bentayga EWB" data-trim="Azure" data-stock="VV64237" data-vin="SJAHT2ZV0TC034237">
+          <a class="card__link" href="vehicles/vv64237.html" aria-label="New 2026 Bentley Bentayga EWB Azure, MSRP $319,505">
+            <span class="card__media"><img src="assets/img/inventory/vv64237.webp" width="840" height="630" loading="lazy" decoding="async" alt="Glacier White 2026 Bentley Bentayga EWB Azure"></span>
+            <span class="card__row">
+              <h2 class="card__title">New 2026 Bentley Bentayga EWB Azure <span class="card__place">in West Palm Beach, FL</span></h2>
+              <span class="card__price"><small>MSRP</small>$319,505</span>
+            </span>
+            <span class="card__facts">Glacier White over Linen · 30 miles · Stock VV64237</span>
+          </a>
+          <dl class="card__stack">
+              <div><dt>Dealer service charge</dt><dd>$1,189</dd></div>
+              <div><dt>Electronic filing charge</dt><dd>$514</dd></div>
+              <div class="card__sale"><dt>Sale price</dt><dd>$321,208</dd></div>
+          </dl>
+          <div class="card__foot">
+            <a class="link" href="vehicles/vv64237.html">View details<i aria-hidden="true"></i></a>
+            <a class="asterisk" href="vehicles/vv64237.html#pricing" aria-label="Pricing details">* Pricing details</a>
+          </div>
+        </li>
+        <li class="card" data-condition="new" data-certified="0" data-year="2026" data-price="287790" data-mileage="30" data-model="Bentayga" data-trim="Azure" data-stock="V64230" data-vin="SJAAT2ZV6TC034230">
+          <a class="card__link" href="vehicles/v64230.html" aria-label="New 2026 Bentley Bentayga Azure, MSRP $287,790">
+            <span class="card__media"><img src="assets/img/inventory/v64230.webp" width="840" height="630" loading="lazy" decoding="async" alt="Thunder 2026 Bentley Bentayga Azure"></span>
+            <span class="card__row">
+              <h2 class="card__title">New 2026 Bentley Bentayga Azure <span class="card__place">in West Palm Beach, FL</span></h2>
+              <span class="card__price"><small>MSRP</small>$287,790</span>
+            </span>
+            <span class="card__facts">Thunder over Camel · 30 miles · Stock V64230</span>
+          </a>
+          <dl class="card__stack">
+              <div><dt>Dealer service charge</dt><dd>$1,189</dd></div>
+              <div><dt>Electronic filing charge</dt><dd>$514</dd></div>
+              <div class="card__sale"><dt>Sale price</dt><dd>$289,493</dd></div>
+          </dl>
+          <div class="card__foot">
+            <a class="link" href="vehicles/v64230.html">View details<i aria-hidden="true"></i></a>
+            <a class="asterisk" href="vehicles/v64230.html#pricing" aria-label="Pricing details">* Pricing details</a>
+          </div>
+        </li>
+        <li class="card" data-condition="new" data-certified="0" data-year="2026" data-price="337165" data-mileage="30" data-model="Continental GT" data-trim="" data-stock="V60803" data-vin="SCBCP2ZG7TC030803">
+          <a class="card__link" href="vehicles/v60803.html" aria-label="New 2026 Bentley Continental GT, MSRP $337,165">
+            <span class="card__media"><img src="assets/img/inventory/v60803.webp" width="840" height="630" loading="lazy" decoding="async" alt="Silverlake 2026 Bentley Continental GT"></span>
+            <span class="card__row">
+              <h2 class="card__title">New 2026 Bentley Continental GT <span class="card__place">in West Palm Beach, FL</span></h2>
+              <span class="card__price"><small>MSRP</small>$337,165</span>
+            </span>
+            <span class="card__facts">Silverlake over Linen · 30 miles · Stock V60803</span>
+          </a>
+          <dl class="card__stack">
+              <div><dt>Dealer service charge</dt><dd>$1,189</dd></div>
+              <div><dt>Electronic filing charge</dt><dd>$514</dd></div>
+              <div class="card__sale"><dt>Sale price</dt><dd>$338,868</dd></div>
+          </dl>
+          <div class="card__foot">
+            <a class="link" href="vehicles/v60803.html">View details<i aria-hidden="true"></i></a>
+            <a class="asterisk" href="vehicles/v60803.html#pricing" aria-label="Pricing details">* Pricing details</a>
+          </div>
+        </li>
+        <li class="card" data-condition="new" data-certified="0" data-year="2026" data-price="329595" data-mileage="30" data-model="Continental GT" data-trim="V8" data-stock="V60773" data-vin="SCBCP2ZG2TC030773">
+          <a class="card__link" href="vehicles/v60773.html" aria-label="New 2026 Bentley Continental GT V8, MSRP $329,595">
+            <span class="card__media"><img src="assets/img/inventory/v60773.webp" width="840" height="630" loading="lazy" decoding="async" alt="Glacier White 2026 Bentley Continental GT V8"></span>
+            <span class="card__row">
+              <h2 class="card__title">New 2026 Bentley Continental GT V8 <span class="card__place">in West Palm Beach, FL</span></h2>
+              <span class="card__price"><small>MSRP</small>$329,595</span>
+            </span>
+            <span class="card__facts">Glacier White over Linen · 30 miles · Stock V60773</span>
+          </a>
+          <dl class="card__stack">
+              <div><dt>Dealer service charge</dt><dd>$1,189</dd></div>
+              <div><dt>Electronic filing charge</dt><dd>$514</dd></div>
+              <div class="card__sale"><dt>Sale price</dt><dd>$331,298</dd></div>
+          </dl>
+          <div class="card__foot">
+            <a class="link" href="vehicles/v60773.html">View details<i aria-hidden="true"></i></a>
+            <a class="asterisk" href="vehicles/v60773.html#pricing" aria-label="Pricing details">* Pricing details</a>
+          </div>
+        </li>
+      </ul>
+
+      <div class="srp__empty" hidden>
+        <p class="lead">Nothing on the floor matches <span data-query>your choice</span> today.</p>
+        <p class="body">Every Bentley can be specified to order and delivered from Okeechobee Boulevard; a specialist will find the closest car in the Braman group.</p>
+        <div class="actions">
+          <button class="btn btn--line srp__clear" type="button">Show every car</button>
+          <a class="btn" href="tel:+15619269111">Call 561 926 9111</a>
+        </div>
+      </div>
+
+      <!-- the footnote under the listing: the retailer's own disclosure, verbatim -->
+      <p class="srp__legal" id="legal">* Prices and payments do not include tax, tag, title. The Sales Price includes a $1,189 dealer service charge, and a $514 electronic filing charge. These charges represent cost and profit to dealer. The MSRP is the manufacturer&#x27;s suggested retail price, and is not binding on either Dealer or Customer. All pricing and details are believed to be accurate, but we do not warrant or guarantee such accuracy. Vehicle information is based off standard equipment and may vary from vehicle to vehicle. All specifications, prices and equipment are subject to change without notice. Call or email for complete details and information. Displayed fuel efficiency is based on applicable EPA mileage ratings. Use for comparison purposes only. Your actual mileage will vary, depending on how you drive and maintain your vehicle, the driving conditions, battery pack age/condition and other factors. While every effort has been made to ensure display of accurate data, the vehicle listings within this website may not reflect all accurate vehicle items. Accessories and color may vary. The vehicle photo displayed may be an example only. Vehicle Photos may not match exact vehicles. All inventory listed is subject to prior sale. Please confirm vehicle price and details with Dealership.</p>
+    </div>
+  </section>
+
+</main>
+
+<!-- LAST MASS — the close, as on the home page -->
+<footer class="close" id="contact">
+  <div class="page">
+
+    <div class="close__crown">
+      <a href="index4.html" aria-label="Bentley Palm Beach, home">
+        <img src="assets/img/logo-negative.png" alt="Bentley" width="108" height="49" loading="lazy">
+      </a>
+      <p>Bentley Palm Beach is an official Bentley retailer,<br>at 2801 Okeechobee Boulevard, West Palm Beach, Florida.</p>
+      <ul class="social">
+        <li><a href="https://www.instagram.com/bentleypalmbeach/" aria-label="Bentley Palm Beach on Instagram"><svg aria-hidden="true" focusable="false" width="18" height="18" viewBox="0 0 40 40" fill="none"><path d="M20 0C14.5667 0 13.8883 0.025 11.755 0.12C9.625 0.22 8.175 0.555 6.9 1.05C5.585 1.56 4.46833 2.245 3.35667 3.35667C2.245 4.46833 1.55833 5.58333 1.05 6.9C0.555 8.175 0.218333 9.625 0.12 11.755C0.02 13.8883 0 14.5667 0 20C0 25.4333 0.025 26.1117 0.12 28.245C0.22 30.3733 0.555 31.825 1.05 33.1C1.56 34.4133 2.245 35.5317 3.35667 36.6433C4.46833 37.7533 5.58333 38.4417 6.9 38.95C8.17667 39.4433 9.62667 39.7817 11.755 39.88C13.8883 39.98 14.5667 40 20 40C25.4333 40 26.1117 39.975 28.245 39.88C30.3733 39.78 31.825 39.4433 33.1 38.95C34.4133 38.44 35.5317 37.7533 36.6433 36.6433C37.7533 35.5317 38.4417 34.4183 38.95 33.1C39.4433 31.825 39.7817 30.3733 39.88 28.245C39.98 26.1117 40 25.4333 40 20C40 14.5667 39.975 13.8883 39.88 11.755C39.78 9.62667 39.4433 8.17333 38.95 6.9C38.44 5.585 37.7533 4.46833 36.6433 3.35667C35.5317 2.245 34.4183 1.55833 33.1 1.05C31.825 0.555 30.3733 0.218333 28.245 0.12C26.1117 0.02 25.4333 0 20 0ZM20 3.6C25.3383 3.6 25.975 3.62667 28.0833 3.71833C30.0333 3.81 31.0917 4.13333 31.795 4.41C32.7317 4.77167 33.395 5.205 34.0983 5.90333C34.7967 6.60333 35.23 7.26833 35.5917 8.205C35.865 8.90833 36.1917 9.96667 36.28 11.9167C36.375 14.0267 36.3967 14.66 36.3967 20C36.3967 25.34 36.3717 25.975 36.2733 28.0833C36.1717 30.0333 35.8467 31.0917 35.5717 31.795C35.1983 32.7317 34.7733 33.395 34.0733 34.0983C33.375 34.7967 32.7 35.23 31.7733 35.5917C31.0733 35.865 29.9983 36.1917 28.0483 36.28C25.925 36.375 25.3 36.3967 19.95 36.3967C14.5983 36.3967 13.9733 36.3717 11.8517 36.2733C9.9 36.1717 8.825 35.8467 8.125 35.5717C7.17667 35.1983 6.525 34.7733 5.82667 34.0733C5.125 33.375 4.67667 32.7 4.32667 31.7733C4.05167 31.0733 3.72833 29.9983 3.62667 28.0483C3.55167 25.9483 3.525 25.3 3.525 19.975C3.525 14.6483 3.55167 13.9983 3.62667 11.8733C3.72833 9.92333 4.05167 8.85 4.32667 8.15C4.67667 7.2 5.125 6.55 5.82667 5.84833C6.525 5.15 7.17667 4.7 8.125 4.35167C8.825 4.075 9.87667 3.75 11.8267 3.65C13.9517 3.575 14.5767 3.55 19.925 3.55L20 3.6ZM20 9.73C14.325 9.73 9.73 14.33 9.73 20C9.73 25.675 14.33 30.27 20 30.27C25.675 30.27 30.27 25.67 30.27 20C30.27 14.325 25.67 9.73 20 9.73ZM20 26.6667C16.3167 26.6667 13.3333 23.6833 13.3333 20C13.3333 16.3167 16.3167 13.3333 20 13.3333C23.6833 13.3333 26.6667 16.3167 26.6667 20C26.6667 23.6833 23.6833 26.6667 20 26.6667ZM33.0767 9.325C33.0767 10.65 32 11.725 30.6767 11.725C29.3517 11.725 28.2767 10.6483 28.2767 9.325C28.2767 8.00167 29.3533 6.92667 30.6767 6.92667C31.9983 6.925 33.0767 8.00167 33.0767 9.325Z" fill="currentColor"/></svg></a></li>
+        <li><a href="https://www.youtube.com/@bentleymotors" aria-label="Bentley Motors on YouTube"><svg aria-hidden="true" focusable="false" width="18" height="18" viewBox="0 0 40 40" fill="none"><path d="M39.1633 10.31C38.9374 9.45878 38.4917 8.68189 37.871 8.0571C37.2503 7.43231 36.4764 6.98156 35.6267 6.74999C32.5083 5.90833 20 5.90833 20 5.90833C20 5.90833 7.49167 5.90833 4.37167 6.74999C3.52235 6.98197 2.74882 7.43288 2.12846 8.05763C1.5081 8.68238 1.06265 9.45906 0.836667 10.31C0 13.45 0 20 0 20C0 20 0 26.55 0.836667 29.69C1.06264 30.5412 1.50829 31.3181 2.12899 31.9429C2.74968 32.5677 3.52363 33.0184 4.37333 33.25C7.49167 34.0917 20 34.0917 20 34.0917C20 34.0917 32.5083 34.0917 35.6283 33.25C36.4781 33.0186 37.2521 32.5679 37.8729 31.9431C38.4936 31.3183 38.9392 30.5413 39.165 29.69C40 26.55 40 20 40 20C40 20 40 13.45 39.1633 10.31ZM15.9083 25.9467V14.0533L26.3633 20L15.9083 25.9467Z" fill="currentColor"/></svg></a></li>
+        <li><a href="https://www.linkedin.com/company/bentley-motors" aria-label="Bentley Motors on LinkedIn"><svg aria-hidden="true" focusable="false" width="18" height="18" viewBox="0 0 40 40" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M5 0H35C37.7614 0 40 2.23858 40 5V35C40 37.7614 37.7614 40 35 40H5C2.23858 40 0 37.7614 0 35V5C0 2.23858 2.23858 0 5 0ZM8.99308 12.4874C10.9148 12.4874 12.4726 10.9296 12.4726 9.00788C12.4726 7.08618 10.9148 5.52834 8.99308 5.52834C7.07138 5.52834 5.51353 7.08618 5.51353 9.00788C5.51353 10.9296 7.07138 12.4874 8.99308 12.4874ZM12.053 33.8706V14.8916H5.94387V33.8706H12.053ZM21.2479 14.8916H15.4375L15.4683 33.8706H21.5206V23.4789C21.5206 21.9511 22.3029 19.7799 24.9591 19.7799C27.2461 19.7799 27.8515 21.7285 27.8515 23.2139V33.8706H33.7725V22.5499C33.7725 19.3785 33.2992 18.0315 32.8036 17.2865C31.4275 15.2176 29.4592 14.3841 26.881 14.3841C24.3027 14.3841 22.2401 15.4975 21.2479 17.4043V14.8916Z" fill="currentColor"/></svg></a></li>
+      </ul>
+    </div>
+
+    <div class="close__index">
+      <div>
+        <h3>Models</h3>
+        <ul>
+          <li><a href="inventory.html?model=Continental+GT">Continental GT</a></li>
+          <li><a href="inventory.html?model=Continental+GTC">Continental GT Convertible</a></li>
+          <li><a href="inventory.html?model=Flying+Spur">Flying Spur</a></li>
+          <li><a href="inventory.html?model=Bentayga">Bentayga</a></li>
+          <li><a href="inventory.html?model=Bentayga+EWB">Bentayga EWB</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Inventory</h3>
+        <ul>
+          <li><a href="inventory.html?condition=new">New Bentley</a></li>
+          <li><a href="inventory.html?condition=used">Pre-Owned Bentley</a></li>
+          <li><a href="inventory.html?condition=certified">Certified by Bentley</a></li>
+          <li><a href="https://www.bramanbentleypalmbeach.com/find-my-car/">Find My Car</a></li>
+          <li><a href="https://www.bramanbentleypalmbeach.com/value-trade-in/">Value Your Bentley</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Ownership</h3>
+        <ul>
+          <li><a href="https://www.bramanbentleypalmbeach.com/service-appointment/">Book a Service</a></li>
+          <li><a href="https://www.bramanbentleypalmbeach.com/parts-department/">Parts &amp; Accessories</a></li>
+          <li><a href="https://www.bramanbentleypalmbeach.com/ask-a-tech/">Ask a Technician</a></li>
+          <li><a href="https://www.bramanbentleypalmbeach.com/vehicle-recall-request/">Recall Enquiry</a></li>
+          <li><a href="https://www.bramanbentleypalmbeach.com/finance-application/">Bentley Financial Services</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Retailer</h3>
+        <ul>
+          <li><a href="https://www.bramanbentleypalmbeach.com/about-us/">About Us</a></li>
+          <li><a href="https://www.bramanbentleypalmbeach.com/hours/">Opening Hours</a></li>
+          <li><a href="https://www.bramanbentleypalmbeach.com/directions/">Directions</a></li>
+          <li><a href="https://www.bramanbentleypalmbeach.com/meet-our-staff/">Meet the Team</a></li>
+          <li><a href="https://www.bramanbentleypalmbeach.com/contact-us/">Contact Us</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="close__legal">
+      <address>Bentley Palm Beach, 2801 Okeechobee Boulevard, West Palm Beach, Florida 33409 · <a href="tel:+15619269111">561 926 9111</a></address>
+      <ul>
+        <li><a href="https://www.bramanbentleypalmbeach.com/privacy-policy/">Privacy Policy</a></li>
+        <li><a href="https://www.bramanbentleypalmbeach.com/terms-and-conditions/">Terms and Conditions</a></li>
+        <li><a href="https://www.bramanbentleypalmbeach.com/cookie-policy/">Cookie Policy</a></li>
+        <li><a href="https://www.bramanbentleypalmbeach.com/accessibility/">Accessibility</a></li>
+      </ul>
+      <div>© 2026 Bentley Palm Beach. Powered by All Auto Network</div>
+    </div>
+
+  </div>
+</footer>
+
+<a class="totop" href="#top" aria-label="Back to the top">
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 13.5V2.5m0 0L3 7.5m5-5 5 5" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</a>
+
+<script src="js/inventory.js?v=20260921132756" defer></script>
+</body>
+</html>

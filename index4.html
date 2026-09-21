@@ -9,8 +9,8 @@
 <link rel="preload" href="assets/fonts/Bentley-Light.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/Bentley-Regular.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/bm/2026/gtc-mountains.webp" as="image">
-<link rel="stylesheet" href="css/system.css?v=20260921b">
-<link rel="stylesheet" href="css/index4.css?v=20260921b">
+<link rel="stylesheet" href="css/system.css?v=20260921132756">
+<link rel="stylesheet" href="css/index4.css?v=20260921132756">
 <script>
   /* Motion is opt-in from the first paint: if the script never arrives, or the
      visitor asked for less motion, the page is simply its finished composition. */
@@ -36,7 +36,7 @@
 
     <nav class="mh__nav" id="nav" aria-label="Primary">
       <ul>
-        <li><a href="https://www.bramanbentleypalmbeach.com/search/new-bentley-west-palm-beach-fl/?cy=33409&amp;tp=new">Inventory</a></li>
+        <li><a href="inventory.html">Inventory</a></li>
         <li><a href="#range">Range</a></li>
         <li><a href="#care">Service</a></li>
         <li><a href="https://www.bramanbentleypalmbeach.com/finance-department/">Finance</a></li>
@@ -303,9 +303,9 @@
 
   <!-- 8 — inventory. The new cars on the floor as one rail across the whole
        screen, running past its edge: drag it, scroll it, or use the arrows.
-       Records: the retailer's own listings (bramanbentleypalmbeach.com JSON-LD,
-       read 18 September 2026; prices valid to 30 September 2026). The frames
-       are Bentley library imagery of each line, not the individual cars. -->
+       The cars and their photographs are the retailer's own listings
+       (data/inventory.json, captured 21 September 2026), written here by
+       tools/build.py — the first twelve new cars in the retailer's order. -->
   <section class="stock" id="stock" data-reveal aria-labelledby="stock-h">
     <div class="stock__in recede">
       <div class="page">
@@ -316,7 +316,7 @@
           <div class="head__aside stock__aside">
             <p class="body step" style="--i:2">Continental GT, Flying Spur and Bentayga, each built to a specification already settled. Every one can be seen, driven and delivered from Okeechobee Boulevard.</p>
             <div class="stock__ctl step" style="--i:3">
-              <a class="btn" href="https://www.bramanbentleypalmbeach.com/search/new-bentley-west-palm-beach-fl/?cy=33409&amp;tp=new">View all inventory</a>
+              <a class="btn" href="inventory.html">View all inventory</a>
               <span class="stock__arrows">
                 <button class="stock__arrow" type="button" data-dir="-1" aria-label="Previous cars"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10.5 2.5 5 8l5.5 5.5" stroke="currentColor" stroke-width="1.25"/></svg></button>
                 <button class="stock__arrow" type="button" data-dir="1" aria-label="More cars"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M5.5 2.5 11 8l-5.5 5.5" stroke="currentColor" stroke-width="1.25"/></svg></button>
@@ -328,66 +328,98 @@
 
       <ul class="stock__rail" tabindex="0" aria-label="New Bentley in stock; drag or scroll sideways">
         <li class="stock__car step" style="--i:2">
-          <a href="https://www.bramanbentleypalmbeach.com/auto/new-2026-bentley-continental-gt-s/121718000/" draggable="false">
-            <img src="assets17/img/stk-2.webp" alt="Continental GT S, front three-quarter, on a pale studio ground." width="1200" height="800" loading="lazy" decoding="async" draggable="false">
-            <span class="stock__row"><span class="stock__name">New 2026 Continental GT S</span><span class="stock__price">$380,788</span></span>
+          <a href="vehicles/v60065.html" draggable="false">
+            <img src="assets/img/inventory/v60065.webp" alt="Jetstream 2026 Bentley Continental GT S" width="840" height="630" loading="lazy" decoding="async" draggable="false">
+            <span class="stock__row"><span class="stock__name">New 2026 Continental GT S</span><span class="stock__price">$379,085</span></span>
             <span class="stock__facts">Jetstream over Linen · 30 miles<br>Stock V60065</span>
             <span class="link">View details<i aria-hidden="true"></i></span>
           </a>
         </li>
         <li class="stock__car step" style="--i:3">
-          <a href="https://www.bramanbentleypalmbeach.com/auto/new-2026-bentley-continental-gt-azure/119179388/" draggable="false">
-            <img src="assets/bm/gt-s-media-1.jpg" alt="Continental GT, front three-quarter, in the studio." width="1920" height="1080" loading="lazy" decoding="async" draggable="false">
-            <span class="stock__row"><span class="stock__name">New 2026 Continental GT Azure</span><span class="stock__price">$392,963</span></span>
+          <a href="vehicles/v69245.html" draggable="false">
+            <img src="assets/img/inventory/v69245.webp" alt="Verdant 2026 Bentley Continental GT Azure" width="840" height="630" loading="lazy" decoding="async" draggable="false">
+            <span class="stock__row"><span class="stock__name">New 2026 Continental GT Azure</span><span class="stock__price">$391,260</span></span>
             <span class="stock__facts">Verdant over Linen · 30 miles<br>Stock V69245</span>
             <span class="link">View details<i aria-hidden="true"></i></span>
           </a>
         </li>
         <li class="stock__car step" style="--i:4">
-          <a href="https://www.bramanbentleypalmbeach.com/auto/new-2026-bentley-continental-gt-mulliner/118851488/" draggable="false">
-            <img src="assets17/img/stk-4.webp" alt="Continental GT, front three-quarter against a pale wall." width="1200" height="800" loading="lazy" decoding="async" draggable="false">
-            <span class="stock__row"><span class="stock__name">New 2026 Continental GT Mulliner</span><span class="stock__price">$430,878</span></span>
+          <a href="vehicles/v68412.html" draggable="false">
+            <img src="assets/img/inventory/v68412.webp" alt="Glacier White 2026 Bentley Continental GT Mulliner" width="840" height="630" loading="lazy" decoding="async" draggable="false">
+            <span class="stock__row"><span class="stock__name">New 2026 Continental GT Mulliner</span><span class="stock__price">$429,175</span></span>
             <span class="stock__facts">Glacier White over Linen · 30 miles<br>Stock V68412</span>
             <span class="link">View details<i aria-hidden="true"></i></span>
           </a>
         </li>
         <li class="stock__car step" style="--i:5">
-          <a href="https://www.bramanbentleypalmbeach.com/auto/new-2026-bentley-flying-spur-v8/121718048/" draggable="false">
-            <img src="assets/bm/rail-flying-spur.jpg" alt="Flying Spur, front three-quarter, in the studio." width="1100" height="2200" loading="lazy" decoding="async" draggable="false">
-            <span class="stock__row"><span class="stock__name">New 2026 Flying Spur V8</span><span class="stock__price">$288,713</span></span>
-            <span class="stock__facts">Dark Sapphire over Linen · 30 miles<br>Stock V60190</span>
-            <span class="link">View details<i aria-hidden="true"></i></span>
-          </a>
-        </li>
-        <li class="stock__car step" style="--i:6">
-          <a href="https://www.bramanbentleypalmbeach.com/auto/new-2026-bentley-bentayga-azure/121561742/" draggable="false">
-            <img src="assets/bm/rail-bentayga.jpg" alt="Bentayga in green, front three-quarter, in the studio." width="1100" height="2200" loading="lazy" decoding="async" draggable="false">
-            <span class="stock__row"><span class="stock__name">New 2026 Bentayga Azure</span><span class="stock__price">$297,068</span></span>
-            <span class="stock__facts">Verdant over Linen · 30 miles<br>Stock V63986</span>
-            <span class="link">View details<i aria-hidden="true"></i></span>
-          </a>
-        </li>
-        <li class="stock__car step" style="--i:7">
-          <a href="https://www.bramanbentleypalmbeach.com/auto/new-2026-bentley-continental-gt-v8/118851437/" draggable="false">
-            <img src="assets17/img/stk-3.webp" alt="Continental GT in side view on a pale studio ground." width="1200" height="800" loading="lazy" decoding="async" draggable="false">
-            <span class="stock__row"><span class="stock__name">New 2026 Continental GT V8</span><span class="stock__price">$357,188</span></span>
-            <span class="stock__facts">Dark Sapphire over Linen · 30 miles<br>Stock V68522</span>
-            <span class="link">View details<i aria-hidden="true"></i></span>
-          </a>
-        </li>
-        <li class="stock__car step" style="--i:7">
-          <a href="https://www.bramanbentleypalmbeach.com/auto/new-2026-bentley-continental-gt-mulliner/120495926/" draggable="false">
-            <img src="assets/bm/gt-s-front-16x9.jpg" alt="Continental GT, front, in the studio." width="2560" height="1440" loading="lazy" decoding="async" draggable="false">
-            <span class="stock__row"><span class="stock__name">New 2026 Continental GT Mulliner</span><span class="stock__price">$433,038</span></span>
+          <a href="vehicles/v69802.html" draggable="false">
+            <img src="assets/img/inventory/v69802.webp" alt="Jetstream 2026 Bentley Continental GT Mulliner" width="840" height="630" loading="lazy" decoding="async" draggable="false">
+            <span class="stock__row"><span class="stock__name">New 2026 Continental GT Mulliner</span><span class="stock__price">$431,335</span></span>
             <span class="stock__facts">Jetstream over Linen · 30 miles<br>Stock V69802</span>
             <span class="link">View details<i aria-hidden="true"></i></span>
           </a>
         </li>
-        <li class="stock__car step" style="--i:7">
-          <a href="https://www.bramanbentleypalmbeach.com/auto/new-2026-bentley-continental-gt-s/121718069/" draggable="false">
-            <img src="assets/bm/gt-s-side.jpg" alt="Continental GT S in full side profile, in the studio." width="1920" height="1080" loading="lazy" decoding="async" draggable="false">
-            <span class="stock__row"><span class="stock__name">New 2026 Continental GT S</span><span class="stock__price">$377,973</span></span>
+        <li class="stock__car step" style="--i:6">
+          <a href="vehicles/v60107.html" draggable="false">
+            <img src="assets/img/inventory/v60107.webp" alt="Gravity Grey 2026 Bentley Continental GT S" width="840" height="630" loading="lazy" decoding="async" draggable="false">
+            <span class="stock__row"><span class="stock__name">New 2026 Continental GT S</span><span class="stock__price">$376,270</span></span>
             <span class="stock__facts">Gravity Grey over Linen · 30 miles<br>Stock V60107</span>
+            <span class="link">View details<i aria-hidden="true"></i></span>
+          </a>
+        </li>
+        <li class="stock__car step" style="--i:7">
+          <a href="vehicles/v60193.html" draggable="false">
+            <img src="assets/img/inventory/v60193.webp" alt="Verdant 2026 Bentley Continental GT Azure" width="840" height="630" loading="lazy" decoding="async" draggable="false">
+            <span class="stock__row"><span class="stock__name">New 2026 Continental GT Azure</span><span class="stock__price">$402,440</span></span>
+            <span class="stock__facts">Verdant over Linen · 30 miles<br>Stock V60193</span>
+            <span class="link">View details<i aria-hidden="true"></i></span>
+          </a>
+        </li>
+        <li class="stock__car step" style="--i:8">
+          <a href="vehicles/v68270.html" draggable="false">
+            <img src="assets/img/inventory/v68270.webp" alt="Glacier White 2026 Bentley Continental GT V8" width="840" height="630" loading="lazy" decoding="async" draggable="false">
+            <span class="stock__row"><span class="stock__name">New 2026 Continental GT V8</span><span class="stock__price">$352,240</span></span>
+            <span class="stock__facts">Glacier White over Camel · 30 miles<br>Stock V68270</span>
+            <span class="link">View details<i aria-hidden="true"></i></span>
+          </a>
+        </li>
+        <li class="stock__car step" style="--i:9">
+          <a href="vehicles/v69679.html" draggable="false">
+            <img src="assets/img/inventory/v69679.webp" alt="Glacier White 2026 Bentley Continental GT V8" width="840" height="630" loading="lazy" decoding="async" draggable="false">
+            <span class="stock__row"><span class="stock__name">New 2026 Continental GT V8</span><span class="stock__price">$355,485</span></span>
+            <span class="stock__facts">Glacier White over Linen · 30 miles<br>Stock V69679</span>
+            <span class="link">View details<i aria-hidden="true"></i></span>
+          </a>
+        </li>
+        <li class="stock__car step" style="--i:10">
+          <a href="vehicles/v68522.html" draggable="false">
+            <img src="assets/img/inventory/v68522.webp" alt="Dark Sapphire 2026 Bentley Continental GT V8" width="840" height="630" loading="lazy" decoding="async" draggable="false">
+            <span class="stock__row"><span class="stock__name">New 2026 Continental GT V8</span><span class="stock__price">$355,485</span></span>
+            <span class="stock__facts">Dark Sapphire over Linen · 30 miles<br>Stock V68522</span>
+            <span class="link">View details<i aria-hidden="true"></i></span>
+          </a>
+        </li>
+        <li class="stock__car step" style="--i:11">
+          <a href="vehicles/v60190.html" draggable="false">
+            <img src="assets/img/inventory/v60190.webp" alt="Dark Sapphire 2026 Bentley Flying Spur V8" width="840" height="630" loading="lazy" decoding="async" draggable="false">
+            <span class="stock__row"><span class="stock__name">New 2026 Flying Spur V8</span><span class="stock__price">$287,010</span></span>
+            <span class="stock__facts">Dark Sapphire over Linen · 30 miles<br>Stock V60190</span>
+            <span class="link">View details<i aria-hidden="true"></i></span>
+          </a>
+        </li>
+        <li class="stock__car step" style="--i:12">
+          <a href="vehicles/v63986.html" draggable="false">
+            <img src="assets/img/inventory/v63986.webp" alt="Verdant 2026 Bentley Bentayga Azure" width="840" height="630" loading="lazy" decoding="async" draggable="false">
+            <span class="stock__row"><span class="stock__name">New 2026 Bentayga Azure</span><span class="stock__price">$295,365</span></span>
+            <span class="stock__facts">Verdant over Linen · 30 miles<br>Stock V63986</span>
+            <span class="link">View details<i aria-hidden="true"></i></span>
+          </a>
+        </li>
+        <li class="stock__car step" style="--i:13">
+          <a href="vehicles/v69602.html" draggable="false">
+            <img src="assets/img/inventory/v69602.webp" alt="Dark Sapphire 2026 Bentley Flying Spur V8" width="840" height="630" loading="lazy" decoding="async" draggable="false">
+            <span class="stock__row"><span class="stock__name">New 2026 Flying Spur V8</span><span class="stock__price">$295,465</span></span>
+            <span class="stock__facts">Dark Sapphire over Saddle · 30 miles<br>Stock V69602</span>
             <span class="link">View details<i aria-hidden="true"></i></span>
           </a>
         </li>
@@ -470,19 +502,19 @@
       <div>
         <h3>Models</h3>
         <ul>
-          <li><a href="https://www.bramanbentleypalmbeach.com/search/new-continental-gt-west-palm-beach-fl/?cy=33409&amp;md=335&amp;tp=new">Continental GT</a></li>
-          <li><a href="https://www.bramanbentleypalmbeach.com/search/new-continental-gtc-west-palm-beach-fl/?cy=33409&amp;md=4607&amp;tp=new">Continental GT Convertible</a></li>
-          <li><a href="https://www.bramanbentleypalmbeach.com/search/new-bentley-flying-spur-west-palm-beach-fl/?cy=33409&amp;md=2837&amp;tp=new">Flying Spur</a></li>
-          <li><a href="https://www.bramanbentleypalmbeach.com/search/new-bentayga-ewb-bentayga-west-palm-beach-fl/?cy=33409&amp;md=4096&amp;md=13889&amp;tp=new">Bentayga</a></li>
-          <li><a href="https://www.bramanbentleypalmbeach.com/search/new-bentayga-ewb-west-palm-beach-fl/?cy=33409&amp;md=13889&amp;tp=new">Bentayga EWB</a></li>
+          <li><a href="inventory.html?model=Continental+GT">Continental GT</a></li>
+          <li><a href="inventory.html?model=Continental+GTC">Continental GT Convertible</a></li>
+          <li><a href="inventory.html?model=Flying+Spur">Flying Spur</a></li>
+          <li><a href="inventory.html?model=Bentayga">Bentayga</a></li>
+          <li><a href="inventory.html?model=Bentayga+EWB">Bentayga EWB</a></li>
         </ul>
       </div>
       <div>
         <h3>Inventory</h3>
         <ul>
-          <li><a href="https://www.bramanbentleypalmbeach.com/search/new-bentley-west-palm-beach-fl/?cy=33409&amp;tp=new">New Bentley</a></li>
-          <li><a href="https://www.bramanbentleypalmbeach.com/search/used-bentley-west-palm-beach-fl/?cy=33409&amp;mk=7&amp;tp=used">Pre-Owned Bentley</a></li>
-          <li><a href="https://www.bramanbentleypalmbeach.com/braman-bentley-cpo/">Certified Pre-Owned</a></li>
+          <li><a href="inventory.html?condition=new">New Bentley</a></li>
+          <li><a href="inventory.html?condition=used">Pre-Owned Bentley</a></li>
+          <li><a href="inventory.html?condition=certified">Certified by Bentley</a></li>
           <li><a href="https://www.bramanbentleypalmbeach.com/find-my-car/">Find My Car</a></li>
           <li><a href="https://www.bramanbentleypalmbeach.com/value-trade-in/">Value Your Bentley</a></li>
         </ul>
@@ -527,6 +559,6 @@
   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 13.5V2.5m0 0L3 7.5m5-5 5 5" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg>
 </a>
 
-<script src="js/index4.js?v=20260921b" defer></script>
+<script src="js/index4.js?v=20260921132756" defer></script>
 </body>
 </html>
