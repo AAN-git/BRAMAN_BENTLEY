@@ -346,7 +346,7 @@ def vehicle_page(v):
           <p class="vdp__sub body step" style="--i:3">{e(v['exterior'])} over {e(v['interior'])} · {'{:,}'.format(v['mileage'])} miles · Stock {e(v['stock'])}</p>
         </div>
         <div class="vdp__figure step" style="--i:2">
-          <p class="vdp__price"><span class="vdp__price-label">{e(label)}</span><span class="vdp__price-value">{money(v['price'])}</span><a class="asterisk" href="#pricing" aria-label="Pricing details">*</a></p>
+          <p class="vdp__price"><span class="vdp__price-label">{e(label)}<a class="asterisk" href="#pricing" aria-label="Pricing details">*</a></span><span class="vdp__price-value">{money(v['price'])}</span></p>
           <div class="vdp__figure-act">
             <a class="btn" href="#enquire">Confirm availability</a>
             <ul class="tools" data-stock="{e(v['stock'])}" data-name="{e(name)}">

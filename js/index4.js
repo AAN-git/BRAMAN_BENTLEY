@@ -302,13 +302,14 @@
     var down = null, moved = false;
     rail.addEventListener("pointerdown", function (e) {
       if (e.pointerType !== "mouse" || e.button !== 0) return;
-      down = { x: e.clientX, left: rail.scrollLeft }; moved = false;
-      rail.setPointerCapture(e.pointerId);
+      down = { x: e.clientX, left: rail.scrollLeft, id: e.pointerId }; moved = false;
     });
     rail.addEventListener("pointermove", function (e) {
       if (!down) return;
       var dx = e.clientX - down.x;
-      if (!moved && Math.abs(dx) > 4) { moved = true; rail.classList.add("is-dragging"); }
+      /* the pointer is captured only once this is a drag: captured on the
+         press, a plain click would be delivered to the rail, not the link */
+      if (!moved && Math.abs(dx) > 4) { moved = true; rail.classList.add("is-dragging"); rail.setPointerCapture(down.id); }
       if (moved) rail.scrollLeft = down.left - dx;
     });
     function up(e) {
