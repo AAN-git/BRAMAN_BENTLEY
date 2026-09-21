@@ -54,7 +54,7 @@
 .dir { padding-block: var(--floor); display: flex; align-items: stretch; isolation: isolate; }
 .dir .page { width: 100%; height: 100%; max-width: none; padding-inline: var(--edge); display: grid; grid-template-columns: minmax(16rem, 3fr) minmax(0, 9fr); column-gap: clamp(2rem, 3vw, 3.5rem); align-items: center; }
 .dir__copy { max-width: 22rem; }
-.dir__no { margin-block-start: var(--gap-title); font-size: clamp(3.5rem, 10vh, 6.5rem); font-weight: 300; line-height: 1; letter-spacing: var(--track-display); color: rgba(255, 255, 255, 0.28); font-variant-numeric: tabular-nums; }
+.dir__no { font-size: clamp(3.5rem, 10vh, 6.5rem); font-weight: 300; line-height: 1; letter-spacing: var(--track-display); color: rgba(255, 255, 255, 0.28); font-variant-numeric: tabular-nums; }
 .dir__no + .h2 { margin-block-start: var(--gap-copy); }
 .dir .h2 { font-size: min(var(--text-display), 7vh); }
 .dir__idea { position: relative; margin-block-start: var(--gap-act); padding-block-start: var(--gap-act); font-size: var(--text-lead); line-height: 1.4; color: var(--ink); }
