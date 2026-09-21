@@ -709,7 +709,8 @@ main > section::before {
   display: flex; align-items: center;
 }
 .stock__in { width: 100%; }
-.stock__ctl { display: flex; align-items: center; gap: var(--space-5); margin-block-start: var(--space-5); }
+/* the title at the left, the call and the arrows at the right, on one line */
+.stock__ctl { display: flex; align-items: center; justify-content: flex-end; gap: var(--space-5); }
 .stock__arrows { display: inline-flex; gap: var(--space-1); }
 .stock__arrow {
   display: grid; place-items: center; width: 44px; height: 44px;
@@ -988,11 +989,7 @@ html[data-past] .totop { opacity: 1; visibility: visible; transform: none; trans
 }
 @media (max-height: 800px) and (min-width: 1024px) {
   .retailer .body { display: none; }   /* the record is the point of the chapter; on a short screen the sentence gives way */
-  /* the rail: the sentence gives way and the title takes one line, so the
-     plates start higher on a short screen */
-  .stock__aside .body { display: none; }
   .stock .h2 { font-size: min(var(--text-display), 7vh); }
-  .stock .h2 br { display: none; }
 }
 
 @media (max-width: 767px) {
