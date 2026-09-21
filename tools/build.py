@@ -82,7 +82,7 @@ def rows_html(rows, indent=14):
 #     two lines kept for the MSRP saving and the lease, the way in. Every line
 #     is reserved whether the car needs it or not, so a row of cards is one
 #     height and its figures sit on one line.
-def card(v, p='', eager=False):
+def card(v, p='', eager=False, cls='card', style=''):
     src, w, h, note = image_of(v, p)
     flag = '<span class="card__flag">Internet special</span>' if v['special'] else ''
     label = v['price_label']
@@ -107,7 +107,7 @@ def card(v, p='', eager=False):
     if v['lease_month']:
         extra.append(f"Lease {money(v['lease_month'])} a month")
     extra_html = ''.join(f'<span>{e(x)}</span>' for x in extra)
-    return f'''        <li class="card" data-condition="{v['condition']}" data-certified="{1 if v['certified'] else 0}" data-year="{v['year']}" data-price="{v['price']}" data-mileage="{v['mileage']}" data-model="{e(v['model'])}" data-trim="{e(v['trim'])}" data-stock="{e(v['stock'])}" data-vin="{e(v['vin'])}">
+    return f'''        <li class="{cls}"{f' style="{style}"' if style else ''} data-condition="{v['condition']}" data-certified="{1 if v['certified'] else 0}" data-year="{v['year']}" data-price="{v['price']}" data-mileage="{v['mileage']}" data-model="{e(v['model'])}" data-trim="{e(v['trim'])}" data-stock="{e(v['stock'])}" data-vin="{e(v['vin'])}">
           <a class="card__link" href="{p}{v['page']}" aria-label="{e(v['title'])}, {e(label)} {money(v['price'])}">
             <span class="card__media">{flag}<img src="{src}" width="{w}" height="{h}" loading="{'eager' if eager else 'lazy'}" decoding="async" alt="{e(alt)}"></span>
             <span class="card__body">
@@ -154,16 +154,8 @@ print(len(cards), 'cards in inventory.html;', len(years), 'years,', len(models),
 #    the real car's own photograph
 # =========================================================================
 def rail_car(v, i):
-    src, w, h, note = image_of(v)
-    return f'''        <li class="stock__car step" style="--i:{i}">
-          <a href="{v['page']}" draggable="false">
-            <img src="{src}" alt="{e(v['exterior'])} {e(name_of(v))}{note}" width="{w}" height="{h}" loading="lazy" decoding="async" draggable="false">
-            <span class="stock__row"><span class="stock__name">{e(short_name(v))}</span></span>
-            <span class="stock__price"><small>{e(v['price_label'])}</small>{money(v['price'])}</span>
-            <span class="stock__facts"><span><b>Exterior</b>{e(v['exterior'])}</span><span><b>Interior</b>{e(v['interior'])}</span><span><b>Mileage</b>{'{:,}'.format(v['mileage'])} miles</span><span><b>Stock #</b>{e(v['stock'])}</span></span>
-            <span class="link">View details<i aria-hidden="true"></i></span>
-          </a>
-        </li>'''
+    """The same plate as the inventory's, on the rail, arriving with the chapter."""
+    return card(v, '', eager=False, cls='card stock__car step', style=f'--i:{i}')
 rail_cars = [v for v in V if v['condition'] == 'new'][:12]
 rail = '<ul class="stock__rail" tabindex="0" aria-label="New Bentley in stock; drag or scroll sideways">\n' + '\n'.join(rail_car(v, i + 2) for i, v in enumerate(rail_cars)) + '\n      </ul>'
 path = ROOT + 'index4.html'

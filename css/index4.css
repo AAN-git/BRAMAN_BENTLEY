@@ -721,7 +721,7 @@ main > section::before {
 
 .stock__rail {
   display: flex;
-  gap: var(--space-5);
+  gap: var(--space-6);
   min-height: 0;
   margin-block-start: clamp(1.5rem, 3.5vh, 3rem);
   /* the first card starts under the heading: the page column's own edge */
@@ -737,37 +737,16 @@ main > section::before {
 .stock__rail::-webkit-scrollbar { display: none; }
 .stock__rail.is-dragging { cursor: grabbing; scroll-snap-type: none; scroll-behavior: auto; user-select: none; }
 .stock__rail.is-dragging a { pointer-events: none; }
-/* the cards' width: the script narrows it on a screen where the chapter
-   would otherwise run past the floor (a narrower card is a shorter one) */
-.stock__car { flex: 0 0 var(--stock-card-w, clamp(18rem, 27vw, 27rem)); scroll-snap-align: start; min-height: 0; }
-.stock__car a { display: block; }
-.stock__car img {
-  width: 100%; aspect-ratio: 3 / 2; object-fit: cover; object-position: 50% 50%;
-  background: #8d8d8d;
-  transition: opacity var(--dur-3) var(--ease-out);
-}
-.stock__car a:hover img { opacity: 0.86; }
-.stock__row {
-  display: flex; justify-content: space-between; align-items: baseline; gap: var(--space-4);
-  margin-block-start: var(--space-4);
-  padding-block-start: var(--space-3);
-  border-top: 1px solid var(--rule);
-}
-/* the name on its hairline, two lines kept; the figure on its own line
-   beneath, so the prices of neighbouring cars sit on one line */
-.stock__name { display: block; font-size: var(--text-lead); line-height: 1.2; min-height: 2.4em; }
-.stock__price {
-  display: flex; justify-content: space-between; align-items: baseline; gap: var(--space-4);
-  margin-block-start: var(--space-2);
-  font-size: var(--text-lead); line-height: 1.2; font-variant-numeric: tabular-nums; color: var(--ink); white-space: nowrap;
-}
-.stock__price small { font-size: var(--text-xs); font-weight: 400; letter-spacing: var(--track-label); text-transform: uppercase; color: var(--ink-2); }
-/* the facts as four rows, each its own line — exterior, interior, mileage,
-   stock — the labels in the small caps register (as on the inventory cards) */
-.stock__facts { display: grid; row-gap: 2px; margin-block-start: var(--space-3); font-size: var(--text-xs); line-height: 1.5; color: var(--ink-2); }
-.stock__facts > span { display: grid; grid-template-columns: 5.25rem minmax(0, 1fr); column-gap: var(--space-3); align-items: baseline; }
-.stock__facts b { font-weight: 400; letter-spacing: var(--track-label); text-transform: uppercase; color: var(--ink-3); }
-.stock__car .link { margin-block-start: var(--space-3); }
+/* the plates are wide — the photograph, the name, the facts and the
+   retailer's build need the room — so this is the one chapter allowed to be
+   taller than the screen: it sticks with its foot on the fold, and the
+   wheel's second beat lands there */
+main > section.stock { height: auto; min-height: 100svh; }
+/* the plates are exactly the inventory grid's: a third of the page column
+   less two gutters, the same gap between them */
+.stock__car { flex: 0 0 calc((min(var(--page), 100vw - 2 * var(--gutter)) - 2 * var(--space-6)) / 3); scroll-snap-align: start; min-height: 0; }
+/* the plate itself — photograph, name, facts, the figure and the retailer's
+   build — is the inventory's, in css/cards.css */
 
 /* --- 7 · The retailer ------------------------------------------------------- */
 
@@ -1009,13 +988,11 @@ html[data-past] .totop { opacity: 1; visibility: visible; transform: none; trans
 }
 @media (max-height: 800px) and (min-width: 1024px) {
   .retailer .body { display: none; }   /* the record is the point of the chapter; on a short screen the sentence gives way */
-  /* the rail: the sentence gives way, the name keeps one line, and the
-     cards take their width from the height left for them, so the chapter
-     ends on the floor on any short screen */
+  /* the rail: the sentence gives way and the title takes one line, so the
+     plates start higher on a short screen */
   .stock__aside .body { display: none; }
   .stock .h2 { font-size: min(var(--text-display), 7vh); }
-  .stock .h2 br { display: none; }   /* the title on one line: the height goes to the cars */
-  .stock__name { min-height: 0; }
+  .stock .h2 br { display: none; }
 }
 
 @media (max-width: 767px) {
@@ -1072,8 +1049,6 @@ html[data-past] .totop { opacity: 1; visibility: visible; transform: none; trans
   .range__item img { height: auto; aspect-ratio: 4 / 5; }
   .po-stage { height: auto; }
   .stock__in { display: block; }
-  .stock__car a { display: block; height: auto; }
-  .stock__car img { height: auto; aspect-ratio: 3 / 2; }
   .retailer .page, .retailer__grid, .retailer__stack { height: auto; }
   .retailer__stack { height: 88vw; }
   .retailer__showroom { max-height: none; }

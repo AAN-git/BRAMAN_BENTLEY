@@ -1,0 +1,106 @@
+/* ==========================================================================
+   Bentley Palm Beach — the car plate.
+   One plate for every car, wherever it stands: the inventory grid, the
+   home page rail, the vehicle page's "more on the floor". The photograph,
+   then in rank: the kind, the name, four facts each on its own line, the
+   headline figure on a hairline, the retailer's build quiet beneath, the
+   saving and the lease where there are any, the way in. Every line is
+   reserved, so a row of plates is one height and their figures sit on one
+   line. Loads after index4.css (the tokens, the link).
+   ========================================================================== */
+.card { min-width: 0; display: flex; }
+.card__link {
+  display: flex; flex-direction: column; width: 100%;
+  color: inherit;
+  border: 1px solid var(--rule);
+  background: rgba(255, 255, 255, 0.03);
+  transition: border-color var(--dur-3) var(--ease-out), background-color var(--dur-3) var(--ease-out);
+}
+.card__link:hover { border-color: var(--rule-strong); background: rgba(255, 255, 255, 0.05); }
+.card__media { position: relative; display: block; overflow: hidden; background: #8d8d8d; }
+.card__media img {
+  width: 100%; aspect-ratio: 4 / 3; object-fit: cover;
+  transition: opacity var(--dur-3) var(--ease-out);
+}
+.card__link:hover .card__media img { opacity: 0.9; }
+/* the retailer's own mark, where it puts one, on the photograph */
+.card__flag {
+  position: absolute; left: 0; top: 0; z-index: 1;
+  padding: var(--space-2) var(--space-3);
+  background: var(--black); color: var(--heritage-white);
+  font-size: var(--text-xs); font-weight: 400;
+  letter-spacing: var(--track-label); text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.card__body {
+  display: flex; flex-direction: column; flex: 1 1 auto;
+  padding: var(--space-5) var(--space-5) var(--space-5);
+}
+/* 1 — the car: its kind above in the caps register, the name as the plate's
+       one large line, the facts beneath in the small register */
+.card__kind {
+  display: block;
+  font-size: var(--text-xs); font-weight: 400;
+  letter-spacing: var(--track-label); text-transform: uppercase;
+  color: var(--ink-2);
+}
+.card__kind b { font-weight: 400; color: var(--heritage-white); }
+.card__title {
+  margin-block-start: var(--space-2);
+  font-size: var(--text-h3); font-weight: 300; line-height: 1.15;
+  letter-spacing: var(--track-display);
+  min-height: 2.3em;   /* two lines kept: the long names have two */
+  text-wrap: balance;
+}
+/* four labelled rows under the name — exterior, interior, mileage, stock —
+   the labels in the small caps register; each fact on its own line */
+.card__facts {
+  display: grid; row-gap: 2px;
+  margin-block-start: var(--space-2);
+  min-height: calc(6em + 6px);   /* four lines kept, so every card ends on the same line */
+  font-size: var(--text-xs); line-height: 1.5; color: var(--ink-2);
+}
+.card__facts > span { display: grid; grid-template-columns: 5.25rem minmax(0, 1fr); column-gap: var(--space-3); align-items: baseline; }
+.card__facts b { font-weight: 400; letter-spacing: var(--track-label); text-transform: uppercase; color: var(--ink-3); }
+/* 2 — the figure: on its own hairline, the label small, the number large */
+.card__price {
+  display: flex; justify-content: space-between; align-items: baseline; gap: var(--space-4);
+  margin-block-start: var(--space-5);
+  padding-block-start: var(--space-4);
+  border-top: 1px solid var(--rule);
+}
+.card__price-label { font-size: var(--text-xs); font-weight: 400; letter-spacing: var(--track-label); text-transform: uppercase; color: var(--ink-2); white-space: nowrap; }
+.card__price-label sup { font-size: 0.8em; color: var(--ink-3); margin-inline-start: 0.1em; line-height: 0; }
+.card__price-value { font-size: var(--text-h3); font-weight: 300; line-height: 1; letter-spacing: var(--track-display); font-variant-numeric: tabular-nums; color: var(--white); white-space: nowrap; }
+/* 3 — the build, as the retailer's card states it, quiet: no lines, the
+       small register, the sale price the only row in ink */
+.card__build {
+  margin-block-start: var(--space-3);
+  font-size: var(--text-xs); line-height: 1.5;
+  color: var(--ink-3);
+}
+.card__build div { display: flex; justify-content: space-between; gap: var(--space-4); padding-block: 1px; }
+.card__build dd { font-variant-numeric: tabular-nums; white-space: nowrap; }
+.card__build .card__sale { color: var(--ink-2); }
+.card__build .card__sale dd { color: var(--white); }
+.card__extra {
+  display: block;
+  margin-block-start: var(--space-3);
+  min-height: 3em;     /* two lines kept: the saving, the lease */
+  font-size: var(--text-xs); line-height: 1.5; color: var(--ink-2);
+}
+.card__extra span { display: block; }
+.nowrap { white-space: nowrap; }
+.card__body .link { margin-block-start: auto; padding-block-start: var(--space-5); }
+
+
+/* --- On the home page rail ------------------------------------------------
+   The chapter's title says "New Bentley in stock", so the kind line goes;
+   the names are one line at the rail's width; the saving and lease lines
+   are shown only where there are any. */
+.stock .card__kind { display: none; }
+.stock .card__title { min-height: 0; }
+.stock .card__extra { min-height: 0; margin-block-start: 0; }
+.stock .card__extra:not(:empty) { margin-block-start: var(--space-3); }
+.stock .card__body .link { padding-block-start: var(--space-4); }
