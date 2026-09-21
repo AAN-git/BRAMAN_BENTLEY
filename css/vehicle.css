@@ -181,13 +181,13 @@
 /* --- The disclosure: the title, the lease terms as rows on the plate's
        ground, the retailer's text beneath at reading measure ------------- */
 .pricing { padding-block: clamp(4rem, 9vh, 6rem) 0; }
-.pricing__body { margin-block-start: clamp(1.5rem, 3vh, 2.5rem); display: grid; gap: clamp(2rem, 4vh, 3rem); max-width: 52rem; }
+.pricing__body { margin-block-start: clamp(1.5rem, 3vh, 2.5rem); display: grid; gap: clamp(2rem, 4vh, 3rem); }   /* one column, the page's width */
 .vdp__h { font-size: var(--text-lead); font-weight: 300; }
 .pricing__mark { color: var(--ink-3); margin-inline-start: 0.15em; }
 .pricing__lease { padding: clamp(1.25rem, 2.4vw, 2rem); border: 1px solid var(--rule); background: rgba(255, 255, 255, 0.04); }
 .pricing__rows { font-size: var(--text-body); }
 .pricing__rows dd { color: var(--ink); }
-.pricing__fine, .pricing__text { margin-block-start: var(--space-4); font-size: var(--text-xs); line-height: 1.6; color: var(--ink-3); max-width: 44rem; }
+.pricing__fine, .pricing__text { margin-block-start: var(--space-4); font-size: var(--text-xs); line-height: 1.6; color: var(--ink-3); }
 
 /* --- More on the floor -------------------------------------------------- */
 .more { padding-block: clamp(4rem, 10vh, 7rem) clamp(4rem, 10vh, 7rem); }

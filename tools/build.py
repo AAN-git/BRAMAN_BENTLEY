@@ -259,7 +259,7 @@ def vehicle_page(v):
         points = v['certified_terms'] or ['1 year / unlimited miles in addition to any remaining new vehicle limited warranty', 'Roadside assistance', 'Warranty deductible: $0', 'Transferable warranty', '79-point inspection']
         pts = '\n'.join(f'              <li>{e(x)}</li>' for x in points)
         certified = fold('Certified by Bentley', f'              <p class="vdp__copy">Bentley\'s own pre-owned programme: an inspection by Bentley-trained technicians, a warranty that follows the car, and roadside assistance, as the retailer lists it.</p>\n              <ul class="vdp__features">\n{pts}\n              </ul>')
-    gallery_note = f'{v["photo_count_at_dealer"]} photographs at <a href="{e(v["dealer_url"])}">the retailer\'s listing</a>' if v['photo_count_at_dealer'] > len(photos) else ('Bentley image of the line; the retailer has no photograph of this car yet' if v['stock_image'] else '')
+    gallery_note = 'Bentley image of the line; the retailer has no photograph of this car yet' if v['stock_image'] else ''
 
     # the lease special above the offer: the payment, the term, the money
     # down; the full terms below
