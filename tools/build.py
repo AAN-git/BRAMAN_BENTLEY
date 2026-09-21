@@ -154,8 +154,9 @@ def rail_car(v, i):
     return f'''        <li class="stock__car step" style="--i:{i}">
           <a href="{v['page']}" draggable="false">
             <img src="{src}" alt="{e(v['exterior'])} {e(name_of(v))}{note}" width="{w}" height="{h}" loading="lazy" decoding="async" draggable="false">
-            <span class="stock__row"><span class="stock__name">{e(short_name(v))}</span><span class="stock__price">{money(v['price'])}</span></span>
-            <span class="stock__facts">{e(v['exterior'])} over {e(v['interior'])} · {'{:,}'.format(v['mileage'])} miles<br>Stock {e(v['stock'])}</span>
+            <span class="stock__row"><span class="stock__name">{e(short_name(v))}</span></span>
+            <span class="stock__price"><small>{e(v['price_label'])}</small>{money(v['price'])}</span>
+            <span class="stock__facts">{e(v['exterior'])} over {e(v['interior'])}, {'{:,}'.format(v['mileage'])} miles<br>Stock {e(v['stock'])}</span>
             <span class="link">View details<i aria-hidden="true"></i></span>
           </a>
         </li>'''

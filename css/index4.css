@@ -737,7 +737,9 @@ main > section::before {
 .stock__rail::-webkit-scrollbar { display: none; }
 .stock__rail.is-dragging { cursor: grabbing; scroll-snap-type: none; scroll-behavior: auto; user-select: none; }
 .stock__rail.is-dragging a { pointer-events: none; }
-.stock__car { flex: 0 0 clamp(18rem, 27vw, 27rem); scroll-snap-align: start; min-height: 0; }
+/* the cards' width: the script narrows it on a screen where the chapter
+   would otherwise run past the floor (a narrower card is a shorter one) */
+.stock__car { flex: 0 0 var(--stock-card-w, clamp(18rem, 27vw, 27rem)); scroll-snap-align: start; min-height: 0; }
 .stock__car a { display: block; }
 .stock__car img {
   width: 100%; aspect-ratio: 3 / 2; object-fit: cover; object-position: 50% 50%;
@@ -751,8 +753,15 @@ main > section::before {
   padding-block-start: var(--space-3);
   border-top: 1px solid var(--rule);
 }
-.stock__name { font-size: var(--text-lead); line-height: 1.2; }
-.stock__price { font-size: var(--text-body); font-variant-numeric: tabular-nums; color: var(--ink); white-space: nowrap; }
+/* the name on its hairline, two lines kept; the figure on its own line
+   beneath, so the prices of neighbouring cars sit on one line */
+.stock__name { display: block; font-size: var(--text-lead); line-height: 1.2; min-height: 2.4em; }
+.stock__price {
+  display: flex; justify-content: space-between; align-items: baseline; gap: var(--space-4);
+  margin-block-start: var(--space-2);
+  font-size: var(--text-lead); line-height: 1.2; font-variant-numeric: tabular-nums; color: var(--ink); white-space: nowrap;
+}
+.stock__price small { font-size: var(--text-xs); font-weight: 400; letter-spacing: var(--track-label); text-transform: uppercase; color: var(--ink-2); }
 .stock__facts { display: block; margin-block-start: var(--space-2); font-size: var(--text-xs); color: var(--ink-2); }
 .stock__car .link { margin-block-start: var(--space-3); }
 
@@ -947,9 +956,10 @@ html[data-past] .totop { opacity: 1; visibility: visible; transform: none; trans
 
 .btn__short { display: none; }
 
-@media (max-width: 1279px) {
-  /* five routes, centred wings and the retailer's number share 1024px only
-     with the tracking eased and the action shortened to its verb */
+@media (max-width: 1359px) {
+  /* five routes, centred wings and the retailer's number share the bar only
+     with the name dropped and the action shortened to its verb (at 1280 the
+     full bar wraps) */
   :root { --edge: var(--gutter); }
   .mh__retailer span:first-child { display: none; }
   .mh__mark img, .mh[data-scrolled] .mh__mark img { width: 96px; }
@@ -995,6 +1005,12 @@ html[data-past] .totop { opacity: 1; visibility: visible; transform: none; trans
 }
 @media (max-height: 800px) and (min-width: 1024px) {
   .retailer .body { display: none; }   /* the record is the point of the chapter; on a short screen the sentence gives way */
+  /* the rail: the sentence gives way, the name keeps one line, and the
+     cards take their width from the height left for them, so the chapter
+     ends on the floor on any short screen */
+  .stock__aside .body { display: none; }
+  .stock .h2 { font-size: min(var(--text-display), 7vh); }
+  .stock__name { min-height: 0; }
 }
 
 @media (max-width: 767px) {

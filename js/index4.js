@@ -278,6 +278,29 @@
   /* --- The inventory rail ---------------------------------------------------
          Scrolls sideways by wheel or touch, drags with the pointer, and the
          arrows move it a screen at a time; each arrow goes quiet at its end. */
+  /* --- The rail fits its screen: every chapter ends on the floor, so where
+         the cards would run past it the cards are narrowed (a 3:2 frame gets
+         shorter as it gets narrower) by exactly the overshoot. -------------- */
+  function fitRail() {
+    var sec = document.querySelector(".stock");
+    if (!sec) return;
+    sec.style.removeProperty("--stock-card-w");
+    if (!window.matchMedia("(min-width: 1024px)").matches) return;
+    var card = sec.querySelector(".stock__car");
+    var inner = sec.querySelector(".stock__in");
+    if (!card || !inner) return;
+    var cs = getComputedStyle(sec);
+    var room = sec.clientHeight - parseFloat(cs.paddingTop) - parseFloat(cs.paddingBottom);
+    var over = inner.getBoundingClientRect().height - room;
+    if (over <= 0) return;
+    var w = card.getBoundingClientRect().width - over * 1.5;
+    sec.style.setProperty("--stock-card-w", Math.max(208, Math.floor(w)) + "px");
+  }
+  window.addEventListener("resize", fitRail);
+  window.addEventListener("load", fitRail);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitRail);
+  fitRail();
+
   Array.prototype.forEach.call(document.querySelectorAll(".stock"), function (sec) {
     var rail = sec.querySelector(".stock__rail");
     var arrows = Array.prototype.slice.call(sec.querySelectorAll(".stock__arrow"));
