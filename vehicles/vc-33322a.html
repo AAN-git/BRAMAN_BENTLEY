@@ -9,10 +9,10 @@
 <link rel="preload" href="../assets/fonts/Bentley-Light.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../assets/fonts/Bentley-Regular.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../assets/img/vdp/vc-33322a/1.webp" as="image">
-<link rel="stylesheet" href="../css/system.css?v=20260921132948">
-<link rel="stylesheet" href="../css/index4.css?v=20260921132948">
-<link rel="stylesheet" href="../css/inventory.css?v=20260921132948">
-<link rel="stylesheet" href="../css/vehicle.css?v=20260921132948">
+<link rel="stylesheet" href="../css/system.css?v=20260921134926">
+<link rel="stylesheet" href="../css/index4.css?v=20260921134926">
+<link rel="stylesheet" href="../css/inventory.css?v=20260921134926">
+<link rel="stylesheet" href="../css/vehicle.css?v=20260921134926">
 <script>
   /* Motion is opt-in from the first paint: if the script never arrives, or the
      visitor asked for less motion, the page is simply its finished composition. */
@@ -68,7 +68,7 @@
         <div class="vdp__name">
           <p class="label step" style="--i:1">Pre-owned · One owner</p>
           <h1 class="h2 step" style="--i:2">2026 Bentley Continental GT</h1>
-          <p class="vdp__sub body step" style="--i:3">Verdant over Saddle · 382 miles · Stock VC-33322A</p>
+          <p class="vdp__sub body step" style="--i:3">Verdant over Saddle, 382 miles · Stock VC-33322A</p>
         </div>
         <div class="vdp__figure step" style="--i:2">
           <p class="vdp__price"><span class="vdp__price-label">Braman Price<a class="asterisk" href="#pricing" aria-label="Pricing details">*</a></span><span class="vdp__price-value">$287,900</span></p>
@@ -136,7 +136,7 @@
       <aside class="special step" data-reveal aria-labelledby="special-title" style="--i:1">
         <p class="special__label" id="special-title">Lease special<a class="asterisk" href="#pricing" aria-label="Lease terms">*</a></p>
         <p class="special__figure">$4,299 <span>a month</span></p>
-        <p class="special__terms">36 months · $39,999 down · 2,500 miles a year</p>
+        <p class="special__terms">36 months, $39,999 down, 2,500 miles a year</p>
         <p class="special__fine">Special closed-end lease on this one car, through Bentley Financial Services. Excludes sales tax and registration fees. Valid through September 30, 2026.</p>
         <a class="link" href="#pricing">Full terms<i aria-hidden="true"></i></a>
       </aside>
@@ -171,21 +171,23 @@
     </div>
   </section>
 
-  <!-- Enquire -->
+  <!-- Enquire: one plate, the ask at the left, the form at the right -->
   <section class="vdp__enquire" id="enquire" aria-labelledby="enq-title">
-    <div class="page vdp__enquire-grid">
-      <div class="vdp__enquire-lede">
-        <h2 class="h2 h2--small" id="enq-title">Enquire</h2>
-        <p class="body">A specialist will confirm availability and arrange a private viewing at 2801 Okeechobee Boulevard, West Palm Beach, or call <a href="tel:+15619269111">561 926 9111</a>.</p>
-        <p class="body vdp__trade">Have a car to part with? <a class="link" href="https://www.bramanbentleypalmbeach.com/value-trade-in/">Value your trade-in<i aria-hidden="true"></i></a></p>
+    <div class="page">
+      <div class="enquire">
+        <div class="enquire__lede">
+          <h2 class="h2 h2--small" id="enq-title">Enquire</h2>
+          <p class="body">A specialist will confirm availability and arrange a private viewing at 2801 Okeechobee Boulevard, West Palm Beach, or call <a href="tel:+15619269111">561 926 9111</a>.</p>
+          <p class="enquire__trade"><a class="link" href="https://www.bramanbentleypalmbeach.com/value-trade-in/">Value your trade-in<i aria-hidden="true"></i></a></p>
+        </div>
+        <form class="enquire__form" onsubmit="return false" aria-labelledby="enq-title">
+          <label class="field"><span class="field__label">Name</span><input class="field__input" type="text" name="name" autocomplete="name" required></label>
+          <label class="field"><span class="field__label">Email</span><input class="field__input" type="email" name="email" autocomplete="email" required></label>
+          <label class="field"><span class="field__label">Telephone</span><input class="field__input" type="tel" name="tel" autocomplete="tel"></label>
+          <label class="field field--wide"><span class="field__label">Message</span><textarea class="field__input field__area" name="message" rows="3">I am interested in the 2026 Bentley Continental GT, stock VC-33322A.</textarea></label>
+          <div class="enquire__send"><button class="btn" type="submit">Send enquiry</button><span class="enquire__fine">No obligation. A specialist replies within one working day.</span></div>
+        </form>
       </div>
-      <form class="enquire" onsubmit="return false" aria-labelledby="enq-title">
-        <label class="field"><span class="field__label">Name</span><input class="field__input" type="text" name="name" autocomplete="name"></label>
-        <label class="field"><span class="field__label">Email</span><input class="field__input" type="email" name="email" autocomplete="email"></label>
-        <label class="field"><span class="field__label">Telephone</span><input class="field__input" type="tel" name="tel" autocomplete="tel"></label>
-        <label class="field field--wide"><span class="field__label">Message</span><textarea class="field__input field__area" name="message" rows="3">I am interested in the 2026 Bentley Continental GT, stock VC-33322A.</textarea></label>
-        <div class="enquire__send"><button class="btn" type="submit">Send enquiry</button></div>
-      </form>
     </div>
   </section>
 
@@ -195,9 +197,9 @@
     <div class="page">
       <h2 class="h2 h2--small" id="pricing-title">Pricing details</h2>
       <div class="pricing__body">
-        <div class="pricing__lease">
-          <h3 class="vdp__h" id="lease-terms">Lease terms<span class="pricing__mark" aria-hidden="true">*</span></h3>
-          <dl class="offer__rows pricing__rows">
+      <div class="pricing__lease">
+        <h3 class="vdp__h" id="lease-terms">Lease terms<span class="pricing__mark" aria-hidden="true">*</span></h3>
+        <dl class="offer__rows pricing__rows">
           <div><dt>Term</dt><dd>36 months</dd></div>
           <div><dt>Down</dt><dd>$39,999</dd></div>
           <div><dt>Monthly payment</dt><dd>$4,299 a month, plus tax</dd></div>
@@ -207,9 +209,9 @@
           <div><dt>Credit</dt><dd>Tier 1, Bentley Financial Services</dd></div>
           <div><dt>Deal number</dt><dd>505740</dd></div>
           <div><dt>Valid through</dt><dd>September 30, 2026</dd></div>
-          </dl>
-          <p class="pricing__fine">Special closed-end lease by Bentley Financial Services. 36 Month Term. 2,500 Miles Per Year Allowance. $4299.00 Per Month. Mileage overage at $2.50 per mile. The advertised payment does not include local applicable sales tax and registration fees. No security deposit is required. Lessee is responsible for excess wear and tear charges as well as a $750 lease disposition fee. Offer may not be combined with any other offers. Must be Approved at Tier 1 with Bentley Financial Services. DEAL #505740. STOCK #VC-P33322A. One car only. Offer valid through SEPTEMBER 30, 2026 or while supplies last.</p>
-        </div>
+        </dl>
+        <p class="pricing__fine">Special closed-end lease by Bentley Financial Services. 36 Month Term. 2,500 Miles Per Year Allowance. $4299.00 Per Month. Mileage overage at $2.50 per mile. The advertised payment does not include local applicable sales tax and registration fees. No security deposit is required. Lessee is responsible for excess wear and tear charges as well as a $750 lease disposition fee. Offer may not be combined with any other offers. Must be Approved at Tier 1 with Bentley Financial Services. DEAL #505740. STOCK #VC-P33322A. One car only. Offer valid through SEPTEMBER 30, 2026 or while supplies last.</p>
+      </div>
         <div class="pricing__legal">
           <h3 class="vdp__h" id="price-terms">Disclaimer<span class="pricing__mark" aria-hidden="true">*</span></h3>
           <p class="pricing__text">Prices and payments do not include tax, tag, title. The Sales Price includes a $1,189 dealer service charge, and a $514 electronic filing charge. These charges represent cost and profit to dealer. The MSRP is the manufacturer&#x27;s suggested retail price, and is not binding on either Dealer or Customer. All pricing and details are believed to be accurate, but we do not warrant or guarantee such accuracy. Vehicle information is based off standard equipment and may vary from vehicle to vehicle. All specifications, prices and equipment are subject to change without notice. Call or email for complete details and information. Displayed fuel efficiency is based on applicable EPA mileage ratings. Use for comparison purposes only. Your actual mileage will vary, depending on how you drive and maintain your vehicle, the driving conditions, battery pack age/condition and other factors. While every effort has been made to ensure display of accurate data, the vehicle listings within this website may not reflect all accurate vehicle items. Accessories and color may vary. The vehicle photo displayed may be an example only. Vehicle Photos may not match exact vehicles. All inventory listed is subject to prior sale. Please confirm vehicle price and details with Dealership.</p>
@@ -228,65 +230,56 @@
       <ul class="grid grid--more">
         <li class="card" data-condition="used" data-certified="0" data-year="2026" data-price="276900" data-mileage="285" data-model="Continental GT" data-trim="V8" data-stock="V67976" data-vin="SCBCP2ZG1TC027976">
           <a class="card__link" href="../vehicles/v67976.html" aria-label="Used 2026 Bentley Continental GT V8, Braman Price $276,900">
-            <span class="card__media"><span class="card__flag">Lease $2,722/mo</span><span class="card__flag card__flag--special">Internet special</span><img src="../assets/img/inventory/v67976.webp" width="840" height="630" loading="lazy" decoding="async" alt="Dark Sapphire 2026 Bentley Continental GT V8"></span>
-            <span class="card__row">
-              <h2 class="card__title">Used 2026 Bentley Continental GT V8 <span class="card__place">in West Palm Beach, FL</span></h2>
-              <span class="card__price"><small>Braman Price</small>$276,900</span>
+            <span class="card__media"><span class="card__flag">Internet special</span><img src="../assets/img/inventory/v67976.webp" width="840" height="630" loading="lazy" decoding="async" alt="Dark Sapphire 2026 Bentley Continental GT V8"></span>
+            <span class="card__body">
+              <span class="card__kind">Pre-owned</span>
+              <h2 class="card__title">2026 Bentley Continental GT V8</h2>
+              <span class="card__facts">Dark Sapphire over Linen, 285 miles<br><span class="nowrap">Stock V67976</span></span>
+              <span class="card__price"><span class="card__price-label">Braman Price<sup aria-hidden="true">*</sup></span><span class="card__price-value">$276,900</span></span>
+              <dl class="card__build">
+                <div><dt>Dealer service charge</dt><dd>$1,189</dd></div>
+                <div><dt>Electronic filing charge</dt><dd>$514</dd></div>
+                <div class="card__sale"><dt>Sale price</dt><dd>$278,603</dd></div>
+              </dl>
+              <span class="card__extra"><span>MSRP $321,410 · You save $44,510</span><span>Lease $2,722 a month</span></span>
+              <span class="link">View details<i aria-hidden="true"></i></span>
             </span>
-            <span class="card__facts">Dark Sapphire over Linen · 285 miles · Stock V67976</span>
           </a>
-          <dl class="card__stack">
-              <div><dt>MSRP</dt><dd>$321,410</dd></div>
-              <div class="card__save"><dt>You save</dt><dd>− $44,510</dd></div>
-              <div><dt>Dealer service charge</dt><dd>$1,189</dd></div>
-              <div><dt>Electronic filing charge</dt><dd>$514</dd></div>
-              <div class="card__sale"><dt>Sale price</dt><dd>$278,603</dd></div>
-              <div><dt>Lease</dt><dd>$2,722 / month</dd></div>
-          </dl>
-          <div class="card__foot">
-            <a class="link" href="../vehicles/v67976.html">View details<i aria-hidden="true"></i></a>
-            <a class="asterisk" href="../vehicles/v67976.html#pricing" aria-label="Pricing details">* Pricing details</a>
-          </div>
         </li>
         <li class="card" data-condition="used" data-certified="0" data-year="2025" data-price="277900" data-mileage="10155" data-model="Continental GT" data-trim="Speed First Edition" data-stock="VC-P35787" data-vin="SCBCR2ZG9SC018113">
           <a class="card__link" href="../vehicles/vc-p35787.html" aria-label="Used 2025 Bentley Continental GT Speed First Edition, Braman Price $277,900">
-            <span class="card__media"><span class="card__flag">Lease $3,990/mo</span><span class="card__flag card__flag--special">Internet special</span><img src="../assets/img/inventory/vc-p35787.webp" width="840" height="630" loading="lazy" decoding="async" alt="Kingfisher 2025 Bentley Continental GT Speed First Edition"></span>
-            <span class="card__row">
-              <h2 class="card__title">Used 2025 Bentley Continental GT Speed First Edition <span class="card__place">in West Palm Beach, FL</span></h2>
-              <span class="card__price"><small>Braman Price</small>$277,900</span>
+            <span class="card__media"><span class="card__flag">Internet special</span><img src="../assets/img/inventory/vc-p35787.webp" width="840" height="630" loading="lazy" decoding="async" alt="Kingfisher 2025 Bentley Continental GT Speed First Edition"></span>
+            <span class="card__body">
+              <span class="card__kind">Pre-owned · One owner</span>
+              <h2 class="card__title">2025 Bentley Continental GT Speed First Edition</h2>
+              <span class="card__facts">Kingfisher over Imperial Blue, 10,155 miles<br><span class="nowrap">Stock VC-P35787</span></span>
+              <span class="card__price"><span class="card__price-label">Braman Price<sup aria-hidden="true">*</sup></span><span class="card__price-value">$277,900</span></span>
+              <dl class="card__build">
+                <div><dt>Dealer service charge</dt><dd>$1,189</dd></div>
+                <div><dt>Electronic filing charge</dt><dd>$514</dd></div>
+              </dl>
+              <span class="card__extra"><span>MSRP $412,890 · You save $134,990</span><span>Lease $3,990 a month</span></span>
+              <span class="link">View details<i aria-hidden="true"></i></span>
             </span>
-            <span class="card__facts">Kingfisher over Imperial Blue · 10,155 miles · Stock VC-P35787<br><b>One owner</b></span>
           </a>
-          <dl class="card__stack">
-              <div><dt>MSRP</dt><dd>$412,890</dd></div>
-              <div class="card__save"><dt>You save</dt><dd>− $134,990</dd></div>
-              <div><dt>Dealer service charge</dt><dd>$1,189</dd></div>
-              <div><dt>Electronic filing charge</dt><dd>$514</dd></div>
-              <div><dt>Lease</dt><dd>$3,990 / month</dd></div>
-          </dl>
-          <div class="card__foot">
-            <a class="link" href="../vehicles/vc-p35787.html">View details<i aria-hidden="true"></i></a>
-            <a class="asterisk" href="../vehicles/vc-p35787.html#pricing" aria-label="Pricing details">* Pricing details</a>
-          </div>
         </li>
         <li class="card" data-condition="used" data-certified="1" data-year="2022" data-price="217900" data-mileage="11122" data-model="Continental GT" data-trim="Speed" data-stock="VC-P35878A" data-vin="SCBCT2ZG2NC092253">
           <a class="card__link" href="../vehicles/vc-p35878a.html" aria-label="Used 2022 Bentley Continental GT Speed, Braman Price $217,900">
             <span class="card__media"><img src="../assets/img/inventory/vc-p35878a.webp" width="840" height="630" loading="lazy" decoding="async" alt="Glacier White 2022 Bentley Continental GT Speed"></span>
-            <span class="card__row">
-              <h2 class="card__title">Used 2022 Bentley Continental GT Speed <span class="card__place">in West Palm Beach, FL</span></h2>
-              <span class="card__price"><small>Braman Price</small>$217,900</span>
+            <span class="card__body">
+              <span class="card__kind">Pre-owned · <b>Certified by Bentley</b></span>
+              <h2 class="card__title">2022 Bentley Continental GT Speed</h2>
+              <span class="card__facts">Glacier White over Linen, 11,122 miles<br><span class="nowrap">Stock VC-P35878A</span></span>
+              <span class="card__price"><span class="card__price-label">Braman Price<sup aria-hidden="true">*</sup></span><span class="card__price-value">$217,900</span></span>
+              <dl class="card__build">
+                <div><dt>Dealer service charge</dt><dd>$1,189</dd></div>
+                <div><dt>Electronic filing charge</dt><dd>$514</dd></div>
+                <div class="card__sale"><dt>Sale price</dt><dd>$219,603</dd></div>
+              </dl>
+              <span class="card__extra"></span>
+              <span class="link">View details<i aria-hidden="true"></i></span>
             </span>
-            <span class="card__facts">Glacier White over Linen · 11,122 miles · Stock VC-P35878A<br><b>Certified by Bentley</b></span>
           </a>
-          <dl class="card__stack">
-              <div><dt>Dealer service charge</dt><dd>$1,189</dd></div>
-              <div><dt>Electronic filing charge</dt><dd>$514</dd></div>
-              <div class="card__sale"><dt>Sale price</dt><dd>$219,603</dd></div>
-          </dl>
-          <div class="card__foot">
-            <a class="link" href="../vehicles/vc-p35878a.html">View details<i aria-hidden="true"></i></a>
-            <a class="asterisk" href="../vehicles/vc-p35878a.html#pricing" aria-label="Pricing details">* Pricing details</a>
-          </div>
         </li>
       </ul>
     </div>
@@ -387,6 +380,6 @@
   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 13.5V2.5m0 0L3 7.5m5-5 5 5" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg>
 </a>
 
-<script src="../js/vehicle.js?v=20260921132948" defer></script>
+<script src="../js/vehicle.js?v=20260921134926" defer></script>
 </body>
 </html>

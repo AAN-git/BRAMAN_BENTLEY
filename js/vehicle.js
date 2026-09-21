@@ -242,17 +242,16 @@
   }
 
   /* the enquiry form has no service behind it in this build: it says so */
-  var form = document.querySelector(".enquire");
+  var form = document.querySelector(".enquire__form");
   if (form) {
     form.addEventListener("submit", function (e) {
       e.preventDefault();
-      var send = form.querySelector(".enquire__send");
-      if (!send.querySelector("p")) {
+      if (!form.checkValidity()) { form.reportValidity(); return; }
+      if (!form.querySelector(".enquire__done")) {
         var p = document.createElement("p");
-        p.className = "body";
-        p.style.marginTop = "1rem";
-        p.textContent = "Thank you. A specialist will be in touch shortly, or call 561 926 9111.";
-        send.appendChild(p);
+        p.className = "body enquire__done";
+        p.textContent = "Thank you. A specialist will be in touch within one working day, or call 561 926 9111.";
+        form.appendChild(p);
       }
     });
   }

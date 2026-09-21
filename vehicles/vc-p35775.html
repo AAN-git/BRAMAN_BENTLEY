@@ -9,10 +9,10 @@
 <link rel="preload" href="../assets/fonts/Bentley-Light.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../assets/fonts/Bentley-Regular.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../assets/img/vdp/vc-p35775/1.webp" as="image">
-<link rel="stylesheet" href="../css/system.css?v=20260921132948">
-<link rel="stylesheet" href="../css/index4.css?v=20260921132948">
-<link rel="stylesheet" href="../css/inventory.css?v=20260921132948">
-<link rel="stylesheet" href="../css/vehicle.css?v=20260921132948">
+<link rel="stylesheet" href="../css/system.css?v=20260921134926">
+<link rel="stylesheet" href="../css/index4.css?v=20260921134926">
+<link rel="stylesheet" href="../css/inventory.css?v=20260921134926">
+<link rel="stylesheet" href="../css/vehicle.css?v=20260921134926">
 <script>
   /* Motion is opt-in from the first paint: if the script never arrives, or the
      visitor asked for less motion, the page is simply its finished composition. */
@@ -66,9 +66,9 @@
       </nav>
       <header class="vdp__head" data-reveal>
         <div class="vdp__name">
-          <p class="label step" style="--i:1">Certified by Bentley pre-owned · One owner</p>
+          <p class="label step" style="--i:1">Pre-owned · Certified by Bentley, one owner</p>
           <h1 class="h2 step" style="--i:2">2022 Bentley Continental GTC V8</h1>
-          <p class="vdp__sub body step" style="--i:3">Celeste over Linen · 16,994 miles · Stock VC-P35775</p>
+          <p class="vdp__sub body step" style="--i:3">Celeste over Linen, 16,994 miles · Stock VC-P35775</p>
         </div>
         <div class="vdp__figure step" style="--i:2">
           <p class="vdp__price"><span class="vdp__price-label">Braman Price<a class="asterisk" href="#pricing" aria-label="Pricing details">*</a></span><span class="vdp__price-value">$227,900</span></p>
@@ -171,7 +171,7 @@
       <aside class="special step" data-reveal aria-labelledby="special-title" style="--i:1">
         <p class="special__label" id="special-title">Lease special<a class="asterisk" href="#pricing" aria-label="Lease terms">*</a></p>
         <p class="special__figure">$3,520 <span>a month</span></p>
-        <p class="special__terms">36 months · $24,999 down · 2,500 miles a year</p>
+        <p class="special__terms">36 months, $24,999 down, 2,500 miles a year</p>
         <p class="special__fine">Special closed-end lease on this one car, through Bentley Financial Services. Excludes sales tax and registration fees. Valid through September 30, 2026.</p>
         <a class="link" href="#pricing">Full terms<i aria-hidden="true"></i></a>
       </aside>
@@ -205,21 +205,23 @@
     </div>
   </section>
 
-  <!-- Enquire -->
+  <!-- Enquire: one plate, the ask at the left, the form at the right -->
   <section class="vdp__enquire" id="enquire" aria-labelledby="enq-title">
-    <div class="page vdp__enquire-grid">
-      <div class="vdp__enquire-lede">
-        <h2 class="h2 h2--small" id="enq-title">Enquire</h2>
-        <p class="body">A specialist will confirm availability and arrange a private viewing at 2801 Okeechobee Boulevard, West Palm Beach, or call <a href="tel:+15619269111">561 926 9111</a>.</p>
-        <p class="body vdp__trade">Have a car to part with? <a class="link" href="https://www.bramanbentleypalmbeach.com/value-trade-in/">Value your trade-in<i aria-hidden="true"></i></a></p>
+    <div class="page">
+      <div class="enquire">
+        <div class="enquire__lede">
+          <h2 class="h2 h2--small" id="enq-title">Enquire</h2>
+          <p class="body">A specialist will confirm availability and arrange a private viewing at 2801 Okeechobee Boulevard, West Palm Beach, or call <a href="tel:+15619269111">561 926 9111</a>.</p>
+          <p class="enquire__trade"><a class="link" href="https://www.bramanbentleypalmbeach.com/value-trade-in/">Value your trade-in<i aria-hidden="true"></i></a></p>
+        </div>
+        <form class="enquire__form" onsubmit="return false" aria-labelledby="enq-title">
+          <label class="field"><span class="field__label">Name</span><input class="field__input" type="text" name="name" autocomplete="name" required></label>
+          <label class="field"><span class="field__label">Email</span><input class="field__input" type="email" name="email" autocomplete="email" required></label>
+          <label class="field"><span class="field__label">Telephone</span><input class="field__input" type="tel" name="tel" autocomplete="tel"></label>
+          <label class="field field--wide"><span class="field__label">Message</span><textarea class="field__input field__area" name="message" rows="3">I am interested in the 2022 Bentley Continental GTC V8, stock VC-P35775.</textarea></label>
+          <div class="enquire__send"><button class="btn" type="submit">Send enquiry</button><span class="enquire__fine">No obligation. A specialist replies within one working day.</span></div>
+        </form>
       </div>
-      <form class="enquire" onsubmit="return false" aria-labelledby="enq-title">
-        <label class="field"><span class="field__label">Name</span><input class="field__input" type="text" name="name" autocomplete="name"></label>
-        <label class="field"><span class="field__label">Email</span><input class="field__input" type="email" name="email" autocomplete="email"></label>
-        <label class="field"><span class="field__label">Telephone</span><input class="field__input" type="tel" name="tel" autocomplete="tel"></label>
-        <label class="field field--wide"><span class="field__label">Message</span><textarea class="field__input field__area" name="message" rows="3">I am interested in the 2022 Bentley Continental GTC V8, stock VC-P35775.</textarea></label>
-        <div class="enquire__send"><button class="btn" type="submit">Send enquiry</button></div>
-      </form>
     </div>
   </section>
 
@@ -229,9 +231,9 @@
     <div class="page">
       <h2 class="h2 h2--small" id="pricing-title">Pricing details</h2>
       <div class="pricing__body">
-        <div class="pricing__lease">
-          <h3 class="vdp__h" id="lease-terms">Lease terms<span class="pricing__mark" aria-hidden="true">*</span></h3>
-          <dl class="offer__rows pricing__rows">
+      <div class="pricing__lease">
+        <h3 class="vdp__h" id="lease-terms">Lease terms<span class="pricing__mark" aria-hidden="true">*</span></h3>
+        <dl class="offer__rows pricing__rows">
           <div><dt>Term</dt><dd>36 months</dd></div>
           <div><dt>Down</dt><dd>$24,999</dd></div>
           <div><dt>Monthly payment</dt><dd>$3,520 a month, plus tax</dd></div>
@@ -241,9 +243,9 @@
           <div><dt>Credit</dt><dd>Tier 1, Bentley Financial Services</dd></div>
           <div><dt>Deal number</dt><dd>507330</dd></div>
           <div><dt>Valid through</dt><dd>September 30, 2026</dd></div>
-          </dl>
-          <p class="pricing__fine">Special closed-end lease by Bentley Financial Services. 36 Month Term. 2,500 Miles Per Year Allowance. $3520.00 Per Month. Mileage overage at $2.50 per mile. The advertised payment does not include local applicable sales tax and registration fees. No security deposit is required. Lessee is responsible for excess wear and tear charges as well as a $750 lease disposition fee. Offer may not be combined with any other offers. Must be Approved at Tier 1 with Bentley Financial Services. DEAL #507330. STOCK #VC-P35775. One car only. Offer valid through SEPTEMBER 30, 2026 or while supplies last.</p>
-        </div>
+        </dl>
+        <p class="pricing__fine">Special closed-end lease by Bentley Financial Services. 36 Month Term. 2,500 Miles Per Year Allowance. $3520.00 Per Month. Mileage overage at $2.50 per mile. The advertised payment does not include local applicable sales tax and registration fees. No security deposit is required. Lessee is responsible for excess wear and tear charges as well as a $750 lease disposition fee. Offer may not be combined with any other offers. Must be Approved at Tier 1 with Bentley Financial Services. DEAL #507330. STOCK #VC-P35775. One car only. Offer valid through SEPTEMBER 30, 2026 or while supplies last.</p>
+      </div>
         <div class="pricing__legal">
           <h3 class="vdp__h" id="price-terms">Disclaimer<span class="pricing__mark" aria-hidden="true">*</span></h3>
           <p class="pricing__text">Prices and payments do not include tax, tag, title. The Sales Price includes a $1,189 dealer service charge, and a $514 electronic filing charge. These charges represent cost and profit to dealer. The MSRP is the manufacturer&#x27;s suggested retail price, and is not binding on either Dealer or Customer. All pricing and details are believed to be accurate, but we do not warrant or guarantee such accuracy. Vehicle information is based off standard equipment and may vary from vehicle to vehicle. All specifications, prices and equipment are subject to change without notice. Call or email for complete details and information. Displayed fuel efficiency is based on applicable EPA mileage ratings. Use for comparison purposes only. Your actual mileage will vary, depending on how you drive and maintain your vehicle, the driving conditions, battery pack age/condition and other factors. While every effort has been made to ensure display of accurate data, the vehicle listings within this website may not reflect all accurate vehicle items. Accessories and color may vary. The vehicle photo displayed may be an example only. Vehicle Photos may not match exact vehicles. All inventory listed is subject to prior sale. Please confirm vehicle price and details with Dealership.</p>
@@ -263,61 +265,56 @@
         <li class="card" data-condition="used" data-certified="1" data-year="2022" data-price="237900" data-mileage="4095" data-model="Continental GTC" data-trim="V8" data-stock="VC-67909A" data-vin="SCBDG4ZG8NC098398">
           <a class="card__link" href="../vehicles/vc-67909a.html" aria-label="Used 2022 Bentley Continental GTC V8, Braman Price $237,900">
             <span class="card__media"><img src="../assets/img/inventory/vc-67909a.webp" width="840" height="630" loading="lazy" decoding="async" alt="Jetstream II Metallic 2022 Bentley Continental GTC V8"></span>
-            <span class="card__row">
-              <h2 class="card__title">Used 2022 Bentley Continental GTC V8 <span class="card__place">in West Palm Beach, FL</span></h2>
-              <span class="card__price"><small>Braman Price</small>$237,900</span>
+            <span class="card__body">
+              <span class="card__kind">Pre-owned · <b>Certified by Bentley</b></span>
+              <h2 class="card__title">2022 Bentley Continental GTC V8</h2>
+              <span class="card__facts">Jetstream II Metallic over Linen, 4,095 miles<br><span class="nowrap">Stock VC-67909A</span></span>
+              <span class="card__price"><span class="card__price-label">Braman Price<sup aria-hidden="true">*</sup></span><span class="card__price-value">$237,900</span></span>
+              <dl class="card__build">
+                <div><dt>Dealer service charge</dt><dd>$1,189</dd></div>
+                <div><dt>Electronic filing charge</dt><dd>$514</dd></div>
+                <div class="card__sale"><dt>Sale price</dt><dd>$239,603</dd></div>
+              </dl>
+              <span class="card__extra"></span>
+              <span class="link">View details<i aria-hidden="true"></i></span>
             </span>
-            <span class="card__facts">Jetstream II Metallic over Linen · 4,095 miles · Stock VC-67909A<br><b>Certified by Bentley</b></span>
           </a>
-          <dl class="card__stack">
-              <div><dt>Dealer service charge</dt><dd>$1,189</dd></div>
-              <div><dt>Electronic filing charge</dt><dd>$514</dd></div>
-              <div class="card__sale"><dt>Sale price</dt><dd>$239,603</dd></div>
-          </dl>
-          <div class="card__foot">
-            <a class="link" href="../vehicles/vc-67909a.html">View details<i aria-hidden="true"></i></a>
-            <a class="asterisk" href="../vehicles/vc-67909a.html#pricing" aria-label="Pricing details">* Pricing details</a>
-          </div>
         </li>
         <li class="card" data-condition="used" data-certified="1" data-year="2024" data-price="257900" data-mileage="12645" data-model="Continental GTC" data-trim="Edition 8" data-stock="VC-30281A" data-vin="SCBDG4ZG3RC018320">
           <a class="card__link" href="../vehicles/vc-30281a.html" aria-label="Used 2024 Bentley Continental GTC Edition 8, Braman Price $257,900">
             <span class="card__media"><img src="../assets/img/inventory/vc-30281a.webp" width="840" height="630" loading="lazy" decoding="async" alt="Magnolia 2024 Bentley Continental GTC Edition 8"></span>
-            <span class="card__row">
-              <h2 class="card__title">Used 2024 Bentley Continental GTC Edition 8 <span class="card__place">in West Palm Beach, FL</span></h2>
-              <span class="card__price"><small>Braman Price</small>$257,900</span>
+            <span class="card__body">
+              <span class="card__kind">Pre-owned · <b>Certified by Bentley, one owner</b></span>
+              <h2 class="card__title">2024 Bentley Continental GTC Edition 8</h2>
+              <span class="card__facts">Magnolia over Magnolia, 12,645 miles<br><span class="nowrap">Stock VC-30281A</span></span>
+              <span class="card__price"><span class="card__price-label">Braman Price<sup aria-hidden="true">*</sup></span><span class="card__price-value">$257,900</span></span>
+              <dl class="card__build">
+                <div><dt>Dealer service charge</dt><dd>$1,189</dd></div>
+                <div><dt>Electronic filing charge</dt><dd>$514</dd></div>
+                <div class="card__sale"><dt>Sale price</dt><dd>$259,603</dd></div>
+              </dl>
+              <span class="card__extra"></span>
+              <span class="link">View details<i aria-hidden="true"></i></span>
             </span>
-            <span class="card__facts">Magnolia over Magnolia · 12,645 miles · Stock VC-30281A<br><b>Certified by Bentley · One owner</b></span>
           </a>
-          <dl class="card__stack">
-              <div><dt>Dealer service charge</dt><dd>$1,189</dd></div>
-              <div><dt>Electronic filing charge</dt><dd>$514</dd></div>
-              <div class="card__sale"><dt>Sale price</dt><dd>$259,603</dd></div>
-          </dl>
-          <div class="card__foot">
-            <a class="link" href="../vehicles/vc-30281a.html">View details<i aria-hidden="true"></i></a>
-            <a class="asterisk" href="../vehicles/vc-30281a.html#pricing" aria-label="Pricing details">* Pricing details</a>
-          </div>
         </li>
         <li class="card" data-condition="used" data-certified="0" data-year="2026" data-price="347900" data-mileage="4561" data-model="Continental GTC" data-trim="Azure" data-stock="VC-P35948" data-vin="SCBDP4ZG4TC023923">
           <a class="card__link" href="../vehicles/vc-p35948.html" aria-label="Used 2026 Bentley Continental GTC Azure, Braman Price $347,900">
             <span class="card__media"><img src="../assets/bm/2026/gtc-mountains.webp" width="2400" height="1600" loading="lazy" decoding="async" alt="Damson 2026 Bentley Continental GTC Azure (Bentley image of the line; the retailer has no photograph of this car yet)"></span>
-            <span class="card__row">
-              <h2 class="card__title">Used 2026 Bentley Continental GTC Azure <span class="card__place">in West Palm Beach, FL</span></h2>
-              <span class="card__price"><small>Braman Price</small>$347,900</span>
+            <span class="card__body">
+              <span class="card__kind">Pre-owned</span>
+              <h2 class="card__title">2026 Bentley Continental GTC Azure</h2>
+              <span class="card__facts">Damson over Linen, 4,561 miles<br><span class="nowrap">Stock VC-P35948</span></span>
+              <span class="card__price"><span class="card__price-label">Braman Price<sup aria-hidden="true">*</sup></span><span class="card__price-value">$347,900</span></span>
+              <dl class="card__build">
+                <div><dt>Dealer service charge</dt><dd>$1,189</dd></div>
+                <div><dt>Electronic filing charge</dt><dd>$514</dd></div>
+                <div class="card__sale"><dt>Sale price</dt><dd>$349,603</dd></div>
+              </dl>
+              <span class="card__extra"><span>MSRP $416,280 · You save $68,380</span></span>
+              <span class="link">View details<i aria-hidden="true"></i></span>
             </span>
-            <span class="card__facts">Damson over Linen · 4,561 miles · Stock VC-P35948</span>
           </a>
-          <dl class="card__stack">
-              <div><dt>MSRP</dt><dd>$416,280</dd></div>
-              <div class="card__save"><dt>You save</dt><dd>− $68,380</dd></div>
-              <div><dt>Dealer service charge</dt><dd>$1,189</dd></div>
-              <div><dt>Electronic filing charge</dt><dd>$514</dd></div>
-              <div class="card__sale"><dt>Sale price</dt><dd>$349,603</dd></div>
-          </dl>
-          <div class="card__foot">
-            <a class="link" href="../vehicles/vc-p35948.html">View details<i aria-hidden="true"></i></a>
-            <a class="asterisk" href="../vehicles/vc-p35948.html#pricing" aria-label="Pricing details">* Pricing details</a>
-          </div>
         </li>
       </ul>
     </div>
@@ -418,6 +415,6 @@
   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 13.5V2.5m0 0L3 7.5m5-5 5 5" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg>
 </a>
 
-<script src="../js/vehicle.js?v=20260921132948" defer></script>
+<script src="../js/vehicle.js?v=20260921134926" defer></script>
 </body>
 </html>

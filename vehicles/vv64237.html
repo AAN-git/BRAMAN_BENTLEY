@@ -9,10 +9,10 @@
 <link rel="preload" href="../assets/fonts/Bentley-Light.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../assets/fonts/Bentley-Regular.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../assets/img/vdp/vv64237/1.webp" as="image">
-<link rel="stylesheet" href="../css/system.css?v=20260921132948">
-<link rel="stylesheet" href="../css/index4.css?v=20260921132948">
-<link rel="stylesheet" href="../css/inventory.css?v=20260921132948">
-<link rel="stylesheet" href="../css/vehicle.css?v=20260921132948">
+<link rel="stylesheet" href="../css/system.css?v=20260921134926">
+<link rel="stylesheet" href="../css/index4.css?v=20260921134926">
+<link rel="stylesheet" href="../css/inventory.css?v=20260921134926">
+<link rel="stylesheet" href="../css/vehicle.css?v=20260921134926">
 <script>
   /* Motion is opt-in from the first paint: if the script never arrives, or the
      visitor asked for less motion, the page is simply its finished composition. */
@@ -68,7 +68,7 @@
         <div class="vdp__name">
           <p class="label step" style="--i:1">New · In stock</p>
           <h1 class="h2 step" style="--i:2">2026 Bentley Bentayga EWB Azure</h1>
-          <p class="vdp__sub body step" style="--i:3">Glacier White over Linen · 30 miles · Stock VV64237</p>
+          <p class="vdp__sub body step" style="--i:3">Glacier White over Linen, 30 miles · Stock VV64237</p>
         </div>
         <div class="vdp__figure step" style="--i:2">
           <p class="vdp__price"><span class="vdp__price-label">MSRP<a class="asterisk" href="#pricing" aria-label="Pricing details">*</a></span><span class="vdp__price-value">$319,505</span></p>
@@ -191,21 +191,23 @@
     </div>
   </section>
 
-  <!-- Enquire -->
+  <!-- Enquire: one plate, the ask at the left, the form at the right -->
   <section class="vdp__enquire" id="enquire" aria-labelledby="enq-title">
-    <div class="page vdp__enquire-grid">
-      <div class="vdp__enquire-lede">
-        <h2 class="h2 h2--small" id="enq-title">Enquire</h2>
-        <p class="body">A specialist will confirm availability and arrange a private viewing at 2801 Okeechobee Boulevard, West Palm Beach, or call <a href="tel:+15619269111">561 926 9111</a>.</p>
-        <p class="body vdp__trade">Have a car to part with? <a class="link" href="https://www.bramanbentleypalmbeach.com/value-trade-in/">Value your trade-in<i aria-hidden="true"></i></a></p>
+    <div class="page">
+      <div class="enquire">
+        <div class="enquire__lede">
+          <h2 class="h2 h2--small" id="enq-title">Enquire</h2>
+          <p class="body">A specialist will confirm availability and arrange a private viewing at 2801 Okeechobee Boulevard, West Palm Beach, or call <a href="tel:+15619269111">561 926 9111</a>.</p>
+          <p class="enquire__trade"><a class="link" href="https://www.bramanbentleypalmbeach.com/value-trade-in/">Value your trade-in<i aria-hidden="true"></i></a></p>
+        </div>
+        <form class="enquire__form" onsubmit="return false" aria-labelledby="enq-title">
+          <label class="field"><span class="field__label">Name</span><input class="field__input" type="text" name="name" autocomplete="name" required></label>
+          <label class="field"><span class="field__label">Email</span><input class="field__input" type="email" name="email" autocomplete="email" required></label>
+          <label class="field"><span class="field__label">Telephone</span><input class="field__input" type="tel" name="tel" autocomplete="tel"></label>
+          <label class="field field--wide"><span class="field__label">Message</span><textarea class="field__input field__area" name="message" rows="3">I am interested in the 2026 Bentley Bentayga EWB Azure, stock VV64237.</textarea></label>
+          <div class="enquire__send"><button class="btn" type="submit">Send enquiry</button><span class="enquire__fine">No obligation. A specialist replies within one working day.</span></div>
+        </form>
       </div>
-      <form class="enquire" onsubmit="return false" aria-labelledby="enq-title">
-        <label class="field"><span class="field__label">Name</span><input class="field__input" type="text" name="name" autocomplete="name"></label>
-        <label class="field"><span class="field__label">Email</span><input class="field__input" type="email" name="email" autocomplete="email"></label>
-        <label class="field"><span class="field__label">Telephone</span><input class="field__input" type="tel" name="tel" autocomplete="tel"></label>
-        <label class="field field--wide"><span class="field__label">Message</span><textarea class="field__input field__area" name="message" rows="3">I am interested in the 2026 Bentley Bentayga EWB Azure, stock VV64237.</textarea></label>
-        <div class="enquire__send"><button class="btn" type="submit">Send enquiry</button></div>
-      </form>
     </div>
   </section>
 
@@ -234,62 +236,56 @@
         <li class="card" data-condition="new" data-certified="0" data-year="2026" data-price="312145" data-mileage="30" data-model="Bentayga EWB" data-trim="Azure" data-stock="V64281" data-vin="SJAHT2ZV3TC034281">
           <a class="card__link" href="../vehicles/v64281.html" aria-label="New 2026 Bentley Bentayga EWB Azure, MSRP $312,145">
             <span class="card__media"><img src="../assets/img/inventory/v64281.webp" width="840" height="630" loading="lazy" decoding="async" alt="Blue 2026 Bentley Bentayga EWB Azure"></span>
-            <span class="card__row">
-              <h2 class="card__title">New 2026 Bentley Bentayga EWB Azure <span class="card__place">in West Palm Beach, FL</span></h2>
-              <span class="card__price"><small>MSRP</small>$312,145</span>
+            <span class="card__body">
+              <span class="card__kind">New · In stock</span>
+              <h2 class="card__title">2026 Bentley Bentayga EWB Azure</h2>
+              <span class="card__facts">Blue over Linen, 30 miles<br><span class="nowrap">Stock V64281</span></span>
+              <span class="card__price"><span class="card__price-label">MSRP<sup aria-hidden="true">*</sup></span><span class="card__price-value">$312,145</span></span>
+              <dl class="card__build">
+                <div><dt>Dealer service charge</dt><dd>$1,189</dd></div>
+                <div><dt>Electronic filing charge</dt><dd>$514</dd></div>
+                <div class="card__sale"><dt>Sale price</dt><dd>$313,848</dd></div>
+              </dl>
+              <span class="card__extra"></span>
+              <span class="link">View details<i aria-hidden="true"></i></span>
             </span>
-            <span class="card__facts">Blue over Linen · 30 miles · Stock V64281</span>
           </a>
-          <dl class="card__stack">
-              <div><dt>Dealer service charge</dt><dd>$1,189</dd></div>
-              <div><dt>Electronic filing charge</dt><dd>$514</dd></div>
-              <div class="card__sale"><dt>Sale price</dt><dd>$313,848</dd></div>
-          </dl>
-          <div class="card__foot">
-            <a class="link" href="../vehicles/v64281.html">View details<i aria-hidden="true"></i></a>
-            <a class="asterisk" href="../vehicles/v64281.html#pricing" aria-label="Pricing details">* Pricing details</a>
-          </div>
         </li>
         <li class="card" data-condition="used" data-certified="1" data-year="2024" data-price="227900" data-mileage="2738" data-model="Bentayga EWB" data-trim="Azure" data-stock="RU-65263A" data-vin="SJAHT2ZV8RC027528">
           <a class="card__link" href="../vehicles/ru-65263a.html" aria-label="Used 2024 Bentley Bentayga EWB Azure, Braman Price $227,900">
-            <span class="card__media"><span class="card__flag">Lease $2,812/mo</span><span class="card__flag card__flag--special">Internet special</span><img src="../assets/img/inventory/ru-65263a.webp" width="840" height="630" loading="lazy" decoding="async" alt="Glacier White 2024 Bentley Bentayga EWB Azure"></span>
-            <span class="card__row">
-              <h2 class="card__title">Used 2024 Bentley Bentayga EWB Azure <span class="card__place">in West Palm Beach, FL</span></h2>
-              <span class="card__price"><small>Braman Price</small>$227,900</span>
+            <span class="card__media"><span class="card__flag">Internet special</span><img src="../assets/img/inventory/ru-65263a.webp" width="840" height="630" loading="lazy" decoding="async" alt="Glacier White 2024 Bentley Bentayga EWB Azure"></span>
+            <span class="card__body">
+              <span class="card__kind">Pre-owned · <b>Certified by Bentley, one owner</b></span>
+              <h2 class="card__title">2024 Bentley Bentayga EWB Azure</h2>
+              <span class="card__facts">Glacier White over Linen, 2,738 miles<br><span class="nowrap">Stock RU-65263A</span></span>
+              <span class="card__price"><span class="card__price-label">Braman Price<sup aria-hidden="true">*</sup></span><span class="card__price-value">$227,900</span></span>
+              <dl class="card__build">
+                <div><dt>Dealer service charge</dt><dd>$1,189</dd></div>
+                <div><dt>Electronic filing charge</dt><dd>$514</dd></div>
+                <div class="card__sale"><dt>Sale price</dt><dd>$229,603</dd></div>
+              </dl>
+              <span class="card__extra"><span>Lease $2,812 a month</span></span>
+              <span class="link">View details<i aria-hidden="true"></i></span>
             </span>
-            <span class="card__facts">Glacier White over Linen · 2,738 miles · Stock RU-65263A<br><b>Certified by Bentley · One owner</b></span>
           </a>
-          <dl class="card__stack">
-              <div><dt>Dealer service charge</dt><dd>$1,189</dd></div>
-              <div><dt>Electronic filing charge</dt><dd>$514</dd></div>
-              <div class="card__sale"><dt>Sale price</dt><dd>$229,603</dd></div>
-              <div><dt>Lease</dt><dd>$2,812 / month</dd></div>
-          </dl>
-          <div class="card__foot">
-            <a class="link" href="../vehicles/ru-65263a.html">View details<i aria-hidden="true"></i></a>
-            <a class="asterisk" href="../vehicles/ru-65263a.html#pricing" aria-label="Pricing details">* Pricing details</a>
-          </div>
         </li>
         <li class="card" data-condition="used" data-certified="1" data-year="2026" data-price="327900" data-mileage="62" data-model="Bentayga EWB" data-trim="Azure" data-stock="VC-P35875" data-vin="SJAHT2ZV1TC033985">
           <a class="card__link" href="../vehicles/vc-p35875.html" aria-label="Used 2026 Bentley Bentayga EWB Azure, Braman Price $327,900">
             <span class="card__media"><img src="../assets/img/inventory/vc-p35875.webp" width="840" height="630" loading="lazy" decoding="async" alt="Dark Sapphire 2026 Bentley Bentayga EWB Azure"></span>
-            <span class="card__row">
-              <h2 class="card__title">Used 2026 Bentley Bentayga EWB Azure <span class="card__place">in West Palm Beach, FL</span></h2>
-              <span class="card__price"><small>Braman Price</small>$327,900</span>
+            <span class="card__body">
+              <span class="card__kind">Pre-owned · <b>Certified by Bentley, one owner</b></span>
+              <h2 class="card__title">2026 Bentley Bentayga EWB Azure</h2>
+              <span class="card__facts">Dark Sapphire over Magnolia, 62 miles<br><span class="nowrap">Stock VC-P35875</span></span>
+              <span class="card__price"><span class="card__price-label">Braman Price<sup aria-hidden="true">*</sup></span><span class="card__price-value">$327,900</span></span>
+              <dl class="card__build">
+                <div><dt>Dealer service charge</dt><dd>$1,189</dd></div>
+                <div><dt>Electronic filing charge</dt><dd>$514</dd></div>
+                <div class="card__sale"><dt>Sale price</dt><dd>$329,603</dd></div>
+              </dl>
+              <span class="card__extra"><span>MSRP $341,855 · You save $13,955</span></span>
+              <span class="link">View details<i aria-hidden="true"></i></span>
             </span>
-            <span class="card__facts">Dark Sapphire over Magnolia · 62 miles · Stock VC-P35875<br><b>Certified by Bentley · One owner</b></span>
           </a>
-          <dl class="card__stack">
-              <div><dt>MSRP</dt><dd>$341,855</dd></div>
-              <div class="card__save"><dt>You save</dt><dd>− $13,955</dd></div>
-              <div><dt>Dealer service charge</dt><dd>$1,189</dd></div>
-              <div><dt>Electronic filing charge</dt><dd>$514</dd></div>
-              <div class="card__sale"><dt>Sale price</dt><dd>$329,603</dd></div>
-          </dl>
-          <div class="card__foot">
-            <a class="link" href="../vehicles/vc-p35875.html">View details<i aria-hidden="true"></i></a>
-            <a class="asterisk" href="../vehicles/vc-p35875.html#pricing" aria-label="Pricing details">* Pricing details</a>
-          </div>
         </li>
       </ul>
     </div>
@@ -390,6 +386,6 @@
   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 13.5V2.5m0 0L3 7.5m5-5 5 5" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg>
 </a>
 
-<script src="../js/vehicle.js?v=20260921132948" defer></script>
+<script src="../js/vehicle.js?v=20260921134926" defer></script>
 </body>
 </html>

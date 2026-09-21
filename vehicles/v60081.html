@@ -9,10 +9,10 @@
 <link rel="preload" href="../assets/fonts/Bentley-Light.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../assets/fonts/Bentley-Regular.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../assets/img/vdp/v60081/1.webp" as="image">
-<link rel="stylesheet" href="../css/system.css?v=20260921132948">
-<link rel="stylesheet" href="../css/index4.css?v=20260921132948">
-<link rel="stylesheet" href="../css/inventory.css?v=20260921132948">
-<link rel="stylesheet" href="../css/vehicle.css?v=20260921132948">
+<link rel="stylesheet" href="../css/system.css?v=20260921134926">
+<link rel="stylesheet" href="../css/index4.css?v=20260921134926">
+<link rel="stylesheet" href="../css/inventory.css?v=20260921134926">
+<link rel="stylesheet" href="../css/vehicle.css?v=20260921134926">
 <script>
   /* Motion is opt-in from the first paint: if the script never arrives, or the
      visitor asked for less motion, the page is simply its finished composition. */
@@ -68,7 +68,7 @@
         <div class="vdp__name">
           <p class="label step" style="--i:1">New · In stock</p>
           <h1 class="h2 step" style="--i:2">2026 Bentley Continental GT S</h1>
-          <p class="vdp__sub body step" style="--i:3">British Racing Green 4 Satin over Saddle · 30 miles · Stock V60081</p>
+          <p class="vdp__sub body step" style="--i:3">British Racing Green 4 Satin over Saddle, 30 miles · Stock V60081</p>
         </div>
         <div class="vdp__figure step" style="--i:2">
           <p class="vdp__price"><span class="vdp__price-label">MSRP<a class="asterisk" href="#pricing" aria-label="Pricing details">*</a></span><span class="vdp__price-value">$369,220</span></p>
@@ -160,21 +160,23 @@
     </div>
   </section>
 
-  <!-- Enquire -->
+  <!-- Enquire: one plate, the ask at the left, the form at the right -->
   <section class="vdp__enquire" id="enquire" aria-labelledby="enq-title">
-    <div class="page vdp__enquire-grid">
-      <div class="vdp__enquire-lede">
-        <h2 class="h2 h2--small" id="enq-title">Enquire</h2>
-        <p class="body">A specialist will confirm availability and arrange a private viewing at 2801 Okeechobee Boulevard, West Palm Beach, or call <a href="tel:+15619269111">561 926 9111</a>.</p>
-        <p class="body vdp__trade">Have a car to part with? <a class="link" href="https://www.bramanbentleypalmbeach.com/value-trade-in/">Value your trade-in<i aria-hidden="true"></i></a></p>
+    <div class="page">
+      <div class="enquire">
+        <div class="enquire__lede">
+          <h2 class="h2 h2--small" id="enq-title">Enquire</h2>
+          <p class="body">A specialist will confirm availability and arrange a private viewing at 2801 Okeechobee Boulevard, West Palm Beach, or call <a href="tel:+15619269111">561 926 9111</a>.</p>
+          <p class="enquire__trade"><a class="link" href="https://www.bramanbentleypalmbeach.com/value-trade-in/">Value your trade-in<i aria-hidden="true"></i></a></p>
+        </div>
+        <form class="enquire__form" onsubmit="return false" aria-labelledby="enq-title">
+          <label class="field"><span class="field__label">Name</span><input class="field__input" type="text" name="name" autocomplete="name" required></label>
+          <label class="field"><span class="field__label">Email</span><input class="field__input" type="email" name="email" autocomplete="email" required></label>
+          <label class="field"><span class="field__label">Telephone</span><input class="field__input" type="tel" name="tel" autocomplete="tel"></label>
+          <label class="field field--wide"><span class="field__label">Message</span><textarea class="field__input field__area" name="message" rows="3">I am interested in the 2026 Bentley Continental GT S, stock V60081.</textarea></label>
+          <div class="enquire__send"><button class="btn" type="submit">Send enquiry</button><span class="enquire__fine">No obligation. A specialist replies within one working day.</span></div>
+        </form>
       </div>
-      <form class="enquire" onsubmit="return false" aria-labelledby="enq-title">
-        <label class="field"><span class="field__label">Name</span><input class="field__input" type="text" name="name" autocomplete="name"></label>
-        <label class="field"><span class="field__label">Email</span><input class="field__input" type="email" name="email" autocomplete="email"></label>
-        <label class="field"><span class="field__label">Telephone</span><input class="field__input" type="tel" name="tel" autocomplete="tel"></label>
-        <label class="field field--wide"><span class="field__label">Message</span><textarea class="field__input field__area" name="message" rows="3">I am interested in the 2026 Bentley Continental GT S, stock V60081.</textarea></label>
-        <div class="enquire__send"><button class="btn" type="submit">Send enquiry</button></div>
-      </form>
     </div>
   </section>
 
@@ -203,59 +205,56 @@
         <li class="card" data-condition="new" data-certified="0" data-year="2026" data-price="379085" data-mileage="30" data-model="Continental GT" data-trim="S" data-stock="V60065" data-vin="SCBDP4ZG8TC030065">
           <a class="card__link" href="../vehicles/v60065.html" aria-label="New 2026 Bentley Continental GT S, MSRP $379,085">
             <span class="card__media"><img src="../assets/img/inventory/v60065.webp" width="840" height="630" loading="lazy" decoding="async" alt="Jetstream 2026 Bentley Continental GT S"></span>
-            <span class="card__row">
-              <h2 class="card__title">New 2026 Bentley Continental GT S <span class="card__place">in West Palm Beach, FL</span></h2>
-              <span class="card__price"><small>MSRP</small>$379,085</span>
+            <span class="card__body">
+              <span class="card__kind">New · In stock</span>
+              <h2 class="card__title">2026 Bentley Continental GT S</h2>
+              <span class="card__facts">Jetstream over Linen, 30 miles<br><span class="nowrap">Stock V60065</span></span>
+              <span class="card__price"><span class="card__price-label">MSRP<sup aria-hidden="true">*</sup></span><span class="card__price-value">$379,085</span></span>
+              <dl class="card__build">
+                <div><dt>Dealer service charge</dt><dd>$1,189</dd></div>
+                <div><dt>Electronic filing charge</dt><dd>$514</dd></div>
+                <div class="card__sale"><dt>Sale price</dt><dd>$380,788</dd></div>
+              </dl>
+              <span class="card__extra"></span>
+              <span class="link">View details<i aria-hidden="true"></i></span>
             </span>
-            <span class="card__facts">Jetstream over Linen · 30 miles · Stock V60065</span>
           </a>
-          <dl class="card__stack">
-              <div><dt>Dealer service charge</dt><dd>$1,189</dd></div>
-              <div><dt>Electronic filing charge</dt><dd>$514</dd></div>
-              <div class="card__sale"><dt>Sale price</dt><dd>$380,788</dd></div>
-          </dl>
-          <div class="card__foot">
-            <a class="link" href="../vehicles/v60065.html">View details<i aria-hidden="true"></i></a>
-            <a class="asterisk" href="../vehicles/v60065.html#pricing" aria-label="Pricing details">* Pricing details</a>
-          </div>
         </li>
         <li class="card" data-condition="new" data-certified="0" data-year="2026" data-price="391260" data-mileage="30" data-model="Continental GT" data-trim="Azure" data-stock="V69245" data-vin="SCBDP4ZG5TC029245">
           <a class="card__link" href="../vehicles/v69245.html" aria-label="New 2026 Bentley Continental GT Azure, MSRP $391,260">
             <span class="card__media"><img src="../assets/img/inventory/v69245.webp" width="840" height="630" loading="lazy" decoding="async" alt="Verdant 2026 Bentley Continental GT Azure"></span>
-            <span class="card__row">
-              <h2 class="card__title">New 2026 Bentley Continental GT Azure <span class="card__place">in West Palm Beach, FL</span></h2>
-              <span class="card__price"><small>MSRP</small>$391,260</span>
+            <span class="card__body">
+              <span class="card__kind">New · In stock</span>
+              <h2 class="card__title">2026 Bentley Continental GT Azure</h2>
+              <span class="card__facts">Verdant over Linen, 30 miles<br><span class="nowrap">Stock V69245</span></span>
+              <span class="card__price"><span class="card__price-label">MSRP<sup aria-hidden="true">*</sup></span><span class="card__price-value">$391,260</span></span>
+              <dl class="card__build">
+                <div><dt>Dealer service charge</dt><dd>$1,189</dd></div>
+                <div><dt>Electronic filing charge</dt><dd>$514</dd></div>
+                <div class="card__sale"><dt>Sale price</dt><dd>$392,963</dd></div>
+              </dl>
+              <span class="card__extra"></span>
+              <span class="link">View details<i aria-hidden="true"></i></span>
             </span>
-            <span class="card__facts">Verdant over Linen · 30 miles · Stock V69245</span>
           </a>
-          <dl class="card__stack">
-              <div><dt>Dealer service charge</dt><dd>$1,189</dd></div>
-              <div><dt>Electronic filing charge</dt><dd>$514</dd></div>
-              <div class="card__sale"><dt>Sale price</dt><dd>$392,963</dd></div>
-          </dl>
-          <div class="card__foot">
-            <a class="link" href="../vehicles/v69245.html">View details<i aria-hidden="true"></i></a>
-            <a class="asterisk" href="../vehicles/v69245.html#pricing" aria-label="Pricing details">* Pricing details</a>
-          </div>
         </li>
         <li class="card" data-condition="new" data-certified="0" data-year="2026" data-price="429175" data-mileage="30" data-model="Continental GT" data-trim="Mulliner" data-stock="V68412" data-vin="SCBDR4ZG1TC028412">
           <a class="card__link" href="../vehicles/v68412.html" aria-label="New 2026 Bentley Continental GT Mulliner, MSRP $429,175">
             <span class="card__media"><img src="../assets/img/inventory/v68412.webp" width="840" height="630" loading="lazy" decoding="async" alt="Glacier White 2026 Bentley Continental GT Mulliner"></span>
-            <span class="card__row">
-              <h2 class="card__title">New 2026 Bentley Continental GT Mulliner <span class="card__place">in West Palm Beach, FL</span></h2>
-              <span class="card__price"><small>MSRP</small>$429,175</span>
+            <span class="card__body">
+              <span class="card__kind">New · In stock</span>
+              <h2 class="card__title">2026 Bentley Continental GT Mulliner</h2>
+              <span class="card__facts">Glacier White over Linen, 30 miles<br><span class="nowrap">Stock V68412</span></span>
+              <span class="card__price"><span class="card__price-label">MSRP<sup aria-hidden="true">*</sup></span><span class="card__price-value">$429,175</span></span>
+              <dl class="card__build">
+                <div><dt>Dealer service charge</dt><dd>$1,189</dd></div>
+                <div><dt>Electronic filing charge</dt><dd>$514</dd></div>
+                <div class="card__sale"><dt>Sale price</dt><dd>$430,878</dd></div>
+              </dl>
+              <span class="card__extra"></span>
+              <span class="link">View details<i aria-hidden="true"></i></span>
             </span>
-            <span class="card__facts">Glacier White over Linen · 30 miles · Stock V68412</span>
           </a>
-          <dl class="card__stack">
-              <div><dt>Dealer service charge</dt><dd>$1,189</dd></div>
-              <div><dt>Electronic filing charge</dt><dd>$514</dd></div>
-              <div class="card__sale"><dt>Sale price</dt><dd>$430,878</dd></div>
-          </dl>
-          <div class="card__foot">
-            <a class="link" href="../vehicles/v68412.html">View details<i aria-hidden="true"></i></a>
-            <a class="asterisk" href="../vehicles/v68412.html#pricing" aria-label="Pricing details">* Pricing details</a>
-          </div>
         </li>
       </ul>
     </div>
@@ -356,6 +355,6 @@
   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 13.5V2.5m0 0L3 7.5m5-5 5 5" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg>
 </a>
 
-<script src="../js/vehicle.js?v=20260921132948" defer></script>
+<script src="../js/vehicle.js?v=20260921134926" defer></script>
 </body>
 </html>

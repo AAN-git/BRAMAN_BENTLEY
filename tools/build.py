@@ -77,36 +77,47 @@ def rows_html(rows, indent=14):
     return '\n'.join(f'{pad}<div{(" class=" + chr(34) + c + chr(34)) if c else ""}><dt>{e(k)}</dt><dd>{val}</dd></div>' for k, val, c in rows)
 
 # --- One card. `p` is the path prefix to the site root ('' or '../').
+#     One plate: the photograph, then the kind, the name, the facts, the
+#     headline figure on a hairline, the retailer's build as three quiet rows,
+#     two lines kept for the MSRP saving and the lease, the way in. Every line
+#     is reserved whether the car needs it or not, so a row of cards is one
+#     height and its figures sit on one line.
 def card(v, p='', eager=False):
     src, w, h, note = image_of(v, p)
-    flags = ''
-    if v['lease_month']:
-        flags += f'<span class="card__flag">{e(lease_text(v))}</span>'
-    if v['special']:
-        flags += '<span class="card__flag card__flag--special">Internet special</span>'
+    flag = '<span class="card__flag">Internet special</span>' if v['special'] else ''
     label = v['price_label']
-    facts = f"{e(v['exterior'])} over {e(v['interior'])} · {'{:,}'.format(v['mileage'])} miles · Stock {e(v['stock'])}"
-    marks = []
-    if v['certified']: marks.append('Certified by Bentley')
-    if v['one_owner']: marks.append('One owner')
-    if marks: facts += f'<br><b>{" · ".join(marks)}</b>'
+    used = v['condition'] == 'used'
+    if not used: kind = 'New · In stock'
+    elif v['certified'] and v['one_owner']: kind = 'Pre-owned · <b>Certified by Bentley, one owner</b>'
+    elif v['certified']: kind = 'Pre-owned · <b>Certified by Bentley</b>'
+    elif v['one_owner']: kind = 'Pre-owned · One owner'
+    else: kind = 'Pre-owned'
+    facts = f"{e(v['exterior'])} over {e(v['interior'])}, {'{:,}'.format(v['mileage'])} miles<br><span class=\"nowrap\">Stock {e(v['stock'])}</span>"
     alt = f"{v['exterior']} {name_of(v)}{note}"
+    build = [('Dealer service charge', '$1,189', ''), ('Electronic filing charge', '$514', '')]
+    if v['sale_price_with_fees']:
+        build.append((v.get('sale_label') or 'Sale price', money(v['sale_price_with_fees']), 'card__sale'))
+    extra = []
+    if used and v['msrp']:
+        extra.append(f"MSRP {money(v['msrp'])} · You save {money(v['you_save'] or (v['msrp'] - v['price']))}")
+    if v['lease_month']:
+        extra.append(f"Lease {money(v['lease_month'])} a month")
+    extra_html = ''.join(f'<span>{e(x)}</span>' for x in extra)
     return f'''        <li class="card" data-condition="{v['condition']}" data-certified="{1 if v['certified'] else 0}" data-year="{v['year']}" data-price="{v['price']}" data-mileage="{v['mileage']}" data-model="{e(v['model'])}" data-trim="{e(v['trim'])}" data-stock="{e(v['stock'])}" data-vin="{e(v['vin'])}">
           <a class="card__link" href="{p}{v['page']}" aria-label="{e(v['title'])}, {e(label)} {money(v['price'])}">
-            <span class="card__media">{flags}<img src="{src}" width="{w}" height="{h}" loading="{'eager' if eager else 'lazy'}" decoding="async" alt="{e(alt)}"></span>
-            <span class="card__row">
-              <h2 class="card__title">{e(v['title'])} <span class="card__place">in West Palm Beach, FL</span></h2>
-              <span class="card__price"><small>{e(label)}</small>{money(v['price'])}</span>
+            <span class="card__media">{flag}<img src="{src}" width="{w}" height="{h}" loading="{'eager' if eager else 'lazy'}" decoding="async" alt="{e(alt)}"></span>
+            <span class="card__body">
+              <span class="card__kind">{kind}</span>
+              <h2 class="card__title">{e(name_of(v))}</h2>
+              <span class="card__facts">{facts}</span>
+              <span class="card__price"><span class="card__price-label">{e(label)}<sup aria-hidden="true">*</sup></span><span class="card__price-value">{money(v['price'])}</span></span>
+              <dl class="card__build">
+{rows_html(build, 16)}
+              </dl>
+              <span class="card__extra">{extra_html}</span>
+              <span class="link">View details<i aria-hidden="true"></i></span>
             </span>
-            <span class="card__facts">{facts}</span>
           </a>
-          <dl class="card__stack">
-{rows_html(stack_rows(v))}
-          </dl>
-          <div class="card__foot">
-            <a class="link" href="{p}{v['page']}">View details<i aria-hidden="true"></i></a>
-            <a class="asterisk" href="{p}{v['page']}#pricing" aria-label="Pricing details">* Pricing details</a>
-          </div>
         </li>'''
 
 # =========================================================================
@@ -210,8 +221,11 @@ def vehicle_page(v):
     name = name_of(v)
     used = v['condition'] == 'used'
     label = v['price_label']
-    eyebrow = ('Certified by Bentley pre-owned' if v['certified'] else 'Pre-owned') if used else 'New · In stock'
-    if used and v['one_owner']: eyebrow += ' · One owner'
+    if not used: eyebrow = 'New · In stock'
+    elif v['certified'] and v['one_owner']: eyebrow = 'Pre-owned · Certified by Bentley, one owner'
+    elif v['certified']: eyebrow = 'Pre-owned · Certified by Bentley'
+    elif v['one_owner']: eyebrow = 'Pre-owned · One owner'
+    else: eyebrow = 'Pre-owned'
     if v['photos']:
         photos = v['photos']
         stock_note = ''
@@ -261,7 +275,7 @@ def vehicle_page(v):
       <aside class="special step" data-reveal aria-labelledby="special-title" style="--i:1">
         <p class="special__label" id="special-title">Lease special<a class="asterisk" href="#pricing" aria-label="Lease terms">*</a></p>
         <p class="special__figure">{money(v['lease_month'])} <span>a month</span></p>
-        {f'<p class="special__terms">{e(" · ".join(lines))}</p>' if lines else ''}
+        {f'<p class="special__terms">{e(", ".join(lines))}</p>' if lines else ''}
         <p class="special__fine">{e('. '.join(c[0].upper() + c[1:] for c in conds))}.</p>
         <a class="link" href="#pricing">Full terms<i aria-hidden="true"></i></a>
       </aside>'''
@@ -289,13 +303,13 @@ def vehicle_page(v):
     lease_fine = ('Special closed-end lease' + lease_fine) if lease_fine and 'Special Closed-End Lease' in raw else lease_fine
     lease_fine = re.sub(r'\s+', ' ', lease_fine).replace(' ,', ',').replace(' .', '.').strip()
     lease_block = f'''
-        <div class="pricing__lease">
-          <h3 class="vdp__h" id="lease-terms">Lease terms<span class="pricing__mark" aria-hidden="true">*</span></h3>
-          <dl class="offer__rows pricing__rows">
+      <div class="pricing__lease">
+        <h3 class="vdp__h" id="lease-terms">Lease terms<span class="pricing__mark" aria-hidden="true">*</span></h3>
+        <dl class="offer__rows pricing__rows">
 {lease_rows}
-          </dl>
-          <p class="pricing__fine">{e(lease_fine)}</p>
-        </div>''' if lt else ''
+        </dl>
+        <p class="pricing__fine">{e(lease_fine)}</p>
+      </div>''' if lt else ''
     pricing = f'''
   <!-- The disclosure: what the retailer says beside every price, and the
        lease as it states it, on the page rather than behind a click. -->
@@ -343,7 +357,7 @@ def vehicle_page(v):
         <div class="vdp__name">
           <p class="label step" style="--i:1">{eyebrow}</p>
           <h1 class="h2 step" style="--i:2">{h1}</h1>
-          <p class="vdp__sub body step" style="--i:3">{e(v['exterior'])} over {e(v['interior'])} · {'{:,}'.format(v['mileage'])} miles · Stock {e(v['stock'])}</p>
+          <p class="vdp__sub body step" style="--i:3">{e(v['exterior'])} over {e(v['interior'])}, {'{:,}'.format(v['mileage'])} miles · Stock {e(v['stock'])}</p>
         </div>
         <div class="vdp__figure step" style="--i:2">
           <p class="vdp__price"><span class="vdp__price-label">{e(label)}<a class="asterisk" href="#pricing" aria-label="Pricing details">*</a></span><span class="vdp__price-value">{money(v['price'])}</span></p>
@@ -412,21 +426,23 @@ def vehicle_page(v):
     </div>
   </section>
 
-  <!-- Enquire -->
+  <!-- Enquire: one plate, the ask at the left, the form at the right -->
   <section class="vdp__enquire" id="enquire" aria-labelledby="enq-title">
-    <div class="page vdp__enquire-grid">
-      <div class="vdp__enquire-lede">
-        <h2 class="h2 h2--small" id="enq-title">Enquire</h2>
-        <p class="body">A specialist will confirm availability and arrange a private viewing at 2801 Okeechobee Boulevard, West Palm Beach, or call <a href="tel:+15619269111">561 926 9111</a>.</p>
-        <p class="body vdp__trade">Have a car to part with? <a class="link" href="https://www.bramanbentleypalmbeach.com/value-trade-in/">Value your trade-in<i aria-hidden="true"></i></a></p>
+    <div class="page">
+      <div class="enquire">
+        <div class="enquire__lede">
+          <h2 class="h2 h2--small" id="enq-title">Enquire</h2>
+          <p class="body">A specialist will confirm availability and arrange a private viewing at 2801 Okeechobee Boulevard, West Palm Beach, or call <a href="tel:+15619269111">561 926 9111</a>.</p>
+          <p class="enquire__trade"><a class="link" href="https://www.bramanbentleypalmbeach.com/value-trade-in/">Value your trade-in<i aria-hidden="true"></i></a></p>
+        </div>
+        <form class="enquire__form" onsubmit="return false" aria-labelledby="enq-title">
+          <label class="field"><span class="field__label">Name</span><input class="field__input" type="text" name="name" autocomplete="name" required></label>
+          <label class="field"><span class="field__label">Email</span><input class="field__input" type="email" name="email" autocomplete="email" required></label>
+          <label class="field"><span class="field__label">Telephone</span><input class="field__input" type="tel" name="tel" autocomplete="tel"></label>
+          <label class="field field--wide"><span class="field__label">Message</span><textarea class="field__input field__area" name="message" rows="3">I am interested in the {e(name)}, stock {e(v['stock'])}.</textarea></label>
+          <div class="enquire__send"><button class="btn" type="submit">Send enquiry</button><span class="enquire__fine">No obligation. A specialist replies within one working day.</span></div>
+        </form>
       </div>
-      <form class="enquire" onsubmit="return false" aria-labelledby="enq-title">
-        <label class="field"><span class="field__label">Name</span><input class="field__input" type="text" name="name" autocomplete="name"></label>
-        <label class="field"><span class="field__label">Email</span><input class="field__input" type="email" name="email" autocomplete="email"></label>
-        <label class="field"><span class="field__label">Telephone</span><input class="field__input" type="tel" name="tel" autocomplete="tel"></label>
-        <label class="field field--wide"><span class="field__label">Message</span><textarea class="field__input field__area" name="message" rows="3">I am interested in the {e(name)}, stock {e(v['stock'])}.</textarea></label>
-        <div class="enquire__send"><button class="btn" type="submit">Send enquiry</button></div>
-      </form>
     </div>
   </section>
 {pricing}

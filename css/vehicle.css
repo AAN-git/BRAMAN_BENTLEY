@@ -144,14 +144,22 @@
 .special__fine { margin-block-start: var(--space-3); font-size: var(--text-xs); line-height: 1.5; color: var(--ink-3); }
 .special .link { margin-block-start: var(--space-3); }
 
-/* --- Enquire ------------------------------------------------------------ */
+/* --- Enquire: one plate on the offer's ground; the ask at the left, the
+       form at the right, the fields as labelled hairlines ---------------- */
 .vdp__enquire { padding-block: clamp(4rem, 9vh, 6rem) 0; }
-.vdp__enquire-grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); column-gap: clamp(3rem, 6vw, 6rem); align-items: start; }
+.enquire {
+  display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  column-gap: clamp(3rem, 6vw, 6rem); row-gap: var(--space-6);
+  align-items: start;
+  padding: clamp(1.5rem, 3.2vw, 3rem);
+  border: 1px solid var(--rule);
+  background: rgba(255, 255, 255, 0.04);
+}
 .h2--small { font-size: var(--text-h2); }
-.vdp__enquire-lede .body { margin-block-start: var(--gap-copy); }
-.vdp__enquire-lede .body a:not(.link) { border-bottom: 1px solid var(--rule-strong); }
-.vdp__trade .link { margin-inline-start: var(--space-2); vertical-align: baseline; }
-.enquire { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-5) var(--space-4); }
+.enquire__lede .body { margin-block-start: var(--gap-copy); }
+.enquire__lede .body a { border-bottom: 1px solid var(--rule-strong); }
+.enquire__trade { margin-block-start: var(--space-5); }
+.enquire__form { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-5) var(--space-5); }
 .field { display: block; min-width: 0; }
 .field--wide { grid-column: 1 / -1; }
 .field__label { display: block; font-size: var(--text-xs); letter-spacing: var(--track-label); text-transform: uppercase; color: var(--ink-2); font-weight: 400; }
@@ -166,14 +174,17 @@
 .field__input:hover, .field__input:focus { border-color: var(--white); outline: none; }
 .field__input:focus-visible { outline: 2px solid var(--white); outline-offset: 4px; }
 .field__area { resize: vertical; min-height: 4.5em; }
-.enquire__send { grid-column: 1 / -1; }
+.enquire__send { grid-column: 1 / -1; display: flex; align-items: center; flex-wrap: wrap; gap: var(--space-4) var(--space-5); }
+.enquire__fine { font-size: var(--text-xs); color: var(--ink-3); }
+.enquire__done { grid-column: 1 / -1; color: var(--ink); }
 
-/* --- The disclosure ----------------------------------------------------- */
+/* --- The disclosure: the title, the lease terms as rows on the plate's
+       ground, the retailer's text beneath at reading measure ------------- */
 .pricing { padding-block: clamp(4rem, 9vh, 6rem) 0; }
-.pricing__body { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); column-gap: clamp(3rem, 6vw, 6rem); margin-block-start: clamp(1.5rem, 3vh, 2.5rem); align-items: start; }
-.pricing__body > :only-child { grid-column: 2; }
+.pricing__body { margin-block-start: clamp(1.5rem, 3vh, 2.5rem); display: grid; gap: clamp(2rem, 4vh, 3rem); max-width: 52rem; }
 .vdp__h { font-size: var(--text-lead); font-weight: 300; }
 .pricing__mark { color: var(--ink-3); margin-inline-start: 0.15em; }
+.pricing__lease { padding: clamp(1.25rem, 2.4vw, 2rem); border: 1px solid var(--rule); background: rgba(255, 255, 255, 0.04); }
 .pricing__rows { font-size: var(--text-body); }
 .pricing__rows dd { color: var(--ink); }
 .pricing__fine, .pricing__text { margin-block-start: var(--space-4); font-size: var(--text-xs); line-height: 1.6; color: var(--ink-3); max-width: 44rem; }
@@ -238,13 +249,13 @@
   .keys { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .keys div:nth-child(3) { border-left: 0; padding-left: 0; }
   .keys div:nth-child(-n + 2) { border-bottom: 1px solid var(--rule); }
-  .vdp__enquire-grid, .pricing__body { grid-template-columns: 1fr; row-gap: var(--space-6); }
-  .pricing__body > :only-child { grid-column: auto; }
-  .enquire { grid-template-columns: 1fr 1fr; }
+  .enquire { grid-template-columns: 1fr; }
+  .enquire__form { grid-template-columns: 1fr 1fr; }
   .film__frame { height: min(48vh, 480px); }
 }
 @media (max-width: 639px) {
-  .enquire { grid-template-columns: 1fr; }
+  .enquire__form { grid-template-columns: 1fr; }
+  .enquire { padding: var(--space-5) var(--space-4); }
   .film__frame { height: 56vw; }
   .film__foot { grid-template-columns: minmax(0, 1fr) auto; }
   .film__nav { display: none; }
