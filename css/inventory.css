@@ -115,12 +115,12 @@ body { background: linear-gradient(180deg, var(--black) 0%, var(--black) 70%, #0
   min-height: 2.3em;   /* two lines kept: the long names have two */
   text-wrap: balance;
 }
-/* the facts as four short rows, each on its own line: exterior, interior,
-   mileage, stock; the labels in the small caps register */
+/* four labelled rows under the name — exterior, interior, mileage, stock —
+   the labels in the small caps register; each fact on its own line */
 .card__facts {
   display: grid; row-gap: 2px;
-  margin-block-start: var(--space-3);
-  min-height: 6em;     /* four lines kept */
+  margin-block-start: var(--space-2);
+  min-height: calc(6em + 6px);   /* four lines kept, so every card ends on the same line */
   font-size: var(--text-xs); line-height: 1.5; color: var(--ink-2);
 }
 .card__facts > span { display: grid; grid-template-columns: 5.25rem minmax(0, 1fr); column-gap: var(--space-3); align-items: baseline; }
@@ -190,7 +190,7 @@ body { background: linear-gradient(180deg, var(--black) 0%, var(--black) 70%, #0
 @media (max-width: 639px) {
   .srp__tools { grid-template-columns: 1fr 1fr; column-gap: var(--space-4); }
   .grid { grid-template-columns: 1fr; row-gap: var(--space-5); }
-  .card__title, .card__extra { min-height: 0; }
+  .card__title, .card__facts, .card__extra { min-height: 0; }
   .card__body { padding: var(--space-4); }
 }
 @media (prefers-reduced-motion: reduce) {

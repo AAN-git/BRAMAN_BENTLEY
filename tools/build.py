@@ -92,10 +92,11 @@ def card(v, p='', eager=False):
     elif v['certified']: kind = 'Pre-owned · <b>Certified by Bentley</b>'
     elif v['one_owner']: kind = 'Pre-owned · One owner'
     else: kind = 'Pre-owned'
+    # every fact on its own row, the colours too (Alex, 2026-09-21: no "X over Y")
     facts = (f"<span><b>Exterior</b>{e(v['exterior'])}</span>"
              f"<span><b>Interior</b>{e(v['interior'])}</span>"
              f"<span><b>Mileage</b>{'{:,}'.format(v['mileage'])} miles</span>"
-             f"<span><b>Stock</b>{e(v['stock'])}</span>")
+             f"<span><b>Stock #</b>{e(v['stock'])}</span>")
     alt = f"{v['exterior']} {name_of(v)}{note}"
     build = [('Dealer service charge', '$1,189', ''), ('Electronic filing charge', '$514', '')]
     if v['sale_price_with_fees']:
@@ -382,7 +383,12 @@ def vehicle_page(v):
         <div class="vdp__name">
           <p class="label step" style="--i:1">{eyebrow}</p>
           <h1 class="h2 step" style="--i:2">{h1}</h1>
-          <p class="vdp__sub body step" style="--i:3">{e(v['exterior'])} over {e(v['interior'])}, {'{:,}'.format(v['mileage'])} miles · Stock {e(v['stock'])}</p>
+          <dl class="vdp__sub body step" style="--i:3">
+            <div><dt>Exterior</dt><dd>{e(v['exterior'])}</dd></div>
+            <div><dt>Interior</dt><dd>{e(v['interior'])}</dd></div>
+            <div><dt>Mileage</dt><dd>{'{:,}'.format(v['mileage'])} miles</dd></div>
+            <div><dt>Stock #</dt><dd>{e(v['stock'])}</dd></div>
+          </dl>
         </div>
         <div class="vdp__figure step" style="--i:2">
           <p class="vdp__price"><span class="vdp__price-label">{e(label)}<a class="asterisk" href="#pricing" aria-label="Pricing details">*</a></span><span class="vdp__price-value">{money(v['price'])}</span></p>

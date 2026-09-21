@@ -21,7 +21,11 @@
   align-items: end;
   margin-block-start: clamp(1.5rem, 4vh, 3rem);
 }
-.vdp__sub { margin-block-start: var(--gap-title); }
+/* under the name, four labelled rows: exterior, interior, mileage, stock */
+.vdp__sub { display: grid; row-gap: 2px; margin: var(--gap-title) 0 0; color: var(--ink-2); }
+.vdp__sub div { display: grid; grid-template-columns: 6rem minmax(0, 1fr); column-gap: var(--space-3); align-items: baseline; }
+.vdp__sub dt { font-size: var(--text-xs); font-weight: 400; letter-spacing: var(--track-label); text-transform: uppercase; color: var(--ink-3); }
+.vdp__sub dd { margin: 0; }
 .vdp__figure { text-align: right; }
 .vdp__price { display: flex; flex-direction: column; align-items: flex-end; gap: var(--space-1); }
 .vdp__price-label { font-size: var(--text-xs); letter-spacing: var(--track-label); text-transform: uppercase; color: var(--ink-2); font-weight: 400; }
@@ -73,9 +77,16 @@ main.vdp > section.film, html:not(.ready) main.vdp > section.film { position: re
   position: absolute; top: calc(min(58vh, 620px) / 2 - 22px); z-index: 3;
   background: var(--plate);
   -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+  /* as on the Rolls-Royce site: the arrows show while the rail is moving
+     sideways (the script sets data-scrolling), under the pointer, and on
+     focus; otherwise the photographs stand alone */
+  opacity: 0;
+  transition: opacity var(--dur-2) var(--ease-out), border-color var(--dur-2) var(--ease-out);
 }
-.film__arrow--prev { left: max(var(--gutter), calc((100% - var(--page)) / 2)); }
-.film__arrow--next { right: max(var(--gutter), calc((100% - var(--page)) / 2)); }
+.film[data-scrolling] .film__arrow, .film__arrow:hover, .film__arrow:focus-visible { opacity: 1; }
+.film[data-scrolling] .film__arrow[disabled], .film__arrow[disabled]:hover { opacity: 0.3; }
+.film__arrow--prev { left: calc(max(var(--gutter), (100% - var(--page)) / 2) + var(--space-5)); }
+.film__arrow--next { right: var(--space-5); }
 @media (pointer: coarse) { .film__arrow { display: none; } }
 
 .film__foot {
@@ -83,17 +94,20 @@ main.vdp > section.film, html:not(.ready) main.vdp > section.film { position: re
   column-gap: var(--space-6); row-gap: var(--space-3);
   margin-block-start: var(--space-5);
 }
-/* the switch: two labels in the caps register, the one in use white on a hairline */
-.film__mode { display: flex; gap: var(--space-5); }
+/* the switch: two of the guideline's buttons, square and tracked — the one
+   in use solid, the other a hairline */
+.film__mode { display: flex; gap: var(--space-2); }
 .film__mode-button {
-  background: none; border: 0; padding: var(--space-2) 0; cursor: pointer;
-  border-bottom: 1px solid transparent;
-  font: inherit; font-size: var(--text-xs); font-weight: 400; letter-spacing: var(--track-label); text-transform: uppercase;
-  color: var(--ink-2);
-  transition: color var(--dur-2) var(--ease-out), border-color var(--dur-2) var(--ease-out);
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 40px; padding: 0 var(--space-4);
+  background: transparent; border: 1px solid var(--rule-strong); cursor: pointer;
+  font: inherit; font-size: var(--text-xs); font-weight: 400; letter-spacing: var(--track-label); text-transform: uppercase; line-height: 1;
+  color: var(--white); white-space: nowrap;
+  transition: background-color var(--dur-2) var(--ease-out), border-color var(--dur-2) var(--ease-out);
 }
-.film__mode-button:hover { color: var(--white); }
-.film__mode-button[aria-pressed="true"] { color: var(--white); border-bottom-color: var(--white); }
+.film__mode-button:hover { border-color: var(--white); background: rgba(255, 255, 255, 0.06); }
+.film__mode-button[aria-pressed="true"] { background: var(--teal-70); border-color: var(--teal-70); }
+.film__mode-button:focus-visible { outline: 2px solid var(--white); outline-offset: 3px; }
 
 /* the way in: the first frame of the turntable, dimmed, a hairline ring
    that says 360° and a label beneath; without the script there is no spin,

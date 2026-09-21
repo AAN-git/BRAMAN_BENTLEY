@@ -163,7 +163,15 @@
     rail.addEventListener("pointerup", up);
     rail.addEventListener("pointercancel", up);
     rail.addEventListener("click", function (e) { if (moved) { e.preventDefault(); e.stopPropagation(); moved = false; } }, true);
-    rail.addEventListener("scroll", settle, { passive: true });
+    /* the arrows show while the rail is moving sideways — a drag, a wheel,
+       a throw, a click — and fade once it has stood still */
+    var movingUntil = 0;
+    var moving = function () {
+      film.setAttribute("data-scrolling", "");
+      window.clearTimeout(movingUntil);
+      movingUntil = window.setTimeout(function () { film.removeAttribute("data-scrolling"); }, 900);
+    };
+    rail.addEventListener("scroll", function () { moving(); settle(); }, { passive: true });
     window.addEventListener("resize", settle);
     window.addEventListener("load", settle);
     settle();
@@ -266,7 +274,7 @@
         raf = 0;
         if (auto) { angle += 0.05; paintFrame(); raf = window.requestAnimationFrame(tick); return; }
         if (Math.abs(velocity) > 0.002) {
-          angle += velocity; velocity *= 0.94; paintFrame();
+          angle += velocity; velocity *= 0.94; paintFrame(); moving();
           raf = window.requestAnimationFrame(tick);
         } else velocity = 0;
       };
@@ -295,7 +303,7 @@
         var next = hold.a - (e.clientX - hold.x) / per;
         var now = performance.now();
         hold.v = (next - angle) / Math.max(1, now - hold.t) * 16;   /* frames per tick */
-        hold.t = now; angle = next; paintFrame();
+        hold.t = now; angle = next; paintFrame(); moving();
       });
       var letGo = function () {
         if (!hold) return;
@@ -308,13 +316,14 @@
       stage.addEventListener("pointercancel", letGo);
       stage.addEventListener("wheel", function (e) {
         if (Math.abs(e.deltaX) <= Math.abs(e.deltaY)) return;   /* sideways only */
-        stopAuto(); angle += e.deltaX / 40; paintFrame(); e.preventDefault();
+        stopAuto(); angle += e.deltaX / 40; paintFrame(); moving(); e.preventDefault();
       }, { passive: false });
 
       var setMode = function (next) {
         mode = next;
         var spinning = mode === "spin";
         rail.hidden = spinning; spin.hidden = !spinning;
+        film.removeAttribute("data-scrolling");
         modes.forEach(function (b) { b.setAttribute("aria-pressed", b.dataset.mode === mode ? "true" : "false"); });
         if (track) track.style.visibility = spinning ? "hidden" : "";
         if (counter) counter.style.visibility = spinning ? "hidden" : "";
@@ -329,7 +338,7 @@
       modes.forEach(function (b) { b.addEventListener("click", function () { setMode(b.dataset.mode); }); });
       var launch = film.querySelector(".film__launch");
       if (launch) launch.addEventListener("click", function () { setMode("spin"); });
-      turn = function (dir) { stopAuto(); velocity = 0; angle = Math.round(angle) + dir; paintFrame(); };
+      turn = function (dir) { stopAuto(); velocity = 0; angle = Math.round(angle) + dir; paintFrame(); moving(); };
     }
   }
 
