@@ -160,7 +160,7 @@ def rail_car(v, i):
             <img src="{src}" alt="{e(v['exterior'])} {e(name_of(v))}{note}" width="{w}" height="{h}" loading="lazy" decoding="async" draggable="false">
             <span class="stock__row"><span class="stock__name">{e(short_name(v))}</span></span>
             <span class="stock__price"><small>{e(v['price_label'])}</small>{money(v['price'])}</span>
-            <span class="stock__facts">{e(v['exterior'])} over {e(v['interior'])}, {'{:,}'.format(v['mileage'])} miles<br>Stock {e(v['stock'])}</span>
+            <span class="stock__facts"><span><b>Exterior</b>{e(v['exterior'])}</span><span><b>Interior</b>{e(v['interior'])}</span><span><b>Mileage</b>{'{:,}'.format(v['mileage'])} miles</span><span><b>Stock #</b>{e(v['stock'])}</span></span>
             <span class="link">View details<i aria-hidden="true"></i></span>
           </a>
         </li>'''
@@ -268,7 +268,8 @@ def vehicle_page(v):
     # the offer box: the headline figure large, then what the retailer shows around it
     around = stack_rows(v)
     facts = [
-        ('Stock', e(v['stock']), ''), ('VIN', f'<span class="vdp__vin">{e(v["vin"])}</span>', ''),
+        ('Exterior', e(v['exterior']), ''), ('Interior', e(v['interior']), ''),
+        ('Stock #', e(v['stock']), ''), ('VIN', f'<span class="vdp__vin">{e(v["vin"])}</span>', ''),
         ('Engine', e(engine_long(v)), ''), ('Transmission', e(v['transmission'] or ''), ''),
         ('Drivetrain', e(DRIVE.get(v['drivetrain'] or '', v['drivetrain'] or '')).capitalize() if v['drivetrain'] else '', ''),
         ('Fuel economy', f"{v['mpg']} mpg combined" if v['mpg'] else '', ''), ('Doors', e(str(v['doors'] or '')), ''),
@@ -384,8 +385,6 @@ def vehicle_page(v):
           <p class="label step" style="--i:1">{eyebrow}</p>
           <h1 class="h2 step" style="--i:2">{h1}</h1>
           <dl class="vdp__sub body step" style="--i:3">
-            <div><dt>Exterior</dt><dd>{e(v['exterior'])}</dd></div>
-            <div><dt>Interior</dt><dd>{e(v['interior'])}</dd></div>
             <div><dt>Mileage</dt><dd>{'{:,}'.format(v['mileage'])} miles</dd></div>
             <div><dt>Stock #</dt><dd>{e(v['stock'])}</dd></div>
           </dl>

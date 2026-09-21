@@ -294,7 +294,7 @@
     var over = inner.getBoundingClientRect().height - room;
     if (over <= 0) return;
     var w = card.getBoundingClientRect().width - over * 1.5;
-    sec.style.setProperty("--stock-card-w", Math.max(208, Math.floor(w)) + "px");
+    sec.style.setProperty("--stock-card-w", Math.max(220, Math.floor(w)) + "px");
   }
   window.addEventListener("resize", fitRail);
   window.addEventListener("load", fitRail);

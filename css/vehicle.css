@@ -22,9 +22,11 @@
   margin-block-start: clamp(1.5rem, 4vh, 3rem);
 }
 /* under the name, four labelled rows: exterior, interior, mileage, stock */
-.vdp__sub { display: grid; row-gap: 2px; margin: var(--gap-title) 0 0; color: var(--ink-2); }
-.vdp__sub div { display: grid; grid-template-columns: 6rem minmax(0, 1fr); column-gap: var(--space-3); align-items: baseline; }
-.vdp__sub dt { font-size: var(--text-xs); font-weight: 400; letter-spacing: var(--track-label); text-transform: uppercase; color: var(--ink-3); }
+/* under the name, one line: the mileage and the stock number, each with its
+   small caps label; the colours stand in the specification box at the right */
+.vdp__sub { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-6); margin: var(--gap-title) 0 0; color: var(--ink); }
+.vdp__sub div { display: flex; align-items: baseline; gap: var(--space-3); }
+.vdp__sub dt { font-size: var(--text-xs); font-weight: 400; letter-spacing: var(--track-label); text-transform: uppercase; color: var(--ink-2); }
 .vdp__sub dd { margin: 0; }
 .vdp__figure { text-align: right; }
 .vdp__price { display: flex; flex-direction: column; align-items: flex-end; gap: var(--space-1); }

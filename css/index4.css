@@ -762,7 +762,11 @@ main > section::before {
   font-size: var(--text-lead); line-height: 1.2; font-variant-numeric: tabular-nums; color: var(--ink); white-space: nowrap;
 }
 .stock__price small { font-size: var(--text-xs); font-weight: 400; letter-spacing: var(--track-label); text-transform: uppercase; color: var(--ink-2); }
-.stock__facts { display: block; margin-block-start: var(--space-2); font-size: var(--text-xs); color: var(--ink-2); }
+/* the facts as four rows, each its own line — exterior, interior, mileage,
+   stock — the labels in the small caps register (as on the inventory cards) */
+.stock__facts { display: grid; row-gap: 2px; margin-block-start: var(--space-3); font-size: var(--text-xs); line-height: 1.5; color: var(--ink-2); }
+.stock__facts > span { display: grid; grid-template-columns: 5.25rem minmax(0, 1fr); column-gap: var(--space-3); align-items: baseline; }
+.stock__facts b { font-weight: 400; letter-spacing: var(--track-label); text-transform: uppercase; color: var(--ink-3); }
 .stock__car .link { margin-block-start: var(--space-3); }
 
 /* --- 7 · The retailer ------------------------------------------------------- */
@@ -1010,6 +1014,7 @@ html[data-past] .totop { opacity: 1; visibility: visible; transform: none; trans
      ends on the floor on any short screen */
   .stock__aside .body { display: none; }
   .stock .h2 { font-size: min(var(--text-display), 7vh); }
+  .stock .h2 br { display: none; }   /* the title on one line: the height goes to the cars */
   .stock__name { min-height: 0; }
 }
 
