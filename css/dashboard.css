@@ -103,10 +103,27 @@
 /* the same note, laid on the cover (dashboard6): at the right, opposite the
    title, on the asphalt below the cars */
 .note-card--cover { left: auto; top: auto; right: var(--edge); bottom: calc(var(--floor) + 2vh); rotate: 2deg; }
+.note-card--cover { width: min(27rem, 80vw); padding: var(--space-6) var(--space-7); border-radius: 20px; }
+.note-card--cover .note-card__label { font-size: var(--text-sm); }
+.note-card--cover .note-card__title { margin-block-start: var(--space-3); font-size: var(--text-h3); }
+.note-card--cover .note-card__text { margin-block-start: var(--space-3); font-size: var(--text-body); line-height: 1.5; }
+/* a large screen: the note grows with it */
+@media (min-width: 1600px) and (min-height: 960px) {
+  .note-card--cover { width: 32rem; padding: var(--space-7) var(--space-8); }
+  .note-card--cover .note-card__text { font-size: var(--text-lead); }
+}
+/* a short screen gives the cars less height: the note keeps to the asphalt */
+@media (max-height: 800px) {
+  .note-card--cover { width: min(24rem, 80vw); padding: var(--space-5) var(--space-6); }
+  .note-card--cover .note-card__title { font-size: var(--text-lead); }
+  .note-card--cover .note-card__text { font-size: var(--text-sm); }
+}
 /* narrower, it stands at the top in the sky, so the title keeps its place
    at the foot, below the cars */
 @media (max-width: 1023px) {
-  .note-card--cover { position: static; rotate: none; order: -1; width: auto; max-width: 26rem; margin: calc(var(--floor) + 56px) var(--edge) auto; }
+  .note-card--cover { position: static; rotate: none; order: -1; width: auto; max-width: 30rem; padding: var(--space-5); margin: calc(var(--floor) + 56px) var(--edge) auto; }
+  .note-card--cover .note-card__title { font-size: var(--text-lead); }
+  .note-card--cover .note-card__text { font-size: var(--text-sm); }
 }
 .dir .btn svg { margin-inline-start: var(--space-3); transition: transform var(--dur-2) var(--ease-out); }
 .dir .btn:hover svg { transform: translateX(3px); }
