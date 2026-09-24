@@ -9,11 +9,36 @@
 <link rel="preload" href="../assets/fonts/Bentley-Light.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../assets/fonts/Bentley-Regular.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../assets/img/vdp/v69347/1.webp" as="image">
-<link rel="stylesheet" href="../css/system.css?v=20260921164646">
+<link rel="stylesheet" href="../css/system.css?v=20260924150550">
 <link rel="stylesheet" href="../css/index6.css?v=15337442e8">
-<link rel="stylesheet" href="../css/cards.css?v=20260921164646">
+<link rel="stylesheet" href="../css/cards.css?v=20260924150550">
 <link rel="stylesheet" href="../css/inventory6.css?v=282d681931">
 <link rel="stylesheet" href="../css/vehicle6.css?v=d890d4b68f">
+<link rel="stylesheet" href="../css/day6.css?v=b6e6352989">
+<script>
+  /* Direction 6: four looks for the client's review (css/day6.css) */
+  (function () {
+    var d = document.documentElement, m = /[?&]look=([1-4])/.exec(location.search), l = m && m[1];
+    try { l = l || sessionStorage.getItem("bpb-look"); if (l) sessionStorage.setItem("bpb-look", l); } catch (e) {}
+    l = l || "1";
+    d.setAttribute("data-look", l);
+    var names = ["White", "Satin Linen", "White, words beside the photographs", "Satin Linen, words beside the photographs"];
+    document.addEventListener("DOMContentLoaded", function () {
+      var nav = document.createElement("nav");
+      nav.className = "looks"; nav.setAttribute("aria-label", "Design looks");
+      nav.innerHTML = "<span>Look</span>";
+      for (var i = 1; i <= 4; i++) {
+        var a = document.createElement("a"), u = new URL(location.href);
+        u.searchParams.set("look", i);
+        a.href = u.pathname + u.search + u.hash; a.textContent = i; a.title = names[i - 1];
+        a.setAttribute("aria-label", "Look " + i + ": " + names[i - 1]);
+        if (String(i) === l) a.setAttribute("aria-current", "true");
+        nav.appendChild(a);
+      }
+      document.body.appendChild(nav);
+    });
+  })();
+</script>
 <script>
   /* Motion is opt-in from the first paint: if the script never arrives, or the
      visitor asked for less motion, the page is simply its finished composition. */
@@ -393,6 +418,6 @@
   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 13.5V2.5m0 0L3 7.5m5-5 5 5" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg>
 </a>
 
-<script src="../js/vehicle.js?v=20260921164646" defer></script>
+<script src="../js/vehicle.js?v=20260924150550" defer></script>
 </body>
 </html>
