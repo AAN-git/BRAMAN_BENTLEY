@@ -523,3 +523,6 @@ print(len(V), 'vehicle pages in vehicles/')
 # 4. Direction 5 mirrors the inventory, the vehicle pages and the rail.
 # =========================================================================
 exec(open(ROOT + 'tools/mirror5.py', encoding='utf-8').read(), {'__file__': ROOT + 'tools/mirror5.py'})
+
+# 5. Direction 6, the working copy of direction 5, mirrors them the same way.
+exec(open(ROOT + 'tools/mirror6.py', encoding='utf-8').read(), {'__file__': ROOT + 'tools/mirror6.py'})

@@ -1,0 +1,377 @@
+/* Direction 5 (coastal): the vehicle page, mirrored from css/vehicle.css. */
+/* ==========================================================================
+   Bentley Palm Beach — the vehicle page (VDP).
+   Loads after index4.css and inventory.css: the room, the header, the
+   buttons, the record and the cards come from there. This sheet sets the
+   car's own page — the name and the figure, the film of photographs, the
+   plate, the folds, the offer, the enquiry, the disclosure, the light box.
+   ========================================================================== */
+
+/* --- The name and the figure ------------------------------------------- */
+.vdp__top { padding-block: calc(var(--bar-h) + 2vh) 0; }
+.vdp__crumbs {
+  display: flex; flex-wrap: wrap; gap: var(--space-2);
+  font-size: var(--text-xs); letter-spacing: var(--track-label); text-transform: uppercase;
+  color: var(--ink-2);
+}
+.vdp__crumbs a:hover { color: var(--white); }
+.vdp__crumbs span[aria-current] { color: var(--ink); }
+.vdp__head {
+  display: grid; grid-template-columns: minmax(0, 1fr) auto;
+  column-gap: var(--space-8); row-gap: var(--space-5);
+  align-items: end;
+  margin-block-start: clamp(1.5rem, 4vh, 3rem);
+}
+/* under the name, four labelled rows: exterior, interior, mileage, stock */
+/* under the name, one line: the mileage and the stock number, each with its
+   small caps label; the colours stand in the specification box at the right */
+.vdp__sub { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-6); margin: var(--gap-title) 0 0; color: var(--ink); }
+.vdp__sub div { display: flex; align-items: baseline; gap: var(--space-3); }
+.vdp__sub dt { font-size: var(--text-xs); font-weight: 400; letter-spacing: var(--track-label); text-transform: uppercase; color: var(--ink-2); }
+.vdp__sub dd { margin: 0; }
+.vdp__figure { text-align: right; }
+.vdp__price { display: flex; flex-direction: column; align-items: flex-end; gap: var(--space-1); }
+.vdp__price-label { font-size: var(--text-xs); letter-spacing: var(--track-label); text-transform: uppercase; color: var(--ink-2); font-weight: 400; }
+.vdp__price-value { font-size: var(--text-h2); font-weight: 300; line-height: 1; letter-spacing: var(--track-display); font-variant-numeric: tabular-nums; }
+.asterisk { color: var(--ink-3); font-size: var(--text-xs); }
+.asterisk:hover { color: var(--white); }
+.vdp__price .asterisk { margin-left: 0.15em; }
+.vdp__figure-act { display: flex; align-items: center; justify-content: flex-end; gap: var(--space-5); margin-block-start: var(--space-5); }
+
+/* Save · Share · Email — three quiet tools in the caps register */
+.tools { display: flex; gap: var(--space-4); }
+.tool {
+  display: inline-flex; align-items: center; gap: var(--space-2);
+  background: none; border: 0; padding: var(--space-2) 0; color: var(--ink-2); cursor: pointer;
+  font: inherit; font-size: var(--text-xs); font-weight: 400; letter-spacing: var(--track-label); text-transform: uppercase;
+  transition: color var(--dur-2) var(--ease-out);
+}
+.tool:hover, .tool[aria-pressed="true"] { color: var(--white); }
+.tool[aria-pressed="true"] svg { fill: currentColor; }
+
+/* --- The film: one rail of frames at one height, past the screen's edge -- */
+.film { margin-block-start: clamp(2rem, 5vh, 3.5rem); }
+.film__row {
+  display: flex; gap: var(--space-3);
+  padding-inline: max(var(--gutter), calc((100% - var(--page)) / 2));
+  scroll-padding-inline: max(var(--gutter), calc((100% - var(--page)) / 2));
+  overflow-x: auto; overscroll-behavior-x: contain;
+  scroll-snap-type: x proximity;
+  scrollbar-width: none;
+  cursor: grab;
+  -webkit-overflow-scrolling: touch;
+}
+.film__row::-webkit-scrollbar { display: none; }
+.film__row[hidden], .spin[hidden], .film__total[hidden] { display: none; }
+.film__row.is-dragging { cursor: grabbing; scroll-snap-type: none; user-select: none; }
+.film__row.is-dragging button { pointer-events: none; }
+.film__frame { flex: 0 0 auto; scroll-snap-align: start; height: min(58vh, 620px); }
+.film__frame:first-child { scroll-snap-align: start; }
+.film__open { display: block; height: 100%; padding: 0; border: 0; background: var(--well); cursor: pointer; position: relative; }
+.film__open img { height: 100%; width: auto; max-width: none; display: block; transition: opacity var(--dur-3) var(--ease-out); }
+.film__open:hover img { opacity: 0.86; }
+/* direction 5: the lease flag on the first frame — a button does not inherit
+   the page's face, so the flag is given it */
+.film__open .card__flag { font-family: var(--font); line-height: 1.4; }
+.film__open:focus-visible { outline: 2px solid var(--white); outline-offset: -4px; }
+
+/* the arrows stand on the rail's edges at mid-height, on the plate's
+   ground: square, hairline, the glyph white — index4's arrows, over the
+   photographs; a touch screen drags the rail instead */
+main.vdp > section.film, html:not(.ready) main.vdp > section.film { position: relative; }   /* outranks the unpinning rules */
+.film__arrow {
+  position: absolute; top: calc(min(58vh, 620px) / 2 - 22px); z-index: 3;
+  background: var(--plate);
+  -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+  /* as on the Rolls-Royce site: the arrows show while the rail is moving
+     sideways (the script sets data-scrolling), under the pointer, and on
+     focus; otherwise the photographs stand alone */
+  opacity: 0;
+  transition: opacity var(--dur-2) var(--ease-out), border-color var(--dur-2) var(--ease-out);
+}
+.film[data-scrolling] .film__arrow, .film__arrow:hover, .film__arrow:focus-visible { opacity: 1; }
+.film[data-scrolling] .film__arrow[disabled], .film__arrow[disabled]:hover { opacity: 0.3; }
+.film__arrow--prev { left: calc(max(var(--gutter), (100% - var(--page)) / 2) + var(--space-5)); }
+.film__arrow--next { right: var(--space-5); }
+@media (pointer: coarse) { .film__arrow { display: none; } }
+
+.film__foot {
+  display: grid; grid-template-columns: minmax(0, 1fr) auto auto; align-items: center;
+  column-gap: var(--space-6); row-gap: var(--space-3);
+  margin-block-start: var(--space-5);
+}
+/* the switch: two of the guideline's buttons, square and tracked — the one
+   in use solid, the other a hairline */
+.film__mode { display: flex; gap: var(--space-2); }
+.film__mode-button {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 40px; padding: 0 var(--space-4);
+  background: transparent; border: 1px solid var(--rule-strong); cursor: pointer;
+  font: inherit; font-size: var(--text-xs); font-weight: 400; letter-spacing: var(--track-label); text-transform: uppercase; line-height: 1;
+  color: var(--white); white-space: nowrap;
+  transition: background-color var(--dur-2) var(--ease-out), border-color var(--dur-2) var(--ease-out);
+}
+.film__mode-button:hover { border-color: var(--white); background: rgba(255, 255, 255, 0.06); }
+.film__mode-button[aria-pressed="true"] { background: var(--teal-70); border-color: var(--teal-70); }
+.film__mode-button:focus-visible { outline: 2px solid var(--white); outline-offset: 3px; }
+
+/* the way in: the first frame of the turntable, dimmed, a hairline ring
+   that says 360° and a label beneath; without the script there is no spin,
+   so neither the tile nor the switch is shown */
+.film:not([data-js]) .film__frame--spin, .film:not([data-js]) .film__mode { display: none; }
+.film__launch { display: block; height: 100%; padding: 0; border: 0; background: var(--black); cursor: pointer; position: relative; }
+.film__launch img { height: 100%; width: auto; max-width: none; display: block; opacity: 0.45; transition: opacity var(--dur-3) var(--ease-out); }
+.film__launch:hover img { opacity: 0.6; }
+.film__launch-mark { position: absolute; inset: 0; display: grid; place-content: center; justify-items: center; gap: var(--space-4); color: var(--white); }
+.film__launch-ring {
+  display: grid; place-items: center; width: 96px; height: 96px;
+  border: 1px solid var(--white); border-radius: 50%;
+  font-size: var(--text-lead); font-weight: 300; letter-spacing: var(--track-display);
+  transition: transform var(--dur-3) var(--ease-out);
+}
+.film__launch:hover .film__launch-ring { transform: scale(1.06); }
+.film__launch-label { font-size: var(--text-xs); font-weight: 400; letter-spacing: var(--track-label); text-transform: uppercase; }
+.film__launch:focus-visible { outline: 2px solid var(--white); outline-offset: -4px; }
+
+/* the spin: one stage, the page's width, the frame's height; the car turns
+   under the pointer; a thin line says how much has arrived */
+.spin { padding-inline: max(var(--gutter), calc((100% - var(--page)) / 2)); }
+.spin__stage {
+  position: relative; height: min(58vh, 620px); overflow: hidden;
+  background: var(--black);
+  cursor: grab; user-select: none; touch-action: pan-y;
+}
+.spin__stage[data-dragging] { cursor: grabbing; }
+.spin__stage:focus-visible { outline: 2px solid var(--white); outline-offset: -4px; }
+.spin__image { height: 100%; width: auto; max-width: 100%; object-fit: contain; display: block; margin-inline: auto; pointer-events: none; }
+.spin__hint {
+  position: absolute; left: 50%; bottom: var(--space-5); transform: translateX(-50%);
+  padding: var(--space-2) var(--space-3);
+  background: var(--plate); color: var(--white);
+  font-size: var(--text-xs); font-weight: 400; letter-spacing: var(--track-label); text-transform: uppercase;
+  white-space: nowrap; pointer-events: none;
+  transition: opacity var(--dur-3) var(--ease-out);
+}
+.spin__stage[data-touched] .spin__hint { opacity: 0; }
+.spin__loading { position: absolute; left: 0; right: 0; bottom: 0; height: 1px; background: var(--rule); }
+.spin__loading span { display: block; height: 3px; margin-top: -1px; width: 0; background: var(--white); transition: width 120ms linear; }
+
+.film__track { position: relative; height: 1px; background: var(--rule); }
+.film__thumb { position: absolute; top: -1px; left: 0; height: 3px; width: 20%; background: var(--white); transition: left 80ms linear, width 80ms linear; }
+.film__count { font-size: var(--text-xs); letter-spacing: var(--track-label); font-variant-numeric: tabular-nums; color: var(--ink); }
+.film__total { color: var(--ink-2); }
+.film__note { grid-column: 1 / -1; font-size: var(--text-xs); color: var(--ink-3); }
+.film__note a { color: var(--ink-2); border-bottom: 1px solid var(--rule); }
+.film__note a:hover { color: var(--white); }
+
+/* --- The body: the plate and the folds at the left, the offer standing at
+       the right, following the page ----------------------------------- */
+.vdp__body { padding-block: clamp(3rem, 7vh, 5rem) 0; }
+.vdp__grid { display: grid; grid-template-columns: minmax(0, 7fr) minmax(20rem, 5fr); column-gap: clamp(3rem, 6vw, 6rem); align-items: start; }
+.vdp__side { position: sticky; top: calc(var(--bar-h-compact) + var(--space-5)); display: grid; gap: var(--space-5); }
+
+.keys {
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
+  border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+}
+.keys div { padding: var(--space-5) var(--space-5) var(--space-5) 0; }
+.keys div + div { border-left: 1px solid var(--rule); padding-left: var(--space-5); }
+.keys dt { font-size: var(--text-xs); letter-spacing: var(--track-label); text-transform: uppercase; color: var(--ink-2); font-weight: 400; }
+.keys dd { margin-block-start: var(--space-2); font-size: var(--text-h3); font-weight: 300; line-height: 1.15; text-wrap: balance; }
+.keys__unit { font-size: var(--text-sm); color: var(--ink-2); }
+/* direction 5: the car's facts, moved out of the offer plate, under the key
+   figures — one column of hairline rows, the name and its value side by side */
+.specs { margin-block-start: var(--space-6); border-top: 1px solid var(--rule); font-size: var(--text-sm); }
+.specs div { display: grid; grid-template-columns: minmax(8rem, 14rem) minmax(0, 1fr); gap: var(--space-4); padding-block: var(--space-3); border-bottom: 1px solid var(--rule); }
+.specs dt { color: var(--ink-2); }
+.specs dd { margin: 0; font-variant-numeric: tabular-nums; }
+.specs + .folds { margin-block-start: var(--space-6); }
+
+/* the folds: a hairline each, the chevron turning; open by default where
+   the text is short, closed where it is a list */
+.folds { margin-block-start: clamp(1.5rem, 3vh, 2.5rem); }
+.fold { border-bottom: 1px solid var(--rule); }
+.fold__head {
+  display: flex; justify-content: space-between; align-items: center; gap: var(--space-4);
+  padding-block: var(--space-4);
+  font-size: var(--text-lead); font-weight: 300;
+  cursor: pointer; list-style: none;
+}
+.fold__head::-webkit-details-marker { display: none; }
+.fold__head:hover { color: var(--heritage-white); }
+.fold__chevron { flex: 0 0 auto; color: var(--ink-2); transition: transform var(--dur-3) var(--ease-out); }
+.fold[open] .fold__chevron { transform: rotate(180deg); }
+.fold__body { padding-block: 0 var(--space-5); }
+.vdp__copy { max-width: var(--measure-edit); font-size: var(--text-body); line-height: 1.6; color: var(--ink-2); max-width: 44rem; }
+.vdp__copy + .vdp__notes, .vdp__copy + .vdp__features { margin-block-start: var(--space-4); }
+/* direction 5: the CARFAX mark on every pre-owned car, beside the dealer's
+   notes — as on the Rolls-Royce pages; the dealer's listing carries no
+   report link, so the mark is not a link */
+.vdp__marks { display: flex; align-items: flex-start; gap: var(--space-5); margin-block-start: var(--space-5); }
+.vdp__marks .vdp__notes { margin: 0; padding-block-start: 4px; }
+.carfax { display: block; flex: none; opacity: 0.92; }
+.carfax img { display: block; width: auto; height: 40px; }
+@media (max-width: 767px) { .vdp__marks { flex-direction: column; gap: var(--space-3); } }
+.vdp__notes { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-5); font-size: var(--text-xs); letter-spacing: var(--track-label); text-transform: uppercase; color: var(--heritage-white); }
+.vdp__features { columns: 2; column-gap: var(--space-6); font-size: var(--text-sm); color: var(--ink-2); }
+.vdp__features li { padding-block: var(--space-1); break-inside: avoid; }
+
+/* the offer: on the plate's ground, the figure large, the retailer's build
+   beneath it as record rows */
+.offer, .special {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--rule);
+  padding: clamp(1.25rem, 2.4vw, 2rem);
+}
+.offer__flag { color: var(--heritage-white); margin-block-end: var(--space-3); }
+.offer__label { font-size: var(--text-xs); letter-spacing: var(--track-label); text-transform: uppercase; color: var(--ink-2); font-weight: 400; }
+.offer__price { margin-block-start: var(--space-1); font-size: var(--text-h2); font-weight: 300; line-height: 1.05; letter-spacing: var(--track-display); font-variant-numeric: tabular-nums; }
+.offer__rows { margin-block-start: var(--space-4); border-top: 1px solid var(--rule); font-size: var(--text-sm); }
+.offer__rows div { display: flex; justify-content: space-between; gap: var(--space-4); padding-block: var(--space-2); border-bottom: 1px solid var(--rule); }
+.offer__rows dt { color: var(--ink-2); }
+.offer__rows dd { font-variant-numeric: tabular-nums; text-align: right; }
+.offer__rows .card__sale dt, .offer__rows .card__sale dd { color: var(--white); font-weight: 400; }
+.offer__rows .card__save dd { color: var(--heritage-white); }
+.offer__actions { display: grid; gap: var(--space-3); margin-block-start: var(--space-5); }
+.offer__actions .btn { width: 100%; }
+.offer__route { margin-block-start: var(--space-4); }
+.offer__facts { margin-block-start: var(--space-5); font-size: var(--text-xs); }
+.offer__facts dd { color: var(--ink); }
+.vdp__vin { font-variant-numeric: tabular-nums; letter-spacing: 0.04em; }
+
+.special__label { font-size: var(--text-xs); letter-spacing: var(--track-label); text-transform: uppercase; color: var(--heritage-white); font-weight: 400; }
+.special__figure { margin-block-start: var(--space-2); font-size: var(--text-h3); font-weight: 300; line-height: 1.1; font-variant-numeric: tabular-nums; }
+.special__figure span { font-size: var(--text-sm); color: var(--ink-2); }
+.special__terms { margin-block-start: var(--space-2); font-size: var(--text-sm); color: var(--ink); }
+.special__fine { margin-block-start: var(--space-3); font-size: var(--text-xs); line-height: 1.5; color: var(--ink-3); }
+.special .link { margin-block-start: var(--space-3); }
+
+/* --- Enquire: one plate on the offer's ground; the ask at the left, the
+       form at the right, the fields as labelled hairlines ---------------- */
+.vdp__enquire { padding-block: clamp(4rem, 9vh, 6rem) 0; }
+.enquire {
+  display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  column-gap: clamp(3rem, 6vw, 6rem); row-gap: var(--space-6);
+  align-items: start;
+  padding: clamp(1.5rem, 3.2vw, 3rem);
+  border: 1px solid var(--rule);
+  background: rgba(255, 255, 255, 0.04);
+}
+.h2--small { font-size: var(--text-h2); }
+.enquire__lede .body { margin-block-start: var(--gap-copy); }
+.enquire__lede .body a { border-bottom: 1px solid var(--rule-strong); }
+.enquire__trade { margin-block-start: var(--space-5); }
+.enquire__form { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-5) var(--space-5); }
+.field { display: block; min-width: 0; }
+.field--wide { grid-column: 1 / -1; }
+.field__label { display: block; font-size: var(--text-xs); letter-spacing: var(--track-label); text-transform: uppercase; color: var(--ink-2); font-weight: 400; }
+.field__input {
+  display: block; width: 100%; margin-block-start: var(--space-2);
+  padding: var(--space-2) 0 var(--space-3);
+  border: 0; border-bottom: 1px solid var(--rule-strong); border-radius: 0;
+  background: transparent; color: var(--ink);
+  font: inherit; font-size: var(--text-body); font-weight: 300; line-height: 1.4;
+  transition: border-color var(--dur-2) var(--ease-out);
+}
+.field__input:hover, .field__input:focus { border-color: var(--white); outline: none; }
+.field__input:focus-visible { outline: 2px solid var(--white); outline-offset: 4px; }
+.field__area { resize: vertical; min-height: 4.5em; }
+.enquire__send { grid-column: 1 / -1; display: flex; align-items: center; flex-wrap: wrap; gap: var(--space-4) var(--space-5); }
+.enquire__fine { font-size: var(--text-xs); color: var(--ink-3); }
+.enquire__done { grid-column: 1 / -1; color: var(--ink); }
+
+/* --- The disclosure: the title, the lease terms as rows on the plate's
+       ground, the retailer's text beneath at reading measure ------------- */
+.pricing { padding-block: clamp(4rem, 9vh, 6rem) 0; }
+.pricing__body { margin-block-start: clamp(1.5rem, 3vh, 2.5rem); display: grid; gap: clamp(2rem, 4vh, 3rem); }   /* one column, the page's width */
+.vdp__h { font-size: var(--text-lead); font-weight: 300; }
+.pricing__mark { color: var(--ink-3); margin-inline-start: 0.15em; }
+.pricing__lease { padding: clamp(1.25rem, 2.4vw, 2rem); border: 1px solid var(--rule); background: rgba(255, 255, 255, 0.04); }
+.pricing__rows { font-size: var(--text-body); }
+.pricing__rows dd { color: var(--ink); }
+.pricing__fine, .pricing__text { margin-block-start: var(--space-4); font-size: var(--text-xs); line-height: 1.6; color: var(--ink-3); }
+
+/* --- More on the floor -------------------------------------------------- */
+.more { padding-block: clamp(4rem, 10vh, 7rem) clamp(4rem, 10vh, 7rem); }
+.more .head__aside { display: flex; justify-content: flex-end; }
+.grid--more { margin-block-start: clamp(1.5rem, 4vh, 3rem); }
+
+/* --- The small screen's bar: the price follows the page, the call with it */
+.vdp__bar {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 45;
+  background: var(--bar-ground);
+  -webkit-backdrop-filter: blur(var(--bar-blur)); backdrop-filter: blur(var(--bar-blur));
+  border-top: 1px solid var(--rule);
+  transform: translateY(100%);
+  transition: transform var(--dur-3) var(--ease-out);
+}
+.vdp__bar[data-on] { transform: none; }
+.vdp__bar-wrap { display: flex; justify-content: space-between; align-items: center; gap: var(--space-4); padding-block: var(--space-3); }
+.vdp__bar-price { font-size: var(--text-lead); font-variant-numeric: tabular-nums; }
+.vdp__bar-price span { display: block; font-size: var(--text-xs); letter-spacing: var(--track-label); text-transform: uppercase; color: var(--ink-2); }
+.vdp__bar .btn { min-height: 44px; padding-inline: var(--space-5); }
+
+/* --- The light box ------------------------------------------------------ */
+.lightbox {
+  position: fixed; inset: 0; width: 100vw; height: 100svh; max-width: none; max-height: none;
+  margin: 0; padding: 0; border: 0;
+  background: rgba(4, 4, 4, 0.96); color: var(--white);
+  display: none; place-items: center;
+}
+.lightbox[open] { display: grid; }
+.lightbox::backdrop { background: transparent; }
+.lightbox__image { max-width: calc(100vw - 2 * var(--space-9)); max-height: calc(100svh - 2 * var(--space-8)); object-fit: contain; }
+.lightbox__close { position: absolute; top: var(--space-5); right: var(--edge); width: 44px; height: 44px; display: grid; place-items: center; background: none; border: 1px solid var(--rule-strong); color: var(--white); cursor: pointer; }
+.lightbox__close:hover { border-color: var(--white); }
+.lightbox__arrow { position: absolute; top: 50%; transform: translateY(-50%); }
+.lightbox__arrow--prev { left: var(--edge); }
+.lightbox__arrow--next { right: var(--edge); }
+.lightbox__count { position: absolute; bottom: var(--space-5); left: 50%; transform: translateX(-50%); font-size: var(--text-xs); letter-spacing: var(--track-label); font-variant-numeric: tabular-nums; color: var(--ink-2); }
+
+/* --- Motion: the film's frames arrive along the rail, the plate and the
+       offer with the page's one gesture; the static path is the page ---- */
+.motion .film__frame { opacity: 0; transform: translate3d(calc(48px + var(--i, 0) * 24px), 0, 0); }
+.motion .film.is-in .film__frame { opacity: 1; transform: none; transition: opacity var(--mo-dur) var(--ease-out) calc(var(--i, 0) * 90ms), transform var(--mo-dur) var(--ease-out) calc(var(--i, 0) * 90ms); }
+.motion .vdp__head .step, .motion .keys.step, .motion .offer.step, .motion .special.step { opacity: 0; transform: translate3d(calc(-1 * (var(--mo-out) + var(--i, 0) * var(--mo-step-x))), 0, 0); }
+.motion .is-in .step, .motion .step.is-in { opacity: 1; transform: none; transition: opacity var(--mo-dur) var(--ease-out) calc(var(--i, 0) * var(--mo-step-t)), transform var(--mo-dur) var(--ease-out) calc(var(--i, 0) * var(--mo-step-t)); }
+
+/* --- Responsive — recomposed ------------------------------------------- */
+@media (max-width: 1279px) {
+  .vdp__grid { grid-template-columns: minmax(0, 7fr) minmax(18rem, 5fr); column-gap: var(--space-7); }
+  .keys dd { font-size: var(--text-lead); }
+}
+@media (max-width: 1023px) {
+  .vdp__top { padding-block-start: calc(var(--bar-h) + 1vh); }
+  .film__arrow { top: calc(min(48vh, 480px) / 2 - 22px); }
+  .spin__stage { height: min(48vh, 480px); }
+  .vdp__head { grid-template-columns: 1fr; }
+  .vdp__figure { text-align: left; }
+  .vdp__price { align-items: flex-start; }
+  .vdp__figure-act { justify-content: flex-start; flex-wrap: wrap; }
+  .vdp__grid { grid-template-columns: 1fr; row-gap: var(--space-7); }
+  .vdp__side { position: static; }
+  .keys { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .keys div:nth-child(3) { border-left: 0; padding-left: 0; }
+  .keys div:nth-child(-n + 2) { border-bottom: 1px solid var(--rule); }
+  .enquire { grid-template-columns: 1fr; }
+  .enquire__form { grid-template-columns: 1fr 1fr; }
+  .film__frame { height: min(48vh, 480px); }
+}
+@media (max-width: 639px) {
+  .enquire__form { grid-template-columns: 1fr; }
+  .enquire { padding: var(--space-5) var(--space-4); }
+  .film__frame { height: 56vw; }
+  .spin__stage { height: 56vw; }
+  .film__arrow { display: none; }
+  .film__foot { grid-template-columns: minmax(0, 1fr) auto; }
+  .film__mode { grid-column: 1 / -1; order: 2; }
+  .film__launch-ring { width: 72px; height: 72px; }
+  .vdp__features { columns: 1; }
+  .lightbox__image { max-width: 100vw; max-height: calc(100svh - 2 * var(--space-8)); }
+  .lightbox__arrow { display: none; }
+  .vdp__bar-price { font-size: var(--text-body); }
+  .more .head__aside { justify-content: flex-start; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .film__frame, .step { opacity: 1 !important; transform: none !important; transition: none !important; }
+}

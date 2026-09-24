@@ -1,0 +1,1299 @@
+/* ==========================================================================
+   Bentley Palm Beach — home, direction 5: the coastal version (from 4).
+   One dark room; each chapter a car under its own light. The ground travels
+   once, black at the top to Bentley Green at the close — the construction
+   the Retailer Website Guidelines show for dark mode — and nothing else
+   changes register. Tokens come from system.css; this file re-points the
+   grounds and ink for the dark page and carries the composition.
+   ========================================================================== */
+
+:root {
+  /* Direction 5, coastal: the interface keeps the guideline's palette
+     exactly (Black, Bentley Green, Heritage White, White; Teal 70% for the
+     hover). The coast is carried by the photography, as the guideline asks:
+     "colour tones from our palette within our photography". */
+  --green-deep:    #0d1d0e;   /* the ground's travel into Bentley Green */
+  --teal-hover:    #6f836f;
+  --well:          #8d8d8d;   /* behind a photograph still loading */
+
+  --ground:        var(--black);
+  --ink:           var(--white);
+  --ink-2:         rgba(255, 255, 255, 0.72);   /* 9.6:1 on black, 9:1 on green */
+  --ink-3:         rgba(255, 255, 255, 0.56);   /* legal and captions, 6.3:1  */
+  --rule:          rgba(255, 255, 255, 0.18);
+  --rule-strong:   rgba(255, 255, 255, 0.4);
+  --plate:         rgba(4, 4, 4, 0.62);         /* the guideline's frosted plate, dark */
+  --bar-ground:    rgba(4, 4, 4, 0.86);
+
+  /* One grid: a 1320 page with 24 → 40 gutters; the photographs bleed. */
+  --page:          var(--measure-page);
+
+  /* Header — one bar, no ground at rest; condenses once the page has moved.
+     --edge is the bar's own inset; the hero lockup shares it so the title
+     starts exactly under the first route. */
+  --bar-h:         120px;
+  --bar-h-compact: 80px;
+  --edge:          var(--gutter-wide);
+
+  /* The arrival, as bentleymotors.com stages it: one long expo-out, the
+     header dropping in, the picture settling from 1.2, the copy rising. */
+  --arrive-dur:    2.4s;
+  --arrive-ease:   cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* The staircase: each line starts further out, lower, and later. */
+  --mo-out:        32px;
+  --mo-step-x:     16px;
+  --mo-lift:       0px;      /* straight in from the side — no lift, no diagonal */
+  --mo-step-t:     180ms;
+  --mo-dur:        1.15s;
+
+  /* the floor: every chapter's content stops here; the way back to the top
+     lives inside this band, so it never crosses a caption or a link */
+  --floor:         max(5vh, 3.5rem);
+}
+
+/* --- Base ------------------------------------------------------------------ */
+
+/* the stepping script lifts the stick for the instant it measures the
+   chapters' own places (see readStops in js/index6.js) */
+html.is-measuring main > section, html.is-measuring footer { position: relative !important; top: auto !important; }
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  background: var(--black);
+  color: var(--ink);
+  font-family: var(--font);
+  font-weight: 300;
+  font-size: 100%;
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--bar-h-compact);
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+body {
+  margin: 0;
+  min-height: 100svh;
+  line-height: var(--leading-body);
+  letter-spacing: var(--track-body);
+  font-size: var(--text-body);
+  /* The ground travels once, continuously: black through the lit chapters,
+     arriving at Bentley Green for the retailer and the close. */
+  background:
+    linear-gradient(180deg,
+      var(--black) 0%,
+      var(--black) 58%,
+      var(--green-deep) 80%,
+      var(--bentley-green) 100%);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+
+img { display: block; max-width: 100%; height: auto; }
+a { color: inherit; text-decoration: none; }
+ul { margin: 0; padding: 0; list-style: none; }
+h1, h2, h3, p, dl, dd, figure, address { margin: 0; }
+address { font-style: normal; }
+
+:focus-visible { outline: 2px solid var(--white); outline-offset: 3px; }
+
+.skip {
+  position: absolute; left: var(--gutter); top: -100px;
+  padding: var(--space-3) var(--space-4);
+  background: var(--white); color: var(--black);
+  font-size: var(--text-xs); text-transform: uppercase; letter-spacing: var(--track-label);
+  z-index: 100;
+}
+.skip:focus { top: var(--space-4); }
+
+.page {
+  width: 100%;
+  max-width: calc(var(--page) + 2 * var(--gutter));
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+/* --- Type roles — one family, two weights, three levels at once ------------ */
+
+.label {
+  font-size: var(--text-xs);
+  font-weight: 400;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+.hero__title {
+  font-size: var(--text-hero);
+  font-weight: 300;
+  line-height: 1.02;
+  letter-spacing: var(--track-display);
+  text-wrap: balance;
+}
+.h2 {
+  font-size: var(--text-display);
+  font-weight: 300;
+  line-height: var(--leading-display);
+  letter-spacing: var(--track-display);
+  max-width: var(--measure-head);
+  text-wrap: balance;
+}
+.lead {
+  font-size: var(--text-lead);
+  line-height: 1.45;
+  max-width: 34rem;
+  color: var(--ink);
+}
+.body {
+  font-size: var(--text-body);
+  max-width: var(--measure-body);
+  color: var(--ink-2);
+}
+/* the vertical rhythm of a copy block follows the screen's height, so a
+   chapter that is one screen tall stays one screen tall on a short screen */
+:root {
+  --gap-title: clamp(0.5rem, 1.6vh, 1rem);
+  --gap-copy:  clamp(0.875rem, 2.4vh, 1.5rem);
+  --gap-act:   clamp(1.25rem, 4vh, 3rem);
+  --row-pad:   clamp(0.5rem, 1.6vh, 1rem);
+}
+.label + .hero__title { margin-block-start: var(--gap-title); }
+.label + .h2 { margin-block-start: var(--gap-title); }
+.hero__title + .lead { margin-block-start: var(--gap-copy); }
+.h2 + .body { margin-block-start: var(--gap-copy); }
+.body + .actions, .lead + .actions { margin-block-start: var(--gap-act); }
+.record + .actions { margin-block-start: var(--gap-act); }
+
+/* over photography and on glass the label is brighter: the same role, the
+   ground decides the ink (measured — 0.72 fails on the pale skies) */
+.scene .label, .slide .label, .plate .label { color: rgba(255, 255, 255, 0.88); }
+
+/* --- Controls — the guideline's two buttons, square, tracked caps --------- */
+
+.actions { display: flex; flex-wrap: wrap; gap: var(--space-3) var(--space-4); }
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: var(--control-h);
+  padding: 0 var(--space-6);
+  border: 1px solid var(--teal-70);
+  background: var(--teal-70);                 /* white on it: 5.2:1 */
+  color: var(--white);
+  font-size: var(--text-button);
+  font-weight: 400;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  line-height: 1;
+  white-space: nowrap;
+  transition: background-color var(--dur-2) var(--ease-out), border-color var(--dur-2) var(--ease-out), color var(--dur-2) var(--ease-out);
+}
+.btn:hover { background: var(--teal-hover); border-color: var(--teal-hover); }
+.btn--line { background: transparent; border-color: var(--rule-strong); color: var(--white); }
+.btn--line:hover { border-color: var(--white); background: rgba(255, 255, 255, 0.06); }
+
+/* direction 5: the text link ends in the chevron the page's arrows already
+   use — drawn here from two hairlines, so every generated card gets it
+   without new markup — and no rule; on hover the chevron steps on and the
+   words warm to Heritage White */
+.link {
+  display: inline-flex; align-items: center; gap: 0.7em;
+  font-size: var(--text-xs); font-weight: 400;
+  letter-spacing: var(--track-label); text-transform: uppercase;
+  color: var(--ink);
+  transition: color var(--dur-2) var(--ease-out);
+}
+.link i {
+  flex: none;
+  width: 0.5em; height: 0.5em;
+  border-top: 1px solid currentColor; border-right: 1px solid currentColor;
+  transform: translateX(0) rotate(45deg);
+  transition: transform var(--dur-2) var(--ease-out);
+}
+.link:hover, .card__link:hover .link { color: var(--heritage-white); }
+.link:hover i, .card__link:hover .link i { transform: translateX(4px) rotate(45deg); }
+@media (prefers-reduced-motion: reduce) {
+  .link:hover i, .card__link:hover .link i { transform: rotate(45deg); }
+}
+
+/* direction 5: the flags on a car's photograph are told apart by their
+   ground, all from the guideline's palette — the lease on Heritage White,
+   a pending sale on Bentley Green, a sold car on Dark Grey; the retailer's
+   other marks stay on black. Measured: 14:1, 13:1, 7:1. */
+.card__flag.card__flag--lease { background: var(--heritage-white); color: var(--black); }
+.card__flag.card__flag--pending { background: var(--bentley-green); color: var(--white); }
+.card__flag.card__flag--sold { background: var(--dark-grey-40); color: var(--white); }
+
+/* --- The record — hairline rows, the retailer's own device --------------- */
+
+.record {
+  display: grid;
+  grid-template-columns: minmax(6rem, 9rem) 1fr;
+  border-top: 1px solid var(--rule);
+  font-size: var(--text-body);
+}
+.record dt, .record dd {
+  padding-block: var(--row-pad);
+  border-bottom: 1px solid var(--rule);
+}
+.record dt {
+  font-size: var(--text-xs); font-weight: 400;
+  letter-spacing: var(--track-label); text-transform: uppercase;
+  color: var(--ink-2);
+  padding-top: calc(var(--row-pad) + 3px);
+}
+.record dd { display: flex; flex-direction: column; gap: var(--space-1); color: var(--ink); }
+.record dd a { font-variant-numeric: tabular-nums; }
+.record dd span { color: var(--ink-2); font-size: var(--text-sm); }
+.record--short { max-width: 24rem; }
+.body + .record { margin-block-start: var(--gap-act); }
+
+/* --- Header ---------------------------------------------------------------- */
+
+.mh {
+  position: fixed; inset: 0 0 auto 0;
+  z-index: 50;
+  color: var(--white);
+  transition: background-color var(--dur-3) var(--ease-out);
+}
+.mh::before {
+  /* the ground, drawn on a sibling layer so the blur has nothing masked in it */
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  background: var(--bar-ground);
+  -webkit-backdrop-filter: blur(var(--bar-blur));
+  backdrop-filter: blur(var(--bar-blur));
+  opacity: 0;
+  transition: opacity var(--dur-3) var(--ease-out);
+}
+.mh[data-scrolled]::before { opacity: 1; }
+/* shown inside the presentation's devices there is no backdrop blur, so the
+   ground goes solid — nothing reads through the bar */
+html[data-framed] .mh[data-scrolled]::before { background: var(--black); -webkit-backdrop-filter: none; backdrop-filter: none; }
+
+.mh__bar {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  height: var(--bar-h);
+  padding-inline: var(--edge);
+  transition: height var(--dur-3) var(--ease-out);
+}
+.mh[data-scrolled] .mh__bar { height: var(--bar-h-compact); }
+
+.mh__nav ul { display: flex; gap: clamp(1.25rem, 2.2vw, 2.25rem); }
+.mh__nav a, .mh__retailer {
+  font-size: var(--text-xs); font-weight: 400;
+  letter-spacing: var(--track-label); text-transform: uppercase;
+  display: inline-block; padding-block: var(--space-2);
+  position: relative;
+}
+.mh__nav a { transition: color var(--dur-2) var(--ease-out); }
+.mh__nav a:hover { color: var(--heritage-white); }
+
+.mh__mark { justify-self: center; display: block; }
+.mh__mark img {
+  width: 112px; height: auto;
+  transition: width var(--dur-3) var(--ease-out);
+}
+.mh[data-scrolled] .mh__mark img { width: 92px; }
+
+.mh__act {
+  justify-self: end;
+  display: flex; align-items: center; gap: var(--space-6);
+}
+.mh__retailer { display: inline-flex; gap: var(--space-3); }
+.mh__tel { font-variant-numeric: tabular-nums; }
+.mh__act .btn { min-height: 44px; padding-inline: var(--space-5); }
+
+.mh__toggle {
+  display: none;
+  align-items: center; gap: var(--space-2);
+  background: none; border: 0; color: inherit; padding: var(--space-2) 0;
+  font: inherit; font-size: var(--text-xs); font-weight: 400;
+  letter-spacing: var(--track-label); text-transform: uppercase;
+  cursor: pointer;
+}
+
+/* --- Chapters — each one stands, and the next one covers it ---------------
+   Every chapter is sticky at the top (or, when taller than the screen, at
+   the offset that leaves its foot on the fold — the script measures it), so
+   the following chapter rises over a standing picture. Each carries its own
+   ground because the one beneath is still there. The veil and the drift are
+   scroll-linked: `--cover` is how far the next chapter has come. ---------- */
+
+main > section {
+  position: sticky;
+  top: var(--stick, 0px);
+  isolation: isolate;
+  background: var(--black);
+  /* one chapter, one screen: on a pointer device every chapter is exactly
+     the viewport, and what does not fit is scaled, never scrolled into */
+  height: 100svh;
+  overflow: clip;
+}
+main > section::before {
+  content: ""; position: absolute; inset: 0; z-index: 5;
+  background: var(--black);
+  opacity: calc(var(--cover, 0) * 0.6);
+  pointer-events: none;
+}
+.recede {
+  transform: translate3d(0, calc(var(--cover, 0) * -7vh), 0);
+  will-change: transform;
+}
+
+/* --- 2 · Hero — the lit scene, in slides ----------------------------------- */
+
+.hero {
+  isolation: isolate;
+}
+.hero__slides { display: grid; height: 100svh; }
+.slide {
+  grid-area: 1 / 1;
+  position: relative;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  height: 100svh;
+  opacity: 0; visibility: hidden;
+  transition: opacity var(--dur-reveal) var(--ease-reveal), visibility 0s linear var(--dur-reveal);
+}
+.slide.is-active { opacity: 1; visibility: visible; transition-delay: 0s, 0s; z-index: 1; }
+
+.slide__field {
+  position: absolute; inset: 0; z-index: -1;
+  overflow: hidden;
+  background: var(--black);
+}
+.slide__field::after {
+  /* a shade under the header, a pool of shadow in the lockup's corner,
+     and the foot dissolving into the room — all edgeless, none over the car */
+  content: ""; position: absolute; inset: 0;
+  background:
+    linear-gradient(180deg, rgba(4,4,4,0.8) 0%, rgba(4,4,4,0.42) 14%, rgba(4,4,4,0) 28%),
+    radial-gradient(ellipse 66% 62% at 0% 92%, rgba(4,4,4,0.76) 0%, rgba(4,4,4,0.5) 45%, rgba(4,4,4,0) 100%),
+    linear-gradient(180deg, rgba(4,4,4,0) 60%, rgba(4,4,4,0.5) 78%, rgba(4,4,4,0.72) 90%, var(--black) 100%);
+}
+.slide--right .slide__field::after {
+  background:
+    linear-gradient(180deg, rgba(4,4,4,0.8) 0%, rgba(4,4,4,0.42) 14%, rgba(4,4,4,0) 28%),
+    radial-gradient(ellipse 66% 62% at 100% 92%, rgba(4,4,4,0.76) 0%, rgba(4,4,4,0.5) 45%, rgba(4,4,4,0) 100%),
+    linear-gradient(180deg, rgba(4,4,4,0) 60%, rgba(4,4,4,0.5) 78%, rgba(4,4,4,0.72) 90%, var(--black) 100%);
+}
+/* direction 5, the coast: the cars stand high in the frame and the lockup
+   is set centred on the open asphalt below them, as the Torcal film's is;
+   the frame keeps the foot anchor every photograph slide has (below) */
+/* direction 5, a plate on the ground: where the car stands small in a wide
+   frame, the offer stands on the open paving at the foot, to the right of
+   the car, clear of the transport — and no pool of shadow falls in the
+   corner, which would reach the car; the frame is held to its right edge
+   so the car sits left of the plate */
+.slide.slide--foot:not(.slide--film) .hero__img { object-position: 100% 100%; }
+/* direction 5: the two summer frames, lifted — brighter, warmer, the sea
+   and the sky a little more saturated; the header shade and the foot still
+   hold the copy */
+.slide--coast .hero__img, .slide--foot .hero__img { filter: brightness(1.12) saturate(1.22) contrast(1.05); }
+/* the header's shade on these two is short — it covers the bar and lets the
+   summer sky stay light below it; the coast keeps its foot for the copy */
+.slide--foot .slide__field::after {
+  background:
+    linear-gradient(180deg, rgba(4,4,4,0.8) 0%, rgba(4,4,4,0.42) 14%, rgba(4,4,4,0) 28%),
+    linear-gradient(180deg, rgba(4,4,4,0) 72%, rgba(4,4,4,0.5) 88%, var(--black) 100%);
+}
+@media (min-width: 768px) {
+  .slide.slide--foot .slide__field::after {
+    background:
+      linear-gradient(180deg, rgba(4,4,4,0.8) 0%, rgba(4,4,4,0.64) 10%, rgba(4,4,4,0) 19%),
+      linear-gradient(180deg, rgba(4,4,4,0) 72%, rgba(4,4,4,0.5) 88%, var(--black) 100%);
+  }
+  .slide.slide--coast .slide__field::after {
+    background:
+      linear-gradient(180deg, rgba(4,4,4,0.8) 0%, rgba(4,4,4,0.64) 10%, rgba(4,4,4,0) 19%),
+      linear-gradient(180deg, rgba(4,4,4,0) 50%, rgba(4,4,4,0.62) 100%);
+  }
+}
+/* on a phone the frame is narrow and the plate sits below it: centre the car */
+@media (max-width: 767px) {
+  .slide.slide--foot:not(.slide--film) .hero__img { object-position: 41% 100%; }
+}
+/* a plate that keeps its own height reserves no empty lines: it is as tall
+   as what it says, so it stays clear of the car below it */
+.box[data-own-height] .slide__terms { min-height: 0; }
+.box[data-own-height] .actions { padding-block-start: var(--space-5); }
+.box[data-own-height] .hero__title { font-size: clamp(1.5rem, 2.3vw, 2.75rem); }
+.box[data-own-height] .slide__lease { margin-block-start: var(--space-3); }
+@media (min-width: 768px) {
+  .slide--offer.slide--foot { justify-content: flex-end; padding-block-end: clamp(3rem, 6.5vh, 5rem); }
+  .slide--foot .box { width: min(32rem, 100%); }
+}
+.slide--centre .slide__field::after {
+  /* the film is left alone: only the foot dissolves, under the lockup */
+  background: linear-gradient(180deg, rgba(4,4,4,0.8) 0%, rgba(4,4,4,0.42) 14%, rgba(4,4,4,0) 28%), linear-gradient(180deg, rgba(4,4,4,0) 50%, rgba(4,4,4,0.62) 100%);
+}
+.hero__img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: 50% 50%;
+}
+.slide--film .hero__img { object-position: 50% 40%; }
+/* every slide's frame keeps air on all four sides of the car — the lockup
+   never has to cross it; the titles are two lines and sized to stay clear */
+/* the frames are taller than the screen: they are anchored to their foot so
+   the ground under the car — where the lockup stands — is never cut */
+.slide:not(.slide--film) .hero__img { object-position: 50% 100%; }
+
+.hero__lockup {
+  /* aligned to the navigation's edge, not to the page column; the lockup
+     sits on the dark asphalt at the foot of every frame — measured */
+  max-width: none;
+  width: 100%;
+  padding-inline: var(--edge);
+  padding-block: 0 clamp(4.5rem, 10vh, 6.5rem);
+}
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* The offer stands on glass: the guideline's frosted plate, dark, over the
+   ground of the frame and never over the car. Contrast is then the plate's,
+   not the photograph's. */
+/* One standard box for every offer: the same width, the same height, set at
+   the vertical centre of the screen, at the left or the right of the frame. */
+.slide--offer { justify-content: center; }
+.slide--offer .hero__lockup { padding-block: 0; }
+.slide__lockup--glass { padding-inline: var(--edge); }
+/* THE STANDARD BOX — `.box`: one width, one height, everywhere it appears
+   (the three offers, the four pre-owned plates). The height is not guessed:
+   every row reserves its lines — the title two, the terms two — so the boxes
+   come out equal by construction, and the script then sets all of them to
+   the tallest measured, so a longer name can never push its own box. */
+.box {
+  display: flex; flex-direction: column;
+  width: min(34rem, 100%);
+  padding: clamp(1.5rem, 2.4vw, 2rem);
+  background: var(--plate);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12);   /* the edge, where the ground is black */
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
+}
+.box .actions { margin-block-start: auto; padding-block-start: var(--space-6); flex-wrap: nowrap; }
+.box .btn { padding-inline: var(--space-5); }
+.slide__glass .slide__lease { margin-block-start: var(--space-4); }
+.slide__glass .slide__per { font-size: clamp(2.25rem, 3.4vw, 3.25rem); }
+/* the title: two lines reserved, never a third — sized so the longest name
+   ("Bentley Flying Spur") holds one line at every width the box takes */
+.box .hero__title, .box .h2 {
+  font-size: clamp(1.75rem, 3.2vw, 4rem);
+  line-height: var(--leading-display);
+  max-width: 100%;
+  text-wrap: balance;
+}
+.box .slide__terms { min-height: calc(2 * var(--leading-body) * 1em); }
+.slide--right .hero__lockup { display: flex; flex-direction: column; align-items: flex-end; text-align: right; }
+.slide--right .hero__lockup .actions { justify-content: flex-end; }
+.slide--centre .hero__lockup { display: flex; flex-direction: column; align-items: center; text-align: center; padding-block-end: clamp(6rem, 14vh, 9rem); }
+.slide--centre .hero__lockup .actions { justify-content: center; }
+.slide--centre .hero__title { font-size: clamp(3.25rem, 7vw + 1rem, 8rem); letter-spacing: 0.06em; text-transform: uppercase; font-weight: 300; }
+.hero__lockup .lead { max-width: 36rem; }
+.slide--centre .lead { max-width: 38rem; }
+
+/* the offer: one figure at display size, the terms as one quiet line */
+.slide__lease { margin-block-start: var(--space-5); display: flex; align-items: baseline; gap: var(--space-4); flex-wrap: wrap; }
+.slide--right .slide__lease { justify-content: flex-end; }
+.slide__from { font-size: var(--text-xs); font-weight: 400; letter-spacing: var(--track-label); text-transform: uppercase; color: var(--ink-2); }
+.slide__per { font-size: var(--text-display); font-weight: 300; line-height: 1; letter-spacing: var(--track-display); font-variant-numeric: tabular-nums; }
+.slide__per small { font-size: 0.45em; letter-spacing: 0; margin-inline-start: 0.1em; }
+.slide__terms { margin-block-start: var(--space-3); font-size: var(--text-body); color: var(--ink); }
+.slide__stock { display: block; margin-block-start: var(--space-1); font-size: var(--text-xs); color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.slide__terms + .actions { margin-block-start: var(--space-6); }
+
+
+/* Arrival on load, as bentleymotors.com stages it: one long expo-out — the
+   header drops in from −40px, the picture settles from 1.2 with a fade. With
+   the script absent or motion reduced the frame is simply there. */
+@keyframes arrive-header { from { opacity: 0; transform: translateY(-40px); } to { opacity: 1; transform: none; } }
+@keyframes arrive-picture { from { opacity: 0.001; transform: translateY(-24px) scale(1.2); } to { opacity: 1; transform: none; } }
+.motion.ready .mh { animation: arrive-header var(--arrive-dur) var(--arrive-ease) 1s both; }
+.motion.ready .slide:first-child .hero__img { transform-origin: 50% 60%; animation: arrive-picture var(--arrive-dur) var(--arrive-ease) both; }
+
+/* the slide's text arrives as the staircase, line by line, towards its own
+   edge — from the left for a left lockup, from the right for a right one —
+   on load and again on every slide change */
+.motion.ready .slide:not(.is-active) .step { opacity: 0; transform: translate3d(calc(-1 * (var(--mo-out) + var(--i, 0) * var(--mo-step-x))), 0, 0); transition: none; }
+.motion.ready .slide--right:not(.is-active) .step { transform: translate3d(calc(var(--mo-out) + var(--i, 0) * var(--mo-step-x)), 0, 0); }
+.motion.ready .slide--centre:not(.is-active) .step { transform: translate3d(0, calc(var(--mo-out) + var(--i, 0) * 6px), 0); }
+.motion.ready .slide.is-leaving:not(.is-active) .step {
+  opacity: 0; transform: translate3d(-24px, 0, 0);
+  transition: opacity var(--dur-3) var(--ease-in), transform var(--dur-3) var(--ease-in);
+}
+.motion.ready .slide--right.is-leaving:not(.is-active) .step { transform: translate3d(24px, 0, 0); }
+.motion.ready .slide--centre.is-leaving:not(.is-active) .step { transform: translate3d(0, 16px, 0); }
+.motion.ready .hero.is-in .slide.is-active .step {
+  opacity: 1; transform: none;
+  transition:
+    opacity var(--mo-dur) var(--ease-out) calc(0.5s + var(--i, 0) * var(--mo-step-t)),
+    transform var(--mo-dur) var(--ease-out) calc(0.5s + var(--i, 0) * var(--mo-step-t));
+}
+
+/* the transport: arrows and a counter, on the dark foot, and a line that
+   fills while the next slide is on its way */
+.hero__ctl {
+  position: absolute; z-index: 2;
+  left: 50%; bottom: clamp(1.5rem, 3.5vh, 2.25rem);
+  transform: translateX(-50%);
+  display: flex; align-items: center; gap: var(--space-3);
+  color: var(--white);
+}
+.hero__arrow {
+  display: grid; place-items: center;
+  width: 44px; height: 44px;
+  background: none; border: 0; color: inherit; cursor: pointer; padding: 0;
+  opacity: 0.8; transition: opacity var(--dur-2) var(--ease-out);
+}
+.hero__arrow:hover { opacity: 1; }
+.hero__count { font-size: var(--text-xs); font-weight: 400; letter-spacing: var(--track-label); font-variant-numeric: tabular-nums; min-width: 5.5ch; text-align: center; }
+.hero__bar { position: absolute; left: 0; right: 0; bottom: -10px; height: 1px; background: var(--rule); overflow: hidden; }
+.hero__bar i { display: block; height: 100%; width: 100%; background: var(--white); transform: scaleX(0); transform-origin: left; }
+.hero[data-playing] .hero__bar i { animation: hero-bar var(--hero-dwell, 8s) linear both; }
+@keyframes hero-bar { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+/* --- 3 · The range — four lit windows on the dark ground ------------------- */
+
+.range {
+  padding-block: calc(var(--bar-h-compact) + 3vh) var(--floor);
+}
+.range .page { height: 100%; display: grid; grid-template-rows: auto minmax(0, 1fr); row-gap: clamp(1.5rem, 3.5vh, 3rem); }
+/* The head: the title at the left, the line and its links at the right, the
+   two columns sharing one bottom line — the links' baseline on the title's. */
+.head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: var(--space-8); align-items: end; }
+.head__aside { padding-block-end: var(--head-baseline, 0.1rem); }
+.head__links { display: flex; gap: var(--space-7); margin-block-start: var(--space-4); }
+
+.range__row {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-rows: minmax(0, 1fr);
+  gap: var(--space-5);
+  min-height: 0;
+  /* the frames take a little less than the height under the head, centred
+     in it — air above and below the row; every frame the same height, two
+     lines reserved for the name whether it needs them or not */
+  height: min(100%, 54svh);
+  align-self: center;
+}
+.range__item { min-height: 0; }
+.range__item a { display: grid; grid-template-rows: minmax(0, 1fr) auto; height: 100%; }
+.range__item img {
+  width: 100%; height: 100%; min-height: 0;
+  object-fit: cover; object-position: 50% 50%;
+  background: var(--well);
+  transition: opacity var(--dur-3) var(--ease-out);
+}
+.range__item a:hover img { opacity: 0.86; }
+.range__name {
+  display: block;
+  align-self: end;
+  /* two lines reserved, whether the name needs them or not — the padding and
+     the hairline are inside the box, so they are added to the two lines */
+  min-height: calc(2.4em + var(--space-3) + 1px);
+  margin-block-start: var(--space-4);
+  padding-block-start: var(--space-3);
+  border-top: 1px solid var(--rule);
+  font-size: var(--text-h3);
+  line-height: 1.2;
+}
+.range__kind {
+  display: block;
+  margin-block-start: var(--space-1);
+  font-size: var(--text-xs); color: var(--ink-2);
+}
+
+/* --- 4 · 6 · Scenes — one picture pinned, the copy travelling over it ------ */
+
+.scene__pic {
+  position: sticky; top: 0;
+  height: 100svh;
+  overflow: hidden;
+  background: var(--black);
+}
+.scene__pic img { width: 100%; height: 100%; object-fit: cover; }
+.scene--commission .scene__pic img { object-position: 62% 50%; }
+.scene--care .scene__pic img { object-position: 72% 50%; }
+/* direction 5: the bridge over the water, lifted — brighter, the sea a
+   little more turquoise; the scene's own shade still holds the copy corner */
+#continental .scene__pic img { filter: brightness(1.22) saturate(1.18) contrast(1.04); }
+#continental .scene__pic::after {
+  background:
+    radial-gradient(ellipse 55% 60% at 0% 100%, rgba(4,4,4,0.72) 0%, rgba(4,4,4,0.4) 55%, rgba(4,4,4,0) 100%),
+    linear-gradient(180deg, rgba(4,4,4,0) 55%, rgba(4,4,4,0.45) 100%);
+}
+.scene__pic::after {
+  /* a horizontal pass beside the subject, not a wash over it: the copy's own
+     column carried deep so the photograph keeps its light */
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(90deg, rgba(4,4,4,0.72) 0%, rgba(4,4,4,0.5) 34%, rgba(4,4,4,0) 62%);
+}
+.scene__body {
+  position: relative; z-index: 1;
+  margin-block-start: -100svh;
+  min-height: 100svh;
+  display: flex; align-items: flex-end;
+  padding-block: var(--bar-h) clamp(3rem, 9vh, 6rem);
+  /* the copy of every full-bleed chapter starts under the first route, as
+     the hero's does; the inset chapters keep the page column */
+  padding-inline: var(--edge);
+}
+.scene__copy { max-width: 36rem; }
+
+/* --- Splits — copy on the black, the picture standing on its own ---------- */
+
+.split {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  align-items: stretch;
+}
+.split__pic { height: 100svh; min-height: 0; overflow: hidden; background: var(--black); }
+.split__pic img { width: 100%; height: 100%; object-fit: cover; }
+#commission .split__pic img { object-position: 100% 50%; }   /* direction 5: the door handle stands at the right edge of the frame */
+#care .split__pic img { object-position: 72% 50%; }   /* direction 5: the orange wheel stands right of centre */
+.split__copy {
+  align-self: center;
+  padding: calc(var(--bar-h-compact) + 2vh) var(--space-8) 4vh var(--edge);
+  max-width: 40rem;
+}
+.split--mirror { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); }
+.split--mirror .split__copy { padding-inline: var(--space-8) var(--edge); justify-self: end; }
+.split .h2 { font-size: min(var(--text-display), 6.6vh); }
+
+/* The one parallax: this chapter's picture travels slower than the chapter
+   as it rises over the last one (`--arrive`); once it stands, it stands —
+   the next chapter covers a still picture. The picture is taller than its
+   frame so the travel never shows an edge. */
+.parallax .scene__pic img {
+  height: 124%;
+  /* the travel is 24% of the FRAME; translate % is of the picture's own
+     height (124%), so it is written as 24 / 1.24 — the foot never lifts */
+  transform: translate3d(0, calc(-19.355% * var(--arrive, 1)), 0);
+  will-change: transform;
+}
+/* and as the next chapter rises over it, this one does not go under a veil:
+   it goes transparent, in step with the scroll, picture and caption alike */
+.parallax::before { display: none; }
+.parallax .scene__pic, .parallax .scene__body { opacity: calc(1 - var(--cover, 0)); }
+
+/* A display: the picture and a caption, nothing asked. One at the left on the
+   stage floor, one at the right on the cab's shadow — the caption goes where
+   the photograph has dark ground, never over the car. */
+.disp .scene__pic::after { background: linear-gradient(180deg, rgba(4,4,4,0) 55%, rgba(4,4,4,0.55) 100%); }
+.disp .scene__body { padding-block-end: clamp(3rem, 8vh, 5rem); }
+.disp--right .scene__pic::after {
+  /* the caption sits at the right, over the kerb: a pool of shadow in that
+     corner, edgeless, and the same foot pass */
+  background:
+    radial-gradient(ellipse 56% 66% at 100% 100%, rgba(4,4,4,0.82) 0%, rgba(4,4,4,0.55) 50%, rgba(4,4,4,0) 100%),
+    linear-gradient(180deg, rgba(4,4,4,0) 55%, rgba(4,4,4,0.55) 100%);
+}
+.disp--right .scene__body { justify-content: flex-end; }
+.disp--right .scene__copy { max-width: 32rem; }
+
+/* --- 5 · Certified pre-owned — two planes stepping out to the left --------
+   The photograph at the right of the stage; the glass plate over its left
+   edge and out onto the black. The same standard box. --------------------- */
+
+.preowned {
+  padding-block: calc(var(--bar-h-compact) + 2vh) var(--floor);
+  display: flex; align-items: stretch;
+}
+.preowned .page { width: 100%; }
+.po-stage {
+  position: relative;
+  display: grid;
+  grid-template-rows: minmax(0, 1fr);
+  height: 100%;                /* the stage is the whole height left under the header */
+  overflow: clip;              /* the photograph's slide-in stays inside the stage */
+}
+/* the change of car is a curtain: the new photograph is drawn across the
+   old one from the edge it comes from, the old one standing beneath until it
+   is covered; only the plate's lines re-stair */
+.po-slide {
+  grid-area: 1 / 1;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  grid-template-rows: 20% 60% 20%;
+  min-height: 0;
+  visibility: hidden;
+}
+.po-slide.is-active { visibility: visible; z-index: 2; }
+.po-slide.is-leaving { visibility: visible; z-index: 1; }
+/* the plate never empties: the box (same box, same place) stands, the
+   leaving lines slide out to the left — shorter, eased in — while the new
+   ones arrive as the staircase */
+.po-slide.is-leaving .plate { z-index: 3; pointer-events: none; }
+.motion.ready .po-slide.is-leaving:not(.is-active) .step {
+  opacity: 0; transform: translate3d(-24px, 0, 0);
+  transition: opacity var(--dur-3) var(--ease-in), transform var(--dur-3) var(--ease-in);
+}
+.motion.ready .po-slide.is-leaving .plate { background: transparent; box-shadow: none; backdrop-filter: none; -webkit-backdrop-filter: none; }
+.po-photo {
+  grid-column: 3 / 13; grid-row: 1 / -1;
+  width: 100%; height: 100%; min-height: 0; object-fit: cover;
+  z-index: 0;
+}
+/* a frame whose car stands at the left is widened and anchored left, so the
+   car moves out from under the plate; the stage clips the rest */
+.po-photo--wide { width: 140%; max-width: none; }
+.po-slide { position: relative; }
+.plate {
+  /* the standard box, off the grid: at the stage's left edge, on its
+     vertical centre, its own width at every viewport */
+  position: absolute; left: 0; top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+}
+.plate .label { display: flex; justify-content: space-between; gap: var(--space-4); }
+.plate .po-facts { min-height: calc(2 * var(--leading-body) * 1em); }
+.po-count { font-variant-numeric: tabular-nums; }
+.po-facts { margin-block-start: var(--space-3); font-size: var(--text-sm); color: var(--ink-2); }
+.po-price { margin-block-start: var(--space-3); font-size: var(--text-h3); font-variant-numeric: tabular-nums; }
+.po-price + .body { margin-block-start: var(--space-4); font-size: var(--text-sm); }
+.plate .body + .actions { margin-block-start: var(--space-5); align-items: center; gap: var(--space-5); }
+.po-ctl {
+  position: absolute; z-index: 2;
+  right: clamp(1.5rem, 3vw, 3rem); bottom: clamp(1.5rem, 3vw, 3rem);
+  display: flex; gap: var(--space-1);
+}
+.po-ctl .stock__arrow { background: var(--plate); -webkit-backdrop-filter: blur(18px); backdrop-filter: blur(18px); border-color: transparent; }
+.po-ctl .stock__arrow:hover { border-color: var(--rule-strong); }
+
+/* the slide-in: the photograph comes from the right, then the plate's lines
+   as the staircase; on a change of car the photograph comes in again and the
+   lines re-stair */
+/* a change of car: the curtain is drawn from the edge it comes from, and
+   the new photograph drives a little way in behind it */
+.motion.ready .po-photo { clip-path: inset(0 0 0 100%); transform: translate3d(10%, 0, 0); }
+.motion.ready [data-dir="-1"] .po-photo { clip-path: inset(0 100% 0 0); transform: translate3d(-10%, 0, 0); }
+.motion.ready .preowned.is-in .po-slide.is-active .po-photo {
+  clip-path: inset(0 0 0 0); transform: none;
+  transition: clip-path var(--dur-reveal) var(--ease-reveal), transform 1.6s var(--ease-out);
+}
+.motion.ready .po-slide.is-leaving .po-photo { clip-path: inset(0 0 0 0); transform: none; }
+/* `:not(.is-active)` outranks the chapter's own staircase rule, which would
+   otherwise hold every slide's lines at full opacity */
+.motion.ready .po-slide:not(.is-active) .step { opacity: 0; transform: translate3d(calc(-1 * (var(--mo-out) + var(--i, 0) * var(--mo-step-x))), 0, 0); transition: none; }
+.motion.ready .preowned.is-in .po-slide.is-active .step {
+  opacity: 1; transform: none;
+  transition:
+    opacity var(--mo-dur) var(--ease-out) calc(0.35s + var(--i, 0) * var(--mo-step-t)),
+    transform var(--mo-dur) var(--ease-out) calc(0.35s + var(--i, 0) * var(--mo-step-t));
+}
+
+@media (max-height: 700px) {
+  .split .h2, .retailer .h2 { font-size: min(var(--text-h2), 6vh); }
+  .split__copy .body, .retailer .body { font-size: var(--text-sm); }
+  .record dd span { display: none; }   /* the hours go; the numbers stay */
+}
+
+/* --- Inventory — one rail across the whole screen, past its edge ---------- */
+
+.stock {
+  padding-block: calc(var(--bar-h-compact) + 2vh) var(--floor);
+  display: flex; align-items: center;
+}
+.stock__in { width: 100%; }
+/* the title at the left, the call and the arrows at the right, on one line */
+.stock__ctl { display: flex; align-items: center; justify-content: flex-end; gap: var(--space-5); }
+.stock__arrows { display: inline-flex; gap: var(--space-1); }
+.stock__arrow {
+  display: grid; place-items: center; width: 44px; height: 44px;
+  background: none; border: 1px solid var(--rule-strong); color: var(--white); cursor: pointer; padding: 0;
+  transition: border-color var(--dur-2) var(--ease-out), opacity var(--dur-2) var(--ease-out);
+}
+.stock__arrow:hover { border-color: var(--white); }
+.stock__arrow:disabled { opacity: 0.3; cursor: default; }
+
+.stock__rail {
+  display: flex;
+  gap: var(--space-6);
+  min-height: 0;
+  margin-block-start: clamp(1.5rem, 3.5vh, 3rem);
+  /* the first card starts under the heading: the page column's own edge */
+  padding-inline: max(var(--gutter), calc((100% - var(--page)) / 2));
+  scroll-padding-inline: max(var(--gutter), calc((100% - var(--page)) / 2));
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x proximity;
+  scrollbar-width: none;
+  cursor: grab;
+  -webkit-overflow-scrolling: touch;
+}
+.stock__rail::-webkit-scrollbar { display: none; }
+.stock__rail.is-dragging { cursor: grabbing; scroll-snap-type: none; scroll-behavior: auto; user-select: none; }
+.stock__rail.is-dragging a { pointer-events: none; }
+/* the plates are wide — the photograph, the name, the facts and the
+   retailer's build need the room — so this is the one chapter that is not
+   pinned: as tall as it needs to be, it rises over the chapter before it and
+   scrolls away as any page does; the next chapter pins as usual */
+main > section.stock { position: relative; top: auto; height: auto; min-height: 100svh; }
+.stock .recede { transform: none; }
+/* the plates are exactly the inventory grid's: a third of the page column
+   less two gutters, the same gap between them */
+.stock__car { flex: 0 0 calc((min(var(--page), 100vw - 2 * var(--gutter)) - 2 * var(--space-6)) / 3); scroll-snap-align: start; min-height: 0; }
+/* the plate itself — photograph, name, facts, the figure and the retailer's
+   build — is the inventory's, in css/cards.css */
+
+/* --- 4 · Bespoke by Braman (direction 5) ------------------------------------
+   One photograph across the screen and a centred lockup low on the dark of
+   the hide: the name between hairlines, the title at display size, one line,
+   one outlined control. The shade is a pool under the lockup and a veil at
+   the foot — the lilac fairing above stays untouched. */
+.bespoke {
+  position: relative; isolation: isolate;
+  height: 100svh; min-height: 0; overflow: hidden;
+  display: flex; flex-direction: column; justify-content: flex-end; align-items: center;
+  padding: 0 var(--edge) clamp(3rem, 8vh, 5rem);
+  background: var(--black);
+}
+.bespoke__pic { position: absolute; inset: 0; z-index: -1; }
+.bespoke__pic img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 45%; }
+.bespoke__pic::after {
+  content: ""; position: absolute; inset: 0;
+  background:
+    linear-gradient(180deg, rgba(4,4,4,0.7) 0%, rgba(4,4,4,0) 18%),
+    radial-gradient(ellipse 60% 42% at 50% 88%, rgba(4,4,4,0.82) 0%, rgba(4,4,4,0.5) 55%, rgba(4,4,4,0) 100%),
+    linear-gradient(180deg, rgba(4,4,4,0) 62%, rgba(4,4,4,0.55) 100%);
+}
+.bespoke__lockup { max-width: 64rem; text-align: center; display: flex; flex-direction: column; align-items: center; }
+.bespoke__name { display: flex; align-items: center; gap: var(--space-4); color: var(--heritage-white); }
+.bespoke__name::before, .bespoke__name::after { content: ""; width: clamp(2rem, 5vw, 4rem); height: 1px; background: currentColor; opacity: 0.7; }
+.bespoke__title {
+  margin-block-start: var(--gap-copy);
+  font-size: clamp(2.25rem, 4.2vw, 4.5rem); font-weight: 300;
+  line-height: 1.04; letter-spacing: var(--track-display);
+  text-wrap: balance;
+}
+.bespoke__line { margin-block-start: var(--gap-copy); max-width: 34rem; font-size: var(--text-lead); line-height: 1.45; color: var(--ink); }
+.bespoke .actions { margin-block-start: var(--gap-act); justify-content: center; }
+.bespoke__caption {
+  position: absolute; left: var(--edge); bottom: clamp(1.25rem, 3vh, 2rem);
+  color: var(--ink-2); font-size: var(--text-xs);
+}
+/* the arrival: the picture settles from a slight lift, the lockup rises */
+.motion.ready .bespoke__pic img { transition: transform 2.2s var(--ease-out); }
+.motion.ready .bespoke:not(.is-in) .bespoke__pic img { transform: scale(1.08); }
+.motion.ready .bespoke:not(.is-in) .step { transform: translate3d(0, calc(var(--mo-out) + var(--i, 0) * 6px), 0); }
+
+/* --- 8b · Sell your car (direction 5) --------------------------------------
+   One screen: the photograph across the top, the car whole, its foot
+   dissolving into the ground; the copy rises onto that dark foot as one
+   block — name, offer, the two routes — read in a single pass, and never
+   reaching the car. */
+.sell {
+  display: grid; grid-template-rows: minmax(0, 1fr) auto;
+  height: 100svh; min-height: 0;
+  background: var(--black);
+}
+.sell__pic { position: relative; min-height: 0; overflow: hidden; }
+.sell__pic img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 62%; }
+.sell__pic::after {
+  content: ""; position: absolute; inset: auto 0 0 0; height: 48%;
+  background: linear-gradient(180deg, rgba(4,4,4,0) 0%, rgba(4,4,4,0.55) 45%, rgba(4,4,4,0.9) 80%, var(--black) 100%);
+  pointer-events: none;
+}
+.sell__copy {
+  position: relative; z-index: 1;
+  display: grid; grid-template-columns: minmax(0, 1fr) auto;
+  column-gap: clamp(2rem, 5vw, 5rem); align-items: end;
+  margin-block-start: calc(-1 * clamp(5rem, 17vh, 10rem));
+  padding-block: 0 var(--floor);
+}
+.sell .h2 { font-size: min(var(--text-display), 6.6vh); }
+.sell__text .body { max-width: 36rem; }
+/* the two routes stand at the right, opposite the copy, on its last line */
+.sell__cta { justify-content: flex-end; flex-wrap: nowrap; }
+.motion.ready .sell__pic img { transition: transform 1.8s var(--ease-out) 0.15s; }
+.motion.ready .sell:not(.is-in) .sell__pic img { transform: scale(1.06); }
+.motion.ready .sell.is-in .sell__pic img { transform: none; }
+
+/* --- 7 · The retailer ------------------------------------------------------- */
+
+.retailer {
+  padding-block: calc(var(--bar-h-compact) + 2vh) var(--floor);
+  display: flex; align-items: center;
+  background: linear-gradient(180deg, #071008 0%, var(--green-deep) 45%, var(--bentley-green) 100%);
+}
+.retailer .page { width: 100%; height: 100%; }
+.retailer .h2 { font-size: min(var(--text-display), 6.6vh); }
+
+.retailer__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 6fr) minmax(0, 6fr);
+  column-gap: clamp(3rem, 5vw, 5rem);
+  align-items: stretch;
+  height: 100%;
+}
+/* Two photographs, one over the other: the showroom whole at the foot of
+   the column (the car is never cropped), the cabin detail hung over its
+   top-left corner. The two travel at different rates as the chapter arrives
+   and as the close covers it — `--arrive` and `--cover` are scroll-linked. */
+.retailer__media { min-height: 0; align-self: stretch; }
+/* the pair fills the column from the header to the floor: the showroom on
+   the floor, the detail hung over its top-left corner from the top */
+.retailer__stack { position: relative; height: 100%; }
+/* the frames carry the scroll-linked travel; the pictures inside them rise
+   into place from below, one after the other, when the chapter arrives */
+/* off the column's edge on purpose: the showroom stands in from the left,
+   the detail hangs a little past it — the two never share an edge */
+/* the showroom stands on the floor of the column, as tall as the column
+   allows; the detail hangs over its top-left corner, and the script sets its
+   height so that it always rides 60% of itself onto the showroom — on a
+   short screen and a tall one alike */
+.retailer__showroom {
+  position: absolute; right: 0; bottom: 0;
+  width: var(--showroom-w, 92%);      /* the script: 76% of the column's height in 4:3, or 92% of its width */
+  aspect-ratio: 4 / 3; overflow: hidden;
+  transform: translate3d(calc(3vw * (1 - var(--arrive, 1))), calc(4vh * (1 - var(--arrive, 1))), 0);
+}
+.retailer__detail {
+  position: absolute; left: -4%; top: var(--detail-top, 5%); z-index: 1;
+  width: 58%; aspect-ratio: 1; overflow: hidden;
+  transform: translate3d(calc(-3vw * (1 - var(--arrive, 1))), calc(-6vh * (1 - var(--arrive, 1)) - 4vh * var(--cover, 0)), 0);
+}
+.retailer__showroom img, .retailer__detail img { width: 100%; height: 100%; object-fit: cover; }
+.retailer__detail img { object-position: 50% 45%; }
+.motion.ready .retailer:not(.is-in) .retailer__stack img.step { opacity: 0; transform: translate3d(0, 72px, 0); }
+.motion.ready .retailer.is-in .retailer__stack img.step {
+  opacity: 1; transform: none;
+  transition:
+    opacity var(--mo-dur) var(--ease-out) calc(var(--i, 0) * var(--mo-step-t)),
+    transform calc(var(--mo-dur) + 0.3s) var(--ease-out) calc(var(--i, 0) * var(--mo-step-t));
+}
+.retailer__copy { padding-block-start: 0; align-self: center; }
+.retailer .record { margin-block-start: var(--gap-act); }
+
+/* --- 8 · The close ---------------------------------------------------------- */
+
+.close {
+  position: relative; z-index: 1;
+  background: var(--bentley-green);
+  color: var(--white);
+  /* the close is a screen of its own: the crown at the top, the index on
+     the middle of the field, the legal line on the floor */
+  min-height: 100svh;
+  padding-block: calc(var(--bar-h-compact) + 3vh) var(--floor);
+  display: flex;
+}
+.close > .page { display: grid; grid-template-rows: auto auto auto; align-content: center; row-gap: clamp(1.5rem, 4vh, 3.5rem); min-height: 100%; }
+.close__crown { text-align: center; }
+.close__crown img { margin-inline: auto; width: 108px; }
+.close__crown p { margin-block-start: clamp(1rem, 2.5vh, 2rem); color: var(--ink-2); }
+.social { display: flex; justify-content: center; gap: var(--space-5); margin-block-start: clamp(1rem, 2.5vh, 2rem); }
+.social a { display: grid; place-items: center; width: 44px; height: 44px; color: var(--ink-2); transition: color var(--dur-2) var(--ease-out); }
+.social a:hover { color: var(--white); }
+
+.close__index {
+  /* the footer's rhythm follows the screen height so the close stays one screen */
+  margin-block: 0;
+  padding-block-start: clamp(1.5rem, 3.5vh, 3rem);
+  border-top: 1px solid var(--rule);
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-7);
+}
+.close__index h3 {
+  font-size: var(--text-xs); font-weight: 400;
+  letter-spacing: var(--track-label); text-transform: uppercase;
+  color: var(--ink-2);
+}
+.close__index ul { margin-block-start: clamp(0.75rem, 1.6vh, 1rem); display: grid; gap: clamp(0.35rem, 0.9vh, 0.5rem); }
+.close__index a { font-size: var(--text-sm); }
+.close__index a:hover { color: var(--heritage-white); }
+
+.close__legal {
+  margin-block-start: 0;
+  padding-block-start: var(--space-5);
+  border-top: 1px solid var(--rule);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--space-3) var(--space-8);
+  font-size: var(--text-xs);
+  color: var(--ink-2);
+}
+.close__legal ul { display: flex; flex-wrap: wrap; gap: var(--space-5); justify-self: end; }
+.close__legal a { font-variant-numeric: tabular-nums; }
+.close__legal a:hover { color: var(--white); }
+.close__legal > div { grid-column: 1 / -1; color: var(--ink-3); }
+
+/* --- The pictures' arrivals — one event per chapter, on the picture -------
+   A chapter's photograph is not simply there when the chapter rises: it
+   opens. Each kind of chapter opens its picture one way, and only that way. */
+
+/* pre-owned, on the chapter's arrival: the photograph drives in whole from
+   the right, decelerating into its place at the right of the stage */
+.motion.ready .preowned:not(.is-in) .po-slide.is-active .po-photo { clip-path: inset(0); transform: translate3d(100%, 0, 0); }
+.motion.ready .preowned.is-in .po-slide.is-active .po-photo { transition-delay: 0s, 0.15s; }
+
+/* the range: each frame opens from its own vertical axis, one after another */
+.motion.ready .range__item img { transition: clip-path 1.2s var(--ease-reveal) calc(0.15s + (var(--i, 2) - 2) * 0.12s), transform 1.6s var(--ease-reveal) calc(0.15s + (var(--i, 2) - 2) * 0.12s), opacity var(--dur-3) var(--ease-out); }
+.motion.ready .range:not(.is-in) .range__item img { clip-path: inset(0 50% 0 50%); transform: scale(1.1); }
+.motion.ready .range.is-in .range__item img { clip-path: inset(0); }
+
+/* the splits, direction 5: the picture opens like a louvred shutter. Eight
+   slats of the ground stand over it and fold away to their outer edge one
+   after another, the wave starting at the copy and travelling out; under
+   them the picture settles from a slight lift. The slats exist only while
+   the script runs and motion is allowed — otherwise the picture stands. */
+.split__pic { position: relative; }
+.blinds { display: none; }
+.motion.ready .blinds {
+  position: absolute; inset: 0; z-index: 1;
+  display: grid; grid-template-columns: repeat(8, 1fr);
+  pointer-events: none;
+}
+.motion.ready .blinds i {
+  display: block;
+  background: var(--black);
+  margin-inline-end: -1px;                 /* no hairline of picture between slats */
+  box-shadow: 1px 0 0 var(--black), -1px 0 0 var(--black);
+  transform-origin: 100% 50%;
+  transition: transform 0.95s var(--ease-reveal) calc(0.15s + var(--n) * 0.07s);
+}
+.motion.ready .split--mirror .blinds i {
+  transform-origin: 0% 50%;
+  transition-delay: calc(0.15s + (7 - var(--n)) * 0.07s);
+}
+.motion.ready .split.is-in .blinds i { transform: scaleX(0); }
+.motion.ready .split__pic img { transition: transform 1.8s var(--ease-out) 0.15s; }
+.motion.ready .split:not(.is-in) .split__pic img { transform: scale(1.06); }
+.motion.ready .split.is-in .split__pic img { transform: none; }
+
+/* the rail: the cars arrive along the rail, from the right, one behind another */
+.motion.ready .stock:not(.is-in) .stock__car.step { transform: translate3d(calc(48px + var(--i, 2) * 24px), 0, 0); }
+
+/* the parallax display: the frame opens outward from an inset and the
+   picture comes up inside it — its own appearance, before the parallax
+   takes over on the scroll (the two live on different elements) */
+.motion.ready .parallax .scene__pic { transition: clip-path var(--dur-reveal) var(--ease-reveal), transform 2s var(--ease-reveal); }
+.motion.ready .parallax:not(.is-in) .scene__pic { clip-path: inset(10% 8%); transform: scale(1.06); }
+.motion.ready .parallax.is-in .scene__pic { clip-path: inset(0); transform: none; }
+.motion.ready .parallax .scene__pic img { transition: opacity 1.2s var(--ease-out); }
+.motion.ready .parallax:not(.is-in) .scene__pic img { opacity: 0.001; }
+
+/* a display without the parallax: the frame settles */
+.motion.ready .disp:not(.parallax) .scene__pic img { transition: transform 2.2s var(--ease-reveal); }
+.motion.ready .disp:not(.parallax):not(.is-in) .scene__pic img { transform: scale(1.08); }
+
+/* --- Back to the top — a hairline circle in the corner, present once the
+   first screen has gone; it shares the arrows' glyph and the plate's ground */
+.totop {
+  position: fixed; right: var(--edge); bottom: calc((var(--floor) - 40px) / 2);
+  z-index: 40;
+  display: grid; place-items: center;
+  width: 40px; height: 40px;
+  border: 1px solid var(--rule-strong);
+  border-radius: 50%;
+  color: var(--white);
+  background: var(--plate);
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
+  opacity: 0; visibility: hidden; transform: translateY(12px);
+  transition: opacity var(--dur-3) var(--ease-out), transform var(--dur-3) var(--ease-out), visibility 0s linear var(--dur-3), border-color var(--dur-2) var(--ease-out);
+}
+.totop:hover { border-color: var(--white); }
+.totop svg { transition: transform var(--dur-2) var(--ease-out); }
+.totop:hover svg { transform: translateY(-2px); }
+html[data-past] .totop { opacity: 1; visibility: visible; transform: none; transition-delay: 0s; }
+
+/* --- Motion — the staircase; complete static equivalent without it --------
+   The entrance states wait for `ready`, which only the script sets: if the
+   file never arrives the page is simply the finished composition. ---------- */
+
+.motion.ready .step {
+  opacity: 0;
+  transform: translate3d(calc(-1 * (var(--mo-out) + var(--i, 0) * var(--mo-step-x))), var(--mo-lift), 0);
+}
+.motion.ready .range__item.step { transform: none; }
+.motion.ready .is-in .step {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity var(--mo-dur) var(--ease-out) calc(var(--i, 0) * var(--mo-step-t)),
+    transform var(--mo-dur) var(--ease-out) calc(var(--i, 0) * var(--mo-step-t));
+}
+
+.mh[data-open] { --bar-ground: var(--black); }
+.mh[data-open]::before { opacity: 1; }
+
+/* --- Responsive — recomposed, not stacked ---------------------------------- */
+
+.btn__short { display: none; }
+
+@media (max-width: 1359px) {
+  /* five routes, centred wings and the retailer's number share the bar only
+     with the name dropped and the action shortened to its verb (at 1280 the
+     full bar wraps) */
+  :root { --edge: var(--gutter); }
+  .mh__retailer span:first-child { display: none; }
+  .mh__mark img, .mh[data-scrolled] .mh__mark img { width: 96px; }
+  .mh__nav ul { gap: 1rem; }
+  .mh__nav a, .mh__retailer { white-space: nowrap; }
+  .mh__act { gap: var(--space-5); }
+  .mh__act .btn__long { display: none; }
+  .mh__act .btn__short { display: inline; }
+}
+
+@media (max-width: 1023px) {
+  :root { --bar-h: 88px; --bar-h-compact: 72px; }
+  .mh__bar { grid-template-columns: 1fr auto 1fr; }
+  .mh__toggle { display: inline-flex; }
+  .mh__nav {
+    position: fixed; inset: var(--bar-h) 0 0 0;
+    background: var(--black);
+    padding: var(--space-8) var(--gutter);
+    display: none;
+  }
+  .mh[data-open] .mh__nav { display: block; }
+  .mh__nav ul { flex-direction: column; gap: var(--space-5); }
+  .mh__nav a { font-size: var(--text-h3); text-transform: none; letter-spacing: 0; font-weight: 300; }
+  .mh__act .btn { display: none; }
+  .mh__retailer { justify-self: end; }
+  .mh__mark img { width: 96px; }
+
+  .head { grid-template-columns: 1fr; row-gap: var(--space-5); }
+  .head__aside { padding-block-end: 0; }
+
+
+  .retailer__grid { grid-template-columns: 1fr; row-gap: var(--space-7); }
+  .retailer__detail { left: 0; top: 0; }
+  .close__index { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .close__legal { grid-template-columns: 1fr; }
+  .close__legal ul { justify-self: start; }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .retailer__grid { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); column-gap: var(--space-6); }
+  .retailer .h2 { font-size: min(var(--text-display), 4.6vw, 6.6vh); }
+  .record { grid-template-columns: minmax(5rem, 6rem) 1fr; }
+}
+@media (max-height: 800px) and (min-width: 1024px) {
+  .retailer .body { display: none; }   /* the record is the point of the chapter; on a short screen the sentence gives way */
+  .stock .h2 { font-size: min(var(--text-display), 7vh); }
+}
+
+@media (max-width: 767px) {
+  .bespoke { padding: 0 var(--gutter) var(--space-9); }
+  .bespoke__pic img { object-position: 42% 45%; }
+  .bespoke__caption { position: static; margin-block-start: var(--space-6); align-self: center; }
+  .sell { height: auto; min-height: 100svh; grid-template-rows: 46svh auto; }
+  .sell__pic img { object-position: 12% 62%; }   /* the car is wider than a phone frame: keep its face */
+  .sell__copy { grid-template-columns: 1fr; row-gap: var(--gap-act); margin-block-start: calc(-1 * var(--space-9)); padding-block: 0 var(--space-9); }
+  .sell__cta { justify-content: flex-start; flex-wrap: wrap; }
+  .sell .actions .btn { flex: 1 1 100%; }
+  /* The guideline's mobile hero: the picture as a window in the upper part of
+     the screen, the identification on the black beneath it. Authored, not a
+     desktop crop. */
+  .slide { justify-content: flex-start; }
+  .slide__field {
+    position: relative; inset: auto; z-index: 0;
+    height: 48svh;
+    margin-block-start: var(--bar-h);
+  }
+  .slide__field::after, .slide--right .slide__field::after, .slide--centre .slide__field::after { background: linear-gradient(180deg, rgba(4,4,4,0) 82%, var(--black) 100%); }
+  .hero__lockup, .slide--right .hero__lockup, .slide--centre .hero__lockup, .slide--offer .hero__lockup { padding-block: var(--space-4) calc(var(--space-9) + 1rem); align-items: flex-start; text-align: left; }
+  .slide--offer { justify-content: flex-start; }
+  /* the plate keeps its frame on a phone, so it keeps its inner margin on
+     every side too: text never stands against the frame */
+  .box { height: auto !important; width: 100%; padding: var(--space-5); background: transparent; backdrop-filter: none; -webkit-backdrop-filter: none; }
+  .box .actions { flex-wrap: wrap; }
+  .box .hero__title, .box .h2 { font-size: var(--text-display); }
+  .box .slide__terms, .plate .po-facts { min-height: 0; }
+  .slide__glass .slide__per { font-size: var(--text-display); }
+  .slide--right .hero__lockup .actions, .slide--centre .hero__lockup .actions, .slide--right .slide__lease { justify-content: flex-start; }
+  .slide--centre .hero__title { font-size: var(--text-hero); letter-spacing: var(--track-display); text-transform: none; }
+  /* every lockup is left-aligned on a phone, so every staircase comes from the left */
+  .motion.ready .slide--right:not(.is-active) .step, .motion.ready .slide--centre:not(.is-active) .step { transform: translate3d(calc(-1 * (var(--mo-out) + var(--i, 0) * var(--mo-step-x))), 0, 0); }
+  .hero__lockup .lead + .actions, .slide__terms + .actions { margin-block-start: var(--space-6); }
+  .hero__lockup .actions .btn { flex: 1 1 100%; }
+  .hero__ctl { left: var(--gutter); transform: none; bottom: var(--space-5); }
+  .totop { right: var(--gutter); bottom: var(--space-5); width: 44px; height: 44px; }
+  .motion.ready .slide:first-child .hero__img { animation: none; }
+
+  .range { min-height: 0; padding-block: var(--space-9) var(--space-10); }
+  .range .page { padding-inline: 0; }
+  .range .head { padding-inline: var(--gutter); }
+  .head__links { flex-direction: column; gap: var(--space-3); }
+  .range__row {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: var(--gutter);
+    padding-inline: var(--gutter);
+    gap: var(--space-4);
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .range__row::-webkit-scrollbar { display: none; }
+  .range__item { flex: 0 0 72vw; scroll-snap-align: start; }
+
+  main > section { position: relative; top: auto; height: auto; min-height: 0; overflow: visible; }
+  main > section::before { display: none; }
+  .recede { transform: none; }
+  .hero__slides, .slide { height: auto; min-height: 100svh; }
+  .range .page { display: block; height: auto; }
+  .range__item a { display: block; height: auto; }
+  .range__item img { height: auto; aspect-ratio: 4 / 5; }
+  .po-stage { height: auto; }
+  .stock__in { display: block; }
+  .retailer .page, .retailer__grid, .retailer__stack { height: auto; }
+  .retailer__stack { height: 88vw; }
+  .retailer__showroom { max-height: none; }
+  .split, .split--mirror { grid-template-columns: 1fr; }
+  .split__pic { height: 52svh; grid-row: 1; }
+  .split__copy, .split--mirror .split__copy { max-width: none; justify-self: stretch; padding: var(--space-7) var(--gutter) var(--space-9); }
+  .parallax .scene__pic img { height: 100%; transform: none; }
+  .retailer__showroom, .retailer__detail { transform: none !important; }
+  .retailer__stack img.step { transition-delay: 0s; }
+  .scene__pic { height: 62svh; position: relative; }
+  .scene__pic::after { background: linear-gradient(180deg, rgba(4,4,4,0) 60%, var(--black) 100%); }
+  .scene__body { margin-block-start: calc(-1 * var(--space-9)); min-height: 0; padding-block: 0 var(--space-9); }
+
+  .preowned .page { padding-inline: 0; }
+  .po-stage { height: auto; }
+  .po-slide { grid-template-columns: 1fr; grid-template-rows: auto auto; }
+  .po-photo { grid-column: 1; grid-row: 1; height: 58svh; }
+  .plate { position: static; transform: none; width: auto; margin-inline: var(--gutter); }
+  .po-ctl { top: calc(58svh - 44px - var(--space-4)); bottom: auto; right: var(--gutter); }
+
+  .stock__rail { padding-inline: var(--gutter); scroll-padding-inline: var(--gutter); }
+  .stock__car { flex-basis: 78vw; }
+  .stock__ctl { flex-wrap: wrap; }
+  .retailer { min-height: 0; }
+  .record { grid-template-columns: 1fr; }
+  .record dt { border-bottom: 0; padding-bottom: 0; }
+  .record dd { padding-top: var(--space-2); }
+  .close__index { grid-template-columns: 1fr; gap: var(--space-6); }
+}
+
+/* Under reduced motion, the picture stands and nothing settles. */
+@media (prefers-reduced-motion: reduce) {
+  .motion.ready .step { opacity: 1; transform: none; transition: none; }
+  .motion.ready .mh, .motion.ready .hero__img { animation: none; }
+  .motion.ready .slide .step, .motion.ready .po-slide .step { opacity: 1; transform: none; transition: none; }
+  .motion.ready .po-photo { clip-path: none; transform: none; transition: none; }
+  .motion.ready .range__item img, .motion.ready .split__pic img, .motion.ready .disp .scene__pic img, .motion.ready .parallax .scene__pic { clip-path: none; transform: none; transition: none; opacity: 1; }
+  .motion.ready .blinds { display: none; }
+  .motion.ready .bespoke__pic img { transform: none; transition: none; }
+  .motion.ready .sell__pic img { transform: none; transition: none; }
+  .motion.ready .po-photo, .motion.ready .preowned:not(.is-in) .po-slide.is-active .po-photo { clip-path: none; transform: none; transition: none; }
+  .motion.ready .stock__car.step { transform: none; }
+  .slide, .po-slide { transition: none; }
+  .motion.ready .slide .hero__lockup { opacity: 1; transform: none; transition: none; }
+  .slide { transition: none; }
+  .mh, .mh::before, .mh__bar, .mh__mark img { transition: none; }
+  main > section { position: relative; top: auto; height: auto; min-height: 100svh; overflow: visible; }
+  main > section::before { display: none; }
+  .recede { transform: none; }
+  .parallax .scene__pic img { height: 100%; transform: none; }
+  .retailer__showroom, .retailer__detail { transform: none !important; }
+  .motion.ready .retailer__stack img.step { opacity: 1; transform: none; transition: none; }
+  .scene__pic { position: relative; }
+}
+/* Without the script nothing measures `--stick`, so a tall chapter would pin
+   with its foot hidden: the stack only exists once the script is running. */
+html:not(.ready) main > section { position: relative; top: auto; height: auto; min-height: 100svh; overflow: visible; }
+html:not(.ready) main > section::before { display: none; }
+html:not(.ready) .parallax .scene__pic img { height: 100%; transform: none; }
