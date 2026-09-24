@@ -202,6 +202,54 @@ main.srp::before, main.vdp::before { content: none; display: none; }
   }
 }
 
+/* --- 7b · Looks 2 and 4: the range toned to the Satin Linen ground --------
+   The four studio frames are white and grey; on Satin Linen they stood out
+   as four cold windows. A layer of Satin Linen (the guideline's code)
+   multiplies over each photograph, which is quietened a little first —
+   pastel, calm, of the ground. On hover the car returns to its own colour. */
+:is([data-look="2"], [data-look="4"]) .range__item a { position: relative; isolation: isolate; }
+:is([data-look="2"], [data-look="4"]) .range__item img {
+  grid-row: 1; grid-column: 1;
+  filter: saturate(0.62) contrast(0.84) brightness(1.08);
+  transition: filter var(--dur-3) var(--ease-out), clip-path 1.2s var(--ease-reveal) calc(0.15s + (var(--i, 2) - 2) * 0.12s), transform 1.6s var(--ease-reveal) calc(0.15s + (var(--i, 2) - 2) * 0.12s), opacity var(--dur-3) var(--ease-out);
+}
+:is([data-look="2"], [data-look="4"]) .range__item a::before {
+  content: ""; grid-row: 1; grid-column: 1; z-index: 1;
+  background: var(--satin-linen-40);
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  transition: opacity var(--dur-3) var(--ease-out);
+}
+:is([data-look="2"], [data-look="4"]) .range__item a::after {
+  /* and a Satin Linen wash screened over it: the pastel lift */
+  content: ""; grid-row: 1; grid-column: 1; z-index: 2;
+  background: var(--satin-linen-40);
+  mix-blend-mode: screen; opacity: 0.38;
+  pointer-events: none;
+  transition: opacity var(--dur-3) var(--ease-out);
+}
+:is([data-look="2"], [data-look="4"]) .range__item a:hover img,
+:is([data-look="2"], [data-look="4"]) .range__item a:focus-visible img { filter: none; opacity: 1; }
+:is([data-look="2"], [data-look="4"]) .range__item a:hover::before,
+:is([data-look="2"], [data-look="4"]) .range__item a:focus-visible::before,
+:is([data-look="2"], [data-look="4"]) .range__item a:hover::after,
+:is([data-look="2"], [data-look="4"]) .range__item a:focus-visible::after { opacity: 0; }
+/* the tone waits for the frames to open, so it never stands as an empty
+   block before its photograph */
+.motion.ready:is([data-look="2"], [data-look="4"]) .range:not(.is-in) .range__item a::before,
+.motion.ready:is([data-look="2"], [data-look="4"]) .range:not(.is-in) .range__item a::after { opacity: 0; }
+.motion.ready:is([data-look="2"], [data-look="4"]) .range.is-in .range__item a:not(:hover)::before,
+.motion.ready:is([data-look="2"], [data-look="4"]) .range.is-in .range__item a:not(:hover)::after { transition-delay: 0.9s; }
+@media (max-width: 767px) {
+  :is([data-look="2"], [data-look="4"]) .range__item a::before,
+  :is([data-look="2"], [data-look="4"]) .range__item a::after { position: absolute; left: 0; right: 0; top: 0; aspect-ratio: 4 / 5; }
+}
+@media (hover: none) {
+  :is([data-look="2"], [data-look="4"]) .range__item a:hover::before { opacity: 1; }
+  :is([data-look="2"], [data-look="4"]) .range__item a:hover::after { opacity: 0.38; }
+  :is([data-look="2"], [data-look="4"]) .range__item a:hover img { filter: saturate(0.62) contrast(0.84) brightness(1.08); }
+}
+
 /* --- 8 · Sell your car, in every look: the photograph whole at the top,
        the words beneath it on the day — never on its foot ---------------- */
 .sell__pic::after { content: none; }
