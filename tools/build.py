@@ -518,3 +518,8 @@ for f in os.listdir(ROOT + 'vehicles'):
 for v in V:
     open(ROOT + v['page'], 'w').write(vehicle_page(v))
 print(len(V), 'vehicle pages in vehicles/')
+
+# =========================================================================
+# 4. Direction 5 mirrors the inventory, the vehicle pages and the rail.
+# =========================================================================
+exec(open(ROOT + 'tools/mirror5.py', encoding='utf-8').read(), {'__file__': ROOT + 'tools/mirror5.py'})

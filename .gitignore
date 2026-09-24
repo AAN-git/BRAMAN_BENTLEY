@@ -10,3 +10,7 @@ bentley guidlines/
 .DS_Store
 .playwright-mcp/
 .vscode/
+
+# Direction 5: the client's and the library's full-size source photographs and
+# films; the page uses the web exports in assets/bm/2026/.
+v5 images/
