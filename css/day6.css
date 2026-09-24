@@ -219,6 +219,12 @@ main.srp::before, main.vdp::before { content: none; display: none; }
   :is([data-look="3"], [data-look="4"]) .slide__field::after { content: none; }
   :is([data-look="3"], [data-look="4"]) .slide--coast .hero__img,
   :is([data-look="3"], [data-look="4"]) .slide--foot .hero__img { filter: none; }
+  /* the window is wide and low, so a frame anchored to its foot shows the
+     paving and cuts the cars: the frame moves until the cars stand whole in
+     it, a little sea above them (Azure: cars at 33–57% of the frame; the
+     GTC: 38–63%) */
+  :is([data-look="3"], [data-look="4"]) .slide.slide--coast .hero__img { object-position: 50% 38%; }
+  :is([data-look="3"], [data-look="4"]) .slide.slide--foot:not(.slide--film) .hero__img { object-position: 50% 48%; }
   :is([data-look="3"], [data-look="4"]) .hero__lockup,
   :is([data-look="3"], [data-look="4"]) .slide--centre .hero__lockup,
   :is([data-look="3"], [data-look="4"]) .slide--right .hero__lockup,
