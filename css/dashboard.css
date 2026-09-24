@@ -60,6 +60,16 @@
 .dir__idea { position: relative; margin-block-start: var(--gap-act); padding-block-start: var(--gap-act); font-size: var(--text-lead); line-height: 1.4; color: var(--ink); }
 .dir__idea::before { content: ""; position: absolute; left: 0; top: 0; width: 3rem; height: 1px; background: var(--rule-strong); }
 .dir__idea + .actions { margin-block-start: var(--gap-act); }
+/* the candidate: its standing above the number, and a short note to the
+   retailer under the idea — five quiet lines on hairlines */
+.dir__tag { color: var(--heritage-white); }
+.dir__tag + .dir__no { margin-block-start: var(--space-3); }
+.dir__note { margin: var(--gap-copy) 0 0; padding: 0; list-style: none; font-size: var(--text-xs); line-height: 1.45; color: var(--ink-2); }
+.dir__note li { padding-block: 0.4rem; border-top: 1px solid var(--rule); }
+.dir__note li:last-child { border-bottom: 1px solid var(--rule); }
+.dir__note + .actions { margin-block-start: var(--gap-copy); }
+.dir--candidate .dir__idea { margin-block-start: var(--gap-copy); padding-block-start: var(--gap-copy); }
+.dir--candidate .dir__copy { max-width: 26rem; }
 .dir .btn svg { margin-inline-start: var(--space-3); transition: transform var(--dur-2) var(--ease-out); }
 .dir .btn:hover svg { transform: translateX(3px); }
 

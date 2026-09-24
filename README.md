@@ -10,7 +10,7 @@ Static mock-ups, no build step: open any `index*.html`, or serve the folder
 | `index3.html` | Offer-led, stepped display captions |
 | `index4.html` | **Dark** — one chapter per screen, full-screen slides, stacked chapters with their own openings |
 | `index5.html` | **Direction 5 — candidate #1, coastal** (from 4, on the client's brief of 23 September 2026): the guideline's palette kept, the coast carried by the photography; hero of the Azure range, the Torcal film and a GTC lease; Bespoke by Braman (Bentley only); Sell your car; Blog in the header. Its own inventory `inventory5.html` and car pages `vehicles5/`, mirrored from direction 4's by `tools/mirror5.py` (which `build.py` runs last): lease flags, CARFAX, the car's facts in one column |
-| `dashboard.html` | **The presentation** — the four directions as a deck for the retailer: cover, one chapter per direction with real renders, side by side, next steps |
+| `dashboard.html` | **The presentation** — the directions as a deck, newest first (05 candidate 01, then 04 to 01) for the retailer: cover, one chapter per direction with real renders, side by side, next steps |
 | `inventory.html` | **The inventory (SRP)** in direction 4's language — every car on the floor, the retailer's own price build, four picks (condition, model, year, sort) |
 | `vehicles/<stock>.html` | **The vehicle pages (VDP)** — generated, one per car: photographs, the plate, the offer as the retailer builds it, lease terms, enquiry |
 
