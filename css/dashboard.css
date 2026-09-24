@@ -70,6 +70,25 @@
 .dir__note + .actions { margin-block-start: var(--gap-copy); }
 .dir--candidate .dir__idea { margin-block-start: var(--gap-copy); padding-block-start: var(--gap-copy); }
 .dir--candidate .dir__copy { max-width: 26rem; }
+/* a note to the retailer, laid over the top of the page it concerns as the
+   phone is laid over its foot:
+   on Heritage White paper, black ink, a hair of shadow to lift it off */
+.dir--candidate .page { position: relative; }
+.note-card {
+  position: absolute; z-index: 3;
+  left: 29%; top: clamp(6rem, 15vh, 9rem);
+  width: min(19rem, 80vw);
+  padding: var(--space-5);
+  background: var(--heritage-white); color: var(--black);
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.55);
+  rotate: -2deg;          /* its own property: the arrival's transform leaves it be */
+}
+.note-card__label { font-size: var(--text-xs); font-weight: 400; letter-spacing: var(--track-label); text-transform: uppercase; color: var(--dark-grey-40); }
+.note-card__title { margin-block-start: var(--space-2); font-size: var(--text-lead); line-height: 1.2; }
+.note-card__text { margin-block-start: var(--space-2); font-size: var(--text-xs); line-height: 1.5; }
+@media (max-width: 1023px) {
+  .note-card { position: static; rotate: none; width: auto; margin-block-start: var(--space-6); }
+}
 .dir .btn svg { margin-inline-start: var(--space-3); transition: transform var(--dur-2) var(--ease-out); }
 .dir .btn:hover svg { transform: translateX(3px); }
 
