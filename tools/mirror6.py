@@ -99,38 +99,23 @@ def stamp6(s):
 
 
 # Direction 6's day: css/day6.css loads last on every page, over direction
-# 5's sheets, and a script in the head sets the look before first paint —
-# ?look=1..4 picks one, the session keeps it from page to page — and puts
-# the four-way switch in the corner for the client's review.
+# 5's sheets, and a script in the head sets the look before first paint.
+# Each look has its own link, ?look=1..4; the session keeps it from page to
+# page, so the inventory and the car pages open in the look they came from.
 LOOK = """<script>
-  /* Direction 6: four looks for the client's review (css/day6.css) */
+  /* Direction 6: the look is the link's, ?look=1..4 (css/day6.css) */
   (function () {
-    var d = document.documentElement, m = /[?&]look=([1-4])/.exec(location.search), l = m && m[1];
+    var m = /[?&]look=([1-4])/.exec(location.search), l = m && m[1];
     try { l = l || sessionStorage.getItem("bpb-look"); if (l) sessionStorage.setItem("bpb-look", l); } catch (e) {}
-    l = l || "1";
-    d.setAttribute("data-look", l);
-    var names = ["White", "Satin Linen", "White, words beside the photographs", "Satin Linen, words beside the photographs"];
-    document.addEventListener("DOMContentLoaded", function () {
-      var nav = document.createElement("nav");
-      nav.className = "looks"; nav.setAttribute("aria-label", "Design looks");
-      nav.innerHTML = "<span>Look</span>";
-      for (var i = 1; i <= 4; i++) {
-        var a = document.createElement("a"), u = new URL(location.href);
-        u.searchParams.set("look", i);
-        a.href = u.pathname + u.search + u.hash; a.textContent = i; a.title = names[i - 1];
-        a.setAttribute("aria-label", "Look " + i + ": " + names[i - 1]);
-        if (String(i) === l) a.setAttribute("aria-current", "true");
-        nav.appendChild(a);
-      }
-      document.body.appendChild(nav);
-    });
+    document.documentElement.setAttribute("data-look", l || "1");
   })();
 </script>
 """
 SHEETS = re.compile(r'(<link rel="stylesheet" href="(\.\./)?css/[^"]+">\n)(?!<link rel="stylesheet")')
+OLD_LOOK = re.compile(r'<script>\n  /\* Direction 6: .*?</script>\n', re.S)
 def day6(s):
     if 'css/day6.css' in s:
-        return s
+        return OLD_LOOK.sub(lambda m: LOOK, s, count=1)
     m = list(SHEETS.finditer(s))[-1]
     pre = m.group(2) or ''
     add = f'<link rel="stylesheet" href="{pre}css/day6.css">\n' + LOOK

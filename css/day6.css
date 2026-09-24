@@ -9,7 +9,8 @@
    (40%) #585858, Light Grey (10%) #CDCDCD, Bentley Green #183319, Teal
    (70%) #5E715E, Heritage White #DCD8C0.
 
-   Four looks, two questions — `html[data-look]`, set before first paint:
+   Four looks, two questions — `html[data-look]`, set before first paint
+   from the link (?look=1..4), each look its own link:
      1  White        words stay on the photographs, re-solved
      2  Satin Linen  words stay on the photographs, re-solved
      3  White        words leave the photographs, beside them on the ground
@@ -299,28 +300,4 @@ main.srp::before, main.vdp::before { content: none; display: none; }
   .scene__pic::after { content: none; }
   .scene__body { margin-block-start: 0; padding-block: var(--space-6) var(--space-9); }
   .plate { background: none; box-shadow: none; -webkit-backdrop-filter: none; backdrop-filter: none; padding-inline: 0; }
-}
-
-/* --- 11 · The review switch: four looks, one tap apart ------------------- */
-.looks {
-  position: fixed; right: calc(var(--edge) + 40px + var(--space-4)); bottom: calc((var(--floor) - 40px) / 2); z-index: 60;
-  display: flex; align-items: center; gap: 2px;
-  padding: 3px;
-  background: var(--black); color: var(--white);
-  font-family: var(--font); font-size: 0.875rem; font-weight: 400;
-  letter-spacing: var(--track-label); text-transform: uppercase;
-}
-.looks span { padding: 0 var(--space-3) 0 var(--space-2); }
-.looks a {
-  display: grid; place-items: center; min-width: 34px; height: 34px; padding-inline: var(--space-2);
-  color: var(--white); text-decoration: none;
-  transition: background-color var(--dur-2) var(--ease-out);
-}
-.looks a:hover { background: rgba(255, 255, 255, 0.14); }
-.looks a[aria-current] { background: var(--teal-70); }
-html[data-framed] .looks { display: none; }
-@media (max-width: 767px) {
-  .looks { right: calc(var(--gutter) + 44px + var(--space-3)); bottom: var(--space-5); }
-  body:has(.vdp__bar) .looks { bottom: 84px; }
-  .looks span { display: none; }
 }

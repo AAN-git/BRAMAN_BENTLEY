@@ -12,29 +12,13 @@
 <link rel="stylesheet" href="css/system.css?v=20260921164646">
 <link rel="stylesheet" href="css/index6.css?v=15337442e8">
 <link rel="stylesheet" href="css/cards.css?v=20260921164646">
-<link rel="stylesheet" href="css/day6.css?v=fc6c8e2330">
+<link rel="stylesheet" href="css/day6.css?v=e6f409e0f8">
 <script>
-  /* Direction 6: four looks for the client's review (css/day6.css) */
+  /* Direction 6: the look is the link's, ?look=1..4 (css/day6.css) */
   (function () {
-    var d = document.documentElement, m = /[?&]look=([1-4])/.exec(location.search), l = m && m[1];
+    var m = /[?&]look=([1-4])/.exec(location.search), l = m && m[1];
     try { l = l || sessionStorage.getItem("bpb-look"); if (l) sessionStorage.setItem("bpb-look", l); } catch (e) {}
-    l = l || "1";
-    d.setAttribute("data-look", l);
-    var names = ["White", "Satin Linen", "White, words beside the photographs", "Satin Linen, words beside the photographs"];
-    document.addEventListener("DOMContentLoaded", function () {
-      var nav = document.createElement("nav");
-      nav.className = "looks"; nav.setAttribute("aria-label", "Design looks");
-      nav.innerHTML = "<span>Look</span>";
-      for (var i = 1; i <= 4; i++) {
-        var a = document.createElement("a"), u = new URL(location.href);
-        u.searchParams.set("look", i);
-        a.href = u.pathname + u.search + u.hash; a.textContent = i; a.title = names[i - 1];
-        a.setAttribute("aria-label", "Look " + i + ": " + names[i - 1]);
-        if (String(i) === l) a.setAttribute("aria-current", "true");
-        nav.appendChild(a);
-      }
-      document.body.appendChild(nav);
-    });
+    document.documentElement.setAttribute("data-look", l || "1");
   })();
 </script>
 <script>
