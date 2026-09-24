@@ -90,7 +90,7 @@ def carfax(s):
 
 # Direction 6's own sheets and script are stamped with their content, so a
 # browser (and GitHub Pages' cache) fetches them again whenever they change
-OWN = ['css/index6.css', 'css/inventory6.css', 'css/vehicle6.css', 'css/day6.css', 'js/index6.js']
+OWN = ['css/index6.css', 'css/inventory6.css', 'css/vehicle6.css', 'css/day6.css', 'js/index6.js', 'js/lenis6.js']
 STAMPS = {f: hashlib.md5(open(ROOT + f, 'rb').read()).hexdigest()[:10] for f in OWN}
 def stamp6(s):
     for f, h in STAMPS.items():
@@ -121,8 +121,23 @@ def day6(s):
     add = f'<link rel="stylesheet" href="{pre}css/day6.css">\n' + LOOK
     return s[:m.end()] + add + s[m.end():]
 
+# Direction 6's scroll layer: Lenis on every page (Alex's standing
+# instruction). Its stylesheet and the library from jsDelivr, pinned, then
+# js/lenis6.js, all deferred in the head, so they run before the page's own
+# script at the foot, which finds the instance on window.lenis.
+LENIS_V = '1.3.26'
+def lenis6(s):
+    if 'js/lenis6.js' in s:
+        return s
+    m = re.search(r'<link rel="stylesheet" href="(\.\./)?css/day6\.css[^"]*">\n', s)
+    pre = m.group(1) or ''
+    add = (f'<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lenis@{LENIS_V}/dist/lenis.css">\n'
+           f'<script src="https://cdn.jsdelivr.net/npm/lenis@{LENIS_V}/dist/lenis.min.js" defer></script>\n'
+           f'<script src="{pre}js/lenis6.js" defer></script>\n')
+    return s[:m.end()] + add + s[m.end():]
+
 # 1. The SRP
-write('inventory6.html', stamp6(day6(lease_cards(blog(six(read('inventory.html')))))))
+write('inventory6.html', stamp6(lenis6(day6(lease_cards(blog(six(read('inventory.html'))))))))
 
 # 2. The vehicle pages — cars no longer in direction 4 are removed here too
 os.makedirs(ROOT + 'vehicles6', exist_ok=True)
@@ -131,7 +146,7 @@ for f in os.listdir(ROOT + 'vehicles6'):
     if f.endswith('.html') and f not in pages:
         os.remove(ROOT + 'vehicles6/' + f)
 for f in pages:
-    write('vehicles6/' + f, stamp6(day6(carfax(lease_page(lease_cards(facts(blog(six(read('vehicles/' + f))))))))))
+    write('vehicles6/' + f, stamp6(lenis6(day6(carfax(lease_page(lease_cards(facts(blog(six(read('vehicles/' + f)))))))))))
 
 # MOCK-UP ONLY: the retailer's data marks no car sold or pending, so the home
 # rail shows the two other flags on two cars to present them (Alex,
@@ -157,6 +172,6 @@ rail = re.search(r'<ul class="stock__rail"[^>]*>.*?</ul>', idx4, re.S)
 if rail:
     idx6 = re.sub(r'<ul class="stock__rail"[^>]*aria-label="New Bentley in stock[^>]*>.*?</ul>', lambda m: demo_flags(lease_cards(six(rail.group(0)))), idx6, count=1, flags=re.S)
 idx6 = idx6.replace('href="inventory.html', 'href="inventory6.html').replace('href="vehicles/', 'href="vehicles6/')
-write('index6.html', stamp6(day6(idx6)))
+write('index6.html', stamp6(lenis6(day6(idx6))))
 
 print("inventory6.html,", len(pages), "vehicle pages in vehicles6/, index6 rail")

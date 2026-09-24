@@ -372,6 +372,18 @@
     var t0 = performance.now();
     var ms = Math.min(1100, Math.max(620, Math.abs(span) * 0.7));
     animating = true;
+    /* direction 6: the glide is Lenis's (js/lenis6.js), on the same curve
+       and the same duration; without it, the page's own frame loop */
+    if (window.lenis) {
+      window.lenis.scrollTo(y, {
+        duration: ms / 1000,
+        easing: function (p) { return 1 - Math.pow(1 - p, 3); },
+        lock: true,
+        force: true,
+        onComplete: function () { animating = false; lockedUntil = performance.now() + 220; }
+      });
+      return;
+    }
     (function frame(now) {
       var p = Math.min(1, (now - t0) / ms);
       var e = 1 - Math.pow(1 - p, 3);      /* cubic-out — the page's own curve */

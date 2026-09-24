@@ -213,23 +213,26 @@ main.srp::before, main.vdp::before { content: none; display: none; }
 :is([data-look="2"], [data-look="4"]) .range__item img {
   grid-row: 1; grid-column: 1;
   filter: brightness(1.14) contrast(1.06) saturate(1.12);
-  transition: filter var(--dur-3) var(--ease-out), clip-path 1.2s var(--ease-reveal) calc(0.15s + (var(--i, 2) - 2) * 0.12s), transform 1.6s var(--ease-reveal) calc(0.15s + (var(--i, 2) - 2) * 0.12s), opacity var(--dur-3) var(--ease-out);
+  transition: filter var(--dur-4) var(--ease-reveal), clip-path 1.2s var(--ease-reveal) calc(0.15s + (var(--i, 2) - 2) * 0.12s), transform 1.6s var(--ease-reveal) calc(0.15s + (var(--i, 2) - 2) * 0.12s), opacity var(--dur-3) var(--ease-out);
 }
 :is([data-look="2"], [data-look="4"]) .range__item a::before {
   content: ""; grid-row: 1; grid-column: 1; z-index: 1;
   background: var(--satin-linen-40);
   mix-blend-mode: multiply;
   pointer-events: none;
-  transition: opacity var(--dur-3) var(--ease-out);
+  transition: opacity var(--dur-4) var(--ease-reveal);   /* the hover: slow, eased both ways */
 }
 :is([data-look="2"], [data-look="4"]) .range__item a:hover img,
 :is([data-look="2"], [data-look="4"]) .range__item a:focus-visible img { filter: none; opacity: 1; }
 :is([data-look="2"], [data-look="4"]) .range__item a:hover::before,
 :is([data-look="2"], [data-look="4"]) .range__item a:focus-visible::before { opacity: 0; }
 /* the tone waits for the frames to open, so it never stands as an empty
-   block before its photograph */
+   block before its photograph. An animation, filled backwards only: once
+   it has run it lets go of the opacity, so the hover's transition is never
+   held behind the arrival's delay. */
+@keyframes range-tone { from { opacity: 0; } to { opacity: 1; } }
 .motion.ready:is([data-look="2"], [data-look="4"]) .range:not(.is-in) .range__item a::before { opacity: 0; }
-.motion.ready:is([data-look="2"], [data-look="4"]) .range.is-in .range__item a:not(:hover)::before { transition-delay: 0.9s; }
+.motion.ready:is([data-look="2"], [data-look="4"]) .range.is-in .range__item a::before { animation: range-tone var(--dur-4) var(--ease-reveal) calc(0.9s + (var(--i, 2) - 2) * 0.12s) backwards; }
 @media (max-width: 767px) {
   :is([data-look="2"], [data-look="4"]) .range__item a::before { position: absolute; left: 0; right: 0; top: 0; aspect-ratio: 4 / 5; }
 }
