@@ -100,6 +100,14 @@
 @media (max-width: 1023px) {
   .note-card { position: static; rotate: none; width: auto; margin-block-start: var(--space-6); }
 }
+/* the same note, laid on the cover (dashboard6): at the right, opposite the
+   title, on the asphalt below the cars */
+.note-card--cover { left: auto; top: auto; right: var(--edge); bottom: calc(var(--floor) + 2vh); rotate: 2deg; }
+/* narrower, it stands at the top in the sky, so the title keeps its place
+   at the foot, below the cars */
+@media (max-width: 1023px) {
+  .note-card--cover { position: static; rotate: none; order: -1; width: auto; max-width: 26rem; margin: calc(var(--floor) + 56px) var(--edge) auto; }
+}
 .dir .btn svg { margin-inline-start: var(--space-3); transition: transform var(--dur-2) var(--ease-out); }
 .dir .btn:hover svg { transform: translateX(3px); }
 
