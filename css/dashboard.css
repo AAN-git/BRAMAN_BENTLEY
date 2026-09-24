@@ -71,19 +71,30 @@
 .dir--candidate .dir__idea { margin-block-start: var(--gap-copy); padding-block-start: var(--gap-copy); }
 .dir--candidate .dir__copy { max-width: 26rem; }
 /* a note to the retailer, laid over the top of the page it concerns as the
-   phone is laid over its foot:
-   on Heritage White paper, black ink, a hair of shadow to lift it off */
+   phone is laid over its foot: frosted glass tinted Heritage White, black
+   ink, rounded, lifted on a soft blurred shadow */
 .dir--candidate .page { position: relative; }
 .note-card {
   position: absolute; z-index: 3;
   left: 29%; top: clamp(6rem, 15vh, 9rem);
   width: min(19rem, 80vw);
   padding: var(--space-5);
-  background: var(--heritage-white); color: var(--black);
-  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.55);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  background: rgba(236, 233, 220, 0.72);            /* frosted Heritage glass */
+  -webkit-backdrop-filter: blur(18px) saturate(1.2);
+  backdrop-filter: blur(18px) saturate(1.2);
+  color: var(--black);
+  box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.6), 0 10px 24px rgba(0, 0, 0, 0.28);
   rotate: -2deg;          /* its own property: the arrival's transform leaves it be */
 }
-.note-card__label { font-size: var(--text-xs); font-weight: 400; letter-spacing: var(--track-label); text-transform: uppercase; color: var(--dark-grey-40); }
+/* the word NOTE on a red chip — the palette's System Error red, white ink 4.6:1 */
+.note-card__label {
+  display: inline-block; padding: 0.2em 0.5em 0.15em;
+  border-radius: 3px;
+  background: var(--system-error); color: var(--white);
+  font-size: var(--text-xs); font-weight: 400; letter-spacing: var(--track-label); text-transform: uppercase;
+}
 .note-card__title { margin-block-start: var(--space-2); font-size: var(--text-lead); line-height: 1.2; }
 .note-card__text { margin-block-start: var(--space-2); font-size: var(--text-xs); line-height: 1.5; }
 @media (max-width: 1023px) {
