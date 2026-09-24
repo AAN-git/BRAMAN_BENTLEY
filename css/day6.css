@@ -35,6 +35,7 @@
   --plate:      rgba(255, 255, 255, 0.94);
   --bar-ground: rgba(255, 255, 255, 0.94);
   --veil:       0.22;
+  --glass:      rgba(255, 255, 255, 0.8);
 
   /* the reading sizes, for the retailer's clientele: 18 body, 16 small */
   --text-body:  1.125rem;
@@ -47,6 +48,7 @@ html[data-look="2"], html[data-look="4"] {
   --rule:       rgba(4, 4, 4, 0.16);     /* Light Grey is 1.26 on Satin Linen: a tint of Black instead */
   --plate:      rgba(255, 255, 255, 0.94);
   --bar-ground: rgba(232, 229, 213, 0.95);
+  --glass:      rgba(232, 229, 213, 0.86);
 }
 
 html { background: var(--day); color: var(--ink); font-weight: 400; }
@@ -186,11 +188,16 @@ main.srp::before, main.vdp::before { content: none; display: none; }
       radial-gradient(ellipse 58% 64% at 0% 100%, rgba(4,4,4,0.8) 0%, rgba(4,4,4,0.5) 55%, rgba(4,4,4,0) 100%),
       linear-gradient(180deg, rgba(4,4,4,0) 55%, rgba(4,4,4,0.5) 100%);
   }
-  /* the pre-owned plate, which crosses the photograph's edge, is opaque */
+  /* the pre-owned plate, which crosses the photograph's edge: the
+     guideline's frosted plate, turned to the day — White glass on look 1,
+     Satin Linen glass on look 2; the blur takes the picture's detail out
+     from under the words, the tint holds their contrast (measured at the
+     glyphs, over the photograph's brightest and darkest frames) */
   html:not([data-look="3"]):not([data-look="4"]) .plate {
-    background: var(--day-plate);
-    -webkit-backdrop-filter: none; backdrop-filter: none;
-    box-shadow: inset 0 0 0 1px var(--rule);
+    background: var(--glass);
+    -webkit-backdrop-filter: blur(24px) saturate(1.15);
+    backdrop-filter: blur(24px) saturate(1.15);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.55);
   }
 }
 
