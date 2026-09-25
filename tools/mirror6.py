@@ -162,8 +162,15 @@ def _flag(v, html):
     """the lease flag on a photograph: the payment, and its term and money down beneath"""
     terms = _terms(v)
     if not terms: return html
+    # a payment that rests on a rebate carries it, and the credit it needs,
+    # on the flag itself (the FTC's letters: key terms beside the price)
+    lt = v.get('lease_terms') or {}
+    cond = ''
+    if lt.get('rebates'):
+        cond = f"Includes {_m(lt['rebates'])} rebates" + (f" · {lt['credit']} credit" if lt.get('credit') else '')
+        cond = f'<span class="card__flag-terms card__flag-cond">{cond}</span>'
     return re.sub(r'<span class="card__flag card__flag--lease">(Lease [^<]*)</span>',
-                  lambda m: f'<span class="card__flag card__flag--lease"><span>{m.group(1)}</span><span class="card__flag-terms">{terms}</span></span>', html)
+                  lambda m: f'<span class="card__flag card__flag--lease"><span>{m.group(1)}</span><span class="card__flag-terms">{terms}</span>{cond}</span>', html)
 
 def _card(m):
     c = m.group(0)
