@@ -146,7 +146,11 @@ import json as _json
 _D = {v['stock']: v for v in _json.load(open(ROOT + 'data/inventory.json', encoding='utf-8'))['vehicles']}
 def _m(n): return '${:,}'.format(n)
 FEES = [('+ Dealer service charge', '$1,189'), ('+ Electronic filing charge', '$514')]
-def _sale(v): return v.get('sale_price_with_fees') or v['price']
+# the dealer's disclosure puts both charges in every sale price; where the
+# listing captured no sale price (one car, VC-P35787) it is the dealer's
+# price plus the two charges, never the price without them
+FEE_SUM = 1189 + 514
+def _sale(v): return v.get('sale_price_with_fees') or (v['price'] + FEE_SUM)
 def _base(v): return v.get('price_label') or ('MSRP' if v['condition'] == 'new' else 'Braman Price')
 def _terms(v):
     lt = v.get('lease_terms') or {}
@@ -202,6 +206,13 @@ def _vdp(s):
     # the phone's bar and the page's description
     s = re.sub(r'(<p class="vdp__bar-price"><span>)[^<]*(</span> )\$[\d,]+', lambda a: f'{a.group(1)}Sale price{a.group(2)}{_m(sale)}', s, count=1)
     s = re.sub(r'(<meta name="description" content="[^"]*?), (?:Braman Price|MSRP|Price|Sale price) \$[\d,]+ at', lambda a: f'{a.group(1)}, Sale price {_m(sale)} at', s, count=1)
+    # a lease that rests on a rebate says so beside its payment, with the
+    # credit it needs (the FTC's letters: a price that factors in a rebate
+    # not everyone will get)
+    lt = v.get('lease_terms') or {}
+    if v.get('lease_month') and lt.get('rebates') and 'in rebates' not in s:
+        cond = f"Includes {_m(lt['rebates'])} in rebates" + (f"; {lt['credit']} credit approval with {lt.get('lender') or 'the lender'} required" if lt.get('credit') else '')
+        s = re.sub(r'(<p class="special__fine">)', lambda a: a.group(1) + cond + '. ', s, count=1)
     # the lease flag on the first photograph
     return _flag(v, s)
 

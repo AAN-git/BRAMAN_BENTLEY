@@ -358,3 +358,16 @@ main.srp::before, main.vdp::before { content: none; display: none; }
 .po-fees { margin-block-start: var(--space-2); font-size: var(--text-sm); line-height: 1.5; color: var(--ink-2); }
 .offer__lease-row dd small { display: block; font-size: var(--text-sm); color: var(--ink-2); }
 .po-fees + .body { margin-block-start: var(--space-4); font-size: var(--text-sm); }
+
+/* --- 13 · The hero's lease slide: the Continental GT on the shore -----------
+   The car stands right of centre, so the offer stands at the left, narrower,
+   with air between it and the car; the sunset is warm already — no lift. */
+.slide--gt .hero__img, .slide.slide--foot.slide--gt:not(.slide--film) .hero__img { filter: none; object-position: 50% 100%; }
+@media (min-width: 768px) {
+  .slide--gt .box { width: min(26rem, 100%); }
+  /* the narrower plate holds the two calls on two lines, never past its edge */
+  .slide--gt .box .actions { flex-wrap: wrap; }
+}
+@media (max-width: 767px) {
+  .slide.slide--foot.slide--gt:not(.slide--film) .hero__img { object-position: 62% 100%; }
+}
