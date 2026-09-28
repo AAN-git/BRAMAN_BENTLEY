@@ -34,6 +34,17 @@ BLOG = '<li><a href="https://blog.bramanbentleypalmbeach.com/">Blog</a></li>'
 def blog(s):
     return s if BLOG in s else s.replace(ABOUT, ABOUT + '\n        ' + BLOG, 1)
 
+# The retailer's site terms stand in the header, under its name and number, as
+# on its own site (the client, 2026-09-28: not only in the footer); on the phone
+# the bar has no room, so they are the last route in the menu
+TERMS_URL = 'https://www.bramanbentleypalmbeach.com/terms-and-conditions/'
+RETAILER = re.compile(r'(\s*)(<a class="mh__retailer"[^>]*>.*?</a>)')
+def terms(s):
+    if 'mh__terms' in s: return s
+    s = RETAILER.sub(lambda m: f'{m.group(1)}<div class="mh__contact">{m.group(1)}  {m.group(2)}'
+                               f'{m.group(1)}  <a class="mh__terms" href="{TERMS_URL}">Site Terms &amp; Conditions</a>{m.group(1)}</div>', s, count=1)
+    return s.replace(BLOG, BLOG + f'\n        <li class="mh__nav-terms"><a href="{TERMS_URL}">Site Terms &amp; Conditions</a></li>', 1)
+
 # Direction 6's vehicle page: the car's facts leave the offer plate and
 # stand under the key figures in the main column, as one column
 FACTS = re.compile(r'\n\s*<dl class="offer__rows offer__facts">.*?</dl>', re.S)
@@ -241,7 +252,7 @@ def price6(s):
     return s
 
 # 1. The SRP
-write('inventory6.html', stamp6(lenis6(day6(price6(lease_cards(blog(six(read('inventory.html')))))))))
+write('inventory6.html', stamp6(lenis6(day6(price6(lease_cards(terms(blog(six(read('inventory.html'))))))))))
 
 # 2. The vehicle pages — cars no longer in direction 4 are removed here too
 os.makedirs(ROOT + 'vehicles6', exist_ok=True)
@@ -250,7 +261,7 @@ for f in os.listdir(ROOT + 'vehicles6'):
     if f.endswith('.html') and f not in pages:
         os.remove(ROOT + 'vehicles6/' + f)
 for f in pages:
-    write('vehicles6/' + f, stamp6(lenis6(day6(price6(carfax(lease_page(lease_cards(facts(blog(six(read('vehicles/' + f))))))))))))
+    write('vehicles6/' + f, stamp6(lenis6(day6(price6(carfax(lease_page(lease_cards(facts(terms(blog(six(read('vehicles/' + f)))))))))))))
 
 # MOCK-UP ONLY: the retailer's data marks no car sold or pending, so the home
 # rail shows the two other flags on two cars to present them (Alex,
@@ -277,6 +288,6 @@ rail = re.search(r'<ul class="stock__rail"[^>]*>.*?</ul>', idx4, re.S)
 if rail:
     idx6 = re.sub(r'<ul class="stock__rail"[^>]*aria-label="New Bentley in stock[^>]*>.*?</ul>', lambda m: demo_flags(lease_cards(six(rail.group(0)))), idx6, count=1, flags=re.S)
 idx6 = idx6.replace('href="inventory.html', 'href="inventory6.html').replace('href="vehicles/', 'href="vehicles6/')
-write('index6.html', stamp6(lenis6(day6(price6(idx6)))))
+write('index6.html', stamp6(lenis6(day6(price6(terms(idx6))))))
 
 print("inventory6.html,", len(pages), "vehicle pages in vehicles6/, index6 rail")

@@ -139,6 +139,19 @@ html[data-framed] .mh[data-scrolled]::before { background: var(--day); }
    without a hero it has it from the start — nothing reads through it */
 body:not(:has(.hero)) .mh::before { opacity: 1; }
 .mh::before { border-bottom: 1px solid var(--rule); }
+/* the retailer's site terms, under its name and number, as on its own site */
+.mh__contact { display: flex; flex-direction: column; align-items: flex-end; }
+.mh__terms {
+  font-size: var(--text-xs); line-height: 1.2;
+  text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px;
+  transition: color var(--dur-2) var(--ease-out);
+}
+.mh__terms:hover { color: var(--hover-ink); }
+.mh__nav-terms { display: none; }
+@media (max-width: 1023px) {
+  .mh__terms { display: none; }
+  .mh__nav-terms { display: block; }
+}
 
 /* --- 5 · The plates: cards, the offer, the enquiry ----------------------- */
 .card__link, main.srp .card__link, main.vdp .card__link { background: var(--day-plate); border-color: var(--rule); }
