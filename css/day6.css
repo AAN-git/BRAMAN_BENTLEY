@@ -443,3 +443,17 @@ main.srp::before, main.vdp::before { content: none; display: none; }
 @media (max-width: 1499px) {
   .mh__contact .mh__retailer span:first-child { display: none; }
 }
+
+/* --- 16 · Save · Share · Email under the name, level with the plate's call --
+   As on Rolls-Royce (Alex, 2026-09-28): the name's column is as tall as the
+   price plate, the tools stand at its foot, their row centred on Confirm
+   availability; the mileage and the stock number have left the head (they
+   stand in the specification below). */
+@media (min-width: 1024px) {
+  .vdp__head:has(.vdp__sum) { align-items: stretch; }
+  .vdp__head:has(.vdp__sum) .vdp__name { display: flex; flex-direction: column; }
+  /* when the name runs taller than the plate, the plate stands on the same foot */
+  .vdp__head:has(.vdp__sum) .vdp__figure { display: flex; flex-direction: column; justify-content: flex-end; }
+  .vdp__head:has(.vdp__sum) .vdp__name .tools { margin-top: auto; padding-top: var(--space-5); margin-bottom: calc(var(--space-5) + 7px); }   /* the plate's foot padding and border, and half the difference of the two rows' heights */
+}
+.vdp__name .tools { justify-content: flex-start; margin-top: var(--gap-title); }

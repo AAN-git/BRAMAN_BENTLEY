@@ -187,11 +187,11 @@ def _card(m):
     c = m.group(0)
     st = re.search(r'data-stock="([^"]+)"', c)
     v = _D.get(st.group(1)) if st else None
-    if not v or 'card__flag-terms' in c and 'Sale price</span>' in c: return c
+    if not v or 'card__flag-terms' in c and 'Final price</span>' in c: return c
     sale, base = _sale(v), _base(v)
-    c = re.sub(r'aria-label="([^"]*), (?:Braman Price|MSRP|Price|Sale price) \$[\d,]+"', lambda a: f'aria-label="{a.group(1)}, Sale price {_m(sale)}"', c, count=1)
+    c = re.sub(r'aria-label="([^"]*), (?:Braman Price|MSRP|Price|Final price) \$[\d,]+"', lambda a: f'aria-label="{a.group(1)}, Final price {_m(sale)}"', c, count=1)
     c = re.sub(r'<span class="card__price-label">[^<]*(<sup[^>]*>\*</sup>)?</span><span class="card__price-value">\$[\d,]+</span>',
-               lambda a: f'<span class="card__price-label">Sale price{a.group(1) or ""}</span><span class="card__price-value">{_m(sale)}</span>', c, count=1)
+               lambda a: f'<span class="card__price-label">Final price{a.group(1) or ""}</span><span class="card__price-value">{_m(sale)}</span>', c, count=1)
     rows = [(base, _m(v['price']))] + FEES
     c = re.sub(r'<dl class="card__build">.*?</dl>', lambda a: '<dl class="card__build">\n' + '\n'.join(f'                  <div><dt>{k}</dt><dd>{d}</dd></div>' for k, d in rows) + '\n                </dl>', c, count=1, flags=re.S)
     if v.get('msrp') and v['msrp'] > sale:
@@ -206,7 +206,7 @@ def _vdp(s):
     sale, base = _sale(v), _base(v)
     # the head
     s = re.sub(r'(<span class="vdp__price-label">)[^<]*(<a class="asterisk"[^>]*>\*</a></span><span class="vdp__price-value">)\$[\d,]+',
-               lambda a: f'{a.group(1)}Sale price{a.group(2)}{_m(sale)}', s, count=1)
+               lambda a: f'{a.group(1)}Final price{a.group(2)}{_m(sale)}', s, count=1)
     # ...and under it, top right in the first screen, the price listed out as
     # the dealer's own page does (the client, 2026-09-28: "they need it all
     # listed out top right"): the listed price and the two charges, which sum
@@ -216,10 +216,15 @@ def _vdp(s):
     if 'vdp__sum' not in s:
         build = ('<dl class="vdp__build">\n' + '\n'.join(f'              <div><dt>{k}</dt><dd>{d}</dd></div>' for k, d in [(base, _m(v['price']))] + FEES) + '\n            </dl>')
         s = re.sub(r'(<p class="vdp__price">.*?</p>)', lambda a: '<div class="vdp__sum">\n            ' + build + '\n            ' + a.group(1) + '\n            <a class="btn vdp__confirm" href="#enquire">Confirm availability</a>\n          </div>', s, count=1, flags=re.S)
-        # the call now closes the plate; Save · Share · Email go (Alex, 2026-09-28)
-        s = re.sub(r'\n\s*<div class="vdp__figure-act">.*?</ul>\s*</div>', '', s, count=1, flags=re.S)
+        # the call now closes the plate; Save · Share · Email move under the
+        # name, where the mileage and the stock number were (both stand in
+        # the specification below), as on Rolls-Royce (Alex, 2026-09-28)
+        act = re.search(r'\n\s*<div class="vdp__figure-act">\s*(?:<a class="btn"[^>]*>[^<]*</a>\s*)?(<ul class="tools".*?</ul>)\s*</div>', s, re.S)
+        if act:
+            s = s[:act.start()] + s[act.end():]
+            s = re.sub(r'<dl class="vdp__sub[^"]*"[^>]*>.*?</dl>', lambda a: act.group(1).replace('<ul class="tools"', '<ul class="tools step" style="--i:3"', 1), s, count=1, flags=re.S)
     # the offer
-    s = re.sub(r'(<p class="offer__label">)[^<]*(<a class="asterisk")', lambda a: f'{a.group(1)}Sale price{a.group(2)}', s, count=1)
+    s = re.sub(r'(<p class="offer__label">)[^<]*(<a class="asterisk")', lambda a: f'{a.group(1)}Final price{a.group(2)}', s, count=1)
     s = re.sub(r'<p class="offer__price">\$[\d,]+</p>', f'<p class="offer__price">{_m(sale)}</p>', s, count=1)
     rows = []
     if v['condition'] != 'new' and v.get('msrp'): rows.append(('MSRP', _m(v['msrp']), ''))
@@ -233,8 +238,8 @@ def _vdp(s):
         rows.append(('Lease', f"{_m(v['lease_month'])}{tax} / month" + (f'<small>{terms}</small>' if terms else ''), ' class="offer__lease-row"'))
     s = re.sub(r'<dl class="offer__rows">\n.*?</dl>', lambda a: '<dl class="offer__rows">\n' + '\n'.join(f'            <div{cls}><dt>{k}</dt><dd>{d}</dd></div>' for k, d, cls in rows) + '\n          </dl>', s, count=1, flags=re.S)
     # the phone's bar and the page's description
-    s = re.sub(r'(<p class="vdp__bar-price"><span>)[^<]*(</span> )\$[\d,]+', lambda a: f'{a.group(1)}Sale price{a.group(2)}{_m(sale)}', s, count=1)
-    s = re.sub(r'(<meta name="description" content="[^"]*?), (?:Braman Price|MSRP|Price|Sale price) \$[\d,]+ at', lambda a: f'{a.group(1)}, Sale price {_m(sale)} at', s, count=1)
+    s = re.sub(r'(<p class="vdp__bar-price"><span>)[^<]*(</span> )\$[\d,]+', lambda a: f'{a.group(1)}Final price{a.group(2)}{_m(sale)}', s, count=1)
+    s = re.sub(r'(<meta name="description" content="[^"]*?), (?:Braman Price|MSRP|Price|Final price) \$[\d,]+ at', lambda a: f'{a.group(1)}, Final price {_m(sale)} at', s, count=1)
     # a lease that rests on a rebate says so beside its payment, with the
     # credit it needs (the FTC's letters: a price that factors in a rebate
     # not everyone will get)
@@ -252,7 +257,7 @@ def _plates(s):
     def one(m):
         v = _D.get(m.group(2).strip())
         if not v: return m.group(0)
-        return (m.group(1) + f'<p class="po-price step" style="--i:3"><span class="po-price__label">Sale price</span> {_m(_sale(v))}</p>'
+        return (m.group(1) + f'<p class="po-price step" style="--i:3"><span class="po-price__label">Final price</span> {_m(_sale(v))}</p>'
                 f'\n        <p class="po-fees step" style="--i:3">Includes the $1,189 dealer service charge and $514 electronic filing charge; excludes tax, tag and title.</p>')
     return PO_PRICE.sub(one, s)
 
