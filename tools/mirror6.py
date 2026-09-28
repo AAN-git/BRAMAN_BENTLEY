@@ -211,9 +211,13 @@ def _vdp(s):
     # the dealer's own page does (the client, 2026-09-28: "they need it all
     # listed out top right"): the listed price and the two charges, which sum
     # to the figure above them
-    if 'vdp__build' not in s:
-        build = ('\n          <dl class="vdp__build">\n' + '\n'.join(f'            <div><dt>{k}</dt><dd>{d}</dd></div>' for k, d in [(base, _m(v['price']))] + FEES) + '\n          </dl>')
-        s = re.sub(r'(<p class="vdp__price">.*?</p>)', lambda a: a.group(1) + build, s, count=1, flags=re.S)
+    # one plate, read as a sum: the rows, a rule, the sale price they make —
+    # the largest figure and the last
+    if 'vdp__sum' not in s:
+        build = ('<dl class="vdp__build">\n' + '\n'.join(f'              <div><dt>{k}</dt><dd>{d}</dd></div>' for k, d in [(base, _m(v['price']))] + FEES) + '\n            </dl>')
+        s = re.sub(r'(<p class="vdp__price">.*?</p>)', lambda a: '<div class="vdp__sum">\n            ' + build + '\n            ' + a.group(1) + '\n            <a class="btn vdp__confirm" href="#enquire">Confirm availability</a>\n          </div>', s, count=1, flags=re.S)
+        # the call now closes the plate; the quiet tools stay beneath it
+        s = s.replace('<div class="vdp__figure-act">\n            <a class="btn" href="#enquire">Confirm availability</a>\n', '<div class="vdp__figure-act">\n', 1)
     # the offer
     s = re.sub(r'(<p class="offer__label">)[^<]*(<a class="asterisk")', lambda a: f'{a.group(1)}Sale price{a.group(2)}', s, count=1)
     s = re.sub(r'<p class="offer__price">\$[\d,]+</p>', f'<p class="offer__price">{_m(sale)}</p>', s, count=1)

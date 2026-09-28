@@ -386,15 +386,31 @@ main.srp::before, main.vdp::before { content: none; display: none; }
 }
 
 /* --- 14 · The vehicle page's head: the price listed out top right -----------
-   Under the sale price, as the dealer's own page does (the client,
-   2026-09-28): the listed price and the two charges, quiet, on hairlines. */
-.vdp__build { width: 22rem; max-width: 100%; margin: var(--space-3) 0 0 auto; font-size: var(--text-sm); }
-.vdp__build div { display: flex; justify-content: space-between; gap: var(--space-4); padding-block: 5px; border-bottom: 1px solid var(--rule); }
-.vdp__build div:first-child { border-top: 1px solid var(--rule); }
-.vdp__build dt { color: var(--ink-2); white-space: nowrap; text-align: left; }
+   One plate, on the cards' ground, read as a sum (the client, 2026-09-28):
+   the listed price and the two charges, a rule, and the sale price they
+   make — the largest figure, and the last. */
+.vdp__sum {
+  width: 24rem; max-width: 100%; margin-inline-start: auto;
+  padding: var(--space-4) var(--space-5) var(--space-5);
+  background: var(--day-plate); border: 1px solid var(--rule);
+  text-align: left;
+}
+.vdp__build { margin: 0; font-size: var(--text-sm); }
+.vdp__build div { display: flex; justify-content: space-between; gap: var(--space-4); padding-block: 3px; }
+.vdp__build dt { color: var(--ink-2); white-space: nowrap; }
 .vdp__build dd { margin: 0; color: var(--ink); font-variant-numeric: tabular-nums; }
+.vdp__sum .vdp__price {
+  flex-direction: row; justify-content: space-between; align-items: baseline; gap: var(--space-4);
+  margin-block-start: var(--space-3); padding-block-start: var(--space-3);
+  border-top: 1px solid var(--rule-strong);
+}
+.vdp__sum .vdp__price-label { color: var(--ink); }
+.vdp__sum .vdp__price-value { font-size: clamp(1.75rem, 1.2rem + 1.2vw, 2.375rem); }
+.vdp__sum .vdp__confirm { width: 100%; margin-block-start: var(--space-5); }
+.vdp__head:has(.vdp__sum) { align-items: start; }   /* the name and the plate start on one line */
+.vdp__sum + .vdp__figure-act { margin-block-start: var(--space-4); }
 @media (max-width: 1023px) {
-  .vdp__build { margin-inline: 0 auto; width: min(100%, 26rem); }
+  .vdp__sum { margin-inline: 0 auto; width: min(100%, 26rem); }
 }
 /* the specification rows on the narrowest phones: the name column gives way
    so the value is never cut at the screen's edge (it was, by 30px, since 5) */
