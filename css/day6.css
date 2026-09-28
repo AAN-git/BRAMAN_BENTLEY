@@ -384,3 +384,23 @@ main.srp::before, main.vdp::before { content: none; display: none; }
 @media (max-width: 767px) {
   .slide.slide--foot.slide--gt:not(.slide--film) .hero__img { object-position: 62% 100%; }
 }
+
+/* --- 14 · The vehicle page's head: the price listed out top right -----------
+   Under the sale price, as the dealer's own page does (the client,
+   2026-09-28): the listed price and the two charges, quiet, on hairlines. */
+.vdp__build { width: 22rem; max-width: 100%; margin: var(--space-3) 0 0 auto; font-size: var(--text-sm); }
+.vdp__build div { display: flex; justify-content: space-between; gap: var(--space-4); padding-block: 5px; border-bottom: 1px solid var(--rule); }
+.vdp__build div:first-child { border-top: 1px solid var(--rule); }
+.vdp__build dt { color: var(--ink-2); white-space: nowrap; text-align: left; }
+.vdp__build dd { margin: 0; color: var(--ink); font-variant-numeric: tabular-nums; }
+@media (max-width: 1023px) {
+  .vdp__build { margin-inline: 0 auto; width: min(100%, 26rem); }
+}
+/* the specification rows on the narrowest phones: the name column gives way
+   so the value is never cut at the screen's edge (it was, by 30px, since 5) */
+@media (max-width: 1023px) {
+  .vdp__grid { grid-template-columns: minmax(0, 1fr); }   /* a bare 1fr cannot shrink below its content */
+}
+@media (max-width: 420px) {
+  .specs div { grid-template-columns: minmax(0, 8.5rem) minmax(0, 1fr); }
+}

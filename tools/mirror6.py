@@ -207,6 +207,13 @@ def _vdp(s):
     # the head
     s = re.sub(r'(<span class="vdp__price-label">)[^<]*(<a class="asterisk"[^>]*>\*</a></span><span class="vdp__price-value">)\$[\d,]+',
                lambda a: f'{a.group(1)}Sale price{a.group(2)}{_m(sale)}', s, count=1)
+    # ...and under it, top right in the first screen, the price listed out as
+    # the dealer's own page does (the client, 2026-09-28: "they need it all
+    # listed out top right"): the listed price and the two charges, which sum
+    # to the figure above them
+    if 'vdp__build' not in s:
+        build = ('\n          <dl class="vdp__build">\n' + '\n'.join(f'            <div><dt>{k}</dt><dd>{d}</dd></div>' for k, d in [(base, _m(v['price']))] + FEES) + '\n          </dl>')
+        s = re.sub(r'(<p class="vdp__price">.*?</p>)', lambda a: a.group(1) + build, s, count=1, flags=re.S)
     # the offer
     s = re.sub(r'(<p class="offer__label">)[^<]*(<a class="asterisk")', lambda a: f'{a.group(1)}Sale price{a.group(2)}', s, count=1)
     s = re.sub(r'<p class="offer__price">\$[\d,]+</p>', f'<p class="offer__price">{_m(sale)}</p>', s, count=1)
