@@ -32,3 +32,12 @@
     }
   });
 })();
+
+/* the layout width without the scrollbar, for edges aligned to the fixed header */
+(function () {
+  var root = document.documentElement;
+  function set() { root.style.setProperty("--vw", root.clientWidth + "px"); }
+  set();
+  window.addEventListener("resize", set);
+  document.addEventListener("DOMContentLoaded", set);
+})();

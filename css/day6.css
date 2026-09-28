@@ -141,6 +141,7 @@ body:not(:has(.hero)) .mh::before { opacity: 1; }
 .mh::before { border-bottom: 1px solid var(--rule); }
 /* the retailer's site terms, under its name and number, as on its own site */
 .mh__contact { display: flex; flex-direction: column; align-items: flex-end; }
+.mh__contact .mh__retailer, .mh__terms { white-space: nowrap; }   /* the name and the number keep one line; the column never squeezes them */
 .mh__terms {
   font-size: var(--text-xs); line-height: 1.2;
   text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px;
@@ -419,4 +420,26 @@ main.srp::before, main.vdp::before { content: none; display: none; }
 }
 @media (max-width: 420px) {
   .specs div { grid-template-columns: minmax(0, 8.5rem) minmax(0, 1fr); }
+}
+
+/* --- 15 · The price plate's right edge on the header's ---------------------
+   (Alex, 2026-09-28): the plate ends where Request Test Drive ends, at the
+   header's edge, whatever the screen — not at the page column. --vw is the
+   layout width without the scrollbar (js/lenis6.js), 100vw where unset. */
+@media (min-width: 1024px) {
+  .vdp__sum {
+    /* shifted, not re-margined: a positive pull and a negative one both hold */
+    position: relative;
+    right: calc(var(--edge) - (var(--vw, 100vw) - min(var(--page), var(--vw, 100vw) - 2 * var(--gutter))) / 2);
+    width: 24rem; max-width: none;
+  }
+  /* the column holds the plate's own width, so the pull to the edge moves
+     the plate rather than squeezing it */
+  .vdp__figure:has(.vdp__sum) { width: 24rem; }
+}
+/* the terms line made the contact block a column; with the retailer's name
+   in it the block reached the logo up to ~1500px (gap 0 at 1366): the name
+   goes a step sooner, the number and the terms stay */
+@media (max-width: 1499px) {
+  .mh__contact .mh__retailer span:first-child { display: none; }
 }
