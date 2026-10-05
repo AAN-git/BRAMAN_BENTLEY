@@ -1,0 +1,297 @@
+/* ==========================================================================
+   Bentley Palm Beach — direction 7: the calm page.
+   Loads last, over direction 6's sheets, on every direction-7 page. On the
+   client's note of 2026-10-04, for an older clientele:
+     - a normal, static page: no scroll layer, no chapters covering one
+       another, nothing arriving on scroll (the pages open without the
+       `motion` class, so every sheet takes its finished composition);
+     - the inventory, the specials, financing and contact on screen at all
+       times: the header's second line on a wide screen, the bar at the foot
+       of the screen below 1024;
+     - no film in the hero: photographs only, turned by the visitor alone;
+     - under the hero, static: New and Pre-Owned Inventory side by side,
+       Special Offers centred beneath them.
+   Only the project's tokens; no new colours, radii or shadows.
+   ========================================================================== */
+
+:root {
+  --deck-h: 56px;                                   /* the header's second line */
+  --dock-h: 0px;                                    /* the foot bar, below 1024 */
+  --mh-h: calc(var(--bar-h-compact) + var(--deck-h));
+  --hero-deck-h: calc(2 * 56px + var(--space-4) + 2 * var(--space-6));
+}
+@media (max-width: 1023px) {
+  :root { --deck-h: 0px; --dock-h: calc(64px + env(safe-area-inset-bottom, 0px)); }
+}
+html { scroll-padding-top: calc(var(--mh-h) + var(--space-4)); }
+body { padding-block-end: var(--dock-h); }
+
+/* --- 1 · The header: one height, always on its ground ------------------- */
+.mh::before { opacity: 1; }
+.mh .mh__bar, .mh[data-scrolled] .mh__bar { height: var(--bar-h-compact); transition: none; }
+.mh .mh__mark img, .mh[data-scrolled] .mh__mark img { width: 92px; transition: none; }
+@media (max-width: 1023px) {
+  .mh__nav { inset: var(--bar-h-compact) 0 var(--dock-h) 0; overflow-y: auto; }
+}
+
+/* the four routes: the inventory first and filled, the rest as the bar's
+   own tracked labels, one size up for the reading distance */
+.mh__deck {
+  display: flex; justify-content: center; align-items: center;
+  gap: clamp(1.5rem, 3vw, 3.5rem);
+  height: var(--deck-h);
+  padding-inline: var(--edge);
+  border-top: 1px solid var(--rule);
+}
+.mh__deck a {
+  display: inline-flex; align-items: center; min-height: 44px;
+  font-size: var(--text-sm); font-weight: 400;
+  letter-spacing: var(--track-label); text-transform: uppercase;
+  white-space: nowrap; color: var(--ink);
+  transition: color var(--dur-2) var(--ease-out), background-color var(--dur-2) var(--ease-out);
+}
+.mh__deck a:hover { color: var(--hover-ink); }
+.mh__deck .mh__deck-main {
+  min-height: 40px; padding-inline: var(--space-5);
+  background: var(--teal-70); color: var(--white);
+}
+.mh__deck .mh__deck-main:hover { background: var(--bentley-green); color: var(--white); }
+@media (min-width: 1024px) {
+  .mh__nav-deck { display: none; }       /* the deck says them; the first line does not repeat them */
+}
+
+/* below 1024 the same four are the bar at the foot of the screen, in reach
+   of the thumb, each a word, never an icon alone */
+@media (max-width: 1023px) {
+  .mh__deck {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 50;
+    display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0; height: var(--dock-h);
+    padding: 0 0 env(safe-area-inset-bottom, 0px);
+    background: var(--day);
+    border-top: 1px solid var(--rule-strong);
+  }
+  .mh__deck a {
+    justify-content: center; text-align: center;
+    height: 64px; min-height: 0; padding-inline: var(--space-2);
+    font-size: var(--text-xs); line-height: 1.25; letter-spacing: 0.04em;
+    white-space: normal;
+  }
+  .mh__deck a + a { border-left: 1px solid var(--rule); }
+  .mh__deck .mh__deck-main { min-height: 0; padding-inline: var(--space-2); }
+  /* the car page's price bar stands on the foot bar, not under it */
+  .vdp__bar { bottom: var(--dock-h); }
+  .totop { bottom: calc(var(--dock-h) + var(--space-5)); }
+  /* while the price bar is up, the way back to the top would cover its call */
+  body:has(.vdp__bar[data-on]) .totop { display: none; }
+}
+
+/* the inventory and the car's page start under the whole header */
+.srp__head { padding-block-start: calc(var(--mh-h) + 4vh); }
+.vdp__top { padding-block-start: calc(var(--mh-h) + 2vh); }
+.vdp__side { top: calc(var(--mh-h) + var(--space-5)); }
+@media (max-width: 1023px) {
+  .srp__head { padding-block-start: calc(var(--mh-h) + 2vh); }
+  .vdp__top { padding-block-start: calc(var(--mh-h) + 1vh); }
+}
+
+/* --- 2 · The hero: under the header, never behind it -------------------- */
+main:has(> .hero) { padding-block-start: var(--mh-h); }
+html main > section.hero { height: auto; min-height: 0; overflow: clip; }
+.hero__slides { height: auto; }
+@media (min-width: 768px) {
+  /* the header, the photograph and the deck share the first screen (the
+     foot bar too, below 1024); a tall, narrow screen does not stretch the
+     photograph past three-quarters of its width */
+  :root { --hero-h: max(24rem, min(75vw, calc(100svh - var(--mh-h) - var(--hero-deck-h) - var(--dock-h)))); }
+  .hero__slides, .hero .slide { height: var(--hero-h); }
+  /* the bar no longer stands on the photograph: the shade under it goes,
+     the pools under the words stay */
+  html:not([data-look="3"]):not([data-look="4"]) .slide--centre .slide__field::after,
+  html:not([data-look="3"]):not([data-look="4"]) .slide.slide--coast .slide__field::after {
+    background:
+      radial-gradient(ellipse 60% 52% at 50% 84%, rgba(4,4,4,0.8) 0%, rgba(4,4,4,0.58) 55%, rgba(4,4,4,0) 100%),
+      linear-gradient(180deg, rgba(4,4,4,0) 46%, rgba(4,4,4,0.5) 78%, rgba(4,4,4,0.7) 100%);
+  }
+  .slide.slide--foot .slide__field::after,
+  html:not([data-look="3"]):not([data-look="4"]) .slide.slide--foot .slide__field::after {
+    background: linear-gradient(180deg, rgba(4,4,4,0) 72%, rgba(4,4,4,0.5) 100%);
+  }
+  .hero__lockup { padding-block-end: clamp(4.5rem, 9vh, 6rem); }
+  /* the window is lower than the screen was: each frame is moved until its
+     cars stand whole in it, and the centred title is set a size down so it
+     stays on the paving beneath them */
+  .hero .slide.slide--coast .hero__img { object-position: 50% 56%; }
+  .hero .slide--centre .hero__title { font-size: clamp(2.75rem, 4.6vw, 5.25rem); }
+  .slide--centre .hero__lockup { padding-block-end: clamp(4.5rem, 9vh, 6rem); }
+}
+
+/* the Torcal, full screen like every slide (Alex, 2026-10-05): the frame
+   is held to its foot, so the car stands high in it, whole, and the words
+   sit centred on the road and the grass beneath it — never on the car */
+@media (min-width: 768px) {
+  .hero .slide.slide--torcal .hero__img { object-position: 50% 92%; }
+  .hero .slide--torcal .hero__lockup { padding-block-end: clamp(4.25rem, 8.5vh, 5.5rem); }
+  .hero .slide--torcal .hero__title { font-size: clamp(2.25rem, 3.4vw, 3.75rem); }
+  .hero .slide--torcal .lead { max-width: 44rem; margin-block-start: var(--space-3); }
+  .hero .slide--torcal .slide__more { margin-block-start: var(--space-3); }
+  html:not([data-look="3"]):not([data-look="4"]) .hero .slide.slide--torcal .slide__field::after {
+    background: linear-gradient(180deg, rgba(4,4,4,0) 50%, rgba(4,4,4,0.55) 72%, rgba(4,4,4,0.8) 100%);
+  }
+}
+
+/* the slide's one route, where it has one, as a link */
+.slide__more { margin-block-start: var(--space-5); }
+.slide__more .link { font-size: var(--text-sm); }
+
+/* the photographs turn only when asked: no film, no clock */
+.hero__bar { display: none; }
+
+/* on a phone: direction 6's photograph window, the words under it, the
+   arrows under the words, the deck straight after — only the
+   slide on show takes room, so a short slide leaves no hole beneath it
+   (the client's screenshot of 2026-10-04) */
+@media (max-width: 767px) {
+  .hero .hero__slides, .hero .slide { height: auto; min-height: 0; }
+  .hero .slide { justify-content: flex-start; }
+  .hero .slide:not(.is-active) { display: none; }
+  .hero .slide__field { margin-block-start: 0; }   /* direction 6's phone window and framing, kept (48svh) */
+  .hero__lockup, .slide--right .hero__lockup, .slide--centre .hero__lockup, .slide--offer .hero__lockup {
+    padding-block: var(--space-5) 0;
+  }
+  .hero .box { padding: 0; box-shadow: none; }
+  .hero__ctl {
+    position: static; transform: none;
+    justify-content: flex-start; margin-inline: calc(var(--gutter) - 12px);
+    padding-block: var(--space-3) 0;
+    color: var(--ink);
+  }
+}
+
+/* --- 3 · The deck under the hero: the client's sketch ------------------- */
+.hero__deck {
+  --ink: var(--black); --rule-strong: var(--dark-grey-40); --hover-ink: var(--bentley-green);
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 22rem));
+  justify-content: center;
+  gap: var(--space-4);
+  padding: var(--space-6) var(--gutter);
+  background: var(--day);
+  color: var(--ink);
+}
+.hero__deck .btn { width: 100%; min-height: 56px; font-size: var(--text-sm); padding-inline: var(--space-4); }
+.hero__deck .btn:hover { background: var(--bentley-green); border-color: var(--bentley-green); }
+.hero__deck .hero__deck-offers { grid-column: 1 / -1; justify-self: center; width: calc((100% - var(--space-4)) / 2); }
+@media (max-width: 767px) {
+  .hero__deck { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-3); padding-block: var(--space-4) var(--space-8); }
+  .hero__deck .btn { white-space: normal; text-align: center; line-height: 1.25; padding-inline: var(--space-3); letter-spacing: 0.06em; }
+  .hero__deck .hero__deck-offers { width: 100%; }   /* the full width on a phone (Alex, 2026-10-05) */
+}
+
+/* --- 4 · New in stock: four cars, centred, under a centred title -------- */
+html main > section.stock { min-height: 0; }
+.stock__head { display: block; text-align: center; }
+.stock__head .h2 { margin-inline: auto; }
+/* the cars keep direction 6's plates exactly — the same width (a third of
+   the page column), the same gap, the same type: one row, three in view,
+   centred in the page column, the arrows at its sides (Alex, 2026-10-05) */
+.stock__frame {
+  --card-w: calc((min(var(--page), 100vw - 2 * var(--gutter)) - 2 * var(--space-6)) / 3);
+  position: relative;
+  width: min(var(--page), 100% - 2 * var(--gutter));
+  margin: clamp(1.5rem, 3.5vh, 3rem) auto 0;
+}
+.stock__frame .stock__rail { margin-block-start: 0; padding-inline: 0; scroll-padding-inline: 0; }
+/* the arrows in the hero's own manner: a chevron, no box — centred in the
+   margin beside the column and on the cards' height, always in sight; at
+   the end of the row the spent one is quieter, never gone (Alex, 2026-10-05) */
+.stock__frame .stock__arrow {
+  position: absolute; z-index: 2;
+  top: 50%; transform: translateY(-50%);
+  display: grid; place-items: center;
+  width: 48px; height: 48px; padding: 0;
+  border: 0; background: none; color: var(--ink);
+  transition: opacity var(--dur-2) var(--ease-out), color var(--dur-2) var(--ease-out);
+}
+.stock__frame .stock__arrow svg { width: 34px; height: 34px; }
+.stock__frame .stock__arrow svg path { stroke-width: 1.4; }
+.stock__frame .stock__arrow:hover { color: var(--hover-ink); border: 0; }
+.stock__frame .stock__arrow:disabled { opacity: 0.3; cursor: default; }
+/* the middle of the margin; where the margin is narrower than the arrow,
+   it stands over the plate's edge */
+.stock__arrow--prev { left: calc(-1 * min((var(--vw, 100vw) - 100%) / 2 - 4px, (var(--vw, 100vw) - 100%) / 4 + 24px)); }
+.stock__arrow--next { right: calc(-1 * min((var(--vw, 100vw) - 100%) / 2 - 4px, (var(--vw, 100vw) - 100%) / 4 + 24px)); }
+@media (max-width: 767px) {
+  .stock__frame { width: auto; }
+  .stock__frame .stock__rail { padding-inline: var(--gutter); scroll-padding-inline: var(--gutter); }
+  .stock__frame .stock__arrow { display: none; }    /* the phone swipes the row, as in direction 6 */
+}
+.stock__all { display: flex; justify-content: center; margin-block-start: clamp(2rem, 5vh, 3.5rem); }
+
+/* --- 5 · The inventory's picks: a card the picks leave out is gone ------
+   (cards.css sets every card to flex, which outranked the hidden attribute:
+   with motion the left-out cards stood as blanks, without it they stayed) */
+.card[hidden] { display: none; }
+
+/* --- 6 · Sell your car: the photograph across the whole chapter, the words
+       on a plate at its right (Alex, 2026-10-05) — high, on the sky and the
+       harbour, so the car beneath stays whole. On a phone the photograph
+       stays above the words, as in direction 6. --------------------------- */
+@media (min-width: 768px) {
+  html main > section.sell {
+    display: block; position: relative;
+    height: min(66.6vw, 100svh); min-height: 36rem;
+  }
+  .sell__pic { position: absolute; inset: 0; }
+  .sell__pic img { object-position: 50% 0%; }   /* the most sky over the plate, the car lowest */
+  .sell__copy.page {
+    position: absolute; z-index: 1;
+    top: clamp(1.25rem, 3.5vh, 2.5rem); right: var(--edge);
+    width: min(36rem, 44vw); max-width: none; margin: 0;
+    display: block;
+    padding: clamp(1.5rem, 2.4vw, 2.25rem);
+    background: var(--day-plate);
+    border: 1px solid var(--rule);
+  }
+  .sell .h2 { font-size: clamp(2rem, 2.8vw, 3rem); }
+  .sell__text .body { max-width: none; }
+  .sell__cta { justify-content: flex-start; flex-wrap: nowrap; margin-block-start: var(--space-6); }
+  .sell__cta .btn { padding-inline: var(--space-5); }
+}
+
+/* --- 7 · The retailer: its own ground, Heritage White from the guideline's
+       Digital Colour Use, between the Satin Linen page and the Bentley Green
+       close (Alex, 2026-10-05). White was tried: the showroom photograph's
+       white walls dissolved into it. Dark Grey on it measures 4.9:1. ------ */
+html main > section.retailer { background: var(--heritage-white); --rule: rgba(4, 4, 4, 0.16); }
+/* on a phone the same plate: the photograph above, the plate rising a little
+   onto its foot, the words and both routes inside it (Alex, 2026-10-05) */
+@media (max-width: 767px) {
+  html main > section.sell { min-height: 0; }
+  .sell__copy.page {
+    position: relative; z-index: 1;
+    width: auto; max-width: none;
+    margin: calc(-1 * var(--space-8)) var(--gutter) var(--space-9);
+    padding: var(--space-6) var(--space-5);
+    row-gap: var(--space-6);
+    background: var(--day-plate);
+    border: 1px solid var(--rule);
+  }
+}
+
+/* --- 8 · On a phone every chapter is as tall as what it holds, as in
+       direction 6. Without the `motion` class the sheets' no-script fallback
+       held each one to a full screen and left holes under short ones. ---- */
+@media (max-width: 767px) {
+  html:not(.ready) main > section { min-height: 0; }
+}
+/* on a phone every button takes the column's full width (Alex, 2026-10-05) */
+@media (max-width: 767px) {
+  main .actions { width: 100%; }
+  main .actions .btn { flex: 1 1 100%; }
+  main .actions .link { flex: 1 1 100%; justify-content: center; }   /* a text route under a full-width button stands centred under it */
+  .stock__all { padding-inline: var(--gutter); }
+  .stock__all .btn { width: 100%; }
+  /* the car's page and the inventory: the enquiry's send and the way back to the inventory too */
+  .enquire__send .btn, .head__aside .btn { flex: 1 1 100%; width: 100%; }
+}

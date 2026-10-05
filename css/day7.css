@@ -1,0 +1,453 @@
+/* ==========================================================================
+   Bentley Palm Beach — direction 6: the day.
+   Loads last, over direction 5's sheets, on every direction-6 page. On the
+   client's note of 24 September 2026: the site is too dark for its place,
+   and words get lost on photographs for an older clientele.
+
+   Only the colours the Retailer Website Guidelines list (Digital Colour
+   Use): White #FFFFFF, Satin Linen (40%) #E8E5D5, Black #040404, Dark Grey
+   (40%) #585858, Light Grey (10%) #CDCDCD, Bentley Green #183319, Teal
+   (70%) #5E715E, Heritage White #DCD8C0.
+
+   Four looks, two questions — `html[data-look]`, set before first paint
+   from the link (?look=1..4), each look its own link:
+     1  White        words stay on the photographs, re-solved
+     2  Satin Linen  words stay on the photographs, re-solved
+     3  White        words leave the photographs, beside them on the ground
+     4  Satin Linen  words leave the photographs, beside them on the ground
+   On a phone every look carries its words beside the photographs.
+
+   Measured (WCAG, on the grounds): Black 20.5 / 16.2; Dark Grey 7.1 / 5.6;
+   Bentley Green 13.8 / 10.9; white on Teal 5.25. Teal as TEXT on Satin
+   Linen is 4.15 — so a hovered word turns Bentley Green, never Teal.
+   ========================================================================== */
+
+/* --- 1 · The ground and the ink ------------------------------------------ */
+:root {
+  --day:        var(--white);            /* the page */
+  --day-plate:  var(--satin-linen-40);   /* a plate on it: cards, the offer */
+  --ink:        var(--black);
+  --ink-2:      var(--dark-grey-40);     /* 7.1:1 — one secondary, no fainter third */
+  --ink-3:      var(--dark-grey-40);
+  --rule:       var(--light-grey-10);    /* hairlines between rows: decoration */
+  --rule-strong: var(--dark-grey-40);    /* a field's line, an outlined control: 7.1:1 */
+  --hover-ink:  var(--bentley-green);
+  --accent-ink: var(--bentley-green);    /* the retailer's flags in text: 13.8:1 */
+  --plate:      rgba(255, 255, 255, 0.94);
+  --bar-ground: rgba(255, 255, 255, 0.94);
+  --veil:       0.22;
+  --glass:      rgba(255, 255, 255, 0.8);
+
+  /* the reading sizes, for the retailer's clientele: 18 body, 16 small */
+  --text-body:  1.125rem;
+  --text-sm:    1rem;
+  --text-lead:  clamp(1.125rem, 0.7vw + 0.95rem, 1.5rem);
+}
+html[data-look="2"], html[data-look="4"] {
+  --day:        var(--satin-linen-40);
+  --day-plate:  var(--white);
+  --rule:       rgba(4, 4, 4, 0.16);     /* Light Grey is 1.26 on Satin Linen: a tint of Black instead */
+  --plate:      rgba(255, 255, 255, 0.94);
+  --bar-ground: rgba(232, 229, 213, 0.95);
+  --glass:      rgba(232, 229, 213, 0.86);
+}
+
+html { background: var(--day); color: var(--ink); font-weight: 400; }
+body, main.srp, main.vdp { background: var(--day); }
+body { font-weight: 400; }
+:focus-visible { outline-color: var(--ink); }
+
+/* The masses that carry words over a photograph keep the dark register:
+   the picture did not change. Everything else is the day. */
+@media (min-width: 768px) {
+  html:not([data-look="3"]):not([data-look="4"]) .hero,
+  html:not([data-look="3"]):not([data-look="4"]) .bespoke,
+  html:not([data-look="3"]):not([data-look="4"]) #continental {
+    --ink:        var(--white);
+    --ink-2:      rgba(255, 255, 255, 0.9);
+    --ink-3:      rgba(255, 255, 255, 0.86);
+    --rule:       rgba(255, 255, 255, 0.3);
+    --rule-strong: rgba(255, 255, 255, 0.7);
+    --hover-ink:  var(--heritage-white);
+    color: var(--white);
+  }
+}
+/* the close stays the one dark band, in Bentley Green, as the guideline's
+   footer is — the single tonal event of a light page */
+.close {
+  --ink:        var(--white);
+  --ink-2:      rgba(255, 255, 255, 0.84);   /* 9.4:1 on Bentley Green */
+  --ink-3:      rgba(255, 255, 255, 0.84);
+  --rule:       rgba(255, 255, 255, 0.22);
+  --rule-strong: rgba(255, 255, 255, 0.6);
+  --hover-ink:  var(--heritage-white);
+}
+
+/* --- 2 · The chapters on the day ------------------------------------------ */
+main > section { background: var(--day); }
+main > section::before { background: var(--black); opacity: calc(var(--cover, 0) * var(--veil)); }
+.split__pic, .scene__pic, .slide__field { background: var(--day-plate); }
+.motion.ready .blinds i { background: var(--day); box-shadow: 1px 0 0 var(--day), -1px 0 0 var(--day); }
+.retailer { background: var(--day); }
+.bespoke, .sell { background: var(--day); }
+
+/* the type roles on the day: body in the regular weight, the labels no
+   fainter than the secondary ink */
+.body, .lead, .vdp__copy, .record dd { font-weight: 400; }
+.scene .label, .slide .label, .plate .label { color: var(--ink-2); }
+.card__facts, .card__build, .card__extra { font-size: var(--text-sm); }
+.srp__legal, .pricing__fine, .pricing__text, .special__fine, .enquire__fine, .film__note { font-size: var(--text-sm); line-height: 1.6; }
+
+/* --- 3 · Controls -------------------------------------------------------- */
+.btn--line { color: var(--ink); border-color: var(--rule-strong); }
+.btn--line:hover { border-color: var(--ink); background: rgba(4, 4, 4, 0.05); }
+.hero .btn--line:hover, .bespoke .btn--line:hover, #continental .btn--line:hover { background: rgba(255, 255, 255, 0.1); }
+.link:hover, .card__link:hover .link, .mh__nav a:hover, .fold__head:hover { color: var(--hover-ink); }
+.stock__arrow { color: var(--ink); border-color: var(--rule-strong); }
+.stock__arrow:hover { border-color: var(--ink); }
+.po-ctl .stock__arrow { background: var(--plate); color: var(--black); }
+.totop { color: var(--ink); border-color: var(--rule-strong); background: var(--plate); }
+.totop:hover { border-color: var(--ink); }
+.hero__bar i { background: currentColor; }
+.pick__select:hover, .pick__select:focus, .field__input:hover, .field__input:focus { border-color: var(--ink); }
+.pick__select:focus-visible, .field__input:focus-visible { outline-color: var(--ink); }
+.tool:hover, .tool[aria-pressed="true"], .asterisk:hover, .film__note a:hover, .close__legal a:hover, .social a:hover { color: var(--hover-ink); }
+.film__mode-button { color: var(--ink); }
+.film__mode-button:hover { border-color: var(--ink); background: rgba(4, 4, 4, 0.05); }
+.film__mode-button[aria-pressed="true"] { color: var(--white); }
+.film__thumb, .spin__loading span { background: var(--ink); }
+.spin__stage { background: var(--day-plate); }
+.spin__hint { background: var(--black); color: var(--white); }
+.film__arrow { background: var(--plate); color: var(--black); }
+
+/* --- 4 · The header: dark ink on the day; white only while it rests over
+       a lit hero (looks 1 and 2, the home page, a wide screen) ----------- */
+.mh { color: var(--ink); }
+.mh__mark img { filter: invert(1); }                       /* the negative wings, drawn in Black */
+.mh .btn--line { color: var(--ink); border-color: var(--rule-strong); }
+html[data-framed] .mh[data-scrolled]::before { background: var(--day); }
+/* direction 7: the bar always has its ground, so it never turns white over the hero */
+.mh[data-open] { --bar-ground: var(--day); }
+@media (max-width: 1023px) { .mh__nav { background: var(--day); } }
+/* the bar always has its ground once the page has moved, and on a page
+   without a hero it has it from the start — nothing reads through it */
+body:not(:has(.hero)) .mh::before { opacity: 1; }
+.mh::before { border-bottom: 1px solid var(--rule); }
+/* the retailer's site terms, under its name and number, as on its own site */
+.mh__contact { display: flex; flex-direction: column; align-items: flex-end; }
+.mh__contact .mh__retailer, .mh__terms { white-space: nowrap; }   /* the name and the number keep one line; the column never squeezes them */
+.mh__terms {
+  font-size: var(--text-xs); line-height: 1.2;
+  text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px;
+  transition: color var(--dur-2) var(--ease-out);
+}
+.mh__terms:hover { color: var(--hover-ink); }
+.mh__nav-terms { display: none; }
+@media (max-width: 1023px) {
+  .mh__terms { display: none; }
+  .mh__nav-terms { display: block; }
+}
+
+/* --- 5 · The plates: cards, the offer, the enquiry ----------------------- */
+.card__link, main.srp .card__link, main.vdp .card__link { background: var(--day-plate); border-color: var(--rule); }
+.card__link:hover, main.srp .card__link:hover, main.vdp .card__link:hover { background: var(--day-plate); border-color: var(--rule-strong); }
+.card__price-value, .card__build .card__sale dd { color: var(--ink); }
+.card__kind b { color: var(--accent-ink); }
+.card__facts > span { grid-template-columns: 6.5rem minmax(0, 1fr); }
+.card__facts b { color: var(--ink-2); font-size: var(--text-xs); }
+.card__flag { background: var(--black); color: var(--white); }
+.card__flag.card__flag--lease { background: var(--heritage-white); color: var(--black); }
+.offer, .special, .enquire, .pricing__lease { background: var(--day-plate); border-color: var(--rule); }
+.offer__flag, .special__label, .vdp__notes, .offer__rows .card__save dd { color: var(--accent-ink); }
+.offer__rows .card__sale dt, .offer__rows .card__sale dd { color: var(--ink); }
+.carfax { opacity: 1; }
+/* the VIN is seventeen letters with no break in them: at the larger size it
+   may wrap rather than run past a phone's edge (it did so already in 5) */
+.specs dd, .vdp__vin { min-width: 0; overflow-wrap: anywhere; }
+.vdp__bar { background: var(--bar-ground); }
+
+/* --- 6 · The inventory and the car's page: no photograph under the words.
+       The head stands on the plain day; the coast stays in the pictures. */
+main.srp::before, main.vdp::before { content: none; display: none; }
+
+/* --- 7 · Looks 1 and 2: the words that stay on a photograph --------------
+   The shade is fixed at the background layer, measured at the glyphs. */
+@media (min-width: 768px) {
+  /* the Torcal film and the Azure range: a deeper pool under the centred
+     lockup, starting lower, so the sky and the car keep their light */
+  html:not([data-look="3"]):not([data-look="4"]) .slide--centre .slide__field::after,
+  html:not([data-look="3"]):not([data-look="4"]) .slide.slide--coast .slide__field::after {
+    background:
+      linear-gradient(180deg, rgba(4,4,4,0.82) 0%, rgba(4,4,4,0.66) 11%, rgba(4,4,4,0) 22%),
+      radial-gradient(ellipse 60% 46% at 50% 80%, rgba(4,4,4,0.8) 0%, rgba(4,4,4,0.58) 55%, rgba(4,4,4,0) 100%),
+      linear-gradient(180deg, rgba(4,4,4,0) 46%, rgba(4,4,4,0.5) 78%, rgba(4,4,4,0.7) 100%);
+  }
+  /* the offer on the beach: the glass plate turns to the day, so its words
+     are Black on White, whatever the photograph does beneath */
+  html:not([data-look="3"]):not([data-look="4"]) .hero .box {
+    --ink: var(--black); --ink-2: var(--dark-grey-40); --ink-3: var(--dark-grey-40);
+    --rule-strong: var(--dark-grey-40); --hover-ink: var(--bentley-green);
+    color: var(--black);
+    background: rgba(255, 255, 255, 0.94);
+  }
+  html:not([data-look="3"]):not([data-look="4"]) .hero .box .label { color: var(--dark-grey-40); }
+  /* the bridge: the caption's corner carried a little deeper */
+  html:not([data-look="3"]):not([data-look="4"]) #continental .scene__pic::after {
+    background:
+      radial-gradient(ellipse 58% 64% at 0% 100%, rgba(4,4,4,0.8) 0%, rgba(4,4,4,0.5) 55%, rgba(4,4,4,0) 100%),
+      linear-gradient(180deg, rgba(4,4,4,0) 55%, rgba(4,4,4,0.5) 100%);
+  }
+  /* the pre-owned plate, which crosses the photograph's edge: the
+     guideline's frosted plate, turned to the day — White glass on look 1,
+     Satin Linen glass on look 2; the blur takes the picture's detail out
+     from under the words, the tint holds their contrast (measured at the
+     glyphs, over the photograph's brightest and darkest frames) */
+  html:not([data-look="3"]):not([data-look="4"]) .plate {
+    background: var(--glass);
+    -webkit-backdrop-filter: blur(24px) saturate(1.15);
+    backdrop-filter: blur(24px) saturate(1.15);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.55);
+  }
+}
+
+/* --- 7b · Looks 2 and 4: the range in the Satin Linen key ----------------
+   The four studio frames are white and grey; on Satin Linen they stood out
+   as four cold windows. A layer of Satin Linen (the guideline's code)
+   multiplies over each photograph: the white and grey studio turn to the
+   ground's own warm tone, the cars keep their colour. The photograph is
+   lifted first — brighter, a little richer — so the multiply does not
+   darken it. On hover the frame returns to its own colour. */
+:is([data-look="2"], [data-look="4"]) .range__item a { position: relative; isolation: isolate; }
+:is([data-look="2"], [data-look="4"]) .range__item img {
+  grid-row: 1; grid-column: 1;
+  filter: brightness(1.14) contrast(1.06) saturate(1.12);
+  transition: filter var(--dur-4) var(--ease-reveal), clip-path 1.2s var(--ease-reveal) calc(0.15s + (var(--i, 2) - 2) * 0.12s), transform 1.6s var(--ease-reveal) calc(0.15s + (var(--i, 2) - 2) * 0.12s), opacity var(--dur-3) var(--ease-out);
+}
+:is([data-look="2"], [data-look="4"]) .range__item a::before {
+  content: ""; grid-row: 1; grid-column: 1; z-index: 1;
+  background: var(--satin-linen-40);
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  transition: opacity var(--dur-4) var(--ease-reveal);   /* the hover: slow, eased both ways */
+}
+:is([data-look="2"], [data-look="4"]) .range__item a:hover img,
+:is([data-look="2"], [data-look="4"]) .range__item a:focus-visible img { filter: none; opacity: 1; }
+:is([data-look="2"], [data-look="4"]) .range__item a:hover::before,
+:is([data-look="2"], [data-look="4"]) .range__item a:focus-visible::before { opacity: 0; }
+/* the tone waits for the frames to open, so it never stands as an empty
+   block before its photograph. An animation, filled backwards only: once
+   it has run it lets go of the opacity, so the hover's transition is never
+   held behind the arrival's delay. */
+@keyframes range-tone { from { opacity: 0; } to { opacity: 1; } }
+.motion.ready:is([data-look="2"], [data-look="4"]) .range:not(.is-in) .range__item a::before { opacity: 0; }
+.motion.ready:is([data-look="2"], [data-look="4"]) .range.is-in .range__item a::before { animation: range-tone var(--dur-4) var(--ease-reveal) calc(0.9s + (var(--i, 2) - 2) * 0.12s) backwards; }
+@media (max-width: 767px) {
+  :is([data-look="2"], [data-look="4"]) .range__item a::before { position: absolute; left: 0; right: 0; top: 0; aspect-ratio: 4 / 5; }
+}
+@media (hover: none) {
+  :is([data-look="2"], [data-look="4"]) .range__item a:hover::before { opacity: 1; }
+  :is([data-look="2"], [data-look="4"]) .range__item a:hover img { filter: brightness(1.14) contrast(1.06) saturate(1.12); }
+}
+
+/* --- 8 · Sell your car, in every look: the photograph whole at the top,
+       the words beneath it on the day — never on its foot ---------------- */
+.sell__pic::after { content: none; }
+.sell__copy { margin-block-start: 0; padding-block: clamp(1.5rem, 4vh, 3rem) var(--floor); }
+
+/* --- 9 · Looks 3 and 4: every word beside its photograph ----------------- */
+@media (min-width: 768px) {
+  /* the hero: the picture as a window under the bar, the lockup on the day
+     beneath it — the guideline's mobile hero, authored for the wide screen */
+  :is([data-look="3"], [data-look="4"]) .slide { justify-content: flex-start; }
+  :is([data-look="3"], [data-look="4"]) .slide__field {
+    position: relative; inset: auto; z-index: 0;
+    flex: 1 1 0; min-height: 0;
+    margin: var(--bar-h) var(--edge) 0;
+  }
+  :is([data-look="3"], [data-look="4"]) .slide__field::after { content: none; }
+  :is([data-look="3"], [data-look="4"]) .slide--coast .hero__img,
+  :is([data-look="3"], [data-look="4"]) .slide--foot .hero__img { filter: none; }
+  /* the window is wide and low, so a frame anchored to its foot shows the
+     paving and cuts the cars: the frame moves until the cars stand whole in
+     it, a little sea above them (Azure: cars at 33–57% of the frame; the
+     GTC: 38–63%) */
+  :is([data-look="3"], [data-look="4"]) .slide.slide--coast .hero__img { object-position: 50% 38%; }
+  :is([data-look="3"], [data-look="4"]) .slide.slide--foot:not(.slide--film) .hero__img { object-position: 50% 48%; }
+  :is([data-look="3"], [data-look="4"]) .hero__lockup,
+  :is([data-look="3"], [data-look="4"]) .slide--centre .hero__lockup,
+  :is([data-look="3"], [data-look="4"]) .slide--right .hero__lockup,
+  :is([data-look="3"], [data-look="4"]) .slide--offer .hero__lockup {
+    display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: var(--space-8);
+    align-items: end; text-align: left;
+    padding: clamp(1.25rem, 3vh, 2rem) var(--edge) clamp(4.5rem, 9vh, 6rem);
+  }
+  :is([data-look="3"], [data-look="4"]) .hero__lockup > .hero__title,
+  :is([data-look="3"], [data-look="4"]) .hero__lockup > .lead { grid-column: 1; }
+  :is([data-look="3"], [data-look="4"]) .hero__lockup > .actions { grid-column: 2; grid-row: 1 / span 2; justify-content: flex-end; }
+  :is([data-look="3"], [data-look="4"]) .slide--centre .hero__title,
+  :is([data-look="3"], [data-look="4"]) .hero__title {
+    font-size: clamp(2rem, 3.2vw, 3.25rem); text-transform: none; letter-spacing: var(--track-display);
+  }
+  :is([data-look="3"], [data-look="4"]) .hero__lockup .lead { margin-block-start: var(--space-3); max-width: 44rem; }
+  /* the offer's plate opens onto the day: no glass, the same two columns */
+  :is([data-look="3"], [data-look="4"]) .slide__lockup--glass { display: block; }
+  :is([data-look="3"], [data-look="4"]) .hero .box {
+    display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: var(--space-8); align-items: end;
+    width: 100%; height: auto !important; padding: 0;
+    background: none; box-shadow: none; -webkit-backdrop-filter: none; backdrop-filter: none;
+  }
+  :is([data-look="3"], [data-look="4"]) .hero .box > * { grid-column: 1; }
+  :is([data-look="3"], [data-look="4"]) .hero .box > .actions { grid-column: 2; grid-row: 1 / span 3; padding: 0; margin: 0; }
+  :is([data-look="3"], [data-look="4"]) .hero .box .slide__terms { min-height: 0; }
+  :is([data-look="3"], [data-look="4"]) .slide--right .slide__lease { justify-content: flex-start; }
+  :is([data-look="3"], [data-look="4"]) .hero__ctl { color: var(--ink); left: var(--edge); transform: none; }
+  :is([data-look="3"], [data-look="4"]) .motion.ready .slide:first-child .hero__img { animation: none; }
+  :is([data-look="3"], [data-look="4"]) .motion.ready .slide--right:not(.is-active) .step,
+  :is([data-look="3"], [data-look="4"]) .motion.ready .slide--centre:not(.is-active) .step { transform: translate3d(calc(-1 * (var(--mo-out) + var(--i, 0) * var(--mo-step-x))), 0, 0); }
+
+  /* Bespoke: the photograph as a window, the lockup centred beneath it */
+  :is([data-look="3"], [data-look="4"]) .bespoke { justify-content: flex-start; padding: var(--bar-h-compact) var(--edge) var(--floor); }
+  :is([data-look="3"], [data-look="4"]) .bespoke__pic { position: relative; inset: auto; z-index: 0; flex: 1 1 0; min-height: 0; width: 100%; overflow: hidden; }
+  :is([data-look="3"], [data-look="4"]) .bespoke__pic::after { content: none; }
+  :is([data-look="3"], [data-look="4"]) .bespoke__lockup { margin-block-start: clamp(1.25rem, 3vh, 2rem); }
+  :is([data-look="3"], [data-look="4"]) .bespoke__name { color: var(--accent-ink); }
+  :is([data-look="3"], [data-look="4"]) .bespoke__title { margin-block-start: var(--space-3); font-size: clamp(2rem, 3.2vw, 3.25rem); }
+  :is([data-look="3"], [data-look="4"]) .bespoke__line { margin-block-start: var(--space-3); }
+  :is([data-look="3"], [data-look="4"]) .bespoke .actions { margin-block-start: var(--space-5); }
+  :is([data-look="3"], [data-look="4"]) .bespoke__caption { position: static; align-self: flex-start; order: 3; margin-block-start: var(--space-3); color: var(--ink-2); }
+
+  /* Continental over the water: the picture above, the caption beneath */
+  :is([data-look="3"], [data-look="4"]) #continental { display: grid; grid-template-rows: minmax(0, 1fr) auto; padding-block-start: var(--bar-h-compact); }
+  :is([data-look="3"], [data-look="4"]) #continental .scene__pic { position: relative; top: auto; height: auto; min-height: 0; margin-inline: var(--edge); }
+  :is([data-look="3"], [data-look="4"]) #continental .scene__pic::after { content: none; }
+  :is([data-look="3"], [data-look="4"]) #continental .scene__body { margin-block-start: 0; min-height: 0; align-items: flex-end; padding-block: clamp(1.25rem, 3vh, 2rem) var(--floor); }
+  :is([data-look="3"], [data-look="4"]) #continental .scene__copy { max-width: none; }
+  :is([data-look="3"], [data-look="4"]) #continental .h2 { max-width: none; font-size: clamp(2rem, 3.2vw, 3.25rem); }
+
+  /* Pre-owned: the plate on the day at the left, the photograph at the
+     right — they meet, they do not overlap */
+  :is([data-look="3"], [data-look="4"]) .po-photo { grid-column: 6 / 13; }
+  :is([data-look="3"], [data-look="4"]) .plate {
+    width: calc(5 / 12 * 100% - var(--space-7));
+    background: none; box-shadow: none; -webkit-backdrop-filter: none; backdrop-filter: none;
+    padding-inline: 0;
+  }
+  :is([data-look="3"], [data-look="4"]) .po-ctl { right: auto; left: 0; bottom: 0; }
+  :is([data-look="3"], [data-look="4"]) .po-ctl .stock__arrow { background: none; border-color: var(--rule-strong); color: var(--ink); }
+}
+
+/* --- 10 · A phone, in every look: the words beneath the photographs ------ */
+@media (max-width: 767px) {
+  .slide__field::after, .slide--right .slide__field::after, .slide--centre .slide__field::after { content: none; }
+  .bespoke { justify-content: flex-start; padding: var(--bar-h) var(--gutter) var(--space-9); }
+  .bespoke__pic { position: relative; inset: auto; z-index: 0; height: 56svh; width: calc(100% + 2 * var(--gutter)); margin-inline: calc(-1 * var(--gutter)); }
+  .bespoke__pic::after { content: none; }
+  .bespoke__lockup { margin-block-start: var(--space-6); }
+  .bespoke__name { color: var(--accent-ink); }
+  .scene__pic::after { content: none; }
+  .scene__body { margin-block-start: 0; padding-block: var(--space-6) var(--space-9); }
+  .plate { background: none; box-shadow: none; -webkit-backdrop-filter: none; backdrop-filter: none; padding-inline: 0; }
+}
+
+/* --- 12 · Prices to the FTC's letters (2026-09-25, as on Rolls-Royce) -------
+   The sale price, the dealer's charges in it, is the figure that stands out;
+   a lease payment carries its term and the money down beneath it. */
+.card__flag--lease {
+  display: flex; flex-direction: column; align-items: flex-start;
+  white-space: normal; max-width: 100%; line-height: 1.35;
+}
+.card__flag-terms { letter-spacing: var(--track-label); }
+.po-price__label {
+  margin-inline-end: 0.5em;
+  font-size: var(--text-xs); font-weight: 400;
+  letter-spacing: var(--track-label); text-transform: uppercase;
+  color: var(--ink-2); vertical-align: 0.2em;
+}
+.po-fees { margin-block-start: var(--space-2); font-size: var(--text-sm); line-height: 1.5; color: var(--ink-2); }
+.offer__lease-row dd small { display: block; font-size: var(--text-sm); color: var(--ink-2); }
+.po-fees + .body { margin-block-start: var(--space-4); font-size: var(--text-sm); }
+
+/* --- 13 · The hero's lease slide: the Continental GT on the shore -----------
+   The car stands right of centre, so the offer stands at the left, narrower,
+   with air between it and the car; the sunset is warm already — no lift. */
+.slide--gt .hero__img, .slide.slide--foot.slide--gt:not(.slide--film) .hero__img { filter: none; object-position: 50% 100%; }
+@media (min-width: 768px) {
+  .slide--gt .box { width: min(26rem, 100%); }
+  /* the narrower plate holds the two calls on two lines, never past its edge */
+  .slide--gt .box .actions { flex-wrap: wrap; }
+}
+@media (max-width: 767px) {
+  .slide.slide--foot.slide--gt:not(.slide--film) .hero__img { object-position: 62% 100%; }
+}
+
+/* --- 14 · The vehicle page's head: the price listed out top right -----------
+   One plate, on the cards' ground, read as a sum (the client, 2026-09-28):
+   the listed price and the two charges, a rule, and the sale price they
+   make — the largest figure, and the last. */
+.vdp__sum {
+  width: 24rem; max-width: 100%; margin-inline-start: auto;
+  padding: var(--space-4) var(--space-5) var(--space-5);
+  background: var(--day-plate); border: 1px solid var(--rule);
+  text-align: left;
+}
+.vdp__build { margin: 0; font-size: var(--text-sm); }
+.vdp__build div { display: flex; justify-content: space-between; gap: var(--space-4); padding-block: 3px; }
+.vdp__build dt { color: var(--ink-2); white-space: nowrap; }
+.vdp__build dd { margin: 0; color: var(--ink); font-variant-numeric: tabular-nums; }
+.vdp__sum .vdp__price {
+  flex-direction: row; justify-content: space-between; align-items: baseline; gap: var(--space-4);
+  margin-block-start: var(--space-3); padding-block-start: var(--space-3);
+  border-top: 1px solid var(--rule-strong);
+}
+.vdp__sum .vdp__price-label { color: var(--ink); }
+.vdp__sum .vdp__price-value { font-size: clamp(1.75rem, 1.2rem + 1.2vw, 2.375rem); }
+.vdp__sum .vdp__confirm { width: 100%; margin-block-start: var(--space-5); }
+.vdp__head:has(.vdp__sum) { align-items: start; }   /* the name and the plate start on one line */
+.vdp__sum + .vdp__figure-act { margin-block-start: var(--space-4); }
+@media (max-width: 1023px) {
+  .vdp__sum { margin-inline: 0 auto; width: min(100%, 26rem); }
+}
+/* the specification rows on the narrowest phones: the name column gives way
+   so the value is never cut at the screen's edge (it was, by 30px, since 5) */
+@media (max-width: 1023px) {
+  .vdp__grid { grid-template-columns: minmax(0, 1fr); }   /* a bare 1fr cannot shrink below its content */
+}
+@media (max-width: 420px) {
+  .specs div { grid-template-columns: minmax(0, 8.5rem) minmax(0, 1fr); }
+}
+
+/* --- 15 · The price plate's right edge on the header's ---------------------
+   (Alex, 2026-09-28): the plate ends where Request Test Drive ends, at the
+   header's edge, whatever the screen — not at the page column. --vw is the
+   layout width without the scrollbar (js/lenis6.js), 100vw where unset. */
+@media (min-width: 1024px) {
+  .vdp__sum {
+    /* shifted, not re-margined: a positive pull and a negative one both hold */
+    position: relative;
+    right: calc(var(--edge) - (var(--vw, 100vw) - min(var(--page), var(--vw, 100vw) - 2 * var(--gutter))) / 2);
+    width: 24rem; max-width: none;
+  }
+  /* the column holds the plate's own width, so the pull to the edge moves
+     the plate rather than squeezing it */
+  .vdp__figure:has(.vdp__sum) { width: 24rem; }
+}
+/* the terms line made the contact block a column; with the retailer's name
+   in it the block reached the logo up to ~1500px (gap 0 at 1366): the name
+   goes a step sooner, the number and the terms stay */
+@media (max-width: 1499px) {
+  .mh__contact .mh__retailer span:first-child { display: none; }
+}
+
+/* --- 16 · Save · Share · Email under the name, level with the plate's call --
+   As on Rolls-Royce (Alex, 2026-09-28): the name's column is as tall as the
+   price plate, the tools stand at its foot, their row centred on Confirm
+   availability; the mileage and the stock number have left the head (they
+   stand in the specification below). */
+@media (min-width: 1024px) {
+  .vdp__head:has(.vdp__sum) { align-items: stretch; }
+  .vdp__head:has(.vdp__sum) .vdp__name { display: flex; flex-direction: column; }
+  /* when the name runs taller than the plate, the plate stands on the same foot */
+  .vdp__head:has(.vdp__sum) .vdp__figure { display: flex; flex-direction: column; justify-content: flex-end; }
+  .vdp__head:has(.vdp__sum) .vdp__name .tools { margin-top: auto; padding-top: var(--space-5); margin-bottom: calc(var(--space-5) + 7px); }   /* the plate's foot padding and border, and half the difference of the two rows' heights */
+}
+.vdp__name .tools { justify-content: flex-start; margin-top: var(--gap-title); }

@@ -526,3 +526,6 @@ exec(open(ROOT + 'tools/mirror5.py', encoding='utf-8').read(), {'__file__': ROOT
 
 # 5. Direction 6, the working copy of direction 5, mirrors them the same way.
 exec(open(ROOT + 'tools/mirror6.py', encoding='utf-8').read(), {'__file__': ROOT + 'tools/mirror6.py'})
+
+# 6. Direction 7, the working copy of direction 6, mirrors direction 6's set.
+exec(open(ROOT + 'tools/mirror7.py', encoding='utf-8').read(), {'__file__': ROOT + 'tools/mirror7.py'})
