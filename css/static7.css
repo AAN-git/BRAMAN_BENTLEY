@@ -138,7 +138,7 @@ html main > section.hero { height: auto; min-height: 0; overflow: clip; }
   /* js/page7.js sets the exact position on the element; this is the
      no-script frame, the car held high */
   .hero .slide.slide--torcal .hero__img { object-position: 50% 62%; }
-  .hero .slide--torcal .hero__lockup { padding-block-end: clamp(2.5rem, 6vh, 5rem); }
+  .hero .slide--torcal .hero__lockup { padding-block-end: clamp(1.5rem, 4vh, 3.5rem); }
   .hero .slide--torcal .hero__title { font-size: clamp(2.25rem, 3.4vw, 3.75rem); }
   .hero .slide--torcal .lead { max-width: 44rem; margin-block-start: var(--space-3); }
   .hero .slide--torcal .slide__more { margin-block-start: var(--space-3); }
@@ -416,7 +416,7 @@ html main > section.retailer { background: var(--heritage-white); --rule: rgba(4
   .hero .slide--torcal .hero__title { font-size: clamp(1.75rem, 2.6vw, 2.75rem); }
   .hero .slide--torcal .lead { font-size: var(--text-body); margin-block-start: var(--space-2); }
   .hero .slide--torcal .slide__more { margin-block-start: var(--space-2); }
-  .hero .slide--torcal .hero__lockup { padding-block-end: 2.5rem; }
+  .hero .slide--torcal .hero__lockup { padding-block-end: 1.5rem; }
 }
 /* the slide count at the photograph's lower right corner on every slide,
    clear of the words (Alex, 2026-10-05: as on the Torcal slide) */
@@ -426,5 +426,15 @@ html main > section.retailer { background: var(--heritage-white); --rule: rgba(4
 /* a tablet: the counter sits at the right on its own line under the words */
 @media (min-width: 768px) and (max-width: 1023px) {
   .hero .slide--torcal .hero__lockup { padding-block-end: 3.25rem; }
-  .hero:has(.slide--torcal.is-active) .hero__ctl { bottom: 0.5rem; }
+}
+/* Alex, 2026-10-05: the Azure range a touch lower in its frame, the GT's
+   lease as much lower as the Torcal went */
+@media (min-width: 768px) {
+  .hero .slide.slide--coast .hero__img { object-position: 50% 48%; }
+  .hero .slide.slide--foot.slide--gt:not(.slide--film) .hero__img { object-position: 50% 82%; }
+}
+/* the slide count holds one place on every slide — the photograph's lower
+   right, at its foot — and never moves when the slide turns (Alex) */
+@media (min-width: 768px) {
+  .hero .hero__ctl, .hero:has(.slide.is-active) .hero__ctl { right: var(--edge); left: auto; bottom: 0.5rem; transform: none; }
 }

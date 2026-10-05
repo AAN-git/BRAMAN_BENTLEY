@@ -28,8 +28,17 @@
       var nw = img.naturalWidth || 2400, nh = img.naturalHeight || 1617;
       if (!box.width || !box.height) return;
       var H = Math.max(box.width * nh / nw, box.height);      /* drawn height, as object-fit: cover */
-      var air = Math.min(96, Math.max(28, box.height * 0.09));   /* a little more sky over the roof (Alex, 2026-10-05) */
-      var y = Math.max(box.height - H, air - ROOF * H);          /* never past the photograph's foot */
+      /* more sky over the roof (Alex, 2026-10-05: "lower"), as far as the
+         words beneath allow: the car's foot (67% of the frame) stays above
+         the title with a little air */
+      var air = Math.min(360, Math.max(96, box.height * 0.36));   /* Alex: lower, and as much again */
+      var y = air - ROOF * H;
+      var slide = img.closest(".slide"), title = slide && slide.querySelector(".hero__title");
+      if (title) {
+        var tTop = title.getBoundingClientRect().top - box.top;
+        y = Math.min(y, tTop - 12 - 0.67 * H);
+      }
+      y = Math.max(box.height - H, y);                           /* never past the photograph's foot */
       img.style.objectPosition = "50% " + Math.min(0, y).toFixed(1) + "px";
     });
   }
