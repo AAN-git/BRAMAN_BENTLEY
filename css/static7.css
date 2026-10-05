@@ -314,3 +314,27 @@ html main > section.retailer { background: var(--heritage-white); --rule: rgba(4
     box-shadow: none;
   }
 }
+/* the range on a phone: a name takes the lines it needs — the two reserved
+   for "Continental GT Convertible" left a hole under every one-line name */
+@media (max-width: 767px) {
+  .range__name { min-height: 0; }
+}
+
+/* --- 9 · The phone's rhythm (Alex, 2026-10-05): one step between
+       chapters. Direction 6's feet (64–128px) and heads (88–98px) were
+       measured for chapters that filled a screen; stacked one after another
+       they added up to 150–194px of nothing. Now every chapter has 48px
+       above and below its content — about 96px from one text to the next,
+       48px where a chapter opens on its photograph. The close keeps its own
+       ground and padding. ---------------------------------------------- */
+@media (max-width: 767px) {
+  html:not(.ready) main > section.range,
+  html:not(.ready) main > section.bespoke,
+  html:not(.ready) main > section.preowned,
+  html:not(.ready) main > section.stock,
+  html:not(.ready) main > section.retailer { padding-block: var(--space-7); }
+  .hero__deck { padding-block-end: var(--space-7); }
+  html main > section.split .split__copy { padding-block: var(--space-7); }
+  html main > section.scene .scene__body { padding-block-end: var(--space-7); }
+  .sell__copy.page { margin-block-end: var(--space-7); }
+}
