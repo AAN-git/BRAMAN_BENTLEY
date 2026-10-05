@@ -135,11 +135,9 @@ html main > section.hero { height: auto; min-height: 0; overflow: clip; }
      the window's top edge whatever the window's proportion, so the car is
      whole and the most grass is left beneath it for the words. H is the
      photograph's drawn height (cover); the roof is at 42% of it. */
-  .hero .slide.slide--torcal .slide__field { container-type: size; }
-  .hero .slide.slide--torcal .hero__img {
-    --H: max(100cqw * 1617 / 2400, 100cqh);
-    object-position: 50% max(calc(100cqh - var(--H)), calc(clamp(12px, 4cqh, 48px) - 0.42 * var(--H)));
-  }
+  /* js/page7.js sets the exact position on the element; this is the
+     no-script frame, the car held high */
+  .hero .slide.slide--torcal .hero__img { object-position: 50% 62%; }
   .hero .slide--torcal .hero__lockup { padding-block-end: clamp(2.5rem, 6vh, 5rem); }
   .hero .slide--torcal .hero__title { font-size: clamp(2.25rem, 3.4vw, 3.75rem); }
   .hero .slide--torcal .lead { max-width: 44rem; margin-block-start: var(--space-3); }
@@ -392,24 +390,10 @@ html main > section.retailer { background: var(--heritage-white); --rule: rgba(4
   html main > section.bespoke,
   html main > section.sell { margin-block-end: var(--space-9); }
 }
-/* Sell, wide: the chapter takes the photograph's own proportion, so nothing
-   of it is cut — the whole car, the road beneath — and the plate stands in
-   the sky above the car (Alex, 2026-10-05) */
-@media (min-width: 1200px) {
-  html main > section.sell { height: auto; min-height: 0; aspect-ratio: 2048 / 1365; }
-  .sell__copy.page { top: clamp(1rem, 2.2vw, 2rem); width: min(34rem, 40vw); padding: clamp(1.25rem, 1.8vw, 2rem); }
-  .sell__cta { margin-block-start: var(--space-5); }
-}
-/* a tablet and a narrow desk: the photograph whole above, the plate beneath
-   it, as on a phone — below 1200 the plate would reach the car's roof */
-@media (min-width: 768px) and (max-width: 1199px) {
-  html main > section.sell { height: auto; min-height: 0; }
-  .sell__pic { position: relative; inset: auto; aspect-ratio: 2048 / 1365; }
-  .sell__copy.page {
-    position: relative; top: auto; right: auto; width: auto;
-    margin: calc(-1 * var(--space-8)) var(--gutter) 0;
-  }
-  .sell__cta { flex-wrap: wrap; }
+/* Sell: the chapter keeps its size; the photograph moves up inside it, so
+   the car stands whole with the road beneath it (Alex, 2026-10-05) */
+@media (min-width: 768px) {
+  .sell__pic img { object-position: 50% 40%; }   /* the car whole within the screen under the header, 1024 to 2560 */
 }
 /* the range from 768 to 1023: five columns too (the phone's rail ends at
    768, and four columns put the fifth on a second row) */
