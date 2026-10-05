@@ -89,8 +89,19 @@ def stamp7(s):
         s = re.sub(r'(' + re.escape(f) + r')(\?v=[^"]*)?"', lambda m: m.group(1) + '?v=' + h + '"', s)
     return s
 
+# The client, 2026-10-05: "Range" reads "Model Range" (as the chapter it
+# leads to says), and the site terms are in the first screen on a phone too.
+TERMS = 'https://www.bramanbentleypalmbeach.com/terms-and-conditions/'
+def model_range(s):
+    return re.sub(r'(<li><a href="[^"]*#range">)Range(</a></li>)', r'\1Model Range\2', s)
+def terms_line(s):
+    if 'mh__terms-line' in s:
+        return s
+    line = f'\n  <div class="mh__terms-line"><a href="{TERMS}">Site Terms &amp; Conditions</a></div>'
+    return s.replace('\n  <nav class="mh__deck"', line + '\n  <nav class="mh__deck"', 1)
+
 def page(s, pre, here=''):
-    return stamp7(deck(calm(seven(s)), pre, here))
+    return stamp7(terms_line(model_range(deck(calm(seven(s)), pre, here))))
 
 # 1. The SRP
 write('inventory7.html', page(read('inventory6.html'), '', 'inventory'))

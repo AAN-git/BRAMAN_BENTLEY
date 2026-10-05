@@ -17,11 +17,12 @@
 :root {
   --deck-h: 56px;                                   /* the header's second line */
   --dock-h: 0px;                                    /* the foot bar, below 1024 */
-  --mh-h: calc(var(--bar-h-compact) + var(--deck-h));
+  --terms-h: 0px;                                   /* the terms line under the bar, below 1024 */
+  --mh-h: calc(var(--bar-h-compact) + var(--deck-h) + var(--terms-h));
   --hero-deck-h: calc(2 * 56px + var(--space-4) + 2 * var(--space-6));
 }
 @media (max-width: 1023px) {
-  :root { --deck-h: 0px; --dock-h: calc(64px + env(safe-area-inset-bottom, 0px)); }
+  :root { --deck-h: 0px; --terms-h: 36px; --dock-h: calc(64px + env(safe-area-inset-bottom, 0px)); }
 }
 html { scroll-padding-top: calc(var(--mh-h) + var(--space-4)); }
 body { padding-block-end: var(--dock-h); }
@@ -31,7 +32,7 @@ body { padding-block-end: var(--dock-h); }
 .mh .mh__bar, .mh[data-scrolled] .mh__bar { height: var(--bar-h-compact); transition: none; }
 .mh .mh__mark img, .mh[data-scrolled] .mh__mark img { width: 92px; transition: none; }
 @media (max-width: 1023px) {
-  .mh__nav { inset: var(--bar-h-compact) 0 var(--dock-h) 0; overflow-y: auto; }
+  .mh__nav { inset: calc(var(--bar-h-compact) + var(--terms-h)) 0 var(--dock-h) 0; overflow-y: auto; }
 }
 
 /* the four routes: the inventory first and filled, the rest as the bar's
@@ -337,4 +338,39 @@ html main > section.retailer { background: var(--heritage-white); --rule: rgba(4
   html main > section.split .split__copy { padding-block: var(--space-7); }
   html main > section.scene .scene__body { padding-block-end: var(--space-7); }
   .sell__copy.page { margin-block-end: var(--space-7); }
+}
+
+/* --- The site terms above the fold on a phone (the client, 2026-10-05) ----
+   On a wide screen they stand under the retailer's number in the bar; below
+   1024 the bar has no room at the legal size, so they are a line of their
+   own under it, at the right, on the bar's ground — part of the header, in
+   the first screen of every page. */
+.mh__terms-line { display: none; }
+@media (max-width: 1023px) {
+  .mh__terms-line {
+    display: flex; justify-content: flex-end; align-items: center;
+    height: var(--terms-h); padding-inline: var(--gutter);
+    border-top: 1px solid var(--rule);
+  }
+  .mh__terms-line a {
+    font-size: var(--text-xs); line-height: 1.2;
+    text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px;
+    color: var(--ink);
+  }
+  .mh__nav-terms { display: none; }   /* said in the line; the menu does not repeat it */
+}
+/* five models: the range in five columns on a wide screen */
+@media (min-width: 1024px) {
+  .range__row { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+}
+/* the model's kind above the hairline, over its name (Alex, 2026-10-05):
+   the photograph, the kind in the small register, then the hairline and the
+   name — the names of all five still on one line beneath */
+.range__item a { grid-template-rows: minmax(0, 1fr) auto auto; }
+.range__kind { margin-block-start: var(--space-4); white-space: nowrap; }
+.range__kind + .range__name { margin-block-start: var(--space-2); }
+/* five columns on a narrow desk: the names a step down, so "Continental GT
+   Convertible" keeps its two reserved lines and every photograph one height */
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .range__name { font-size: var(--text-lead); }
 }
