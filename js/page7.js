@@ -28,7 +28,7 @@
       var nw = img.naturalWidth || 2400, nh = img.naturalHeight || 1617;
       if (!box.width || !box.height) return;
       var H = Math.max(box.width * nh / nw, box.height);      /* drawn height, as object-fit: cover */
-      var air = Math.min(48, Math.max(12, box.height * 0.04));
+      var air = Math.min(96, Math.max(28, box.height * 0.09));   /* a little more sky over the roof (Alex, 2026-10-05) */
       var y = Math.max(box.height - H, air - ROOF * H);          /* never past the photograph's foot */
       img.style.objectPosition = "50% " + Math.min(0, y).toFixed(1) + "px";
     });
