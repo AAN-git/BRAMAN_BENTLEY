@@ -148,24 +148,33 @@ html main > section.hero { height: auto; min-height: 0; overflow: clip; }
 .hero__bar { display: none; }
 
 /* on a phone: direction 6's photograph window, the words under it, the
-   arrows under the words, the deck straight after — only the
-   slide on show takes room, so a short slide leaves no hole beneath it
-   (the client's screenshot of 2026-10-04) */
+   arrows and the deck after them. The slides share one cell, as tall as the
+   tallest, so nothing below moves when a slide changes (Alex, 2026-10-05) */
 @media (max-width: 767px) {
   .hero .hero__slides, .hero .slide { height: auto; min-height: 0; }
   .hero .slide { justify-content: flex-start; }
-  .hero .slide:not(.is-active) { display: none; }
   .hero .slide__field { margin-block-start: 0; }   /* direction 6's phone window and framing, kept (48svh) */
   .hero__lockup, .slide--right .hero__lockup, .slide--centre .hero__lockup, .slide--offer .hero__lockup {
     padding-block: var(--space-5) 0;
   }
-  .hero .box { padding: 0; box-shadow: none; }
-  .hero__ctl {
-    position: static; transform: none;
-    justify-content: flex-start; margin-inline: calc(var(--gutter) - 12px);
-    padding-block: var(--space-3) 0;
-    color: var(--ink);
+  /* the centred slides stay centred on a phone, as on the desk (Alex, 2026-10-05) */
+  .hero .slide--centre .hero__lockup { align-items: center; text-align: center; }
+  .hero .slide--centre .lead { margin-inline: auto; }
+  /* the offer keeps its plate on a phone, as on the desk (Alex, 2026-10-05) */
+  .hero .box {
+    padding: var(--space-5);
+    background: var(--day-plate); box-shadow: none;
+    border: 1px solid var(--rule);
   }
+  /* the arrows and the count on the photograph's foot, at its right, on a
+     plate as the pre-owned arrows are (Alex, 2026-10-05) */
+  .hero__ctl {
+    position: absolute; left: auto; right: var(--gutter);
+    top: calc(48svh - 44px - var(--space-3)); bottom: auto;
+    transform: none; gap: 0;
+    background: var(--plate); color: var(--black);
+  }
+  .hero__ctl .hero__arrow { opacity: 1; }
 }
 
 /* --- 3 · The deck under the hero: the client's sketch ------------------- */
@@ -294,4 +303,14 @@ html main > section.retailer { background: var(--heritage-white); --rule: rgba(4
   .stock__all .btn { width: 100%; }
   /* the car's page and the inventory: the enquiry's send and the way back to the inventory too */
   .enquire__send .btn, .head__aside .btn { flex: 1 1 100%; width: 100%; }
+}
+/* the certified pre-owned car's facts keep their plate on a phone, as on the
+   desk (Alex, 2026-10-05) */
+@media (max-width: 767px) {
+  .preowned .po-plate.box {
+    padding: var(--space-5);
+    background: var(--day-plate);
+    border: 1px solid var(--rule);
+    box-shadow: none;
+  }
 }

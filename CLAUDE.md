@@ -19,6 +19,8 @@ See README.md for the directions, the data and the build.
 - **Under the hero (client's sketch, 2026-10-04):** NEW INVENTORY and
   PRE-OWNED INVENTORY side by side, SPECIAL OFFERS centred beneath; static, the
   same for every slide; no empty space between the slide and these buttons.
+  "Both sites" in the client's note means Bentley **and the Braman
+  Rolls-Royce site**: the whole note applies there too (Alex, 2026-10-05).
 - **Don't touch what already works (Alex, 2026-10-05, said sharply):** change
   only what was asked. Car cards keep direction 6's width and type exactly.
 - **Home "New in stock":** four cars; one row, three in view, centred; arrows
