@@ -68,6 +68,30 @@ for m in re.finditer(r'<li class="card"[^>]*>', inv):
     cards.append((name + (' · with a lease offer' if lease else ''), c))
     if len(cards) == 6: break
 
+# --- the flags on a card's photograph: one real card of each kind --------------
+def first_card(doc, tag, cls, test):
+    n = len(re.findall(r'<' + tag + r' class="' + cls, doc))
+    for i in range(n):
+        c = outer(doc, tag, cls.split()[0] if ' ' not in cls else cls, i)
+        if test(c): return c
+    raise SystemExit('no card for a flag')
+flag_lease   = first_card(inv, 'li', 'card', lambda c: 'card__flag--lease' in c and 'card__flag-cond' not in c)
+flag_rebate  = first_card(inv, 'li', 'card', lambda c: 'card__flag-cond' in c)
+flag_pending = first_card(index, 'li', 'card', lambda c: 'card__flag--pending' in c)
+# Sold has its style but no car carries it: a sold car is never advertised.
+# Only the flag is shown, on a photograph — the "Recently sold" record it
+# belongs to (no price, no calls) is not part of this build.
+media = outer(flag_pending, 'span', 'card__media')
+flag_sold = ('<li class="card" style="max-width:420px"><span class="card__link" style="display:block">'
+             + media.replace('card__flag--pending', 'card__flag--sold').replace('>Sale Pending<', '>Sold<')
+             + '</span></li>')
+FLAGS = [
+    ('Lease', 'card__flag--lease', 'A lease offer on the car: the payment, then its term and the money down, in Bentley\'s word.', flag_lease, 'srp'),
+    ('Lease with a rebate', 'card__flag--lease + card__flag-cond', 'The lease rests on a rebate: the condition line says so, with the credit it needs.', flag_rebate, 'srp'),
+    ('Sale Pending', 'card__flag--pending', 'A deal is in progress; the car stays in stock and keeps its price. Bentley Green.', flag_pending, 'home'),
+    ('Sold — the flag only', 'card__flag--sold', 'For a "Recently sold" record only, kept apart from the listing, with no price and no calls. A sold car never appears in the listing, its count, its filters or the home rail — so no card carries this flag.', flag_sold, 'srp'),
+]
+
 CARD_HOME = [('main', ''), ('section', 'stock is-in'), ('div', 'stock__in'), ('div', 'stock__frame'), ('ul', 'stock__rail stock__four')]
 CARD_SRP  = [('main', 'srp'), ('section', 'srp__list'), ('div', 'page'), ('ul', 'grid')]
 VDP_SIDE  = [('main', 'vdp'), ('section', 'vdp__body'), ('div', 'page vdp__grid'), ('div', 'vdp__side')]
@@ -147,6 +171,7 @@ types = '\n'.join(f'''<div class="ds-type" data-token="--text-{t}">
 
 spaces = '\n'.join(f'<div class="ds-space"><code>--{s}</code><span class="ds-space__bar" style="width:var(--{s})"></span><span class="ds-px-w" data-var="--{s}"></span></div>' for s in SPACE)
 
+flags = '\n'.join(f'<div class="ds-item"><p class="ds-cap">{H.escape(n)} · <code>.{k}</code></p><p class="ds-note" style="font-size:var(--text-sm)">{H.escape(u)}</p>{wrap(CARD_SRP if w == "srp" else CARD_HOME, cc)}</div>' for n, k, u, cc, w in FLAGS)
 cardgrid = '\n'.join(f'<div class="ds-item"><p class="ds-cap">{H.escape(n)}</p>{wrap(CARD_SRP, c)}</div>' for n, c in cards)
 
 sections = '\n'.join(f'''<article class="ds-section" id="ds-{a}">
@@ -213,7 +238,8 @@ page = f'''<!DOCTYPE html>
   .ds-item {{ min-width: 0; }}
   .ds-cards {{ display: grid; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); gap: var(--space-6); align-items: start; }}
   .ds-cards .grid, .ds-cards .stock__rail {{ display: block; margin: 0; padding: 0; transform: none; width: auto; }}
-  .ds-cards .card {{ width: 100%; max-width: 420px; flex: none; }}
+  .ds-cards .card {{ width: 100%; max-width: 420px; flex: none; margin: 0; transform: none; }}
+  .ds-cards main, .ds-cards section, .ds-cards .page, .ds-cards .stock__in, .ds-cards .stock__frame,
   .ds-stage main, .ds-stage section, .ds-stage .page {{ min-height: 0; height: auto; padding: 0; margin: 0; width: auto; max-width: none; position: static; }}
   .ds-stage .mh {{ position: relative !important; top: auto; transform: none; }}
   .ds-stage--header {{ padding: 0; }}
@@ -334,6 +360,9 @@ page = f'''<!DOCTYPE html>
   <section class="ds-part" id="cards">
     <h2 class="ds-h2">Vehicle cards</h2>
     <p class="ds-note">One card everywhere: photograph, name, facts, and the price plate — <b>Final price</b> leads; MSRP and the two dealer charges sit beneath as the working. A lease offer carries its term and the money down (Bentley's word: "down").</p>
+    <h3 class="ds-h3">Flags on the photograph</h3>
+    <p class="ds-note">One flag at a time, at the photograph's top left. Lease flags are Heritage White with black type; Sale Pending is Bentley Green, Sold Dark Grey, both with white type. On the car page the offer carries its own flag, <b>Lease special</b> (see Car page).</p>
+    <div class="ds-cards">{flags}</div>
     <h3 class="ds-h3">On the home page rail</h3>
     <div class="ds-stage ds-cards">{wrap(CARD_HOME, homecard)}</div>
     <h3 class="ds-h3">In the listing — every kind in stock</h3>
