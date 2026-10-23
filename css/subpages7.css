@@ -226,3 +226,39 @@ html main.sub > .sub__head--pic { padding: var(--mh-h) 0 0; }
 .sub .enquire__lede .sub__rows { margin-block-start: var(--space-7); }
 .sub .enquire__lede .body + .body { margin-block-start: var(--space-3); }
 .sub .sub__head--pic + .vdp__enquire { padding-block-start: var(--space-9); }
+
+/* --- the portal: Model Range tiles, the first twice the width ------------- */
+.sub__portal { padding-block: var(--space-9) 0; }
+.sub__portal .range__row.sub__tiles {
+  list-style: none; margin: 0; padding: 0;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  height: clamp(420px, 58svh, 600px);
+}
+.sub__tiles .range__item a { grid-template-rows: minmax(0, 1fr) auto auto auto; color: var(--ink); }
+.sub__tiles .range__kind { white-space: normal; }
+.sub__tiles .sub__tile--lead .range__name { font-size: var(--text-h2); line-height: var(--leading-heading); }
+.sub__tiles .sub__tile--lead .btn { justify-self: start; margin-block-start: var(--space-5); }
+.sub .sub__portal + .vdp__enquire { padding-block-start: var(--space-9); }
+@media (max-width: 1023px) {
+  .sub__portal .range__row.sub__tiles { grid-template-columns: repeat(3, minmax(0, 1fr)); grid-template-rows: auto auto; height: auto; }
+  .sub__tiles .sub__tile--lead { grid-column: 1 / -1; }
+  .sub__tiles .range__item img { height: auto; aspect-ratio: 4 / 3; }
+  .sub__tiles .sub__tile--lead img { aspect-ratio: 16 / 9; }
+}
+@media (max-width: 767px) {
+  .sub__portal .range__row.sub__tiles { display: grid; grid-template-columns: 1fr; overflow: visible; padding-inline: 0; gap: var(--space-6); }
+  .sub__portal .page { padding-inline: var(--gutter); }
+  .sub__tiles .range__item { flex: none; }
+  .sub__tiles .sub__tile--lead .btn { width: 100%; }
+}
+/* every tile's photograph the same height, so the row reads as one line of
+   choices; the words hang under it */
+@media (min-width: 1024px) {
+  .sub__portal .range__row.sub__tiles { height: auto; align-items: start; }
+  .sub__tiles .range__item a { grid-template-rows: auto; height: auto; }
+  .sub__tiles .range__item img { height: clamp(300px, 42svh, 440px); }
+}
+.sub__tiles .sub__tile--lead .range__name { min-height: 0; }
+.sub__tiles .sub__tile--lead .btn { margin-block-start: var(--space-5); }
+/* the hairlines in one line across the row, however the kind wraps */
+@media (min-width: 1024px) and (max-width: 1279px) { .sub__tiles .range__kind { min-height: 2.8em; } }
