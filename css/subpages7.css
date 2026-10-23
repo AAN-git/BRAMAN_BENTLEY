@@ -1,0 +1,85 @@
+/* Bentley Palm Beach — direction 7: the inner pages.
+   An inner page is built from the parts the site already has — the listing's
+   head (SRP), the car page's enquiry (VDP), the home page's chapters — so this
+   sheet holds only what those parts lack. Loads after static7.css and
+   vehicle7.css. */
+
+/* The client's forms ask two things the car page's enquiry does not: a best
+   time to call, and consent. Drawn as the Bentley guidelines draw choices
+   (Digital Colour Use, the form example): a circle, open or filled, in the
+   field's own type; nothing else is new. */
+.sub .enquire__form .sub__choice { grid-column: span 2; }
+.sub__choice { margin: 0; padding: 0; border: 0; display: flex; flex-wrap: wrap; align-items: flex-end; gap: var(--space-3) var(--space-6); }
+.sub__choice legend { width: 100%; padding: 0; margin-block-end: var(--space-3); }
+.sub__choice label, .sub__consent {
+  display: inline-flex; align-items: center; gap: var(--space-3);
+  font-size: var(--text-body); font-weight: 300; line-height: 1.4; color: var(--ink);
+  cursor: pointer;
+}
+.sub__consent { align-items: flex-start; font-size: var(--text-body); color: var(--ink); }
+.sub__choice input, .sub__consent input {
+  width: 18px; height: 18px; margin: 0; flex: none;
+  accent-color: var(--bentley-green);
+}
+.sub__consent input { margin-block-start: 2px; }
+
+@media (max-width: 1023px) {
+  .sub .enquire__form .sub__choice { grid-column: 1 / -1; }
+}
+
+/* the listing's class on <main> clears its chapters' grounds; the retailer
+   chapter keeps its own, Heritage White, as on the home page */
+html main.sub > section.retailer { background: var(--heritage-white); --rule: rgba(4, 4, 4, 0.16); }
+
+/* reading sizes for the retailer's clientele: on these pages the small print
+   is body size, and nothing on them is clipped */
+.sub .enquire__fine { font-size: var(--text-body); color: var(--ink-2); }
+html main.sub > section { height: auto; min-height: 0; overflow: visible; }
+html main.sub > section.retailer { padding-block: var(--space-9); }
+
+/* the location on an inner page: the home page's retailer chapter, reduced
+   to one photograph — the showroom whole, its height setting the row — and
+   the copy beside it centred on it */
+.sub__visit .page { display: block; height: auto; }
+.sub .retailer__grid { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); align-items: center; height: auto; }
+.sub .retailer__media { align-self: auto; }
+.sub .retailer__showroom { position: static; width: 100%; transform: none; }
+.sub .retailer__copy .body { margin-block-start: var(--space-4); }
+.sub .retailer__copy .actions { margin-block-start: var(--space-6); }
+
+/* the hours: a department to a column, the record's hairline rows, the
+   times in tabular figures so they align down the column */
+.sub__hours {
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-7) clamp(2rem, 4vw, 4rem);
+  margin-block-start: var(--space-9);
+}
+.sub__dept-name { margin: 0; font-size: var(--text-h3); font-weight: 300; line-height: var(--leading-heading); }
+.sub__dept-tel {
+  display: inline-block; margin-block-start: var(--space-2);
+  font-size: var(--text-lead); letter-spacing: 0.04em; font-variant-numeric: tabular-nums;
+  border-bottom: 1px solid var(--rule-strong);
+}
+.sub__dept-tel:hover { border-color: var(--ink); }
+.sub__dept .record { margin-block-start: var(--space-5); }
+.sub__dept .record dd { font-size: var(--text-body); font-variant-numeric: tabular-nums; }
+
+@media (max-width: 1023px) {
+  .sub .retailer__grid { grid-template-columns: 1fr; row-gap: var(--space-6); }
+  .sub__hours { grid-template-columns: 1fr; margin-block-start: var(--space-8); }
+}
+/* hours stay a timetable at every width: day and time on one row */
+html .sub__dept .record { grid-template-columns: minmax(6rem, 9rem) 1fr; }
+@media (max-width: 767px) {
+  html .sub__dept .record { grid-template-columns: 7.5rem 1fr; }
+  .sub__hours { gap: var(--space-8); }
+}
+/* air between the form's plate and the location chapter */
+.sub .vdp__enquire { padding-block-end: var(--space-9); }
+@media (max-width: 767px) { .sub .vdp__enquire { padding-block-end: var(--space-8); } }
+/* day and time on one baseline, one hairline under both, at every width */
+html .sub__dept .record { align-items: stretch; }
+html .sub__dept .record dt, html .sub__dept .record dd {
+  display: flex; flex-direction: row; align-items: center;
+  padding-block: var(--space-3); border-bottom: 1px solid var(--rule);
+}
