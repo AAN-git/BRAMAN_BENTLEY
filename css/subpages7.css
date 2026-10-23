@@ -339,3 +339,17 @@ html main.sub > .sub__head--pic { padding: var(--mh-h) 0 0; }
 .sub__band-pic--entrance img { transform: scale(1.18); transform-origin: 34% 62%; }
 .sub__tiles .range__item:nth-child(2) img { object-position: 45% 50%; }   /* the GTs whole in the narrow frame */
 @media (min-width: 1024px) and (max-width: 1279px) { .sub__tiles .range__name, .sub__tiles .sub__tile--lead .range__name { font-size: var(--text-body); } }
+/* the reviews in frames: the site's white plate (as the form's), equal
+   heights, the author ruled off at the foot of each */
+.sub__review-list { gap: var(--space-5); align-items: stretch; }
+.sub__review-list .sub__review {
+  padding: clamp(1.75rem, 2.6vw, 2.5rem);
+  background: var(--day-plate);
+  border: 1px solid var(--rule);
+}
+.sub__review-list .label {
+  margin-block-start: auto;
+  padding-block-start: var(--space-5);
+  border-top: 1px solid var(--rule);
+}
+.sub__review-list blockquote { margin-block-end: var(--space-6); }
