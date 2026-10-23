@@ -136,12 +136,13 @@ html main.sub > .srp__head { padding-block-start: calc(var(--mh-h) + var(--space
 .sub__map::after { content: ""; position: absolute; inset: 0; background: var(--heritage-white); mix-blend-mode: multiply; pointer-events: none; }
 @media (max-width: 1023px) { .sub__map { aspect-ratio: 16 / 10; } }
 @media (max-width: 767px) { .sub__map { aspect-ratio: 4 / 5; margin-block-start: var(--space-8); } }
-/* the address centred on the photograph by what the eye measures: the same
-   air from the title's capitals to the photograph's top edge as from the calls
-   to its bottom edge (Alex) */
+/* the address meets the photograph's edges: its title's capitals on the
+   photograph's top edge, the calls on its bottom edge (Alex, 2026-10-23) */
 @media (min-width: 1024px) {
-  .sub .retailer__copy { align-self: center; }
-  .sub .retailer__copy .h2 { margin-block-start: -0.2em; }   /* the line box above the capitals taken out */
+  .sub .retailer__grid { align-items: stretch; }
+  .sub .retailer__copy { align-self: stretch; display: flex; flex-direction: column; }
+  .sub .retailer__copy .h2 { margin-block-start: -0.2em; }   /* the capitals on the edge, not the line box */
+  .sub .retailer__copy .actions { margin-block-start: auto; }
 }
 
 /* the hours stand apart from the location: their own chapter on the page's
