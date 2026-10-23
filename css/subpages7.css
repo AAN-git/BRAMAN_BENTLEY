@@ -284,3 +284,13 @@ html main.sub > .sub__head--pic { padding: var(--mh-h) 0 0; }
 .sub__tiles .range__item a:hover .range__name { border-color: var(--ink); }
 /* one name size across the row: the application leads by its width and its button */
 .sub__tiles .sub__tile--lead .range__name { font-size: var(--text-lead); line-height: 1.3; }
+
+/* the location beside the form: the record's rows, two quiet line buttons */
+.sub__loc { margin-block-start: var(--space-7); padding-block-start: var(--space-5); border-top: 1px solid var(--rule); }
+.sub__loc-h { margin: 0; font-size: var(--text-lead); font-weight: 400; }
+.sub__loc address { margin-block-start: var(--space-3); font-style: normal; }
+.sub__loc .record { margin-block-start: var(--space-5); }
+.sub__loc .actions { margin-block-start: var(--space-5); display: flex; flex-wrap: wrap; gap: var(--space-3); }
+.sub__loc button.btn { font: inherit; font-size: var(--text-button); letter-spacing: var(--track-label); text-transform: uppercase; cursor: pointer; }
+/* a <button> takes the site's face, not the browser's */
+.sub button.btn { font-family: var(--font); font-weight: 400; font-size: var(--text-button); letter-spacing: var(--track-label); }

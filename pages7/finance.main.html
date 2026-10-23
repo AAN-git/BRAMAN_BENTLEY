@@ -48,14 +48,24 @@
     </div>
   </section>
 
-  <!-- the department in one chapter: its words, the one call and the other
-       routes at the left; the form alone on its plate at the right -->
+  <!-- the form and the location (the demo page's own content): the location
+       at the left, the form alone on its plate at the right. Send to phone
+       opens the theme's own modal (dev). -->
   <section class="vdp__enquire" aria-labelledby="enq-title">
     <div class="page">
       <div class="enquire">
         <div class="enquire__lede">
-          <h2 class="h2 h2--small" id="enq-title">Speak with the finance team</h2>
-          <p class="body">Our finance department arranges financing and leasing for a new or certified pre-owned Bentley. Call <a href="tel:+15619269111">561 926 9111</a>, or leave your details and the team will be in touch.</p>
+          <h2 class="h2 h2--small" id="enq-title">Contact Information</h2>
+          <p class="body">Fields marked with (*) are required.</p>
+          <div class="sub__loc">
+            <h3 class="sub__loc-h">Our Location</h3>
+            <address class="body">Braman Bentley Palm Beach<br>2801 Okeechobee Blvd<br>West Palm Beach, FL 33409</address>
+            <dl class="record"><dt>Sales</dt><dd><a href="tel:+15619269111">561 926 9111</a></dd></dl>
+            <div class="actions">
+              <a class="btn btn--line" href="https://www.bramanbentleypalmbeach.com/directions/">Get directions</a>
+              <button class="btn btn--line" type="button" data-send-to-phone aria-haspopup="dialog">Send to phone</button>
+            </div>
+          </div>
         </div>
         <form class="enquire__form" onsubmit="return false" aria-labelledby="enq-title">
           <label class="field"><span class="field__label">First name*</span><input class="field__input" type="text" name="fname" autocomplete="given-name" required></label>
