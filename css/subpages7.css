@@ -4,6 +4,18 @@
    sheet holds only what those parts lack. Loads after static7.css and
    vehicle7.css. */
 
+/* The page title — one head on every inner page (Alex, 2026-10-23), as the
+   dev site's Service Department sets it: the retailer's name as a tracked
+   label, then the page's name in capitals, Bentley Light. */
+.sub .sub__label { margin: 0 0 var(--space-3); color: var(--ink-2); }
+.sub .sub__title {
+  margin: 0;
+  font-size: clamp(2rem, 2.2vw + 1.2rem, 3.125rem);   /* 50px on a desktop */
+  font-weight: 300; line-height: 1.08; letter-spacing: -0.015em;
+  text-transform: uppercase;
+}
+.sub .srp__head .body { margin-block-start: var(--space-4); max-width: 46rem; }
+
 /* The client's forms ask two things the car page's enquiry does not: a best
    time to call, and consent. Drawn as the Bentley guidelines draw choices
    (Digital Colour Use, the form example): a circle, open or filled, in the
@@ -83,3 +95,5 @@ html .sub__dept .record dt, html .sub__dept .record dd {
   display: flex; flex-direction: row; align-items: center;
   padding-block: var(--space-3); border-bottom: 1px solid var(--rule);
 }
+/* inside the page, a section's heading stays below the page title */
+.sub .enquire__lede .h2--small { font-size: var(--text-h3); line-height: var(--leading-heading); }
