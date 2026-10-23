@@ -153,3 +153,37 @@ html main.sub > .srp__head { padding-block-start: calc(var(--mh-h) + var(--space
 @media (max-width: 767px) { .sub__hours-ch { padding-block: var(--space-8); } }
 /* the departments a step below the chapter's heading */
 .sub__hours-ch .sub__dept-name { font-size: var(--text-lead); font-weight: 400; }
+
+/* --- the page's picture: a low band under the title, never a hero ------- */
+.sub__band-pic { position: relative; aspect-ratio: 21 / 7; overflow: hidden; background: var(--day-plate); }
+.sub__band-pic img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 45%; }
+@media (max-width: 767px) { .sub__band-pic { aspect-ratio: 16 / 9; } }
+
+/* --- the page's main calls: white plates, as the cards are, four across --- */
+.sub__routes-ch { padding-block: var(--space-7) 0; }
+.sub__routes { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--space-5); }
+.sub__route {
+  display: flex; flex-direction: column; gap: var(--space-3);
+  padding: clamp(1.5rem, 2.2vw, 2rem);
+  background: var(--day-plate); border: 1px solid var(--rule);
+}
+.sub__route-name { margin: 0; font-size: var(--text-h3); font-weight: 300; line-height: var(--leading-heading); }
+.sub__route .body { margin: 0; color: var(--ink-2); }
+.sub__route .btn, .sub__route .link { margin-block-start: auto; align-self: flex-start; }
+.sub__route .body { margin-block-end: var(--space-4); }
+@media (max-width: 1023px) { .sub__routes { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 767px) { .sub__routes { grid-template-columns: 1fr; } .sub__route .btn { width: 100%; } }
+
+/* the form chapter after the calls keeps the page's rhythm */
+.sub .sub__routes-ch + .vdp__enquire { padding-block-start: var(--space-9); }
+
+/* the title on the picture: its lower left, inside the page column; the
+   photograph shaded only under the words, as the home page's scenes are */
+.sub__band-pic::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(ellipse 60% 85% at 0% 100%, rgba(4,4,4,0.72) 0%, rgba(4,4,4,0.42) 50%, rgba(4,4,4,0) 100%);
+}
+.sub__band-words { position: absolute; left: 0; bottom: 0; z-index: 1; padding: clamp(1.5rem, 3vw, 3rem); }
+.sub__band-words .sub__label { color: rgba(255, 255, 255, 0.88); }
+.sub__band-words .sub__title { color: var(--white); }
+@media (max-width: 767px) { .sub__band-pic { aspect-ratio: 4 / 3; } }

@@ -13,6 +13,8 @@ def stamp(p): return hashlib.md5(open(ROOT + p, 'rb').read()).hexdigest()[:10]
 PAGES = {
     'contact': ('Contact Us | Bentley Palm Beach',
                 'Contact Bentley Palm Beach, 2801 Okeechobee Blvd, West Palm Beach: sales 561-926-9111, service 561-926-9110, parts 561-926-9112, opening hours and directions.'),
+    'finance': ('Finance Department | Bentley Palm Beach',
+                'Bentley Palm Beach finance department, West Palm Beach: apply for financing, value your trade, estimate a payment, or speak with the finance team.'),
 }
 
 home = read('index7.html')
