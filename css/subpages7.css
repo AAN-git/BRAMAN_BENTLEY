@@ -97,3 +97,5 @@ html .sub__dept .record dt, html .sub__dept .record dd {
 }
 /* inside the page, a section's heading stays below the page title */
 .sub .enquire__lede .h2--small { font-size: var(--text-h3); line-height: var(--leading-heading); }
+.sub .enquire__lede .body + .body { margin-block-start: var(--space-3); color: var(--ink-2); }
+.sub a[href^="tel:"] { white-space: nowrap; }
