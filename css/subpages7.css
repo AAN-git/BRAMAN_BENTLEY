@@ -278,3 +278,10 @@ html main.sub > .sub__head--pic { padding: var(--mh-h) 0 0; }
 @media (max-width: 1023px) {
   .sub__tiles .range__name, .sub__tiles .sub__tile--lead .range__name { white-space: normal; height: auto; }
 }
+
+/* calmer (Alex: "очень кусочно"): a photograph, a hairline, a name — the tile
+   is the link, as on the Model Range; only the application carries a button */
+.sub__tiles .range__name { margin-block-start: var(--space-4); padding-block-start: var(--space-3); border-top: 1px solid var(--rule); height: auto; }
+.sub__tiles .range__item a:hover .range__name { border-color: var(--ink); }
+/* one name size across the row: the application leads by its width and its button */
+.sub__tiles .sub__tile--lead .range__name { font-size: var(--text-lead); line-height: 1.3; }
