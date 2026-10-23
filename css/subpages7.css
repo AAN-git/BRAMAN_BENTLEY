@@ -337,3 +337,5 @@ html main.sub > .sub__head--pic { padding: var(--mh-h) 0 0; }
 /* the entrance: a car's edge stands at the photograph's right margin — framed
    out, never cut through (the guidelines: the whole car or no car) */
 .sub__band-pic--entrance img { transform: scale(1.18); transform-origin: 34% 62%; }
+.sub__tiles .range__item:nth-child(2) img { object-position: 45% 50%; }   /* the GTs whole in the narrow frame */
+@media (min-width: 1024px) and (max-width: 1279px) { .sub__tiles .range__name, .sub__tiles .sub__tile--lead .range__name { font-size: var(--text-body); } }
