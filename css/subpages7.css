@@ -294,3 +294,18 @@ html main.sub > .sub__head--pic { padding: var(--mh-h) 0 0; }
 .sub__loc button.btn { font: inherit; font-size: var(--text-button); letter-spacing: var(--track-label); text-transform: uppercase; cursor: pointer; }
 /* a <button> takes the site's face, not the browser's */
 .sub button.btn { font-family: var(--font); font-weight: 400; font-size: var(--text-button); letter-spacing: var(--track-label); }
+
+/* --- reviews: a statement in Bentley's manner — light type, a measure, air -- */
+.sub__reviews { padding-block: var(--space-9) var(--space-10); border-top: 1px solid var(--rule); }
+.sub__reviews .label { margin: 0; color: var(--ink-2); }
+.sub__review { margin: var(--space-6) 0 0; max-width: 52rem; }
+.sub__review blockquote { margin: 0; }
+.sub__review blockquote p {
+  margin: 0;
+  font-size: var(--text-h3); font-weight: 300; line-height: 1.4; letter-spacing: -0.005em;
+  color: var(--ink);
+}
+.sub__review figcaption { margin-block-start: var(--space-5); }
+.sub__reviews .actions { margin-block-start: var(--space-7); }
+@media (max-width: 767px) { .sub__reviews { padding-block: var(--space-8) var(--space-9); } }
+.sub__reviews .sub__review figcaption.label { margin-block-start: var(--space-5); }
