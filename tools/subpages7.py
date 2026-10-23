@@ -37,5 +37,7 @@ for name, (title, desc) in PAGES.items():
     h = re.sub(r'<title>.*?</title>', f'<title>{title}</title>', head, count=1, flags=re.S)
     h = re.sub(r'<meta name="description" content="[^"]*">', f'<meta name="description" content="{desc}">', h, count=1)
     out = h + read(f'pages7/{name}.main.html').rstrip() + '\n' + foot
+    # the page's own routes in the bar and the menu say where the visitor is
+    out = re.sub(rf'(<a href="{name}7\.html")(>)', r'\1 aria-current="page"\2', out)
     open(ROOT + f'{name}7.html', 'w', encoding='utf-8', newline='\n').write(out)
     print(f'{name}7.html')

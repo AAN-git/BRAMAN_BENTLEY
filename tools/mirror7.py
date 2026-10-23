@@ -100,8 +100,16 @@ def terms_line(s):
     line = f'\n  <div class="mh__terms-line"><a href="{TERMS}">Site Terms &amp; Conditions</a></div>'
     return s.replace('\n  <nav class="mh__deck"', line + '\n  <nav class="mh__deck"', 1)
 
+# Direction 7's own inner pages (tools/subpages7.py, 2026-10-23): every
+# route to the retailer's contact and finance pages lands on ours instead
+INNER = {CONTACT: 'contact7.html', FINANCE: 'finance7.html'}
+def inner(s, pre):
+    for url, f in INNER.items():
+        s = s.replace(f'href="{url}"', f'href="{pre}{f}"')
+    return s
+
 def page(s, pre, here=''):
-    return stamp7(terms_line(model_range(deck(calm(seven(s)), pre, here))))
+    return stamp7(inner(terms_line(model_range(deck(calm(seven(s)), pre, here))), pre))
 
 # 1. The SRP
 write('inventory7.html', page(read('inventory6.html'), '', 'inventory'))
