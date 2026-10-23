@@ -159,23 +159,8 @@ html main.sub > .srp__head { padding-block-start: calc(var(--mh-h) + var(--space
 .sub__band-pic img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 45%; }
 @media (max-width: 767px) { .sub__band-pic { aspect-ratio: 16 / 9; } }
 
-/* --- the page's main calls: white plates, as the cards are, four across --- */
-.sub__routes-ch { padding-block: var(--space-7) 0; }
-.sub__routes { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--space-5); }
-.sub__route {
-  display: flex; flex-direction: column; gap: var(--space-3);
-  padding: clamp(1.5rem, 2.2vw, 2rem);
-  background: var(--day-plate); border: 1px solid var(--rule);
-}
-.sub__route-name { margin: 0; font-size: var(--text-h3); font-weight: 300; line-height: var(--leading-heading); }
-.sub__route .body { margin: 0; color: var(--ink-2); }
-.sub__route .btn, .sub__route .link { margin-block-start: auto; align-self: flex-start; }
-.sub__route .body { margin-block-end: var(--space-4); }
-@media (max-width: 1023px) { .sub__routes { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (max-width: 767px) { .sub__routes { grid-template-columns: 1fr; } .sub__route .btn { width: 100%; } }
-
 /* the form chapter after the calls keeps the page's rhythm */
-.sub .sub__routes-ch + .vdp__enquire { padding-block-start: var(--space-9); }
+
 
 /* the title on the picture: its lower left, inside the page column; the
    photograph shaded only under the words, as the home page's scenes are */
@@ -187,3 +172,51 @@ html main.sub > .srp__head { padding-block-start: calc(var(--mh-h) + var(--space
 .sub__band-words .sub__label { color: rgba(255, 255, 255, 0.88); }
 .sub__band-words .sub__title { color: var(--white); }
 @media (max-width: 767px) { .sub__band-pic { aspect-ratio: 4 / 3; } }
+
+/* the picture band runs the full width of the screen, straight under the bar;
+   the title stays on the page column's lower left (Alex: "hero на full screen width") */
+html main.sub > .sub__head--pic { padding: var(--mh-h) 0 0; }
+.sub__head--pic .sub__band-pic { aspect-ratio: auto; height: clamp(320px, 42vh, 460px); }
+.sub__head--pic .sub__band-words {
+  left: 0; right: 0; bottom: 0; margin-inline: auto;
+  padding-block: 0 clamp(2rem, 4vw, 3.5rem);
+}
+.sub__head--pic .sub__band-pic::after {
+  background: linear-gradient(90deg, rgba(4,4,4,0.62) 0%, rgba(4,4,4,0.32) 38%, rgba(4,4,4,0) 62%),
+              linear-gradient(0deg, rgba(4,4,4,0.38) 0%, rgba(4,4,4,0) 55%);
+}
+@media (max-width: 767px) {
+  .sub__head--pic .sub__band-pic { height: clamp(260px, 46vh, 360px); }
+}
+
+/* the hero band's photograph: the coupé whole, mid-frame; the words on the road */
+.sub__head--pic .sub__band-pic img { object-position: 50% 58%; }
+
+/* the department split on an inner page: the home page's split, held to a
+   page's height rather than a screen's */
+.sub__split { margin-block-start: var(--space-9); }
+.sub__split .split__pic { height: clamp(420px, 62vh, 640px); }
+.sub__split .split__copy { padding-block: var(--space-6); }
+.sub__split .h2 { font-size: calc(var(--text-display) * 0.8); }
+.sub__split .body { margin-block-start: var(--space-4); }
+.sub__split .actions { margin-block-start: var(--space-6); }
+/* the other routes: ruled rows, as the record's */
+.sub__rows { list-style: none; margin: var(--space-7) 0 0; padding: 0; border-top: 1px solid var(--rule); }
+.sub__rows li { border-bottom: 1px solid var(--rule); }
+.sub__rows .link { display: flex; justify-content: space-between; align-items: center; padding-block: var(--space-4); }
+@media (max-width: 767px) {
+  .sub__split { margin-block-start: var(--space-8); }
+  .sub__split .split__pic { height: auto; aspect-ratio: 4 / 3; }
+}
+.sub .sub__split + .vdp__enquire { padding-block-start: var(--space-9); }
+@media (max-width: 767px) { .sub__head--pic .sub__band-pic img { object-position: 39% 46%; } .sub__head--pic .sub__band-pic { height: 300px; } }   /* the coupé whole on a phone */
+/* on a phone the picture is a band above the words, as everywhere on the
+   site's phone pages: the title never stands on the car */
+@media (max-width: 767px) {
+  .sub__head--pic .sub__band-pic { height: auto; aspect-ratio: auto; overflow: visible; background: none; }
+  .sub__head--pic .sub__band-pic img { height: auto; aspect-ratio: 16 / 9; object-position: 42% 50%; }
+  .sub__head--pic .sub__band-pic::after { content: none; }
+  .sub__head--pic .sub__band-words { position: static; padding-block: var(--space-6) 0; }
+  .sub__head--pic .sub__band-words .sub__label { color: var(--ink-2); }
+  .sub__head--pic .sub__band-words .sub__title { color: var(--ink); }
+}
