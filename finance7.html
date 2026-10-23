@@ -15,7 +15,7 @@
 <link rel="stylesheet" href="css/vehicle7.css?v=d890d4b68f">
 <link rel="stylesheet" href="css/day7.css?v=b15555fce4">
 <link rel="stylesheet" href="css/static7.css?v=f4dcee270a">
-<link rel="stylesheet" href="css/subpages7.css?v=ca55396d24">
+<link rel="stylesheet" href="css/subpages7.css?v=c17a52c866">
 <script src="js/page7.js?v=33e613b617" defer></script>
 <script>
   /* Direction 7 keeps direction 6's look: the look is the link's, ?look=1..4; the client chose 2 (css/day7.css) */
@@ -173,27 +173,40 @@
   </section>
 
   <!-- reviews: Google reviews of Bentley Palm Beach (Google Maps, read
-       2026-10-23), verbatim; a long review is cut at a sentence and marked … -->
+       2026-10-23), verbatim; a long review is cut at a sentence and marked …;
+       a row of plates turned by the home rail's arrows (js/sub7.js) -->
   <section class="sub__reviews" aria-labelledby="rev-h">
     <div class="page">
-      <div class="sub__reviews-head">
-        <h2 class="label" id="rev-h">Reviews</h2>
+      <div class="head sub__reviews-head">
+        <h2 class="h2 h2--small" id="rev-h">Reviews</h2>
         <p class="sub__rating"><span class="sub__rating-n">4.4</span> on Google</p>
       </div>
-      <ul class="sub__review-list">
-        <li class="sub__review">
-          <blockquote><p>I worked with Nick Scheppa on a recent purchase and he was a terrific salesperson I would highly recommend! He worked the deal diligently and honestly, helping with all manner of questions, while remaining professional and courteous throughout the entire process.…</p></blockquote>
-          <p class="label">Raphael Ross · 5 stars</p>
-        </li>
-        <li class="sub__review">
-          <blockquote><p>I will have to say this was the absolute best experience that I have ever had purchasing a vehicle - I was blown away! From the moment I walked through the door Ishmail was warm and welcoming.…</p></blockquote>
-          <p class="label">Doug Levene · 5 stars</p>
-        </li>
-        <li class="sub__review">
-          <blockquote><p>What has impressed me even more is that his level of service did not end once the sale was completed. Even after I took delivery of the vehicle, he has continued to answer my calls, texts, and questions with the same responsiveness and professionalism.…</p></blockquote>
-          <p class="label">Joseph Akilov · 5 stars</p>
-        </li>
-      </ul>
+      <div class="stock__frame sub__reviews-frame">
+        <button class="stock__arrow stock__arrow--prev" type="button" data-dir="-1" aria-label="Previous reviews"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10.5 2.5 5 8l5.5 5.5" stroke="currentColor" stroke-width="1.25"/></svg></button>
+        <ul class="sub__review-list" tabindex="0" aria-label="Google reviews; use the arrows or scroll sideways">
+          <li class="sub__review">
+            <blockquote><p>I worked with Nick Scheppa on a recent purchase and he was a terrific salesperson I would highly recommend! He worked the deal diligently and honestly, helping with all manner of questions, while remaining professional and courteous throughout the entire process.…</p></blockquote>
+            <p class="label">Raphael Ross · 5 stars</p>
+          </li>
+          <li class="sub__review">
+            <blockquote><p>I will have to say this was the absolute best experience that I have ever had purchasing a vehicle - I was blown away! From the moment I walked through the door Ishmail was warm and welcoming.…</p></blockquote>
+            <p class="label">Doug Levene · 5 stars</p>
+          </li>
+          <li class="sub__review">
+            <blockquote><p>What has impressed me even more is that his level of service did not end once the sale was completed. Even after I took delivery of the vehicle, he has continued to answer my calls, texts, and questions with the same responsiveness and professionalism.…</p></blockquote>
+            <p class="label">Joseph Akilov · 5 stars</p>
+          </li>
+          <li class="sub__review">
+            <blockquote><p>Arturo and I had an exceptional experience working with our Bentley sales specialist Nick Scheppa. From start to finish, he was incredibly attentive, patient, and truly invested in helping us find the perfect car.…</p></blockquote>
+            <p class="label">Suzanne Shneider · 5 stars</p>
+          </li>
+          <li class="sub__review">
+            <blockquote><p>Nick Scheppa was my client services specialist and from my inquiry about a used Bentley to the purchase process he was exceptional.…</p></blockquote>
+            <p class="label">Lenny Binowski · 5 stars</p>
+          </li>
+        </ul>
+        <button class="stock__arrow stock__arrow--next" type="button" data-dir="1" aria-label="Next reviews"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M5.5 2.5 11 8l-5.5 5.5" stroke="currentColor" stroke-width="1.25"/></svg></button>
+      </div>
       <div class="actions"><a class="btn btn--line" href="https://www.google.com/maps/place/Bentley+Palm+Beach/@26.7073669,-80.096444,17z/data=!4m8!3m7!1s0x88d8d6204120a6cd:0x98fdfe1da146cb0a!8m2!3d26.7073669!4d-80.096444!9m1!1b1">Read all reviews on Google</a></div>
     </div>
   </section>
@@ -279,5 +292,6 @@
 </a>
 
 <script src="js/index7.js?v=8313e83fa5" defer></script>
+<script src="js/sub7.js?v=eb1d17d99d" defer></script>
 </body>
 </html>

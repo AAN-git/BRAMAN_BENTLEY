@@ -353,3 +353,23 @@ html main.sub > .sub__head--pic { padding: var(--mh-h) 0 0; }
   border-top: 1px solid var(--rule);
 }
 .sub__review-list blockquote { margin-block-end: var(--space-6); }
+
+/* reviews (Alex): the heading at a heading's size, the words at body size,
+   the plates a row turned by the home rail's arrows */
+.sub__reviews-head .h2--small { margin: 0; font-size: var(--text-h3); line-height: var(--leading-heading); }
+.sub__reviews-frame { position: relative; margin-block-start: var(--space-6); }
+.sub__reviews-frame .sub__review-list {
+  margin: 0; display: grid; grid-auto-flow: column;
+  grid-auto-columns: calc((100% - 2 * var(--space-5)) / 3);
+  grid-template-columns: none;
+  overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+.sub__reviews-frame .sub__review-list::-webkit-scrollbar { display: none; }
+.sub__reviews-frame .sub__review { scroll-snap-align: start; }
+.sub__review-list blockquote p { font-size: var(--text-body); line-height: var(--leading-body); font-weight: 300; }
+@media (max-width: 1023px) { .sub__reviews-frame .sub__review-list { grid-auto-columns: calc((100% - var(--space-5)) / 2); } }
+@media (max-width: 767px) {
+  .sub__reviews-frame .sub__review-list { grid-auto-columns: 86%; }
+}
+.sub .sub__reviews-frame { width: 100%; margin: var(--space-6) 0 0; }   /* inside the page column already */
