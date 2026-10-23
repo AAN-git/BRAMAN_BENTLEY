@@ -418,3 +418,19 @@ html main.sub > .sub__head--pic { padding: var(--mh-h) 0 0; }
   .sub__band-pic--coast { height: auto; aspect-ratio: 3.6; }
   .sub__band-pic--coast img { width: 146%; max-width: none; object-position: 50% 62%; }
 }
+
+/* the about intro: in the page column, words 5 · picture 7, the picture's
+   top on the heading's capitals; the second and third routes as links */
+.sub__intro { padding-block: var(--space-9) 0; }
+.sub__intro-grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(2rem, 5vw, 5rem); align-items: start; }
+.sub__intro-copy .h2--small { margin: -0.18em 0 0; font-size: var(--text-h3); line-height: var(--leading-heading); }
+.sub__intro-copy > .body { margin-block-start: var(--space-4); }
+.sub__intro-pic img { display: block; width: 100%; height: auto; aspect-ratio: 700 / 607; object-fit: cover; }
+.sub__intro-actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-4) var(--space-6); margin-block-start: var(--space-6); }
+.sub .sub__intro + .sub__team { padding-block-start: var(--space-9); }
+@media (max-width: 1023px) { .sub__intro-grid { grid-template-columns: 1fr; } .sub__intro-pic { order: -1; } }
+.sub__intro-actions { flex-direction: column; align-items: flex-start; gap: var(--space-5); }
+.sub__intro-links { display: flex; flex-wrap: wrap; gap: var(--space-3) var(--space-6); }
+.sub__intro-links { justify-content: flex-start; text-align: left; }
+.sub__intro-links .link { margin: 0; justify-content: flex-start; }
+@media (max-width: 767px) { .sub__intro-actions .btn { width: 100%; } .sub__intro-links { flex-direction: column; align-items: flex-start; } }
