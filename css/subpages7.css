@@ -99,3 +99,9 @@ html .sub__dept .record dt, html .sub__dept .record dd {
 .sub .enquire__lede .h2--small { font-size: var(--text-h3); line-height: var(--leading-heading); }
 .sub .enquire__lede .body + .body { margin-block-start: var(--space-3); color: var(--ink-2); }
 .sub a[href^="tel:"] { white-space: nowrap; }
+/* the page title's air: the same on every inner page — 96px under the bar on
+   a desktop, 64px on a phone (Alex, 2026-10-23) */
+html main.sub > .srp__head { padding-block-start: calc(var(--mh-h) + var(--space-9)); }
+@media (max-width: 767px) {
+  html main.sub > .srp__head { padding-block-start: calc(var(--mh-h) + var(--space-8)); }
+}
