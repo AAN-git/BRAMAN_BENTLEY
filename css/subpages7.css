@@ -262,3 +262,19 @@ html main.sub > .sub__head--pic { padding: var(--mh-h) 0 0; }
 .sub__tiles .sub__tile--lead .btn { margin-block-start: var(--space-5); }
 /* the hairlines in one line across the row, however the kind wraps */
 @media (min-width: 1024px) and (max-width: 1279px) { .sub__tiles .range__kind { min-height: 2.8em; } }
+
+/* straight lines across the row (Alex: "всё криво-косо"): every name one size
+   and one line, every call on one line under it — the application's filled
+   button, the others' arrow links, centred on the same row */
+.sub__tiles .range__name,
+.sub__tiles .sub__tile--lead .range__name {
+  min-height: 0; font-size: var(--text-lead); line-height: 1.3; white-space: nowrap;
+}
+.sub__tiles .sub__tile--lead .range__name { font-size: var(--text-h3); line-height: 1.04; }
+.sub__tiles .sub__tile--lead .range__name, .sub__tiles .range__name { height: 2.25rem; display: flex; align-items: flex-end; }
+.sub__tiles .sub__tile--lead .btn,
+.sub__tiles .sub__tile-go { margin-block-start: var(--space-5); height: var(--control-h); }
+.sub__tiles .sub__tile-go { display: inline-flex; align-items: center; justify-self: start; }
+@media (max-width: 1023px) {
+  .sub__tiles .range__name, .sub__tiles .sub__tile--lead .range__name { white-space: normal; height: auto; }
+}
