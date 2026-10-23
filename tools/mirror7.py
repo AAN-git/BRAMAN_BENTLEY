@@ -102,7 +102,9 @@ def terms_line(s):
 
 # Direction 7's own inner pages (tools/subpages7.py, 2026-10-23): every
 # route to the retailer's contact and finance pages lands on ours instead
-INNER = {CONTACT: 'contact7.html', FINANCE: 'finance7.html'}
+INNER = {CONTACT: 'contact7.html', FINANCE: 'finance7.html',
+         'https://www.bramanbentleypalmbeach.com/about-us/': 'about7.html',
+         'https://www.bramanbentleypalmbeach.com/meet-our-staff/': 'about7.html#team'}
 def inner(s, pre):
     for url, f in INNER.items():
         s = s.replace(f'href="{url}"', f'href="{pre}{f}"')

@@ -17,3 +17,17 @@
     paint();
   });
 })();
+
+/* "Read more": the dealer's longer words, folded as on their own page */
+(function () {
+  document.querySelectorAll("[data-more]").forEach(function (btn) {
+    var box = document.getElementById(btn.getAttribute("aria-controls"));
+    if (!box) return;
+    btn.addEventListener("click", function () {
+      var open = box.hasAttribute("hidden");
+      if (open) box.removeAttribute("hidden"); else box.setAttribute("hidden", "");
+      btn.setAttribute("aria-expanded", open ? "true" : "false");
+      btn.firstChild.nodeValue = open ? "Read less" : "Read more";
+    });
+  });
+})();
