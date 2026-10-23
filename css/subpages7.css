@@ -119,8 +119,8 @@ html main.sub > .srp__head { padding-block-start: calc(var(--mh-h) + var(--space
   .sub .enquire__lede { padding-block-start: 0; max-width: 40rem; }
 }
 /* the map, large, under the hours: the page column's full width, a hairline
-   like the plates; Google's colours quietened to greys so the only colours on
-   the page stay the guideline's */
+   like the plates; Google's colours taken out so the only colours on the page
+   stay the guideline's */
 .sub__map {
   margin-block-start: var(--space-9);
   aspect-ratio: 21 / 9;
@@ -128,6 +128,10 @@ html main.sub > .srp__head { padding-block-start: calc(var(--mh-h) + var(--space
   background: var(--day-plate);
   overflow: hidden;
 }
-.sub__map iframe { display: block; width: 100%; height: 100%; border: 0; filter: grayscale(1) contrast(1.05); }
+.sub__map { position: relative; }
+.sub__map iframe { display: block; width: 100%; height: 100%; border: 0; filter: grayscale(1) brightness(1.02) contrast(1.05); }
+/* toned as Bentley's own dealer locator draws its map: the ground Heritage
+   White (#DCD8C0, measured on bentleymotors.com), multiplied over the greys */
+.sub__map::after { content: ""; position: absolute; inset: 0; background: var(--heritage-white); mix-blend-mode: multiply; pointer-events: none; }
 @media (max-width: 1023px) { .sub__map { aspect-ratio: 16 / 10; } }
 @media (max-width: 767px) { .sub__map { aspect-ratio: 4 / 5; margin-block-start: var(--space-8); } }
