@@ -105,3 +105,16 @@ html main.sub > .srp__head { padding-block-start: calc(var(--mh-h) + var(--space
 @media (max-width: 767px) {
   html main.sub > .srp__head { padding-block-start: calc(var(--mh-h) + var(--space-8)); }
 }
+/* the words beside the form, on the page's own ground; the form alone on its
+   white plate (Alex: the form read badly sharing the plate with the text) */
+.sub .enquire { padding: 0; border: 0; background: none; align-items: start; }
+.sub .enquire__form {
+  padding: clamp(1.5rem, 3.2vw, 3rem);
+  background: var(--day-plate);
+  border: 1px solid var(--rule);
+}
+.sub .enquire__lede { padding-block-start: clamp(1.5rem, 3.2vw, 3rem); max-width: 30rem; }
+@media (max-width: 1023px) {
+  .sub .enquire { grid-template-columns: 1fr; }
+  .sub .enquire__lede { padding-block-start: 0; max-width: 40rem; }
+}
