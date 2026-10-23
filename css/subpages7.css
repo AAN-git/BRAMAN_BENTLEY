@@ -220,3 +220,9 @@ html main.sub > .sub__head--pic { padding: var(--mh-h) 0 0; }
   .sub__head--pic .sub__band-words .sub__label { color: var(--ink-2); }
   .sub__head--pic .sub__band-words .sub__title { color: var(--ink); }
 }
+
+/* finance: the routes in the words' column; the page's sections in one width */
+.sub .enquire__lede .actions { margin-block-start: var(--space-6); }
+.sub .enquire__lede .sub__rows { margin-block-start: var(--space-7); }
+.sub .enquire__lede .body + .body { margin-block-start: var(--space-3); }
+.sub .sub__head--pic + .vdp__enquire { padding-block-start: var(--space-9); }
