@@ -346,6 +346,33 @@ SUB_ADS = ('<article class="ds-block"><h3 class="ds-h3">Offer banner — three v
            '<tr><th scope="row">Phone</th><td>One card in the column, as the cards.</td></tr>'
            '</tbody></table></article>')
 
+# --- the plate's parts on the rebuilt pages, cut live from them (Alex,
+# 2026-10-26: "only ready components" — so each is a component here first)
+hd, iv = read('home-delivery.html'), read('informational-videos.html')
+SUB_PARTS = ('<article class="ds-block"><h3 class="ds-h3">On the pages — the plate\'s variations in their classes</h3>'
+             '<p class="ds-note">The variations above as the inner pages build them (<code>css/subpages7.css</code>): '
+             '1a <code>.sub__promo-plate--rev</code> · 1b <code>.sub__promo-plate--light</code> · 1d <code>.sub__promo-plate--stack</code> with <code>.sub__promo-bar</code> · '
+             '2 <code>.sub__strip</code>. 1c and the card in a row are specified here and not yet on a page. Three parts go with them, each shown live from its page.</p>'
+             '<h4 class="ds-h4">A section heading over a plate · <code>.sub__lead</code></h4>'
+             '<div class="ds-stage">' + outer(hd, 'section', 'sub__lead') + '</div>'
+             '<table class="ds-table ds-spec"><tbody>'
+             '<tr><th scope="row">Use</th><td>A page\'s own statement over the plates that follow it (Home Delivery: the banner\'s headline, "Bentley Palm Beach. We Deliver.").</td></tr>'
+             '<tr><th scope="row">Form</th><td>The inner pages\' section heading: 30px Light (<code>--text-h3</code>), Title Case, one line on a desktop; 96px above it, 32px down to the plate.</td></tr>'
+             '</tbody></table>'
+             '<h4 class="ds-h4">The offer\'s points inside a plate · <code>.sub__promo-list</code></h4>'
+             '<div class="ds-stage">' + outer(hd, 'div', 'sub__promo-plate sub__promo-plate--rev') + '</div>'
+             '<table class="ds-table ds-spec"><tbody>'
+             '<tr><th scope="row">Use</th><td>The points of an offer or a programme, under its words and over its button (Home Delivery: Online Shopping, Off-Site Test Drives). The dealer\'s own points, verbatim.</td></tr>'
+             '<tr><th scope="row">Form</th><td>18px, one point to a row, 8px above and below; hairlines between rows and over the first, as the hours are ruled — white 22% on Bentley Green, Black 16% on the light plate. 24px under the words, 32px over the button.</td></tr>'
+             '</tbody></table>'
+             '<h4 class="ds-h4">A film across, a bar under it · <code>.sub__promo-plate--stack</code> + <code>.mdl__film-frame</code></h4>'
+             '<div class="ds-stage">' + outer(iv, 'div', 'sub__promo-plate sub__promo-plate--stack') + '</div>'
+             '<table class="ds-table ds-spec"><tbody>'
+             '<tr><th scope="row">Use</th><td>A dealer\'s film on an inner page (Informational Videos: the Boutique Shop film).</td></tr>'
+             '<tr><th scope="row">Form</th><td>Variation 1d with the model page\'s film frame: a Bentley photograph as the poster, 21 : 9 (16:9 below 1024px), the 88px round play button at its centre on Black 62% where the frame is busy; the bar under it: <i>Film</i> (label), the film\'s name (30px Light white), <b>Play the film</b> (light button, <code>data-film-play</code>).</td></tr>'
+             '<tr><th scope="row">Film</th><td>YouTube is asked for the film only on a press (<code>js/sub7.js</code>), and it plays in the poster\'s place. Here in the design system the buttons do not play.</td></tr>'
+             '</tbody></table></article>')
+
 MX_BLOCKS = ''.join([
     block('Hero', 'ex-mx-hero', (1200, 817), [
         ('Photograph', 'Bentley\'s road photograph, the full width under the header. Height <code>clamp(560px, 100svh − header, 62vw)</code> — 764px at 1440×900. The car in the right two thirds (<code>object-position 50% 62%</code>).'),
@@ -816,6 +843,7 @@ page = f'''<!DOCTYPE html>
     {SUB_THREE}
     {SUB_PROMO}
     {SUB_ADS}
+    {SUB_PARTS}
     <h3 class="ds-h3">Per page</h3>
     <table class="ds-table"><thead><tr><th>Page</th><th>Its blocks</th></tr></thead><tbody>
       <tr><td><a href="contact.html">Contact Us</a></td><td>Head · message + form · Opening Hours (Sales, Service, Parts in a row) · the location with the showroom photograph · map.</td></tr>

@@ -107,6 +107,10 @@ See README.md for the directions, the data and the build.
   car — this is very dull": use the model's most vivid Bentley frames (Torcal =
   lime Torcal S), not the silver studio set. Our-version pages now: Flying Spur,
   Torcal, Continental GT, Continental GT Convertible (Bentayga = master).
+- **Ready components only (Alex, 2026-10-26):** a demo page rebuilt on git is
+  assembled from the DS's components and the templates (offer plate and its
+  variations, enquiry block, hours chapter, page head…), the demo's words and
+  CTAs verbatim. A part with no component goes into the DS first.
 - **Inner pages keep their template (Alex, 2026-10-26):** "we have templates for
   these pages — why did we leave the Bentley styling we set?" Contact, Finance,
   About, Parts, Sell, Calculator stay on the inner-page template (head band,
