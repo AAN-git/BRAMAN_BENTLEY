@@ -205,3 +205,13 @@
     else if (!userPaused) v.play();
   }).observe(hero, { attributes: true, attributeFilter: ["class"] });
 })();
+
+/* a plate's own button for its film (Informational Videos): the bar under the
+   film plays the same film as the button on its frame */
+(function () {
+  document.querySelectorAll("[data-film-play]").forEach(function (btn) {
+    var plate = btn.closest(".sub__promo-plate"), play = plate && plate.querySelector(".mdl__play");
+    if (!play) return;
+    btn.addEventListener("click", function () { play.click(); btn.disabled = true; });
+  });
+})();

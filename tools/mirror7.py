@@ -119,6 +119,7 @@ INNER = {CONTACT: 'contact7.html', FINANCE: 'finance7.html',
          'https://www.bramanbentleypalmbeach.com/payment-calculator/': 'calculator7.html',
          'https://www.bramanbentleypalmbeach.com/bentley-home-delivery-program/': 'home-delivery7.html',
          'https://www.bramanbentleypalmbeach.com/ask-a-tech/': 'ask-a-tech7.html',
+         'https://www.bramanbentleypalmbeach.com/informational-videos/': 'informational-videos7.html',
          'https://www.bramanbentleypalmbeach.com/hours/': 'contact7.html#hours-h',
          # the home page's routes into the stock and the models (Alex, 2026-10-26:
          # "link all the pages together") — ours wherever we have the page
@@ -208,7 +209,7 @@ MENU = [
         _r('Meet the Staff', 'about7.html#team'),
         _r('Contact Us', 'contact7.html'),
         _r('Testimonials', '/DR-reviews/'),
-        _r('Dealership Informational Videos', '/informational-videos/'),
+        _r('Dealership Informational Videos', 'informational-videos7.html'),
         _r('Bentley Test Drive Videos', '/bentley-palm-beach-test-drive-videos/'),
         _r('Home Delivery Program', 'home-delivery7.html'),
         _r('Bentley Blog', 'https://blog.bramanbentleypalmbeach.com/'),

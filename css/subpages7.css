@@ -1218,3 +1218,22 @@ html main.sub > .sub__promo { padding-block: var(--space-9) 0; }
 html main.sub > .sub__lead { padding-block: var(--space-9) 0; }
 .sub__lead-h, .sub .sub__lead-h.h2--small { margin: 0; max-width: none; font-size: var(--text-h3); line-height: var(--leading-heading); }   /* a section heading, as the inner pages set theirs */
 html main.sub > .sub__lead + .sub__promo { padding-block-start: var(--space-6); }
+/* the plate's variation 1d — a photograph or a film across, a Bentley Green
+   bar under it (Informational Videos, Alex 2026-10-26) */
+.sub__promo-plate--stack { grid-template-columns: minmax(0, 1fr); }
+.sub__promo-plate--stack .mdl__film-frame img { height: auto; aspect-ratio: 21 / 9; }
+.sub__promo-plate--stack .mdl__film-frame::after { content: none; }
+.sub__film img { object-position: 50% 47%; }   /* the wings above the play button, the shelves under it */
+.sub__film .mdl__play { background: rgba(4, 4, 4, 0.62); }   /* a busy frame (shelves): the button needs its own ground to read */
+.sub__promo-bar {
+  display: flex; align-items: flex-end; justify-content: space-between; gap: var(--space-6);
+  padding: var(--space-5) clamp(1.5rem, 3.2vw, 3rem);
+  background: var(--bentley-green); color: var(--white);
+  --ink: var(--white); --ink-2: rgba(255, 255, 255, 0.84);
+}
+.sub__promo-bar .label { margin: 0 0 var(--space-2); color: var(--ink-2); }
+.sub__promo-bar .sub__promo-cta { margin: 0; flex: none; }
+.sub__band-pic--videos img, .sub__head--pic .sub__band-pic--videos img { object-position: 50% 62%; }
+.sub__promo-pic--lounge img { object-position: 50% 55%; }
+@media (max-width: 1023px) { .sub__promo-plate--stack .mdl__film-frame img { aspect-ratio: 16 / 9; } }
+@media (max-width: 767px) { .sub__promo-bar { flex-direction: column; align-items: stretch; gap: var(--space-4); } }

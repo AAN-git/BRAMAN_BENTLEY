@@ -1,0 +1,138 @@
+<main id="main" class="srp sub">
+
+  <!-- Dealership Informational Videos on the inner pages' template (Alex,
+       2026-10-26: "по нашему DS и нашим templates, и вариациями"). The demo
+       page was one white box: small type, a bare YouTube player, a form with
+       its labels over the fields, the hours as three week-long lists. Here:
+       the page head, the offer plate's variations (the light plate; the film
+       across with a bar under it), the enquiry block, the hours chapter.
+       Words: the demo page's, verbatim. The film: the demo's own (YouTube
+       Yeu5bzgyY8o, "Bentley Boutique | Bentley Palm Beach"), loaded only on a
+       press; its poster a Bentley retail photograph, not a frame of the film. -->
+  <section class="srp__head sub__head--pic" aria-labelledby="sub-h">
+    <div class="sub__band-pic sub__band-pic--videos">
+      <img src="assets/bm/2026/retail-window.webp" srcset="assets/bm/2026/retail-window-1200.webp 1200w, assets/bm/2026/retail-window.webp 2160w" sizes="100vw" alt="" width="2160" height="1620" decoding="async">
+      <div class="page sub__band-words">
+        <p class="label sub__label">Braman Bentley Palm Beach</p>
+        <h1 class="h2 sub__title" id="sub-h">Dealership Informational Videos</h1>
+      </div>
+    </div>
+  </section>
+
+  <!-- 1 · the light plate: the photograph at the left, the demo's words on
+       White -->
+  <section class="sub__promo" aria-labelledby="videos-h">
+    <div class="page">
+      <div class="sub__promo-plate sub__promo-plate--light">
+        <div class="sub__promo-pic sub__promo-pic--lounge">
+          <img src="assets/bm/2026/retail-lounge.webp" srcset="assets/bm/2026/retail-lounge-1200.webp 1200w, assets/bm/2026/retail-lounge.webp 2400w" sizes="(max-width: 1023px) 100vw, 58vw" alt="A Bentley retailer's consultation lounge: a round table and chairs before a screen showing a green Continental GT." width="2400" height="1800" loading="lazy" decoding="async">
+        </div>
+        <div class="sub__promo-words">
+          <p class="label">Dealership Videos</p>
+          <h2 class="sub__promo-h" id="videos-h">Bentley Palm Beach Dealership Videos</h2>
+          <p class="sub__promo-text">Welcome to the Braman Bentley Palm Beach dealership video repository. Watch informational videos of some of the exclusive Bentley Palm Beach incentives available this year and contact our certified Bentley staff. Be sure to ask about Club Braman access with any lease or purchase, homes test drive opportunities and online buying programs. Browse <a href="inventory7.html?condition=new">new Bentley inventory</a> to find your next vehicle.</p>
+          <a class="btn sub__promo-cta" href="inventory7.html?condition=new">New Bentley inventory</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2 · the film across, a bar under it (the plate's variation 1d): the
+       poster stands until a press, then YouTube plays in its place
+       (js/sub7.js); the bar's button plays it too -->
+  <section class="sub__promo" aria-labelledby="film-h">
+    <div class="page">
+      <div class="sub__promo-plate sub__promo-plate--stack">
+        <div class="mdl__film-frame sub__film" data-film="Yeu5bzgyY8o" data-title="Bentley Boutique | Bentley Palm Beach">
+          <img src="assets/bm/2026/retail-green-wall.webp" sizes="(max-width: 1023px) 100vw, 1320px" alt="" width="1875" height="2500" loading="lazy" decoding="async">
+          <button class="mdl__play" type="button" aria-label="Play the film: The Bentley Palm Beach Boutique Shop">
+            <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg>
+          </button>
+        </div>
+        <div class="sub__promo-bar">
+          <div>
+            <p class="label">Film</p>
+            <h2 class="sub__promo-h" id="film-h">The Bentley Palm Beach Boutique Shop</h2>
+          </div>
+          <button class="btn sub__promo-cta" type="button" data-film-play>Play the film</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- the demo's form ("Contact Bentley Palm Beach"), with the location and
+       the sales hours: the inner pages' enquiry block -->
+  <section class="vdp__enquire" aria-labelledby="enq-title">
+    <div class="page">
+      <div class="enquire enquire--fit">
+        <div class="enquire__lede">
+          <h2 class="h2 h2--small" id="enq-title">Contact Bentley Palm Beach</h2>
+          <div class="sub__loc">
+            <h3 class="sub__loc-h">Our Location</h3>
+            <address class="body">Braman Bentley Palm Beach<br>2801 Okeechobee Blvd<br>West Palm Beach, FL 33409</address>
+            <dl class="record"><dt>Sales</dt><dd><a href="tel:+15619269111">561-926-9111</a></dd></dl>
+            <div class="actions">
+              <a class="btn btn--line" href="https://www.bramanbentleypalmbeach.com/directions/">Get directions</a>
+              <button class="btn btn--line" type="button" data-send-to-phone aria-haspopup="dialog">Send to phone</button>
+            </div>
+            <div class="sub__dept sub__loc-hours">
+              <h3 class="sub__loc-h">Sales Hours</h3>
+              <dl class="record">
+                <dt>Mon – Thu</dt><dd>9:00 am – 8:00 pm</dd>
+                <dt>Friday</dt><dd>9:00 am – 7:00 pm</dd>
+                <dt>Saturday</dt><dd>9:00 am – 6:00 pm</dd>
+                <dt>Sunday</dt><dd>11:00 am – 5:00 pm</dd>
+              </dl>
+            </div>
+          </div>
+        </div>
+        <form class="enquire__form" onsubmit="return false" aria-labelledby="enq-title">
+          <p class="enquire__req">Fields marked with (*) are required.</p>
+          <label class="field"><span class="field__label">First name*</span><input class="field__input" type="text" name="fname" autocomplete="given-name" required></label>
+          <label class="field"><span class="field__label">Last name*</span><input class="field__input" type="text" name="lname" autocomplete="family-name" required></label>
+          <label class="field"><span class="field__label">Email*</span><input class="field__input" type="email" name="email" autocomplete="email" required></label>
+          <label class="field"><span class="field__label">Phone*</span><input class="field__input" type="tel" name="phone" autocomplete="tel" required></label>
+          <fieldset class="field sub__choice">
+            <legend class="field__label">Best time to contact*</legend>
+            <label><input type="radio" name="contact_mode" value="Morning"> Morning</label>
+            <label><input type="radio" name="contact_mode" value="Afternoon"> Afternoon</label>
+            <label><input type="radio" name="contact_mode" value="Evening"> Evening</label>
+          </fieldset>
+          <label class="field field--wide"><span class="field__label">Message</span><textarea class="field__input field__area" name="message" rows="3"></textarea></label>
+          <label class="field field--wide sub__consent"><input type="checkbox" name="i_agree"> Please note that by completing this form, you agree to being contacted via text, phone and email.</label>
+          <div class="enquire__send"><button class="btn" type="submit">Send message</button><span class="enquire__fine">This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service apply.</span></div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- the demo's other two departments' hours, in the site's record rows (the
+       sales hours stand with the form above) -->
+  <section class="sub__hours-ch" aria-labelledby="hours-h">
+    <div class="page">
+      <h2 class="h2 h2--small" id="hours-h">Service and Parts Hours</h2>
+      <div class="sub__hours">
+        <div class="sub__dept">
+          <h3 class="sub__dept-name">Service</h3>
+          <a class="sub__dept-tel" href="tel:+15619269110">561-926-9110</a>
+          <dl class="record">
+            <dt>Mon – Thu</dt><dd>7:30 am – 7:00 pm</dd>
+            <dt>Friday</dt><dd>7:30 am – 6:00 pm</dd>
+            <dt>Saturday</dt><dd>8:00 am – 5:00 pm</dd>
+            <dt>Sunday</dt><dd>Closed</dd>
+          </dl>
+        </div>
+        <div class="sub__dept">
+          <h3 class="sub__dept-name">Parts</h3>
+          <a class="sub__dept-tel" href="tel:+15619269112">561-926-9112</a>
+          <dl class="record">
+            <dt>Mon – Fri</dt><dd>7:30 am – 5:00 pm</dd>
+            <dt>Saturday</dt><dd>8:00 am – 5:00 pm</dd>
+            <dt>Sunday</dt><dd>Closed</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
