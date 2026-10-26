@@ -125,3 +125,8 @@ See README.md for the directions, the data and the build.
   Finance tiles, department chapter, form). The model-page language (.mx__*) is
   for model pages only. Fixing a weak inner page = better pictures/words inside
   the template, not a new layout.
+  Clarified (Alex, 2026-10-26): our templates ARE the git version; the content
+  comes from the DEMO. The pages already rebuilt (Contact, Finance, Ask a Tech,
+  About, Parts, Sell, Calculator, Home Delivery, Videos) are done — not to be
+  redesigned. "Hands untied" means: rebuild the demo pages we have not yet done
+  (the menu's data-demo routes) on these same templates.
