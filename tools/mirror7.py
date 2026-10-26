@@ -121,6 +121,7 @@ INNER = {CONTACT: 'contact7.html', FINANCE: 'finance7.html',
          'https://www.bramanbentleypalmbeach.com/ask-a-tech/': 'ask-a-tech7.html',
          'https://www.bramanbentleypalmbeach.com/informational-videos/': 'informational-videos7.html',
          'https://www.bramanbentleypalmbeach.com/hours/': 'contact7.html#hours-h',
+         'https://www.bramanbentleypalmbeach.com/service-department/': 'service7.html',
          # the form pages (Alex, 2026-10-26), on the Sell / Ask a Tech template
          'https://www.bramanbentleypalmbeach.com/schedule-new-vehicle-test-drive/': 'test-drive-new7.html',
          'https://www.bramanbentleypalmbeach.com/schedule-used-vehicle-test-drive/': 'test-drive-used7.html',
@@ -201,7 +202,7 @@ MENU = [
         _r('New Vehicle Specials', '/new-inventory-specials/'),
         _r('Pre-Owned Vehicle Specials', '/used-inventory-specials/')])]),
     ('Service', [('', [
-        _r('Service Department', '/service-department/'),
+        _r('Service Department', 'service7.html'),
         _r('Ask a Tech', 'ask-a-tech7.html'),
         _r('Vehicle Recall Request', 'recall7.html')])]),
     ('Parts', [('', [

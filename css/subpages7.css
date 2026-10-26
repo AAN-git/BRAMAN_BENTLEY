@@ -1263,3 +1263,12 @@ html main.sub > .sub__lead + .sub__promo { padding-block-start: var(--space-6); 
 /* a date field holds the browser's own mm/dd/yyyy until it is chosen: hidden,
    as a select's first choice is, so the label alone stands on the line */
 html.has-float .field--float:not(.is-filled):not(:focus-within) > input[type="date"] { color: transparent; }
+
+/* Service: the portal with five calls — the appointment the dominant, four
+   choices beside it (the demo page's five) */
+.sub__portal .range__row.sub__tiles.sub__tiles--five { grid-template-columns: 2fr repeat(4, minmax(0, 1fr)); }
+@media (max-width: 1023px) { .sub__portal .range__row.sub__tiles.sub__tiles--five { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 767px) { .sub__portal .range__row.sub__tiles.sub__tiles--five { grid-template-columns: 1fr; } }
+.sub__head--pic .sub__band-pic--service img { object-position: 50% 40%; }
+.sub__tiles .range__item img.sub__tile-collect { object-position: 62% 50%; }   /* the owner and the grille both in the tile */
+.sub__tiles .range__item img.sub__tile-wings { object-position: 66% 40%; }   /* the wings, not the cloth */

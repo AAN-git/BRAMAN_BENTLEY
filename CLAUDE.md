@@ -130,3 +130,6 @@ See README.md for the directions, the data and the build.
   About, Parts, Sell, Calculator, Home Delivery, Videos) are done — not to be
   redesigned. "Hands untied" means: rebuild the demo pages we have not yet done
   (the menu's data-demo routes) on these same templates.
+- **Finance applications (Alex, 2026-10-26):** the Personal and Business Finance
+  Application pages are OURS to design too — Dima only wires or adds fields
+  ("he is not a designer"). Build them on our form template like the rest.

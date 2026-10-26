@@ -53,6 +53,8 @@ PAGES = {
               'Check your vehicle for safety notices and recalls at Bentley Palm Beach, West Palm Beach: a service representative will run a report. Service 561-926-9110.'),
     'order-parts': ('Order Bentley Parts | Bentley Palm Beach',
                    'Order genuine Bentley parts from Bentley Palm Beach, West Palm Beach. Parts 561-926-9112.'),
+    'service': ('Bentley Service Department | Bentley Palm Beach',
+                'Bentley Palm Beach service department, West Palm Beach: schedule service, service specials, ask a tech, safety recalls and our service staff. Service 561-926-9110.'),
     'finance': ('Finance Department | Bentley Palm Beach',
                 'Bentley Palm Beach finance department, West Palm Beach: apply for financing, value your trade, estimate a payment, or speak with the finance team.'),
 }
