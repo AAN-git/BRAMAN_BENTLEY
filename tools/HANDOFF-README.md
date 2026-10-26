@@ -2,7 +2,7 @@
 
 The approved mockup, as designed: plain HTML, CSS and a little vanilla JS. No build step, no framework, no server-side code.
 
-**Start with `design-system.html`** — its first chapter, *Handoff*, lists what to change on the demo, page by page, with links to the approved pages; the chapters after it show every element on the site's own stylesheets, with the rules for using them.
+**Start with `design-system.html`** — the rules, sizes, type, colour and blocks of the site, with real examples cut from the approved pages and every size measured there: principles first, then foundations, components and the page templates (inner pages, model pages).
 
 ## Pages
 
