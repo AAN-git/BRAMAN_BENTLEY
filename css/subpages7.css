@@ -1290,3 +1290,7 @@ html.has-float .field--float:not(.is-filled):not(:focus-within) > input[type="da
 .enquire__form .sub__legal { grid-column: 1 / -1; margin: 0; max-width: 72rem; }
 .sub__head--pic .sub__band-pic--veneer img { object-position: 50% 50%; }
 .sub__head--pic .sub__band-pic--leather img { object-position: 50% 50%; }
+/* a page that ends on a plate (the content pages): the plate keeps its air
+   above the footer */
+html main.sub > .sub__promo:last-child { padding-block-end: var(--space-10); }
+@media (max-width: 767px) { html main.sub > .sub__promo:last-child { padding-block-end: var(--space-9); } }

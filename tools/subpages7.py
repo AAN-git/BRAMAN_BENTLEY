@@ -65,6 +65,12 @@ PAGES = {
                 'Apply for financing at Bentley Palm Beach, West Palm Beach: the personal finance application. Sales 561-926-9111.'),
     'business-finance': ('Business Finance Application | Bentley Palm Beach',
                 'Apply for business financing at Bentley Palm Beach, West Palm Beach: the business finance application. Sales 561-926-9111.'),
+    'difference': ('The Bentley Palm Beach Difference | Bentley Palm Beach',
+                'Reasons to choose Braman Bentley Palm Beach, West Palm Beach: Club Braman, ownership events, loaner vehicles, PermaPlate protection and Nitro-filled tires.'),
+    'cpo': ('Bentley Certified Pre-Owned | Bentley Palm Beach',
+                'Bentley Certified Pre-Owned at Bentley Palm Beach, West Palm Beach: the pre-owned inspection, the Bentley warranty, roadside assistance and owner benefits.'),
+    'test-drive-videos': ('New Bentley Vehicle Test Drive Videos | Bentley Palm Beach',
+                'Bentley test drive videos from Braman Bentley Palm Beach, West Palm Beach: watch the films and schedule your test drive.'),
     'finance': ('Finance Department | Bentley Palm Beach',
                 'Bentley Palm Beach finance department, West Palm Beach: apply for financing, value your trade, estimate a payment, or speak with the finance team.'),
 }

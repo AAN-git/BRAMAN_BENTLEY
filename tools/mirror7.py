@@ -127,6 +127,8 @@ INNER = {CONTACT: 'contact7.html', FINANCE: 'finance7.html',
          'https://www.bramanbentleypalmbeach.com/bentayga-extended-wheelbase/': 'bentayga-ewb7.html',
          'https://www.bramanbentleypalmbeach.com/finance-application/': 'finance-application7.html',
          'https://www.bramanbentleypalmbeach.com/business-finance-app/': 'business-finance7.html',
+         'https://www.bramanbentleypalmbeach.com/bentley-palm-beach-difference/': 'difference7.html',
+         'https://www.bramanbentleypalmbeach.com/bentley-palm-beach-test-drive-videos/': 'test-drive-videos7.html',
          # the form pages (Alex, 2026-10-26), on the Sell / Ask a Tech template
          'https://www.bramanbentleypalmbeach.com/schedule-new-vehicle-test-drive/': 'test-drive-new7.html',
          'https://www.bramanbentleypalmbeach.com/schedule-used-vehicle-test-drive/': 'test-drive-used7.html',
@@ -181,8 +183,8 @@ MENU = [
             _r('Value Your Trade', 'value-trade7.html'),
             _r('Build Your Own', 'https://www.bentleymotors.com/en/misc/car-configurator.html')]),
         ('Research', [
-            _r('Reasons to Choose Braman', '/bentley-palm-beach-difference/'),
-            _r('Bentley Test Drive Videos', '/bentley-palm-beach-test-drive-videos/'),
+            _r('Reasons to Choose Braman', 'difference7.html'),
+            _r('Bentley Test Drive Videos', 'test-drive-videos7.html'),
             _r('Current Incentives', '/incentives/'),
             _r('Bentayga Speed', 'bentayga-speed7.html'),
             _r('Continental GT Speed Edition 12', 'continental-gt-speed-edition-127.html'),
@@ -193,7 +195,7 @@ MENU = [
         ('Pre-Owned Inventory', [
             _r('All Pre-Owned Vehicles', 'inventory7.html?condition=used'),
             _r('Certified Pre-Owned', 'inventory7.html?condition=certified'),
-            _r('What is a Braman Certified Pre-Owned?', '/braman-bentley-cpo/')]),
+            _r('What is a Braman Certified Pre-Owned?', 'cpo7.html')]),
         ('Shopping Tools', [
             _r('Sell Us Your Vehicle', 'sell7.html'),
             _r('Find My Car', 'find-my-car7.html'),
@@ -225,7 +227,7 @@ MENU = [
         _r('Contact Us', 'contact7.html'),
         _r('Testimonials', '/DR-reviews/'),
         _r('Dealership Informational Videos', 'informational-videos7.html'),
-        _r('Bentley Test Drive Videos', '/bentley-palm-beach-test-drive-videos/'),
+        _r('Bentley Test Drive Videos', 'test-drive-videos7.html'),
         _r('Home Delivery Program', 'home-delivery7.html'),
         _r('Bentley Blog', 'https://blog.bramanbentleypalmbeach.com/'),
         _r('Magazine', 'http://www.clubbraman.com/magazine/'),
