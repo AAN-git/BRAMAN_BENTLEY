@@ -64,13 +64,20 @@ See README.md for the directions, the data and the build.
   Windows system list was "hujevo" — never leave the open list to the OS on
   desktop; phones keep the native picker. js/page7.js + .dd; in the DS.
 - **Card marks (Alex, 2026-10-26):** lease, Sale Pending, New Arrival, Sold sit
-  as a band under the photograph, never on it. The band's room is kept ONLY in a
-  row where some card has a mark (the others in that row keep empty room, so the
-  row stays level); a row without marks has no band and no empty room ("this
-  spacing only if a lease is beside it"). CSS subgrid per row; :has() on the
-  home rail. Certified Pre-Owned is a band mark too (certified cars without a
+  as a band under the photograph, never on it. An unmarked card keeps NO empty
+  band room, not even beside a marked one (the reserved room was rejected
+  twice: first everywhere, then "the wild gap on New · In stock").
+  Certified Pre-Owned is a band mark too (certified cars without a
   lease; with a lease, "Certified by Bentley" stays in the kind line). In the DS.
   The car page's photographs carry no flag either; the lease is the offer's.
+- **Cards in a row: one height (Alex, 2026-10-26, a rule for every real page,
+  not only the DS):** View details on one foot line; among marked cards (and
+  among unmarked ones) the lines meet across the row, a line that runs long
+  grows in the whole row. An unmarked card's words start under its photo and
+  its slack sits above View details — its lines may sit higher than a marked
+  neighbour's. static7.css: card spans 9 grid rows, body a subgrid of 7; an
+  unmarked body spans rows 2–9 as a column. Never fixed heights or cut text. The DS shows cards in look 2
+  (white plates on Satin Linen) exactly as the pages do.
 - **Model pages (Alex, 2026-10-26):** first Kirsten's version — the AAN master
   model page's order (aanmaster2027.aandemo.com/models/vantage/: hero, key
   figures, lead, film, statement, alternating stories, then stock and enquiry)

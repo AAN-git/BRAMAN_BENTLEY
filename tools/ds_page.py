@@ -88,7 +88,7 @@ flag_pending = first_card(index, 'li', 'card', lambda c: 'card__flag--pending' i
 # Only the flag is shown, on a photograph — the "Recently sold" record it
 # belongs to (no price, no calls) is not part of this build.
 media = outer(flag_pending, 'span', 'card__media')
-flag_sold = ('<li class="card" style="max-width:420px"><span class="card__link" style="display:block">'
+flag_sold = ('<li class="card ds-flagonly"><span class="card__link">'
              + media.replace('card__flag--pending', 'card__flag--sold').replace('>Sale Pending<', '>Sold<')
              + '</span></li>')
 FLAGS = [
@@ -178,8 +178,10 @@ types = '\n'.join(f'''<div class="ds-type" data-token="--text-{t}">
 
 spaces = '\n'.join(f'<div class="ds-space"><code>--{s}</code><span class="ds-space__bar" style="width:var(--{s})"></span><span class="ds-px-w" data-var="--{s}"></span></div>' for s in SPACE)
 
-flags = '\n'.join(f'<div class="ds-item"><p class="ds-cap">{H.escape(n)} · <code>.{k}</code></p><p class="ds-note" style="font-size:var(--text-sm)">{H.escape(u)}</p>{wrap(CARD_SRP if w == "srp" else CARD_HOME, cc)}</div>' for n, k, u, cc, w in FLAGS)
-cardgrid = '\n'.join(f'<div class="ds-item"><p class="ds-cap">{H.escape(n)}</p>{wrap(CARD_SRP, c)}</div>' for n, c in cards)
+# every card in the listing grid's own wrapper, so its subgrid keeps the
+# specimens in a row level and equally tall, as the listing does
+flags = '\n'.join(f'<div class="ds-item"><div class="ds-item__head"><p class="ds-cap">{H.escape(n)} · <code>.{k}</code></p><p class="ds-note" style="font-size:var(--text-sm)">{H.escape(u)}</p></div>{wrap(CARD_SRP, cc)}</div>' for n, k, u, cc, w in FLAGS)
+cardgrid = '\n'.join(f'<div class="ds-item"><div class="ds-item__head"><p class="ds-cap">{H.escape(n)}</p></div>{wrap(CARD_SRP, c)}</div>' for n, c in cards)
 
 sections = '\n'.join(f'''<article class="ds-section" id="ds-{a}">
   <h3 class="ds-h3">{n}</h3><p class="ds-note">{u}</p>
@@ -395,6 +397,18 @@ page = f'''<!DOCTYPE html>
   .ds-item {{ min-width: 0; }}
   .ds-cards {{ display: grid; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); gap: var(--space-6); align-items: start; }}
   .ds-cards .grid, .ds-cards .stock__rail {{ display: block; margin: 0; padding: 0; transform: none; width: auto; }}
+  /* cards in a row stand level and equally tall, as in the listing: caption,
+     photograph, mark and words are each one row shared across the row (subgrid) */
+  @supports (grid-template-rows: subgrid) {{
+    .ds-cards:not(.ds-stage) {{ align-items: stretch; }}
+    .ds-cards:not(.ds-stage) > .ds-item {{ display: grid; grid-row: span 10; grid-template-rows: subgrid; row-gap: 0; }}
+    .ds-cards:not(.ds-stage) > .ds-item main, .ds-cards:not(.ds-stage) > .ds-item section,
+    .ds-cards:not(.ds-stage) > .ds-item .page, .ds-cards:not(.ds-stage) > .ds-item .grid {{ display: contents; }}
+    /* the Sold flag is shown alone, photograph and band, with no words to line up */
+    .ds-cards .grid > li.card.ds-flagonly {{ display: block; align-self: start; }}
+    .ds-cards .grid > li.card.ds-flagonly > .card__link {{ display: block; }}
+    .ds-cards .grid > li.card.ds-flagonly .card__media {{ display: flex; }}
+  }}
   .ds-cards .card {{ width: 100%; max-width: 420px; flex: none; margin: 0; transform: none; }}
   .ds-cards main, .ds-cards section, .ds-cards .page, .ds-cards .stock__in, .ds-cards .stock__frame,
   .ds-stage main, .ds-stage section, .ds-stage .page {{ min-height: 0; height: auto; padding: 0; margin: 0; width: auto; max-width: none; position: static; }}
@@ -478,6 +492,7 @@ page = f'''<!DOCTYPE html>
       <li><b>Each page keeps its template.</b> Inner pages stay on the inner-page template; the model-page language is for model pages only. A weak page is fixed with better pictures and words inside its template, not a new layout.</li>
       <li><b>The client's four routes are always on screen:</b> Bentley Inventory (prominent), Special Offers, Financing, Contact Us — the header's second line on a desktop, a bar at the foot of a phone's screen.</li>
       <li><b>One form, one card, one price.</b> The same form wherever a form is; the same vehicle card everywhere; the Final price leads (FTC).</li>
+      <li><b>Cards in a row are one height, every line level.</b> Wherever cards stand side by side, each card is as tall as the tallest and its lines meet the same lines in the cards beside it (see Vehicle cards).</li>
     </ol>
   </section>
 
@@ -592,10 +607,21 @@ page = f'''<!DOCTYPE html>
   <section class="ds-part" id="cards">
     <h2 class="ds-h2">Vehicle cards</h2>
     <p class="ds-note">One card everywhere: photograph, name, facts, and the price plate — <b>Final price</b> leads; MSRP and the two dealer charges sit beneath as the working. A lease offer carries its term and the money down (Bentley's word: "down").</p>
+    <h3 class="ds-h3">Cards in a row — the rule</h3>
+    <ul class="ds-list">
+      <li><b>One height.</b> Every card in a row is as tall as the tallest one in it. No card ends short.</li>
+      <li><b>Lines level across the row:</b> photograph · mark band · kind · name · facts · price · build · extra line · View details. When one card's line runs longer (a kind line on two lines, a two-line name, a third lease line), that line grows in the whole row, so the next line still starts on the same level in every card.</li>
+      <li><b>No empty band.</b> A card without a mark keeps no room for one: its words start right under its photograph, and what it is shorter by stays above View details. Its lines then sit higher than a marked neighbour's — that is accepted; an empty gap under the photograph is not.</li>
+      <li><b>View details on the foot line</b> of the card, the same in every card of the row.</li>
+      <li><b>One photograph shape</b> (4:3, the car whole in the frame, the same crop rule) in every card.</li>
+      <li><b>Everywhere cards stand side by side:</b> the listing, the home page's New in stock, a model page's In Stock, More cars on the car page, Special Offers.</li>
+      <li><b>How:</b> CSS subgrid. The list is a grid; each card spans nine of its rows (<code>grid-row: span 9; grid-template-rows: subgrid</code>), the photograph and the band take rows 1–2, the words are a subgrid of the other seven; a card without a mark runs its words from row 2 to the foot in one column, View details at its foot (<code>css/static7.css</code>). Never a fixed card height, never cut text, never an ellipsis.</li>
+      <li><b>On a phone</b> the cards stand one above another, each at its own height.</li>
+    </ul>
     <h3 class="ds-h3">Marks under the photograph</h3>
     <ul class="ds-list">
       <li><b>Never on the photograph</b> — nothing covers the car. One mark at a time, as a band directly under the photograph.</li>
-      <li><b>The band's room is kept only in a row where a card has a mark</b>; the other cards in that row keep the same empty room, so photographs, names and prices stay level. A row with no mark has no band and no empty room (CSS subgrid per row; <code>:has()</code> on the home rail).</li>
+      <li><b>Only a marked card has a band.</b> Beside it, an unmarked card keeps no empty room: its words start under its photograph (see Cards in a row).</li>
       <li>Lease: Heritage White, black type, the payment then its term and money down. Sale Pending: Bentley Green. Sold: Dark Grey (a "Recently sold" record only — a sold car never appears in the listing).</li>
       <li><b>Certified Pre-Owned</b> is a band of its own (the page ground, a hairline above) for a certified car with no other mark; with a lease, "Certified by Bentley" stays in the kind line.</li>
     </ul>
@@ -770,5 +796,8 @@ GIT_CSS = {'tokens': 'system', 'site': 'index7', 'cards': 'cards', 'inventory': 
 git = re.sub(r'href="css/(\w+)\.css"', lambda m: 'href="css/%s.css"' % GIT_CSS[m.group(1)], page)
 git = re.sub(r'href="([a-z-]+)\.html', r'href="\g<1>7.html', git)
 git = git.replace('href="vehicles/', 'href="vehicles7/').replace('src="index.html', 'src="index7.html')
+# the repo's sheets still carry the looks; the pages open on look 2 (the
+# client's: Satin Linen ground, white plates) — the handoff has only that look
+git = git.replace('<html lang="en" class="theme-satin">', '<html lang="en" class="theme-satin" data-look="2">', 1)
 open(ROOT + 'design-system7.html', 'w', encoding='utf-8', newline='\n').write(git)
 print('design-system7.html: git copy')

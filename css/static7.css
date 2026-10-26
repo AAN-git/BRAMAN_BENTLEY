@@ -711,12 +711,9 @@ html.has-float .field--float > .field__select { padding-inline-end: var(--space-
    (nothing may cover the car — the client's Bentley note) but the whole box
    as a band across the card directly under it, in its own colours; the first
    line the mark in capitals, a lease's terms and condition in their own case.
-   The band's room is kept only where a mark stands in the same row: beside a
-   marked card an unmarked one keeps the room empty, so the row stays level; a
-   row with no mark has no band at all (Alex: "the spacing only if a lease is
-   next to it"). In a grid the rows are subgrids, so this follows whatever the
-   number of columns or the filters show; on the home page's one-row rail it
-   follows whether the rail holds a mark. */
+   A card with no mark keeps no empty room for one: its words start right under
+   its photograph (Alex, 2026-10-26: "one height beside each other, but without
+   the wild gap on New · In stock"). */
 .card .card__media .card__flag {
   position: static; order: 2; width: 100%; max-width: none;
   display: flex; flex-direction: column; justify-content: center; align-items: flex-start;
@@ -726,20 +723,28 @@ html.has-float .field--float > .field__select { padding-inline-end: var(--space-
 .card .card__media img { order: 1; display: block; background: #8d8d8d; }
 .card .card__flag-terms { letter-spacing: 0.01em; text-transform: none; }
 .card__flag.card__flag--cpo { background: var(--day); color: var(--ink); border-block-start: 1px solid var(--rule); }
+/* Cards in a row are one height (Alex, 2026-10-26: a rule for every page with
+   cards). The photograph · mark · kind · name · facts · price · build · extra ·
+   link are rows shared across the row, so among the marked cards a kind line or
+   a name that runs to two lines moves its whole row, never one card. A card
+   with no mark takes the band's row into its words, which run on from under
+   the photograph; what it is shorter by stays above View details, on the foot
+   line with the others. */
 @supports (grid-template-rows: subgrid) {
-  .grid > li.card { display: grid; grid-row: span 3; grid-template-rows: subgrid; row-gap: 0; }
+  .grid > li.card { display: grid; grid-row: span 9; grid-template-rows: subgrid; row-gap: 0; }
   .grid > li.card[hidden] { display: none; }   /* a card the picks leave out stays gone: the subgrid's display must not bring it back */
-  .grid > li.card > .card__link { display: grid; grid-row: span 3; grid-template-rows: subgrid; row-gap: 0; }
+  .grid > li.card > .card__link { display: grid; grid-row: span 9; grid-template-rows: subgrid; row-gap: 0; }
   .grid > li.card .card__media { display: contents; }
   .grid > li.card .card__media img { grid-row: 1; }
   .grid > li.card .card__media .card__flag { grid-row: 2; }
-  .grid > li.card .card__body { grid-row: 3; }
+  .grid > li.card .card__body { grid-row: 3 / span 7; display: grid; grid-template-rows: subgrid; row-gap: 0; }
+  .grid > li.card .card__body .link { align-self: end; }
+  .grid > li.card:not(:has(.card__flag)) .card__body { grid-row: 2 / span 8; display: flex; flex-direction: column; }
+  .grid > li.card:not(:has(.card__flag)) .card__body .link { align-self: auto; }
 }
 :root { --flag-1: calc(1.35 * var(--text-xs) + 2 * var(--space-3)); --flag-3: calc(3 * 1.35 * var(--text-xs) + 2 * var(--space-3)); }
 .stock__rail:has(.card__flag) .card__media .card__flag { min-height: var(--flag-1); }
-.stock__rail:has(.card__flag) .card__media:not(:has(.card__flag))::after { content: ""; order: 2; display: block; height: var(--flag-1); }
 .stock__rail:has(.card__flag--lease) .card__media .card__flag { min-height: var(--flag-3); }
-.stock__rail:has(.card__flag--lease) .card__media:not(:has(.card__flag))::after { height: var(--flag-3); }
 
 /* --- The open list of a dropdown (js/page7.js) — the demo site's list, in
    this site's parts (Alex, 2026-10-26). It drops from the field's ruled line,

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="theme-satin">
+<html lang="en" class="theme-satin" data-look="2">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -59,6 +59,18 @@
   .ds-item { min-width: 0; }
   .ds-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); gap: var(--space-6); align-items: start; }
   .ds-cards .grid, .ds-cards .stock__rail { display: block; margin: 0; padding: 0; transform: none; width: auto; }
+  /* cards in a row stand level and equally tall, as in the listing: caption,
+     photograph, mark and words are each one row shared across the row (subgrid) */
+  @supports (grid-template-rows: subgrid) {
+    .ds-cards:not(.ds-stage) { align-items: stretch; }
+    .ds-cards:not(.ds-stage) > .ds-item { display: grid; grid-row: span 10; grid-template-rows: subgrid; row-gap: 0; }
+    .ds-cards:not(.ds-stage) > .ds-item main, .ds-cards:not(.ds-stage) > .ds-item section,
+    .ds-cards:not(.ds-stage) > .ds-item .page, .ds-cards:not(.ds-stage) > .ds-item .grid { display: contents; }
+    /* the Sold flag is shown alone, photograph and band, with no words to line up */
+    .ds-cards .grid > li.card.ds-flagonly { display: block; align-self: start; }
+    .ds-cards .grid > li.card.ds-flagonly > .card__link { display: block; }
+    .ds-cards .grid > li.card.ds-flagonly .card__media { display: flex; }
+  }
   .ds-cards .card { width: 100%; max-width: 420px; flex: none; margin: 0; transform: none; }
   .ds-cards main, .ds-cards section, .ds-cards .page, .ds-cards .stock__in, .ds-cards .stock__frame,
   .ds-stage main, .ds-stage section, .ds-stage .page { min-height: 0; height: auto; padding: 0; margin: 0; width: auto; max-width: none; position: static; }
@@ -142,6 +154,7 @@
       <li><b>Each page keeps its template.</b> Inner pages stay on the inner-page template; the model-page language is for model pages only. A weak page is fixed with better pictures and words inside its template, not a new layout.</li>
       <li><b>The client's four routes are always on screen:</b> Bentley Inventory (prominent), Special Offers, Financing, Contact Us — the header's second line on a desktop, a bar at the foot of a phone's screen.</li>
       <li><b>One form, one card, one price.</b> The same form wherever a form is; the same vehicle card everywhere; the Final price leads (FTC).</li>
+      <li><b>Cards in a row are one height, every line level.</b> Wherever cards stand side by side, each card is as tall as the tallest and its lines meet the same lines in the cards beside it (see Vehicle cards).</li>
     </ol>
   </section>
 
@@ -371,14 +384,25 @@
   <section class="ds-part" id="cards">
     <h2 class="ds-h2">Vehicle cards</h2>
     <p class="ds-note">One card everywhere: photograph, name, facts, and the price plate — <b>Final price</b> leads; MSRP and the two dealer charges sit beneath as the working. A lease offer carries its term and the money down (Bentley's word: "down").</p>
+    <h3 class="ds-h3">Cards in a row — the rule</h3>
+    <ul class="ds-list">
+      <li><b>One height.</b> Every card in a row is as tall as the tallest one in it. No card ends short.</li>
+      <li><b>Lines level across the row:</b> photograph · mark band · kind · name · facts · price · build · extra line · View details. When one card's line runs longer (a kind line on two lines, a two-line name, a third lease line), that line grows in the whole row, so the next line still starts on the same level in every card.</li>
+      <li><b>No empty band.</b> A card without a mark keeps no room for one: its words start right under its photograph, and what it is shorter by stays above View details. Its lines then sit higher than a marked neighbour's — that is accepted; an empty gap under the photograph is not.</li>
+      <li><b>View details on the foot line</b> of the card, the same in every card of the row.</li>
+      <li><b>One photograph shape</b> (4:3, the car whole in the frame, the same crop rule) in every card.</li>
+      <li><b>Everywhere cards stand side by side:</b> the listing, the home page's New in stock, a model page's In Stock, More cars on the car page, Special Offers.</li>
+      <li><b>How:</b> CSS subgrid. The list is a grid; each card spans nine of its rows (<code>grid-row: span 9; grid-template-rows: subgrid</code>), the photograph and the band take rows 1–2, the words are a subgrid of the other seven; a card without a mark runs its words from row 2 to the foot in one column, View details at its foot (<code>css/static7.css</code>). Never a fixed card height, never cut text, never an ellipsis.</li>
+      <li><b>On a phone</b> the cards stand one above another, each at its own height.</li>
+    </ul>
     <h3 class="ds-h3">Marks under the photograph</h3>
     <ul class="ds-list">
       <li><b>Never on the photograph</b> — nothing covers the car. One mark at a time, as a band directly under the photograph.</li>
-      <li><b>The band's room is kept only in a row where a card has a mark</b>; the other cards in that row keep the same empty room, so photographs, names and prices stay level. A row with no mark has no band and no empty room (CSS subgrid per row; <code>:has()</code> on the home rail).</li>
+      <li><b>Only a marked card has a band.</b> Beside it, an unmarked card keeps no empty room: its words start under its photograph (see Cards in a row).</li>
       <li>Lease: Heritage White, black type, the payment then its term and money down. Sale Pending: Bentley Green. Sold: Dark Grey (a "Recently sold" record only — a sold car never appears in the listing).</li>
       <li><b>Certified Pre-Owned</b> is a band of its own (the page ground, a hairline above) for a certified car with no other mark; with a lease, "Certified by Bentley" stays in the kind line.</li>
     </ul>
-    <div class="ds-cards"><div class="ds-item"><p class="ds-cap">Lease · <code>.card__flag--lease</code></p><p class="ds-note" style="font-size:var(--text-sm)">A lease offer on the car: the payment, then its term and the money down, in Bentley&#x27;s word.</p><main class="srp"><section class="srp__list"><div class="page"><ul class="grid"><li class="card" data-condition="used" data-certified="0" data-year="2026" data-price="242900" data-mileage="349" data-model="Flying Spur" data-trim="" data-stock="VC-P35636" data-vin="SCBBP6ZG6TC026907">
+    <div class="ds-cards"><div class="ds-item"><div class="ds-item__head"><p class="ds-cap">Lease · <code>.card__flag--lease</code></p><p class="ds-note" style="font-size:var(--text-sm)">A lease offer on the car: the payment, then its term and the money down, in Bentley&#x27;s word.</p></div><main class="srp"><section class="srp__list"><div class="page"><ul class="grid"><li class="card" data-condition="used" data-certified="0" data-year="2026" data-price="242900" data-mileage="349" data-model="Flying Spur" data-trim="" data-stock="VC-P35636" data-vin="SCBBP6ZG6TC026907">
           <a class="card__link" href="vehicles7/vc-p35636.html" aria-label="Used 2026 Bentley Flying Spur, Final price $244,603">
             <span class="card__media"><span class="card__flag card__flag--lease"><span>Lease $3,519 + tax / mo</span><span class="card__flag-terms">36 months · $29,999 down</span></span><img src="assets/img/inventory/vc-p35636.webp" width="840" height="630" loading="eager" decoding="async" alt="Moonbeam 2026 Bentley Flying Spur"></span>
             <span class="card__body">
@@ -396,7 +420,7 @@
             </span>
           </a>
         </li></ul></div></section></main></div>
-<div class="ds-item"><p class="ds-cap">Lease with a rebate · <code>.card__flag--lease + card__flag-cond</code></p><p class="ds-note" style="font-size:var(--text-sm)">The lease rests on a rebate: the condition line says so, with the credit it needs.</p><main class="srp"><section class="srp__list"><div class="page"><ul class="grid"><li class="card" data-condition="used" data-certified="0" data-year="2026" data-price="276900" data-mileage="285" data-model="Continental GT" data-trim="V8" data-stock="V67976" data-vin="SCBCP2ZG1TC027976">
+<div class="ds-item"><div class="ds-item__head"><p class="ds-cap">Lease with a rebate · <code>.card__flag--lease + card__flag-cond</code></p><p class="ds-note" style="font-size:var(--text-sm)">The lease rests on a rebate: the condition line says so, with the credit it needs.</p></div><main class="srp"><section class="srp__list"><div class="page"><ul class="grid"><li class="card" data-condition="used" data-certified="0" data-year="2026" data-price="276900" data-mileage="285" data-model="Continental GT" data-trim="V8" data-stock="V67976" data-vin="SCBCP2ZG1TC027976">
           <a class="card__link" href="vehicles7/v67976.html" aria-label="Used 2026 Bentley Continental GT V8, Final price $278,603">
             <span class="card__media"><span class="card__flag card__flag--lease"><span>Lease $2,722 + tax / mo</span><span class="card__flag-terms">39 months · $32,141 down</span><span class="card__flag-terms card__flag-cond">Includes $20,000 rebates · Tier 1 credit</span></span><img src="assets/img/inventory/v67976.webp" width="840" height="630" loading="lazy" decoding="async" alt="Dark Sapphire 2026 Bentley Continental GT V8"></span>
             <span class="card__body">
@@ -414,7 +438,7 @@
             </span>
           </a>
         </li></ul></div></section></main></div>
-<div class="ds-item"><p class="ds-cap">Sale Pending · <code>.card__flag--pending</code></p><p class="ds-note" style="font-size:var(--text-sm)">A deal is in progress; the car stays in stock and keeps its price. Bentley Green.</p><main class=""><section class="stock is-in"><div class="stock__in"><div class="stock__frame"><ul class="stock__rail stock__four"><li class="card stock__car step" style="--i:3" data-condition="new" data-certified="0" data-year="2026" data-price="391260" data-mileage="30" data-model="Continental GT" data-trim="Azure" data-stock="V69245" data-vin="SCBDP4ZG5TC029245">
+<div class="ds-item"><div class="ds-item__head"><p class="ds-cap">Sale Pending · <code>.card__flag--pending</code></p><p class="ds-note" style="font-size:var(--text-sm)">A deal is in progress; the car stays in stock and keeps its price. Bentley Green.</p></div><main class="srp"><section class="srp__list"><div class="page"><ul class="grid"><li class="card stock__car step" style="--i:3" data-condition="new" data-certified="0" data-year="2026" data-price="391260" data-mileage="30" data-model="Continental GT" data-trim="Azure" data-stock="V69245" data-vin="SCBDP4ZG5TC029245">
           <a class="card__link" href="vehicles7/v69245.html" aria-label="New 2026 Bentley Continental GT Azure, Final price $392,963">
             <span class="card__media"><span class="card__flag card__flag--pending">Sale Pending</span><img src="assets/img/inventory/v69245.webp" width="840" height="630" loading="lazy" decoding="async" alt="Verdant 2026 Bentley Continental GT Azure"></span>
             <span class="card__body">
@@ -431,8 +455,8 @@
               <span class="link">View details<i aria-hidden="true"></i></span>
             </span>
           </a>
-        </li></ul></div></div></section></main></div>
-<div class="ds-item"><p class="ds-cap">Sold — the flag only · <code>.card__flag--sold</code></p><p class="ds-note" style="font-size:var(--text-sm)">For a &quot;Recently sold&quot; record only, kept apart from the listing, with no price and no calls. A sold car never appears in the listing, its count, its filters or the home rail — so no card carries this flag.</p><main class="srp"><section class="srp__list"><div class="page"><ul class="grid"><li class="card" style="max-width:420px"><span class="card__link" style="display:block"><span class="card__media"><span class="card__flag card__flag--sold">Sold</span><img src="assets/img/inventory/v69245.webp" width="840" height="630" loading="lazy" decoding="async" alt="Verdant 2026 Bentley Continental GT Azure"></span></span></li></ul></div></section></main></div></div>
+        </li></ul></div></section></main></div>
+<div class="ds-item"><div class="ds-item__head"><p class="ds-cap">Sold — the flag only · <code>.card__flag--sold</code></p><p class="ds-note" style="font-size:var(--text-sm)">For a &quot;Recently sold&quot; record only, kept apart from the listing, with no price and no calls. A sold car never appears in the listing, its count, its filters or the home rail — so no card carries this flag.</p></div><main class="srp"><section class="srp__list"><div class="page"><ul class="grid"><li class="card ds-flagonly"><span class="card__link"><span class="card__media"><span class="card__flag card__flag--sold">Sold</span><img src="assets/img/inventory/v69245.webp" width="840" height="630" loading="lazy" decoding="async" alt="Verdant 2026 Bentley Continental GT Azure"></span></span></li></ul></div></section></main></div></div>
     <h3 class="ds-h3">On the home page rail</h3>
     <div class="ds-stage ds-cards"><main class=""><section class="stock is-in"><div class="stock__in"><div class="stock__frame"><ul class="stock__rail stock__four"><li class="card stock__car step" style="--i:2" data-condition="new" data-certified="0" data-year="2026" data-price="379085" data-mileage="30" data-model="Continental GT" data-trim="S" data-stock="V60065" data-vin="SCBDP4ZG8TC030065">
           <a class="card__link" href="vehicles7/v60065.html" aria-label="New 2026 Bentley Continental GT S, Final price $380,788">
@@ -453,7 +477,7 @@
           </a>
         </li></ul></div></div></section></main></div>
     <h3 class="ds-h3">In the listing — every kind in stock</h3>
-    <div class="ds-cards"><div class="ds-item"><p class="ds-cap">Certified pre-owned</p><main class="srp"><section class="srp__list"><div class="page"><ul class="grid"><li class="card" data-condition="used" data-certified="1" data-year="2022" data-price="237900" data-mileage="4095" data-model="Continental GTC" data-trim="V8" data-stock="VC-67909A" data-vin="SCBDG4ZG8NC098398">
+    <div class="ds-cards"><div class="ds-item"><div class="ds-item__head"><p class="ds-cap">Certified pre-owned</p></div><main class="srp"><section class="srp__list"><div class="page"><ul class="grid"><li class="card" data-condition="used" data-certified="1" data-year="2022" data-price="237900" data-mileage="4095" data-model="Continental GTC" data-trim="V8" data-stock="VC-67909A" data-vin="SCBDG4ZG8NC098398">
           <a class="card__link" href="vehicles7/vc-67909a.html" aria-label="Used 2022 Bentley Continental GTC V8, Final price $239,603">
             <span class="card__media"><span class="card__flag card__flag--cpo">Certified Pre-Owned</span><img src="assets/img/inventory/vc-67909a.webp" width="840" height="630" loading="eager" decoding="async" alt="Jetstream II Metallic 2022 Bentley Continental GTC V8"></span>
             <span class="card__body">
@@ -471,7 +495,7 @@
             </span>
           </a>
         </li></ul></div></section></main></div>
-<div class="ds-item"><p class="ds-cap">Pre-owned · with a lease offer</p><main class="srp"><section class="srp__list"><div class="page"><ul class="grid"><li class="card" data-condition="used" data-certified="0" data-year="2026" data-price="242900" data-mileage="349" data-model="Flying Spur" data-trim="" data-stock="VC-P35636" data-vin="SCBBP6ZG6TC026907">
+<div class="ds-item"><div class="ds-item__head"><p class="ds-cap">Pre-owned · with a lease offer</p></div><main class="srp"><section class="srp__list"><div class="page"><ul class="grid"><li class="card" data-condition="used" data-certified="0" data-year="2026" data-price="242900" data-mileage="349" data-model="Flying Spur" data-trim="" data-stock="VC-P35636" data-vin="SCBBP6ZG6TC026907">
           <a class="card__link" href="vehicles7/vc-p35636.html" aria-label="Used 2026 Bentley Flying Spur, Final price $244,603">
             <span class="card__media"><span class="card__flag card__flag--lease"><span>Lease $3,519 + tax / mo</span><span class="card__flag-terms">36 months · $29,999 down</span></span><img src="assets/img/inventory/vc-p35636.webp" width="840" height="630" loading="eager" decoding="async" alt="Moonbeam 2026 Bentley Flying Spur"></span>
             <span class="card__body">
@@ -489,7 +513,7 @@
             </span>
           </a>
         </li></ul></div></section></main></div>
-<div class="ds-item"><p class="ds-cap">New</p><main class="srp"><section class="srp__list"><div class="page"><ul class="grid"><li class="card" data-condition="new" data-certified="0" data-year="2026" data-price="379085" data-mileage="30" data-model="Continental GT" data-trim="S" data-stock="V60065" data-vin="SCBDP4ZG8TC030065">
+<div class="ds-item"><div class="ds-item__head"><p class="ds-cap">New</p></div><main class="srp"><section class="srp__list"><div class="page"><ul class="grid"><li class="card" data-condition="new" data-certified="0" data-year="2026" data-price="379085" data-mileage="30" data-model="Continental GT" data-trim="S" data-stock="V60065" data-vin="SCBDP4ZG8TC030065">
           <a class="card__link" href="vehicles7/v60065.html" aria-label="New 2026 Bentley Continental GT S, Final price $380,788">
             <span class="card__media"><img src="assets/img/inventory/v60065.webp" width="840" height="630" loading="lazy" decoding="async" alt="Jetstream 2026 Bentley Continental GT S"></span>
             <span class="card__body">
@@ -507,7 +531,7 @@
             </span>
           </a>
         </li></ul></div></section></main></div>
-<div class="ds-item"><p class="ds-cap">Certified pre-owned · with a lease offer</p><main class="srp"><section class="srp__list"><div class="page"><ul class="grid"><li class="card" data-condition="used" data-certified="1" data-year="2022" data-price="227900" data-mileage="16994" data-model="Continental GTC" data-trim="V8" data-stock="VC-P35775" data-vin="SCBDG4ZG9NC097020">
+<div class="ds-item"><div class="ds-item__head"><p class="ds-cap">Certified pre-owned · with a lease offer</p></div><main class="srp"><section class="srp__list"><div class="page"><ul class="grid"><li class="card" data-condition="used" data-certified="1" data-year="2022" data-price="227900" data-mileage="16994" data-model="Continental GTC" data-trim="V8" data-stock="VC-P35775" data-vin="SCBDG4ZG9NC097020">
           <a class="card__link" href="vehicles7/vc-p35775.html" aria-label="Used 2022 Bentley Continental GTC V8, Final price $229,603">
             <span class="card__media"><span class="card__flag card__flag--lease"><span>Lease $3,520 + tax / mo</span><span class="card__flag-terms">36 months · $24,999 down</span></span><img src="assets/img/inventory/vc-p35775.webp" width="840" height="630" loading="lazy" decoding="async" alt="Celeste 2022 Bentley Continental GTC V8"></span>
             <span class="card__body">
@@ -525,7 +549,7 @@
             </span>
           </a>
         </li></ul></div></section></main></div>
-<div class="ds-item"><p class="ds-cap">New · with a lease offer</p><main class="srp"><section class="srp__list"><div class="page"><ul class="grid"><li class="card" data-condition="new" data-certified="0" data-year="2026" data-price="352240" data-mileage="30" data-model="Continental GT" data-trim="V8" data-stock="V68270" data-vin="SCBDP4ZGXTC028270">
+<div class="ds-item"><div class="ds-item__head"><p class="ds-cap">New · with a lease offer</p></div><main class="srp"><section class="srp__list"><div class="page"><ul class="grid"><li class="card" data-condition="new" data-certified="0" data-year="2026" data-price="352240" data-mileage="30" data-model="Continental GT" data-trim="V8" data-stock="V68270" data-vin="SCBDP4ZGXTC028270">
           <a class="card__link" href="vehicles7/v68270.html" aria-label="New 2026 Bentley Continental GT V8, Final price $353,943">
             <span class="card__media"><span class="card__flag card__flag--lease"><span>Lease $3,196 + tax / mo</span><span class="card__flag-terms">39 months · $35,224 down</span><span class="card__flag-terms card__flag-cond">Includes $20,000 rebates · Tier 1 credit</span></span><img src="assets/img/inventory/v68270.webp" width="840" height="630" loading="lazy" decoding="async" alt="Glacier White 2026 Bentley Continental GT V8"></span>
             <span class="card__body">
@@ -543,7 +567,7 @@
             </span>
           </a>
         </li></ul></div></section></main></div>
-<div class="ds-item"><p class="ds-cap">Pre-owned</p><main class="srp"><section class="srp__list"><div class="page"><ul class="grid"><li class="card" data-condition="used" data-certified="0" data-year="2025" data-price="277900" data-mileage="11765" data-model="Flying Spur" data-trim="Speed First Edition" data-stock="VC-P35947" data-vin="SCBBR6ZG2SC021437">
+<div class="ds-item"><div class="ds-item__head"><p class="ds-cap">Pre-owned</p></div><main class="srp"><section class="srp__list"><div class="page"><ul class="grid"><li class="card" data-condition="used" data-certified="0" data-year="2025" data-price="277900" data-mileage="11765" data-model="Flying Spur" data-trim="Speed First Edition" data-stock="VC-P35947" data-vin="SCBBR6ZG2SC021437">
           <a class="card__link" href="vehicles7/vc-p35947.html" aria-label="Used 2025 Bentley Flying Spur Speed First Edition, Final price $279,603">
             <span class="card__media"><img src="assets/bm/2026/spur-norcal.webp" width="2400" height="1600" loading="lazy" decoding="async" alt="Tungsten 2025 Bentley Flying Spur Speed First Edition (Bentley image of the line; the retailer has no photograph of this car yet)"></span>
             <span class="card__body">
