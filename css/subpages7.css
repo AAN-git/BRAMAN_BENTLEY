@@ -4,40 +4,25 @@
    sheet holds only what those parts lack. Loads after static7.css and
    vehicle7.css. */
 
-/* The page title — one head on every inner page (Alex, 2026-10-23), as the
-   dev site's Service Department sets it: the retailer's name as a tracked
-   label, then the page's name in capitals, Bentley Light. */
-.sub .sub__label { margin: 0 0 var(--space-3); color: var(--ink-2); }
+/* The page title — one head on every inner page (Alex, 2026-10-23): the
+   retailer's name, then the page's name in Bentley Light. Both as written, in
+   their own case, as bentleymotors.com sets its titles and the small line over
+   them (Alex, 2026-10-26): capitals belong to the names of the models only —
+   MULLINER, TORCAL. */
+.sub .sub__label {
+  margin: 0 0 var(--space-3); color: var(--ink-2);
+  text-transform: none; letter-spacing: 0.01em;
+}
 .sub .sub__title {
   margin: 0;
   font-size: clamp(2rem, 2.2vw + 1.2rem, 3.125rem);   /* 50px on a desktop */
-  font-weight: 300; line-height: 1.08; letter-spacing: -0.015em;
-  text-transform: uppercase;
+  font-weight: 300; line-height: 1.08; letter-spacing: 0;
+  text-transform: none;
 }
 .sub .srp__head .body { margin-block-start: var(--space-4); max-width: 46rem; }
 
-/* The client's forms ask two things the car page's enquiry does not: a best
-   time to call, and consent. Drawn as the Bentley guidelines draw choices
-   (Digital Colour Use, the form example): a circle, open or filled, in the
-   field's own type; nothing else is new. */
-.sub .enquire__form .sub__choice { grid-column: span 2; }
-.sub__choice { margin: 0; padding: 0; border: 0; display: flex; flex-wrap: wrap; align-items: flex-end; gap: var(--space-3) var(--space-6); }
-.sub__choice legend { width: 100%; padding: 0; margin-block-end: var(--space-3); }
-.sub__choice label, .sub__consent {
-  display: inline-flex; align-items: center; gap: var(--space-3);
-  font-size: var(--text-body); font-weight: 300; line-height: 1.4; color: var(--ink);
-  cursor: pointer;
-}
-.sub__consent { align-items: flex-start; font-size: var(--text-body); color: var(--ink); }
-.sub__choice input, .sub__consent input {
-  width: 18px; height: 18px; margin: 0; flex: none;
-  accent-color: var(--bentley-green);
-}
-.sub__consent input { margin-block-start: 2px; }
-
-@media (max-width: 1023px) {
-  .sub .enquire__form .sub__choice { grid-column: 1 / -1; }
-}
+/* The client's form (best time to contact, consent, two columns) is shared
+   with the car page: it lives in static7.css. */
 
 /* the listing's class on <main> clears its chapters' grounds; the retailer
    chapter keeps its own, Heritage White, as on the home page */
@@ -45,7 +30,7 @@ html main.sub > section.retailer { background: var(--heritage-white); --rule: rg
 
 /* reading sizes for the retailer's clientele: on these pages the small print
    is body size, and nothing on them is clipped */
-.sub .enquire__fine { font-size: var(--text-body); color: var(--ink-2); }
+/* the form's small print is in static7.css (the design system's Small) */
 html main.sub > section { height: auto; min-height: 0; overflow: visible; }
 html main.sub > section.retailer { padding-block: var(--space-9); }
 
@@ -114,7 +99,7 @@ html main.sub > .srp__head { padding-block-start: calc(var(--mh-h) + var(--space
   border: 1px solid var(--rule);
 }
 .sub .enquire__lede { padding-block-start: 0; max-width: 30rem; }   /* its first line on the plate's top edge */
-.sub .enquire__lede .h2--small { margin-block-start: -0.18em; }   /* the cap height, not the line box, meets the edge */
+.sub .enquire__lede .h2--small { margin-block-start: -0.253em; }   /* the cap height, not the line box, meets the edge */
 @media (max-width: 1023px) {
   .sub .enquire { grid-template-columns: 1fr; }
   .sub .enquire__lede { padding-block-start: 0; max-width: 40rem; }
@@ -389,25 +374,27 @@ html main.sub > .sub__head--pic { padding: var(--mh-h) 0 0; }
 .sub__team .h2--small { margin: 0; font-size: var(--text-h3); line-height: var(--leading-heading); }
 .sub__team-group { margin-block-start: var(--space-8); }
 .sub__team-h { margin: 0; padding-block-end: var(--space-4); border-bottom: 1px solid var(--rule); font-size: var(--text-lead); font-weight: 400; }
-.sub__team-grid { list-style: none; margin: var(--space-6) 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--space-7) var(--space-5); }
-.sub__member { display: flex; flex-direction: column; min-width: 0; }
-.sub__member img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; background: var(--day-plate); }
-.sub__member-body { padding-block-start: var(--space-4); }
+/* the demo site's staff card (meet-our-staff), so the two read as one: a white
+   plate drawn by a hairline, the portrait 4:3 across its top, then the title,
+   the name in the light cut, the direct line as "Call …" and, under it, a note; three
+   across, 40px apart, every card in a row as tall as the tallest */
+.sub__team-grid { list-style: none; margin: var(--space-6) 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2.5rem; }
+.sub__member { display: flex; flex-direction: column; min-width: 0; background: var(--day-plate); border: 1px solid var(--rule); }
+.sub__member img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; object-position: 50% 22%; background: var(--rule); }
+.sub__member-body { display: flex; flex-direction: column; align-items: flex-start; flex: 1; padding: var(--space-5); }
 .sub__member-body .label { margin: 0; color: var(--ink-2); }
-.sub__member-name { margin: var(--space-2) 0 0; font-size: var(--text-lead); font-weight: 400; line-height: 1.3; }
-.sub__member-tel { display: inline-block; margin-block-start: var(--space-3); font-variant-numeric: tabular-nums; letter-spacing: 0.04em; border-bottom: 1px solid var(--rule-strong); }
-.sub__member-tel:hover { border-color: var(--ink); }
+.sub__member-name { margin: var(--space-1) 0 0; font-size: min(var(--text-h3), 1.65rem); font-weight: 300; line-height: 1.15; }   /* the demo's 26.4px at most */
 .sub__member-note { margin: var(--space-2) 0 0; font-size: var(--text-sm); color: var(--ink-2); }
+.sub__member-tel { margin-block-start: var(--space-3); font-size: var(--text-sm); font-variant-numeric: tabular-nums; color: var(--ink); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.sub__member-tel:hover { color: var(--hover-ink, var(--ink)); }
 .sub__member-bio { margin-block-start: var(--space-3); }
 .sub__member-bio summary { list-style: none; cursor: pointer; font-size: var(--text-xs); letter-spacing: var(--track-label); text-transform: uppercase; }
 .sub__member-bio summary::-webkit-details-marker { display: none; }
 .sub__member-bio .body { margin-block-start: var(--space-3); font-size: var(--text-sm); line-height: 1.6; color: var(--ink-2); }
 .sub .sub__team + .sub__hours-ch { margin-block-start: var(--space-9); }
-@media (max-width: 1023px) { .sub__team-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-@media (max-width: 767px) { .sub__team-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-6) var(--space-4); } .sub__member-name { font-size: var(--text-body); } }
-/* five across on a desktop: Service fills its row, Sales stands 5 · 5 · 4 */
-@media (min-width: 1280px) { .sub__team-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); } }
-@media (min-width: 1024px) and (max-width: 1279px) { .sub__team-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+/* two across on a tablet; one on a phone, the plate kept whole */
+@media (max-width: 1023px) { .sub__team-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-6); } }
+@media (max-width: 599px) { .sub__team-grid { grid-template-columns: 1fr; gap: var(--space-5); } }
 
 /* a member's longer words under the group, at a reading measure */
 .sub__team-bio { margin-block-start: var(--space-6); padding-block-start: var(--space-5); border-top: 1px solid var(--rule); max-width: 46rem; }
@@ -434,3 +421,707 @@ html main.sub > .sub__head--pic { padding: var(--mh-h) 0 0; }
 .sub__intro-links { justify-content: flex-start; text-align: left; }
 .sub__intro-links .link { margin: 0; justify-content: flex-start; }
 @media (max-width: 767px) { .sub__intro-actions .btn { width: 100%; } .sub__intro-links { flex-direction: column; align-items: flex-start; } }
+
+/* the map as a chapter of its own (About): the form's chapter above it, the
+   footer below it at the chapters' interval */
+html main.sub > .sub__map-ch { padding-block: 0 var(--space-9); }
+.sub__map-ch .sub__map { margin-block-start: 0; }
+
+/* a department's own words under its heading, at a reading measure (Parts) */
+.sub__dept-copy { margin-block-start: var(--space-4); max-width: 46rem; }
+
+/* Parts: the department and its hours at the left, the manager's card at the
+   right, so neither stands alone in a chapter of its own */
+html main.sub > .sub__dept-ch { padding-block: var(--space-9) 0; }
+.sub__dept-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 413px); gap: var(--space-6) clamp(2rem, 6vw, 6rem); align-items: start; }
+.sub__dept-main .sub__dept { margin-block-start: var(--space-7); max-width: 28rem; }
+.sub__dept-staff .sub__team-grid { grid-template-columns: 1fr; margin-block-start: var(--space-5); }
+@media (max-width: 1023px) { .sub__dept-grid { grid-template-columns: 1fr; } .sub__dept-staff { max-width: 413px; } }
+/* the atelier: the photograph widened (as the coast on About) so the coupé
+   stands at the right, whole, and the title on the atelier's floor at the
+   left — never on the car */
+.sub__dept-ch .h2--small { margin: 0; font-size: var(--text-h3); line-height: var(--leading-heading); }
+@media (min-width: 768px) {
+  .sub__head--pic .sub__band-pic--atelier img { width: 146%; max-width: none; object-position: 50% 34%; }
+}
+@media (max-width: 767px) { .sub__head--pic .sub__band-pic--atelier img { object-position: 52% 22%; } }
+
+/* Sell Your Vehicle: the words across the page above the form, the form on its
+   plate the page column's full width in two columns, its two groups headed;
+   the hours and the location under it (the client's layout for these pages) */
+.sub__sell-lede { max-width: 46rem; margin-block-end: var(--space-6); }
+.sub .enquire__form.sub__sellform { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (max-width: 639px) { .sub .enquire__form.sub__sellform { grid-template-columns: 1fr; } }
+.sub__form-h {
+  grid-column: 1 / -1; margin: 0;
+  font-size: var(--text-h3); font-weight: 300; line-height: var(--leading-heading);   /* as Bentley's "Your personal details" */
+}
+.sub__form-h:not(:first-child) { margin-block-start: var(--space-6); padding-block-start: var(--space-6); border-top: 1px solid var(--rule); }
+html main.sub > .sub__after { padding-block: var(--space-9); }
+.sub__after .sub__dept { max-width: 28rem; }
+/* the marina: the GT whole at the right, the words on the quay at the left */
+.sub__head--pic .sub__band-pic--marina img { object-position: 50% 62%; }
+@media (max-width: 767px) { .sub__head--pic .sub__band-pic--marina img { object-position: 70% 60%; } }
+/* under the form the location stands level with the hours: no rule above it */
+.sub__after .sub__loc { margin-block-start: 0; padding-block-start: 0; border-top: 0; }
+.sub__after .sub__loc-h { font-size: var(--text-h3); font-weight: 300; line-height: var(--leading-heading); }
+/* no hole on a phone under the page title, on every inner page: the title
+   already stands under the photograph there, so the first chapter follows at
+   the small interval, not the desktop's 96px */
+@media (max-width: 767px) {
+  .sub .sub__head--pic + section.vdp__enquire,
+  .sub .sub__head--pic + section.sub__portal,
+  .sub .sub__head--pic + section.sub__intro { padding-block-start: var(--space-6); }
+  .sub__sell-lede { margin-block-end: var(--space-5); }
+}
+
+/* the upload (Sell Your Vehicle, the demo's): a field to drop photographs on —
+   a fine dashed edge on the page's ground, the words and Upload centred — then
+   each photograph chosen as a thumbnail with its name and its own remove */
+.sub__drop {
+  position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: var(--space-4); min-height: 10rem; margin-block-start: var(--space-3); padding: var(--space-6);
+  border: 1px dashed var(--rule-strong); background: var(--day); cursor: pointer; text-align: center;
+  transition: border-color var(--dur-2) var(--ease-out), background-color var(--dur-2) var(--ease-out);
+}
+.sub__drop:hover, .sub__drop[data-over] { border-color: var(--ink); }
+.sub__drop[data-over] { background: var(--heritage-white); }
+.sub__drop-input { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
+.sub__drop:focus-within { outline: 2px solid var(--ink); outline-offset: 3px; }
+.sub__drop-text { font-size: var(--text-body); font-weight: 300; color: var(--ink-2); }
+.sub__upload[data-full] .sub__drop { opacity: 0.5; pointer-events: none; }
+.sub__drop-count { margin: var(--space-3) 0 0; font-size: var(--text-sm); color: var(--ink-2); }
+.sub__drop-count:empty { display: none; }
+.sub__thumbs { list-style: none; margin: var(--space-4) 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(8.5rem, 1fr)); gap: var(--space-4); }
+.sub__thumbs:empty { display: none; }
+.sub__thumbs li { position: relative; min-width: 0; }
+.sub__thumbs img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border: 1px solid var(--rule); background: var(--day); }
+.sub__thumb-name { display: block; margin-block-start: var(--space-2); font-size: var(--text-xs); color: var(--ink-2); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.sub__thumb-rm {
+  position: absolute; top: var(--space-2); right: var(--space-2);
+  display: grid; place-items: center; width: 32px; height: 32px; padding: 0;
+  border: 1px solid var(--rule); border-radius: 50%; background: var(--day-plate); color: var(--ink);
+  font: inherit; font-size: 1.25rem; line-height: 1; cursor: pointer;
+}
+.sub__thumb-rm:hover { border-color: var(--ink); }
+/* on a phone the band does not clip (the words fall under the photograph), so
+   the entrance's enlargement would spill past the screen: the photograph at
+   its own scale there */
+@media (max-width: 767px) { .sub__head--pic .sub__band-pic--entrance img { transform: none; } }
+/* under the form (Sell): one interval above, not two; the hours and the
+   location as two equal columns on one line; the location's calls side by side */
+html main.sub > .sub__after { padding-block: 0 var(--space-9); }
+.sub__after .sub__dept-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.sub__after .sub__loc .actions { flex-wrap: nowrap; }
+@media (max-width: 767px) {
+  .sub__after .sub__dept-grid { grid-template-columns: 1fr; row-gap: var(--space-8); }
+  .sub__after .sub__loc .actions { flex-wrap: wrap; }
+  .sub__after .sub__loc .actions .btn { flex: 1 1 100%; }
+}
+
+/* the payment calculator: the dealer's line across, then one plate — the fields
+   at the left in the form's two columns, the result at the right on Bentley
+   Green, the payment the one large figure (as the demo sets it, in this site's
+   parts) */
+.sub__calc-lede { max-width: 46rem; margin: 0 0 var(--space-6); }
+.sub__calc { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); border: 1px solid var(--rule); background: var(--day-plate); }
+.sub .sub__calc .enquire__form.sub__calc-fields { grid-template-columns: repeat(2, minmax(0, 1fr)); align-content: start; border: 0; background: none; }
+.sub__calc-result {
+  display: flex; flex-direction: column; align-items: flex-start;
+  padding: clamp(1.5rem, 3.2vw, 3rem); background: var(--bentley-green); color: var(--white);
+  --ink: var(--white); --ink-2: rgba(255, 255, 255, 0.84); --rule: rgba(255, 255, 255, 0.22);
+}
+.sub__calc-label { margin: 0; font-size: var(--text-xs); letter-spacing: var(--track-label); text-transform: uppercase; color: var(--ink-2); }
+.sub__calc-pay { margin: var(--space-3) 0 0; display: flex; align-items: baseline; gap: var(--space-2); font-variant-numeric: tabular-nums; }
+.sub__calc-pay [data-out="pay"] { font-size: var(--text-display); font-weight: 300; line-height: 1; letter-spacing: var(--track-display); }
+.sub__calc-per { font-size: var(--text-lead); font-weight: 300; color: var(--ink-2); }
+.sub__calc-rows { width: 100%; margin-block-start: var(--space-6); }
+.sub__calc-rows dt { color: var(--ink-2); }
+.sub__calc-rows dd { color: var(--white); font-variant-numeric: tabular-nums; }
+.sub__calc-cta { margin-block-start: var(--space-6); background: var(--white); color: var(--bentley-green); border-color: var(--white); }
+.sub__calc-cta:hover { background: var(--heritage-white); border-color: var(--heritage-white); color: var(--bentley-green); }
+.sub__calc .sub__calc-fine { margin-block-start: var(--space-4); color: var(--ink-2); }
+@media (max-width: 1023px) { .sub__calc { grid-template-columns: 1fr; } }
+@media (max-width: 639px) { .sub .sub__calc .enquire__form.sub__calc-fields { grid-template-columns: 1fr; } .sub__calc-cta { width: 100%; justify-content: center; } }
+.sub__calc-rows { grid-template-columns: auto 1fr; column-gap: 0; }   /* one unbroken rule under the row */
+.sub__calc-rows dd { text-align: right; padding-inline-start: var(--space-6); }
+
+/* --- The model page (template; first the Bentayga Speed) -----------------
+   The AAN master model page's order (Kirsten's version): the hero with the
+   model's name and two calls; the key figures; a centred lead; the film; a
+   centred statement under a rule; the story chapters, words at 5 and picture
+   at 7, the second mirrored on the plate; then the model's cars in stock and
+   the enquiry. In this site's parts: the inner pages' head grown to a hero,
+   the type scale, the hairlines, no new colours. The photographs are Bentley
+   Motors' own studio frames of the model. */
+
+/* the hero: Bentley's studio photograph full width under the bar, the car
+   whole; the words under it on the page's ground, as bentleymotors.com sets a
+   studio stage — never on the car. The name in capitals (the capitals rule),
+   the year line over it; Bentley's line and the two calls at the right */
+html main.sub > .mdl__hero { padding: var(--mh-h) 0 0; }
+.mdl__hero-pic { background: var(--day-plate); }
+.mdl__hero-pic img { display: block; width: 100%; height: clamp(400px, max(62vh, 38vw), 56.25vw); object-fit: cover; object-position: 50% 57%; }   /* the car whole at every width (its height is a third of the frame's width), never taller than the frame's own 16:9 */
+.mdl__hero-words {
+  display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: var(--space-6) clamp(2rem, 4vw, 4rem); align-items: end;
+  padding-block: var(--space-7) var(--space-9);
+}
+.sub .mdl__title { display: flex; flex-direction: column; gap: var(--space-2); }
+.mdl__year { font-size: var(--text-lead); font-weight: 300; letter-spacing: 0.01em; }
+.mdl__name { font-size: clamp(2.75rem, 3.2vw + 1rem, 4.5rem); font-weight: 300; line-height: 1; letter-spacing: var(--track-display); text-transform: uppercase; }
+.mdl__tagline { margin: 0; max-width: 30rem; font-size: var(--text-lead); line-height: 1.45; color: var(--ink-2); }
+.mdl__calls { margin-block-start: var(--space-6); display: flex; flex-wrap: wrap; gap: var(--space-3); }
+@media (max-width: 1023px) {
+  .mdl__hero-words { grid-template-columns: 1fr; align-items: start; }
+}
+@media (max-width: 767px) {
+  .mdl__hero-pic img { height: auto; aspect-ratio: 16 / 10; object-position: 50% 58%; }
+  .mdl__hero-words { padding-block: var(--space-6) var(--space-8); }
+  .mdl__name { font-size: clamp(2.5rem, 11vw, 3.25rem); }
+  .mdl__calls .btn { flex: 1 1 100%; }
+}
+
+/* the key figures: the page's one dark band, in Bentley Green (as the
+   master sets its figures on dark) — four across, the figure light and large
+   with its unit small beside it, its name over it */
+html main.sub > section.mdl__stats {
+  background: var(--bentley-green); color: var(--white);
+  --ink: var(--white); --ink-2: rgba(255, 255, 255, 0.84); --rule: rgba(255, 255, 255, 0.22);
+}
+.mdl__stats-row { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin: 0; }
+.mdl__stat { display: flex; flex-direction: column-reverse; align-items: center; gap: var(--space-2); padding: var(--space-8) var(--space-4) var(--space-7); text-align: center; }
+.mdl__stat .label { color: var(--ink-2); }
+.mdl__stat + .mdl__stat { border-inline-start: 1px solid var(--rule); }
+.mdl__stat dd { margin: 0; font-size: var(--text-h2); font-weight: 300; line-height: 1; letter-spacing: var(--track-display); font-variant-numeric: tabular-nums; }
+.mdl__stat dd span { margin-inline-start: 0.3em; font-size: var(--text-body); letter-spacing: 0.02em; color: var(--ink-2); }
+.mdl__stats-note { margin: 0; padding-block: var(--space-3) var(--space-4); font-size: var(--text-legal); line-height: 1rem; color: var(--ink-2); text-align: center; }
+@media (max-width: 767px) {
+  .mdl__stats-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .mdl__stat { padding: var(--space-5) var(--space-2); }
+  .mdl__stat:nth-child(3) { border-inline-start: 0; }
+  .mdl__stat:nth-child(n+3) { border-block-start: 1px solid var(--rule); }
+}
+
+/* the engine: the master's lead and statement as one chapter, not two
+   centred blocks — the heading at 5 columns, Bentley's words at 7, the first
+   paragraph at the lead size in the ink, the second as body */
+html main.sub > .mdl__engine { padding-block: var(--space-10); }
+.mdl__engine-grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--space-6) clamp(2rem, 4vw, 4rem); align-items: start; }
+.mdl__h { margin: var(--space-3) 0 0; font-size: calc(var(--text-display) * 0.8); }
+.mdl__lead-text { margin: 0; max-width: 40rem; font-size: var(--text-lead); line-height: 1.55; color: var(--ink); }
+.mdl__engine-text .body { margin-block-start: var(--space-5); max-width: 40rem; }
+@media (max-width: 1023px) { .mdl__engine-grid { grid-template-columns: 1fr; } }
+.mdl__story .mdl__h { margin: 0; font-size: calc(var(--text-display) * 0.8); }
+/* the picture starts on the title's capitals (Alex, 2026-10-26): the heading's
+   line box is trimmed to its cap height, so its first capital meets the
+   photograph's top edge — not lower, not higher */
+@media (min-width: 1024px) { .mdl__story .mdl__h { margin-block-start: calc((1 - var(--leading-display)) * 0.5em - 0.162em); } }
+/* the film: the full width of the screen, 16:9 up to 82% of the window's
+   height; Bentley's frame with one round play button at its centre and the
+   film's name at the lower left on a shade; YouTube only after the press */
+.mdl__film-frame { position: relative; overflow: hidden; background: var(--black); }
+.mdl__film-frame img { display: block; width: 100%; height: min(56.25vw, 82vh); object-fit: cover; object-position: 50% 45%; }
+.mdl__film-frame::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(0deg, rgba(4,4,4,0.5) 0%, rgba(4,4,4,0) 38%); }
+.mdl__play {
+  position: absolute; left: 50%; top: 50%; z-index: 2; transform: translate(-50%, -50%);
+  display: grid; place-items: center; width: 88px; height: 88px; padding: 0 0 0 4px;
+  border: 1px solid rgba(255, 255, 255, 0.8); border-radius: 50%;
+  background: rgba(4, 4, 4, 0.28); color: var(--white); cursor: pointer;
+  transition: background-color var(--dur-2) var(--ease-out), border-color var(--dur-2) var(--ease-out);
+}
+.mdl__play:hover { background: var(--teal-70); border-color: var(--teal-70); }
+.mdl__play:focus-visible { outline: 2px solid var(--white); outline-offset: 4px; }
+.mdl__film-cap {
+  position: absolute; z-index: 2; left: 0; right: 0; bottom: 0; margin: 0 auto;
+  max-width: calc(var(--page) + 2 * var(--gutter)); padding: 0 var(--gutter) var(--space-6);
+  color: var(--white); font-size: var(--text-lead); font-weight: 300;
+}
+.mdl__film-cap .label { display: block; margin-block-end: var(--space-2); color: rgba(255, 255, 255, 0.84); }
+.mdl__film-frame iframe { position: absolute; inset: 0; z-index: 3; width: 100%; height: 100%; border: 0; background: var(--black); }
+.mdl__film-frame.is-playing .mdl__play, .mdl__film-frame.is-playing .mdl__film-cap { display: none; }
+@media (max-width: 767px) {
+  .mdl__film-frame img { height: auto; aspect-ratio: 16 / 9; }
+  .mdl__play { width: 64px; height: 64px; }
+  .mdl__film-cap { padding-block-end: var(--space-4); font-size: var(--text-body); }
+}
+@media (prefers-reduced-motion: reduce) { .mdl__play { transition: none; } }
+
+/* the stories: words at 5, picture at 7, the picture's top on the title's
+   capitals; the second mirrored, on the page's plate */
+html main.sub > .mdl__story { padding-block: var(--space-9); }
+html main.sub > section.mdl__story--flip { background: var(--day-plate); }
+.mdl__story-grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(2rem, 4vw, 4rem); align-items: start; }
+.mdl__story--flip .mdl__story-grid { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); }
+.mdl__story--flip .mdl__story-text { order: 2; }
+.mdl__story-text .body { margin-block-start: var(--space-4); max-width: 34rem; }
+.mdl__story-text .h2 + .body { margin-block-start: var(--space-5); }
+.mdl__story-text .actions { margin-block-start: var(--space-6); }
+.mdl__story-pic img { display: block; width: 100%; aspect-ratio: 3 / 2; object-fit: cover; }
+@media (max-width: 1023px) {
+  .mdl__story-grid, .mdl__story--flip .mdl__story-grid { grid-template-columns: 1fr; }
+  .mdl__story--flip .mdl__story-text { order: 0; }
+}
+@media (max-width: 767px) {
+  html main.sub > .mdl__engine, html main.sub > .mdl__story { padding-block: var(--space-8); }
+}
+.sub .mdl__story + .sub__stock { padding-block-start: var(--space-9); }
+[data-placeholder] { position: relative; }
+.ph-tag {
+  position: absolute; right: var(--space-3); bottom: var(--space-3); z-index: 2;
+  padding: 2px var(--space-2); background: rgba(4, 4, 4, 0.72); color: var(--white);
+  font-size: var(--text-xs); letter-spacing: 0.01em; pointer-events: none;
+}
+html main.sub > .sub__stock { padding-block: var(--space-9) 0; }
+.sub__stock-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: var(--space-4); }
+.sub__stock-head .h2--small { margin: 0; font-size: var(--text-h3); line-height: var(--leading-heading); }
+.sub__stock-grid { margin-block-start: var(--space-6); }
+.sub .sub__stock + .vdp__enquire { padding-block-start: var(--space-9); }
+
+/* the calculator on a phone: the payment first, the fields under it, so the
+   figure is on the screen before the visitor scrolls past five fields */
+@media (max-width: 767px) { .sub__calc-result { order: -1; } }
+/* the financed row: label and figure on one line, one hairline under both
+   (the record's phone rule left the line under the figure only) */
+.sub__calc-rows dt, .sub__calc-rows dd { display: flex; align-items: center; margin: 0; padding-block: var(--space-3); border-top: 0; border-bottom: 1px solid var(--rule); }
+.sub__calc-rows dd { justify-content: flex-end; }
+
+/* --- The model page, our version (Alex, 2026-10-26; first the Flying Spur) --
+   One idea: Bentley's words stand inside its photographs — on the road beside
+   the car, on the studio wall, in the evening sky — never in boxes beside
+   them. Between the photographs the kind of mass changes: a statement, the
+   models as Bentley's portraits, a mosaic of details, the figures on Bentley
+   Green, the cabin. The parts the master version shares (the title, the
+   figures, the statement's grid) are its own classes, reused. On a phone every
+   photograph stands above its words. */
+
+/* 1 · the hero: the scene owns the first screen under the bar — Bentley's
+   wider-sky frame, the car in the right two thirds with the sky and the coast
+   around it; the words on the road at the lower left, on a shade that only
+   darkens the ground beneath them */
+html main.sub > section.mx__hero { position: relative; padding: var(--mh-h) 0 0; }
+.mx__hero-pic img { display: block; width: 100%; height: clamp(560px, calc(100svh - var(--mh-h)), 62vw); object-fit: cover; object-position: 50% 62%; }
+.mx__hero-words {
+  position: absolute; left: 0; right: 0; bottom: 0; z-index: 1;
+  display: flex; flex-direction: column; align-items: flex-start;
+  max-width: none; padding-inline: var(--edge);   /* on the bar's own left edge (Menu): the car keeps the frame's right two thirds at every width */
+  padding-block-end: clamp(2.5rem, 6vh, 4.5rem);
+}
+.mx__hero .mdl__name { font-size: clamp(2.75rem, 4vw + 0.5rem, 6rem); width: min-content; }   /* the name in two lines, FLYING over SPUR, so it stays clear of the car */
+.mx__hero .mx__tagline { max-width: 20rem; text-wrap: balance; }
+.mx__tagline { margin: var(--space-4) 0 0; font-size: var(--text-lead); line-height: 1.45; }
+@media (min-width: 1024px) {
+  .mx__hero { --ink: var(--white); --ink-2: rgba(255, 255, 255, 0.9); --rule-strong: rgba(255, 255, 255, 0.75); }
+  .mx__hero::after {
+    content: ""; position: absolute; inset: var(--mh-h) 0 0 0; pointer-events: none;
+    background: radial-gradient(ellipse 55% 80% at 0% 100%, rgba(4,4,4,0.76) 0%, rgba(4,4,4,0.44) 48%, rgba(4,4,4,0) 100%);
+  }
+  .mx__hero .sub__label, .mx__hero .sub__title, .mx__tagline { color: var(--white); }
+  .mx__hero .btn--line:hover { border-color: var(--white); background: rgba(255, 255, 255, 0.1); }
+}
+@media (max-width: 1023px) {
+  .mx__hero-pic img { height: auto; aspect-ratio: 3 / 2; object-position: 50% 50%; }
+  .mx__hero-words { position: static; padding: var(--space-6) var(--gutter) var(--space-8); }
+  .mx__hero .mx__tagline { max-width: 34rem; }
+}
+@media (max-width: 767px) {
+  .mx__hero-pic img { aspect-ratio: 1 / 1; }
+  .mx__hero .mdl__name { font-size: clamp(2.5rem, 11vw, 3.25rem); }
+  .mx__tagline { color: var(--ink-2); }
+  .mx__hero .mdl__calls { align-self: stretch; }
+  .mx__hero .mdl__calls .btn { flex: 1 1 100%; }
+}
+
+/* 3 · the five models: Bentley's portraits, five across, each its name and
+   Bentley's line under it; on a phone a row to swipe, a model and a half wide */
+html main.sub > .mx__range { padding-block: 0 var(--space-10); }
+.mx__range-row { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: var(--space-4); margin: 0; padding: 0; list-style: none; }
+.mx__model img { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 54%; background: var(--day-plate); }   /* Bentley's 1:2 portrait held round the car: the studio's empty floor and ceiling left out, the car near the frame's width */
+.mx__model-name { margin: var(--space-4) 0 0; font-size: var(--text-lead); font-weight: 400; line-height: 1.3; color: var(--ink); }
+.mx__model-line { margin: var(--space-1) 0 0; font-size: var(--text-sm); color: var(--ink-2); }
+@media (max-width: 1023px) and (min-width: 768px) { .mx__range-row { gap: var(--space-3); } .mx__model-name { font-size: var(--text-body); } }
+@media (max-width: 767px) {
+  .mx__range-row { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 62%; overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain; scrollbar-width: none; }
+  .mx__range-row::-webkit-scrollbar { display: none; }
+  .mx__model { scroll-snap-align: start; }
+  html main.sub > .mx__range { padding-block-end: var(--space-8); }
+}
+
+/* 4 and 7 · a scene: the photograph the full width of the screen, the words
+   in its own air — dark on the studio's lit wall; light on the dark road at
+   sunset, on a shade only under them (the evening sky itself measured too
+   bright to carry white words) */
+html main.sub > section.mx__scene { position: relative; }
+.mx__scene-pic img { display: block; width: 100%; object-fit: cover; }
+.mx__scene--wall .mx__scene-pic img { height: min(56.25vw, 88svh); object-position: 62% 50%; }
+.mx__scene--sky .mx__scene-pic img { height: min(75vw, 100svh); object-position: 50% 94%; }   /* the car whole to its wheels; the sky gives way first */
+.mx__scene-words { position: absolute; left: 0; right: 0; z-index: 1; }
+.mx__scene-words > * { max-width: 34rem; }
+.mx__scene-words .mdl__h { margin-block-start: var(--space-3); }
+.mx__scene-words .mdl__h:first-child { margin-block-start: 0; }
+.mx__scene-words .mdl__lead-text, .mx__scene-words .body { margin-block-start: var(--space-5); }
+.mx__scene-words .actions { margin-block-start: var(--space-6); }
+.mx__scene--wall .mx__scene-words { top: clamp(3rem, 9%, 6rem); }
+.mx__scene--sky .mx__scene-words { bottom: clamp(2.5rem, 7%, 4.5rem); max-width: none; padding-inline: var(--edge); }
+.mx__scene--sky .mx__scene-words > * { max-width: 22rem; }
+.mx__scene--sky .mdl__h { width: min-content; min-width: 11ch; }
+@media (min-width: 1024px) {
+  .mx__scene--wall .mx__scene-words { --ink: var(--black); --ink-2: var(--black); }
+  .mx__scene--sky { --ink: var(--white); --ink-2: rgba(255, 255, 255, 0.92); --rule-strong: rgba(255, 255, 255, 0.75); }
+  .mx__scene--sky .mx__scene-words { color: var(--white); }
+  .mx__scene--sky .mx__scene-words .label { color: rgba(255, 255, 255, 0.86); }
+  .mx__scene--sky::after {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background: radial-gradient(ellipse 48% 72% at 0% 100%, rgba(4,4,4,0.72) 0%, rgba(4,4,4,0.42) 50%, rgba(4,4,4,0) 100%);
+  }
+  .mx__scene--sky .btn--line:hover { border-color: var(--white); background: rgba(255, 255, 255, 0.1); }
+}
+@media (max-width: 1023px) {
+  .mx__scene-pic img, .mx__scene--wall .mx__scene-pic img, .mx__scene--sky .mx__scene-pic img { height: auto; aspect-ratio: 16 / 10; }
+  .mx__scene-words, .mx__scene--sky .mx__scene-words { position: static; padding: var(--space-6) var(--gutter) var(--space-8); }
+  .mx__scene--sky .mx__scene-words > * { max-width: 34rem; }
+  .mx__scene--sky .mdl__h { width: auto; }
+}
+@media (max-width: 767px) {
+  .mx__scene-pic img, .mx__scene--wall .mx__scene-pic img, .mx__scene--sky .mx__scene-pic img { aspect-ratio: 4 / 3; }
+}
+
+/* 4 · the details the design's words name: the words at the left, the
+   headlamp tall, the mascot and the wheel stacked beside it */
+html main.sub > .mx__details { padding-block: var(--space-9) var(--space-10); }
+.mx__details-grid { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 4fr) minmax(0, 4fr); grid-template-rows: auto auto; gap: var(--space-5) clamp(1.5rem, 3vw, 2.5rem); }
+.mx__details-text { grid-row: 1 / 3; align-self: start; }
+.mx__details-text .body { max-width: 30rem; }
+.mx__detail { margin: 0; display: flex; flex-direction: column; min-height: 0; }
+.mx__detail img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+.mx__detail figcaption { margin-block-start: var(--space-3); }
+.mx__detail--tall { grid-row: 1 / 3; }
+.mx__detail--tall img { flex: 1 1 auto; min-height: 0; aspect-ratio: auto; height: 0; object-position: 50% 40%; }
+@media (max-width: 1023px) {
+  .mx__details-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: none; }
+  .mx__details-text { grid-row: auto; grid-column: 1 / -1; }
+  .mx__detail--tall { grid-row: span 2; }
+}
+@media (max-width: 767px) {
+  .mx__details-grid { grid-template-columns: 1fr; }
+  .mx__detail--tall { grid-row: auto; }
+  .mx__detail--tall img { height: auto; aspect-ratio: 4 / 5; }
+  html main.sub > .mx__details { padding-block: var(--space-6) var(--space-8); }
+}
+
+/* 5 · the performance: the page's one dark band, Bentley Green; the words in
+   the statement's grid, then the five figures across under a hairline */
+html main.sub > section.mx__power {
+  padding-block: var(--space-10) var(--space-8);
+  background: var(--bentley-green); color: var(--white);
+  --ink: var(--white); --ink-2: rgba(255, 255, 255, 0.84); --rule: rgba(255, 255, 255, 0.22);
+}
+.mx__power .label { color: var(--ink-2); }
+.mx__figures { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); margin: var(--space-9) 0 0; border-top: 1px solid var(--rule); }
+.mx__figures .mdl__stat { padding: var(--space-7) var(--space-3) var(--space-6); }
+.mx__power .mdl__stats-note { padding-block-start: var(--space-5); text-align: left; }
+@media (max-width: 1023px) {
+  .mx__figures { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .mx__figures .mdl__stat:nth-child(4) { border-inline-start: 0; }
+  .mx__figures .mdl__stat:nth-child(n+4) { border-block-start: 1px solid var(--rule); }
+}
+@media (max-width: 767px) {
+  html main.sub > section.mx__power { padding-block: var(--space-8) var(--space-6); }
+  .mx__figures { grid-template-columns: repeat(2, minmax(0, 1fr)); margin-block-start: var(--space-7); }
+  .mx__figures .mdl__stat:nth-child(n) { border-inline-start: 0; border-block-start: 1px solid var(--rule); }
+  .mx__figures .mdl__stat:nth-child(2n) { border-inline-start: 1px solid var(--rule); }
+  .mx__figures .mdl__stat:nth-child(-n+2) { border-block-start: 0; }
+  .mx__figures .mdl__stat:last-child { grid-column: 1 / -1; border-inline-start: 0; }
+}
+
+/* 6 · the cabin: the photograph to the screen's left edge, the words at the
+   right, inside the page column; on the plate */
+html main.sub > section.mx__cabin { padding-block: var(--space-10); background: var(--day-plate); }
+.mx__cabin-grid { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(2rem, 4vw, 4rem); align-items: center; padding-inline-end: calc(var(--gutter) + max(0px, (100% - var(--page) - 2 * var(--gutter)) / 2)); }
+.mx__cabin-pic img { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: 60% 50%; }
+.mx__cabin-words .mdl__h { margin-block-start: var(--space-3); }
+.mx__cabin-words .body { margin-block-start: var(--space-5); max-width: 32rem; }
+.mx__fine { margin: var(--space-5) 0 0; max-width: 32rem; font-size: var(--text-legal); line-height: 1rem; color: var(--ink-2); }
+@media (max-width: 1023px) {
+  .mx__cabin-grid { grid-template-columns: 1fr; padding-inline-end: 0; }
+  .mx__cabin-words { padding-inline: var(--gutter); }
+}
+@media (max-width: 767px) { html main.sub > section.mx__cabin { padding-block: 0 var(--space-8); } }
+.sub .mx__scene--sky + .sub__stock { padding-block-start: var(--space-9); }
+/* a model page's cars in stock: three across, one under another on a phone;
+   on a tablet's two columns two, so no card stands alone in its row */
+@media (min-width: 768px) and (max-width: 1023px) { .sub__stock-grid > li:nth-child(n+3) { display: none; } }
+
+/* --- our version, the chapters (Alex, 2026-10-26: "concrete sections —
+   Exterior, Interior, Performance") ------------------------------------------ */
+
+/* the row of chapters under the hero, as Bentley's model pages list theirs;
+   on a phone a row to swipe */
+html main.sub > nav.mx__index { border-bottom: 1px solid var(--rule); }
+.mx__index ul { display: flex; justify-content: center; gap: clamp(1.5rem, 3.5vw, 3.5rem); margin: 0; padding: 0; list-style: none; }
+.mx__index a {
+  display: block; padding-block: var(--space-5);
+  font-size: var(--text-xs); letter-spacing: var(--track-label); text-transform: uppercase;
+  color: var(--ink-2); white-space: nowrap;
+  border-bottom: 1px solid transparent; margin-bottom: -1px;
+  transition: color var(--dur-2) var(--ease-out), border-color var(--dur-2) var(--ease-out);
+}
+.mx__index a:hover, .mx__index a:focus-visible { color: var(--ink); border-bottom-color: var(--ink); }
+@media (max-width: 1023px) {
+  .mx__index ul { justify-content: flex-start; overflow-x: auto; scrollbar-width: none; gap: var(--space-6); }
+  .mx__index ul::-webkit-scrollbar { display: none; }
+}
+@media (prefers-reduced-motion: reduce) { .mx__index a { transition: none; } }
+/* a chapter's top lands under the fixed bar */
+.sub--mx [id] { scroll-margin-top: var(--mh-h); }
+
+/* a chapter's name: the site's own label, as every chapter on the site opens
+   (no rule before it — Alex, 2026-10-26: no device the system does not have) */
+.mx__scene--sky .mx__chapter { color: rgba(255, 255, 255, 0.86); }
+
+/* Bentley's points: a name in the ink, its sentence as body */
+.mx__points { display: grid; gap: var(--space-5); margin-block-start: var(--space-6); }
+.mx__details-text.mx__points { margin-block-start: 0; }
+.mx__point-h { display: block; margin: 0 0 var(--space-1); font-size: var(--text-body); font-weight: 400; line-height: 1.35; color: var(--ink); }
+.mx__point .body { margin: 0; max-width: 32rem; }
+.mx__point-h--lead { font-size: var(--text-h3); font-weight: 300; line-height: var(--leading-heading); margin-block-end: var(--space-4); }
+.mx__detail figcaption { margin-block-start: var(--space-3); font-size: var(--text-sm); line-height: 1.5; color: var(--ink-2); max-width: 34rem; }
+.mx__detail figcaption .mx__point-h { font-size: var(--text-sm); }
+
+/* the interior's second row, mirrored: the words at the left inside the page
+   column, the dashboard to the screen's right edge */
+.mx__cabin-grid--mirror { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); margin-block-start: var(--space-9); padding-inline: calc(var(--gutter) + max(0px, (100% - var(--page) - 2 * var(--gutter)) / 2)) 0; }
+.mx__cabin-grid--mirror .mx__cabin-words .body { margin-block-start: 0; }
+.mx__cabin-grid--mirror .mx__cabin-words > .body { max-width: 32rem; }
+.mx__cabin-words .mdl__lead-text { margin-block-start: var(--space-5); max-width: 32rem; }
+@media (max-width: 1023px) {
+  .mx__cabin-grid--mirror { grid-template-columns: 1fr; padding-inline: 0; margin-block-start: var(--space-8); }
+  .mx__cabin-grid--mirror .mx__cabin-pic { order: -1; }
+}
+
+/* the film from the hero: the third call, a round play button and the
+   film's name beside the two buttons (one cluster, clear of the Recently
+   Viewed tab at the lower right); while it plays the photograph, the words
+   and the shade give way, and a close button returns */
+.mx__hero-stage { position: relative; }
+.mx__hero .mdl__calls { align-items: center; }
+.mx__film-btn {
+  display: flex; align-items: center; gap: var(--space-3); margin-inline-start: var(--space-3);
+  padding: 0; border: 0; background: none; font: inherit; text-align: left; cursor: pointer;
+  color: var(--ink);
+}
+.mx__film-ring {
+  display: grid; place-items: center; width: 50px; height: 50px; padding-inline-start: 3px; flex: none;
+  border: 1px solid var(--rule-strong); border-radius: 50%;
+  transition: background-color var(--dur-2) var(--ease-out), border-color var(--dur-2) var(--ease-out), color var(--dur-2) var(--ease-out);
+}
+.mx__film-btn:hover .mx__film-ring, .mx__film-btn:focus-visible .mx__film-ring { background: var(--teal-70); border-color: var(--teal-70); color: var(--white); }
+.mx__film-btn:focus-visible { outline: 2px solid var(--ink); outline-offset: 6px; }
+.mx__film-label { display: flex; flex-direction: column; gap: 2px; font-size: var(--text-sm); line-height: 1.35; }
+.mx__film-label .label { color: var(--ink-2); }
+.mx__film-frame { position: absolute; inset: 0; z-index: 3; width: 100%; height: 100%; border: 0; background: var(--black); }
+.mx__film-close {
+  position: absolute; z-index: 4; top: 76px; right: var(--edge);   /* under the player's own top bar */
+  display: grid; place-items: center; width: 44px; height: 44px; padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.7); border-radius: 50%; background: rgba(4, 4, 4, 0.6);
+  color: var(--white); font: inherit; font-size: 1.5rem; line-height: 1; cursor: pointer;
+}
+.mx__hero.is-playing .mx__hero-words, .mx__hero.is-playing::after { visibility: hidden; }
+@media (max-width: 1023px) {
+  .mx__film-btn { margin: var(--space-3) 0 0; flex: 1 1 100%; }
+  .mx__hero.is-playing .mx__hero-words, .mx__hero.is-playing .mx__film-btn { visibility: visible; }
+}
+@media (prefers-reduced-motion: reduce) { .mx__film-ring { transition: none; } }
+
+/* our version: a photograph beside words starts on the words' title — its
+   capitals on the photograph's top edge, not lower, not higher (Alex,
+   2026-10-26); a chapter's name stands above that line */
+@media (min-width: 1024px) {
+  .mx__cabin-grid { align-items: start; }
+  .mx__cabin-grid:not(.mx__cabin-grid--mirror) .mx__cabin-words { margin-block-start: calc(-1 * (1.5 * var(--text-xs) + var(--space-4))); }
+  .mx__cabin-words > .mx__chapter + .mdl__h { margin-block-start: calc(var(--space-4) + (1 - var(--leading-display)) * 0.5em - 0.162em); }
+  .mx__cabin-grid--mirror .mx__point-h--lead { margin-block-start: calc((1 - var(--leading-heading)) * 0.5em - 0.162em); }
+  .mx__details-text .mx__point:first-child .mx__point-h { margin-block-start: calc((1 - 1.35) * 0.5em - 0.162em); }
+}
+/* between 1024 and 1279px the film's name would meet the Recently Viewed tab
+   at the lower right: the round button alone carries it (its name stays in
+   the button's accessible name) */
+@media (min-width: 1024px) and (max-width: 1279px) { .mx__film-label { display: none; } }
+
+/* the stage loop: Bentley's own coast-road film in the hero photograph's
+   place (from 1024px, motion allowed); its frames are brighter than the
+   photograph, so the words get the inner pages' own two-way shade, measured
+   over every second of the loop (label 4.9, title 7.1, film 6.5 at worst) */
+.mx__hero-film { position: absolute; inset: 0; z-index: 1; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; background: var(--black); }
+@media (min-width: 1024px) {
+  .mx__hero.has-loop::after {
+    z-index: 1;
+    background: linear-gradient(90deg, rgba(4,4,4,0.8) 0%, rgba(4,4,4,0.55) 40%, rgba(4,4,4,0) 65%),
+                linear-gradient(0deg, rgba(4,4,4,0.6) 0%, rgba(4,4,4,0) 60%);
+  }
+}
+.mx__hero-words { z-index: 2; }
+.mx__loop-btn {
+  position: absolute; z-index: 2; top: var(--space-5); right: var(--edge);
+  display: grid; place-items: center; width: 40px; height: 40px; padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.8); border-radius: 50%; background: rgba(4, 4, 4, 0.28);
+  color: var(--white); cursor: pointer;
+  transition: background-color var(--dur-2) var(--ease-out), border-color var(--dur-2) var(--ease-out);
+}
+.mx__loop-btn:hover, .mx__loop-btn:focus-visible { background: var(--teal-70); border-color: var(--teal-70); }
+.mx__loop-btn:focus-visible { outline: 2px solid var(--white); outline-offset: 4px; }
+.mx__hero.is-playing .mx__loop-btn { visibility: hidden; }
+@media (prefers-reduced-motion: reduce) { .mx__loop-btn { transition: none; } }
+
+/* our version, the variants a model's own photographs ask for (Torcal first):
+   two models in a row; the words at the right of a studio wall when the car
+   stands at the left; the words at the upper left of a sunset frame whose
+   dark ground is high; a portrait detail held by its top */
+.mx__range-row--two { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(1.5rem, 3vw, 2.5rem); }
+.mx__range-row--two .mx__model img { aspect-ratio: 16 / 10; object-position: 50% 60%; }
+@media (max-width: 767px) { .mx__range-row--two { grid-auto-columns: 86%; } }
+.mx__scene-col > * { max-width: 34rem; }
+.mx__scene-col .mdl__h { margin-block-start: var(--space-3); }
+.mx__scene-col .mdl__lead-text { margin-block-start: var(--space-5); }
+@media (min-width: 1024px) {
+  .mx__scene--right .mx__scene-col { margin-inline-start: auto; width: min(34rem, 42%); }
+  .mx__scene--dusk .mx__scene-words { top: clamp(3rem, 10%, 6rem); bottom: auto; }
+  .mx__scene--dusk::after {
+    background: radial-gradient(ellipse 52% 80% at 0% 0%, rgba(4,4,4,0.7) 0%, rgba(4,4,4,0.4) 50%, rgba(4,4,4,0) 100%);
+  }
+}
+.mx__scene--wall.mx__scene--right .mx__scene-pic img { object-position: 30% 50%; }
+.mx__detail img.mx__detail-top { object-position: 50% 20%; }
+.mx__model img.mx__fit-right { object-position: 100% 60%; }   /* the car stands at the right of the frame */
+.mx__scene--right .mx__scene-pic img { height: min(42.86vw, 88svh); }   /* the 7:3 frame whole: the car keeps its size and the wall its width */
+/* a split row on the page's own ground (Personalisation when its photograph
+   has no free ground for words) */
+html main.sub > section.mx__personal { padding-block: var(--space-10); }
+.mx__personal .mx__cabin-pic img { aspect-ratio: 16 / 10; object-position: 30% 50%; }
+.mx__personal .mx__cabin-words .actions { margin-block-start: var(--space-6); }
+@media (max-width: 767px) { html main.sub > section.mx__personal { padding-block: 0 var(--space-8); } }
+.mx__figures--four { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+@media (max-width: 1023px) and (min-width: 768px) { .mx__figures--four { grid-template-columns: repeat(2, minmax(0, 1fr)); } .mx__figures--four .mdl__stat:nth-child(3) { border-inline-start: 0; } .mx__figures--four .mdl__stat:nth-child(n+3) { border-block-start: 1px solid var(--rule); } .mx__figures--four .mdl__stat:nth-child(4) { border-inline-start: 1px solid var(--rule); } }
+@media (max-width: 767px) { .mx__figures--four .mdl__stat:last-child { grid-column: auto; border-inline-start: 1px solid var(--rule); } }
+.mx__cabin-pic img.mx__pic-top { object-position: 50% 30%; }
+.mx__cabin-words .mx__follow { margin-block-start: var(--space-4); max-width: 32rem; }
+
+/* our version, long model names and words at the right: a name of two words
+   or more stands smaller and keeps its own breaks; when the car holds the
+   left of the frame, the words stand at the lower right, on a shade that
+   darkens only the ground beneath them */
+.mx__hero .mdl__name.mdl__name--long { width: auto; font-size: clamp(2.5rem, 2.6vw + 0.75rem, 4.25rem); line-height: 1.04; }
+@media (min-width: 1024px) {
+  .mx__hero--right .mx__hero-words { align-items: flex-end; text-align: right; }
+  .mx__hero--right .mx__tagline { margin-inline-start: auto; }
+  .mx__hero--right .mdl__calls { justify-content: flex-end; }
+  /* the sea behind the words is bright: the inner pages' two-way shade, from
+     the right (measured: label 5.4, year 4.2, name 5.2, line 10.6 at worst) */
+  .mx__hero.mx__hero--right::after {
+    background: linear-gradient(270deg, rgba(4,4,4,0.86) 0%, rgba(4,4,4,0.66) 32%, rgba(4,4,4,0.3) 50%, rgba(4,4,4,0) 68%),
+                linear-gradient(0deg, rgba(4,4,4,0.6) 0%, rgba(4,4,4,0) 60%);
+  }
+  /* the lit floor behind the eyebrow: the same two-way shade, from the left */
+  .mx__hero.mx__hero--gt::after {
+    background: linear-gradient(90deg, rgba(4,4,4,0.85) 0%, rgba(4,4,4,0.65) 38%, rgba(4,4,4,0) 60%),
+                linear-gradient(0deg, rgba(4,4,4,0.6) 0%, rgba(4,4,4,0) 60%);
+  }
+  /* the Recently Viewed tab holds the lower right: the words stand above it */
+  html.has-rv .mx__hero--right .mx__hero-words { padding-block-end: calc(clamp(2.5rem, 6vh, 4.5rem) + 56px); }
+  .mx__hero--gt .mx__hero-pic img { object-position: 50% 50%; }
+  .mx__hero--gtc .mx__hero-pic img { object-position: 20% 60%; }
+}
+/* a studio frame with the car at its centre: only the chapter's name and its
+   heading stand on the wall, high at the right above the bonnet; the lead
+   opens the details beneath */
+@media (min-width: 1024px) {
+  .mx__scene--high .mx__scene-words { top: clamp(2rem, 6%, 4rem); }
+  .mx__scene--high .mx__scene-col { width: min(24rem, 30%); }
+}
+.mx__details-lead { margin: 0 0 var(--space-3); max-width: 30rem; }
+/* the words at the right need the frame's full width beside the car: below
+   1280px they stand under the photograph, as on a tablet */
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .mx__hero--right .mx__hero-pic img { height: auto; aspect-ratio: 2 / 1; }
+  .mx__hero--right .mx__hero-words { position: static; align-items: flex-start; text-align: left; padding: var(--space-7) var(--edge) var(--space-8); }
+  .mx__hero--right .mx__tagline { margin-inline-start: 0; color: var(--ink-2); }
+  .mx__hero--right .mdl__calls { justify-content: flex-start; }
+  .mx__hero.mx__hero--right::after { content: none; }
+  .mx__hero--right .sub__label, .mx__hero--right .sub__title { color: var(--ink); }
+  .mx__hero--right { --ink: var(--black); --ink-2: var(--dark-grey-40); --rule-strong: var(--dark-grey-40); }
+  .mx__hero--right .mx__film-label { display: flex; }
+  html.has-rv .mx__hero--right .mx__hero-words { padding-block-end: var(--space-8); }
+}
+/* words at the upper left, on the dusk sky over the ridge, when the car holds
+   the lower half of the frame */
+@media (min-width: 1024px) {
+  .mx__hero--top .mx__hero-words { top: var(--mh-h); bottom: 0; padding-block: clamp(2.5rem, 7vh, 4.5rem) clamp(2.5rem, 6vh, 4.5rem); }
+  .mx__hero--top .mdl__calls { margin-block-start: auto; }   /* the calls on the dark road, under the car */
+  .mx__hero.mx__hero--top::after {
+    background: radial-gradient(48% 56% at 0% 0%, rgba(4,4,4,0.8) 0%, rgba(4,4,4,0.5) 50%, rgba(4,4,4,0) 100%),
+                linear-gradient(0deg, rgba(4,4,4,0.55) 0%, rgba(4,4,4,0) 22%);
+  }
+  .mx__hero--top .mx__hero-pic img { object-position: 50% 45%; }
+}
+.mx__scene--lime .mx__scene-pic img { height: min(42.86vw, 88svh); object-position: 100% 50%; }   /* the 7:3 frame whole, the car at its right */
+.mx__scene--lime .mx__scene-words > * { max-width: 27rem; }
+
+/* --- the parts department in the model pages' language (Alex, 2026-10-26) --
+   the hero's name is the department's, so it keeps its own case and the
+   inner pages' title size; the routes are ruled rows at the lead size, the
+   site's own arrow at their right; the hours and the manager stand together */
+.mx__hero .mdl__name.mdl__name--dept { width: auto; text-transform: none; letter-spacing: 0; font-size: clamp(2.25rem, 2.4vw + 1rem, 4rem); line-height: 1.05; }
+.mx__hero--parts .mx__tagline { max-width: 26rem; text-wrap: balance; }
+@media (min-width: 1024px) {
+  .mx__hero--parts .mx__hero-pic img { object-position: 50% 40%; }
+}
+.mx__route-list { margin: var(--space-6) 0 0; padding: 0; list-style: none; border-top: 1px solid var(--rule); max-width: 32rem; }
+.mx__route-list li { border-bottom: 1px solid var(--rule); }
+.mx__route-list a {
+  display: flex; align-items: center; justify-content: space-between; gap: var(--space-4);
+  padding-block: var(--space-5); font-size: var(--text-lead); font-weight: 300; color: var(--ink);
+  transition: color var(--dur-2) var(--ease-out);
+}
+.mx__route-list a i { flex: none; width: 10px; height: 10px; border-top: 1px solid currentColor; border-right: 1px solid currentColor; transform: rotate(45deg); }
+.mx__route-list a:hover, .mx__route-list a:focus-visible { color: var(--hover-ink); }
+@media (prefers-reduced-motion: reduce) { .mx__route-list a { transition: none; } }
+html main.sub > section.mx__dept { padding-block: var(--space-10); border-top: 0; }
+.mx__dept-grid { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(2rem, 5vw, 6rem); align-items: start; }
+.mx__dept .mdl__h { margin: 0; }
+.mx__dept .sub__dept-tel { margin-block-start: var(--space-4); }
+.mx__dept .sub__team-grid { grid-template-columns: 1fr; max-width: 22rem; margin-inline-start: auto; }
+@media (max-width: 767px) {
+  .mx__dept-grid { grid-template-columns: 1fr; }
+  .mx__dept .sub__team-grid { margin-inline-start: 0; }
+  html main.sub > section.mx__dept { padding-block: var(--space-8); }
+}
+/* the routes without a heading: the rows' first rule on the photograph's top edge */
+@media (min-width: 1024px) {
+  .mx__routes .mx__cabin-grid { align-items: start; }
+  .mx__routes .mx__cabin-words { margin-block-start: 0 !important; }
+  .mx__routes .mx__route-list { margin-block-start: 0; }
+}
+/* parts, on the inner pages' template: the head's crop keeps the wheel and
+   the technician, the title on the dark underside at the lower left */
+.sub__head--pic .sub__band-pic--parts img { object-position: 50% 42%; }
+.sub__dept-main .sub__gp-h { margin-block-start: var(--space-7); }
+/* the department's hours under its address, in the location column */
+.sub__loc .sub__loc-hours { margin-block-start: var(--space-7); }
+.sub__loc .sub__loc-hours .record { margin-block-start: var(--space-4); }
+
+/* the required-fields note belongs to the form: inside its plate, the first
+   line, across both columns (Alex, 2026-10-26) */
+.enquire__form .enquire__req { grid-column: 1 / -1; margin: 0; font-size: var(--text-sm); color: var(--ink-2); }
+/* a location column as tall as the form: its first line on the plate's top
+   edge, its last rule on the plate's bottom edge (Alex, 2026-10-26: "level
+   with the box") */
+@media (min-width: 1024px) {
+  .sub .enquire.enquire--fit { align-items: stretch; }
+  .sub .enquire--fit .enquire__lede { display: flex; flex-direction: column; }
+  .sub .enquire--fit .sub__loc { flex: 1 1 auto; display: flex; flex-direction: column; }
+  .sub .enquire--fit .sub__loc-hours { margin-block-start: auto; padding-block-start: var(--space-7); }
+  .sub .enquire--fit .sub__loc-hours .record { margin-block-end: 0; }
+}
+/* the hours under the address: tighter rows than a timetable chapter, so a
+   four-day week still fits beside the form */
+.sub__loc .sub__loc-hours .record dt, .sub__loc .sub__loc-hours .record dd { padding-block: var(--space-2); }

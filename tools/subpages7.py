@@ -15,6 +15,22 @@ PAGES = {
                 'Contact Bentley Palm Beach, 2801 Okeechobee Blvd, West Palm Beach: sales 561-926-9111, service 561-926-9110, parts 561-926-9112, opening hours and directions.'),
     'about': ('About Us | Bentley Palm Beach',
               'About Bentley Palm Beach, the official Bentley retailer at 2801 Okeechobee Blvd, West Palm Beach: our sales, service and parts staff, opening hours and location.'),
+    'parts': ('Parts Department | Bentley Palm Beach',
+              'Bentley Palm Beach parts department, West Palm Beach: order genuine Bentley parts, parts specials, service appointments and tires; parts 561-926-9112.'),
+    'sell': ('Sell Your Vehicle | Bentley Palm Beach',
+             'Sell your vehicle to Bentley Palm Beach, West Palm Beach: tell us about it and our team will contact you shortly. Sales 561-926-9111.'),
+    'calculator': ('Payment Calculator | Bentley Palm Beach',
+                   'Estimate a monthly payment on a Bentley at Bentley Palm Beach, West Palm Beach: price, down payment, trade-in, rate and term.'),
+    'bentayga-speed': ('All-New 2027 Bentayga Speed | Bentley Palm Beach',
+                       'The all-new 2027 Bentley Bentayga Speed at Bentley Palm Beach, West Palm Beach: its twin-turbocharged V8, exterior and interior, Bentaygas in stock and an enquiry.'),
+    'flying-spur': ('New Flying Spur | Bentley Palm Beach',
+                    'The new Bentley Flying Spur at Bentley Palm Beach, West Palm Beach: the five models, the High Performance Hybrid, the cabin, Flying Spurs in stock and an enquiry.'),
+    'torcal': ('All-New Torcal | Bentley Palm Beach',
+               'The all-new Bentley Torcal at Bentley Palm Beach, West Palm Beach: the Torcal and Torcal S, the design, the cabin, the electric performance, and registering your interest.'),
+    'continental-gt': ('New Continental GT | Bentley Palm Beach',
+                       'The new Bentley Continental GT at Bentley Palm Beach, West Palm Beach: the five models, the design, the cabin, the High Performance Hybrid, Continental GTs in stock and an enquiry.'),
+    'continental-gtc': ('New Continental GT Convertible | Bentley Palm Beach',
+                        'The new Bentley Continental GT Convertible at Bentley Palm Beach, West Palm Beach: the five models, the four-layer roof, the cabin, the High Performance Hybrid, Convertibles in stock and an enquiry.'),
     'finance': ('Finance Department | Bentley Palm Beach',
                 'Bentley Palm Beach finance department, West Palm Beach: apply for financing, value your trade, estimate a payment, or speak with the finance team.'),
 }
@@ -35,10 +51,20 @@ head = re.sub(r'(<link rel="stylesheet" href="css/static7\.css[^"]*">\n)', lambd
 # too large"): the inner pages are shown at the same scale so they can be compared
 PREVIEW = '<style data-preview>html { zoom: 0.9; } /* the dev site\'s scale — theirs, not part of the design */</style>\n'
 
+# a model page's cars in stock: <!-- STOCK model="…" condition="…" n="…" -->
+# is filled at every build with the listing's own cards, so it is never stale
+CARDS = re.findall(r'\n(\s*<li class="card"[^>]*>.*?\n\s*</li>)', read('inventory7.html'), re.S)
+def stock(m):
+    model, cond, n = m.group(1), m.group(2), int(m.group(3))
+    pick = [c for c in CARDS if f'data-model="{model}"' in c and f'data-condition="{cond}"' in c][:n]
+    return '<ul class="grid sub__stock-grid">\n' + '\n'.join(pick) + '\n      </ul>'
+STOCK = re.compile(r'<!-- STOCK model="([^"]+)" condition="([^"]+)" n="(\d+)" -->')
+
 for name, (title, desc) in PAGES.items():
     h = re.sub(r'<title>.*?</title>', f'<title>{title}</title>', head, count=1, flags=re.S)
     h = re.sub(r'<meta name="description" content="[^"]*">', f'<meta name="description" content="{desc}">', h, count=1)
-    out = h + read(f'pages7/{name}.main.html').rstrip() + '\n' + foot
+    body = STOCK.sub(stock, read(f'pages7/{name}.main.html'))
+    out = h + body.rstrip() + '\n' + foot
     out = out.replace('</body>', f'<script src="js/sub7.js?v={stamp("js/sub7.js")}" defer></script>\n</body>', 1)
     # the page's own routes in the bar and the menu say where the visitor is
     out = re.sub(rf'(<a href="{name}7\.html")(>)', r'\1 aria-current="page"\2', out)

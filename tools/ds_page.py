@@ -52,6 +52,12 @@ offer    = up(outer(vdp, 'aside', 'offer'))
 special  = up(outer(vdp, 'aside', 'special'))
 enquire  = up(outer(vdp, 'section', 'vdp__enquire'))
 pricing  = up(outer(vdp, 'section', 'pricing'))
+# the inner pages: the one page title, and the staff card (the demo site's)
+about    = read('about.html')
+subhead  = outer(about, 'section', 'srp__head sub__head--pic')
+member   = outer(about, 'li', 'sub__member')   # the first: a note and a direct line
+SUB      = [('main', 'srp sub')]
+TEAM     = [('main', 'srp sub'), ('section', 'sub__team'), ('div', 'page'), ('ul', 'sub__team-grid ds-team')]
 
 # six listing cards, one of each kind the stock has
 cards, seen = [], set()
@@ -68,7 +74,7 @@ for m in re.finditer(r'<li class="card"[^>]*>', inv):
     cards.append((name + (' · with a lease offer' if lease else ''), c))
     if len(cards) == 6: break
 
-# --- the flags on a card's photograph: one real card of each kind --------------
+# --- the flags under a card's photograph: one real card of each kind --------------
 def first_card(doc, tag, cls, test):
     n = len(re.findall(r'<' + tag + r' class="' + cls, doc))
     for i in range(n):
@@ -127,9 +133,10 @@ TYPE = [
     ('h3', 'H3', 'Card titles, model names, header routes.', '2026 Continental GT Mulliner'),
     ('lead', 'Lead', 'Range names, car page subheads.', 'Each built to order'),
     ('body', 'Body', 'Paragraphs, form inputs, pricing rows.', 'A specialist will confirm availability and arrange a private viewing.'),
-    ('sm', 'Small', 'Card facts, offers, legal lines, hero buttons.', 'Stock V66142T · 30 miles'),
-    ('xs', 'Label', 'Labels, field labels, price labels, counts (uppercase, tracked).', 'FINAL PRICE'),
+    ('sm', 'Small', 'Card facts, offers, hero buttons.', 'Stock V66142T · 30 miles'),
+    ('xs', 'Label', 'Labels, price labels, counts (uppercase, tracked); a form field label at the same size in its own case.', 'FINAL PRICE'),
     ('button', 'Button', 'Every button (uppercase, tracked).', 'CONFIRM AVAILABILITY'),
+    ('legal', 'Legal', 'Legal text that stands apart, 12px on 16px, Regular, in its own case — as bentleymotors.com: the reCAPTCHA line, the copyright, the price disclaimer, the full lease terms. Never what stands beside a price.', 'This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service apply.'),
 ]
 SPACE = [f'space-{i}' for i in range(1, 12)]
 
@@ -166,7 +173,7 @@ sysw = '\n'.join(swatch(*p) for p in SYSTEM)
 
 types = '\n'.join(f'''<div class="ds-type" data-token="--text-{t}">
   <div class="ds-type__meta"><b>{n}</b><code>--text-{t}</code><code class="ds-type__val">{H.escape(val('text-' + t))}</code><span class="ds-px"></span><span>{u}</span></div>
-  <div class="ds-type__sample" style="font-size:var(--text-{t});{'text-transform:uppercase;letter-spacing:var(--track-label);' if t in ('xs','button') else ''}{'line-height:var(--leading-display);letter-spacing:var(--track-display);font-weight:300;' if t in ('hero','display','h2') else ''}">{s}</div>
+  <div class="ds-type__sample" style="font-size:var(--text-{t});{'text-transform:uppercase;letter-spacing:var(--track-label);' if t in ('xs','button') else ''}{'line-height:var(--leading-display);letter-spacing:var(--track-display);font-weight:300;' if t in ('hero','display','h2') else ''}{'line-height:1rem;letter-spacing:0.01em;font-weight:400;color:var(--ink-2);' if t == 'legal' else ''}">{s}</div>
 </div>''' for t, n, u, s in TYPE)
 
 spaces = '\n'.join(f'<div class="ds-space"><code>--{s}</code><span class="ds-space__bar" style="width:var(--{s})"></span><span class="ds-px-w" data-var="--{s}"></span></div>' for s in SPACE)
@@ -182,7 +189,7 @@ sections = '\n'.join(f'''<article class="ds-section" id="ds-{a}">
 
 TOC = [('colour', 'Colour'), ('type', 'Type'), ('space', 'Space & layout'), ('buttons', 'Buttons'),
        ('links', 'Links & labels'), ('forms', 'Forms'), ('cards', 'Vehicle cards'), ('vdp', 'Car page'),
-       ('header', 'Header'), ('sections', 'Home chapters'), ('rules', 'Rules')]
+       ('header', 'Header'), ('sections', 'Home chapters'), ('inner', 'Inner pages'), ('rules', 'Rules')]
 toc = ''.join(f'<a href="#{a}">{n}</a>' for a, n in TOC)
 
 page = f'''<!DOCTYPE html>
@@ -198,6 +205,7 @@ page = f'''<!DOCTYPE html>
 <link rel="stylesheet" href="css/vehicle.css">
 <link rel="stylesheet" href="css/theme.css">
 <link rel="stylesheet" href="css/static.css">
+<link rel="stylesheet" href="css/subpages.css">
 <style>
   /* The design-system page's own frame. Everything inside .ds-stage is the
      site's real markup on the site's real sheets. */
@@ -231,6 +239,13 @@ page = f'''<!DOCTYPE html>
   .ds-table th, .ds-table td {{ text-align: left; padding: var(--space-3) var(--space-4) var(--space-3) 0; border-top: 1px solid var(--rule); vertical-align: top; }}
   .ds-table th {{ font-weight: 400; font-size: var(--text-xs); letter-spacing: var(--track-label); text-transform: uppercase; }}
   .ds-stage {{ position: relative; padding: var(--space-6); background: var(--day); border: 1px solid var(--rule); overflow: hidden; }}
+  .ds-stage--band {{ padding: 0; }}
+  .ds-stage--band .srp__head.sub__head--pic {{ margin: 0; padding-top: 0 !important; }}   /* on the page this clears the fixed bar */
+  /* the stage reset above makes every .page static; the title's words sit on the photograph as on the page */
+  @media (min-width: 768px) {{
+    .ds-stage--band .sub__band-words {{ position: absolute !important; left: 0; right: 0; bottom: 0; z-index: 1; padding: 0 clamp(1.5rem, 3vw, 3rem) clamp(2rem, 4vw, 3.5rem) !important; }}
+  }}
+  .ds-team {{ grid-template-columns: minmax(0, 413px) !important; margin: 0 !important; }}   /* one card, at its width on the page at 1920 */
   .ds-stage--white {{ background: var(--white); }}
   .ds-stage--dark {{ background: var(--black); color: var(--white); --ink: var(--white); --rule-strong: rgba(255,255,255,0.7); }}
   .ds-stage--photo {{ background: #040404 url("assets/bm/2026/spur-norcal.webp") center / cover; --ink: var(--white); color: var(--white); }}
@@ -299,7 +314,25 @@ page = f'''<!DOCTYPE html>
   <section class="ds-part" id="type">
     <h2 class="ds-h2">Type</h2>
     <p class="ds-note">One family: the licensed Bentley face, Light (300) and Regular (400), with Arial as the required fallback (<code>--font</code>). Sizes are fluid — each shows its value at this window's width. Leading: display {val('leading-display')}, headings {val('leading-heading')}, body {val('leading-body')}. Tracking: display {val('track-display')}, labels {val('track-label')}, body {val('track-body')}. Labels, buttons and routes are uppercase.</p>
+    <p class="ds-note"><b>Capitals and titles (Alex, 2026-10-26).</b> A title is never set in capitals: page titles, section headings and the small line over a title stay in their own case — Title Case for a name (<i>Finance Department</i>, <i>Opening Hours</i>), as bentleymotors.com writes them, in Bentley Light with no tracking. Capitals in a heading belong to the names of the models only — <b>MULLINER</b>, <b>TORCAL</b>. Uppercase stays where it already is: labels (job titles, field labels, days, price labels), buttons and the header's routes, all through the CSS, never typed.</p>
     {types}
+    <h3 class="ds-h3">Every size — where it is used, and where it belongs</h3>
+    <p class="ds-note">Measured on every page of the site at 390px and 1440px (the theme, Satin Linen, sets body 18px and small 16px). Use the role, not a number: a new element takes the role whose "belongs to" fits it. The last column names the intended exceptions; anything not listed there sits exactly on a step.</p>
+    <table class="ds-table"><thead><tr><th>Role · token</th><th>Phone → desktop</th><th>Weight · case</th><th>Used now</th><th>Belongs to</th><th>To align</th></tr></thead><tbody>
+      <tr><td><b>Legal</b><br><code>--text-legal</code></td><td>12 / 16px leading</td><td>Regular · own case</td><td>reCAPTCHA line under every form; footer copyright; the listing's price disclaimer; the car page's disclaimer and full lease terms</td><td>Legal text that stands apart. Nothing else.</td><td>—</td></tr>
+      <tr><td><b>Label</b><br><code>--text-xs</code></td><td>14 · 14</td><td>Regular · UPPERCASE, tracking 0.1em</td><td>Header routes and the menu's group names; the number in the bar; the foot bar on a phone; text routes ("Read more ›"); job titles, price labels, filter labels; card flags; captions</td><td>Functional labels — never running text, never a heading.</td><td>—</td></tr>
+      <tr><td><b>Label, own case</b><br><code>--text-xs</code></td><td>14 · 14</td><td>Regular · own case</td><td>Form field labels (First name*, Best time to contact*) as on bentleymotors.com; "Site Terms &amp; Conditions" in the bar; slide and photo counts (01 / 03); a model's kind over its name; the footer's address line</td><td>Small functional text that is read as words, not as a label.</td><td>—</td></tr>
+      <tr><td><b>Small</b><br><code>--text-sm</code></td><td>16 · 16</td><td>Regular · own case</td><td>Card facts; the fees in a price; VIN; a lease's term and conditions beside the offer; a staff member's direct line and note; review rating</td><td>Secondary copy on a card or beside a price — including the price disclosures that must stay clear (FTC).</td><td>—</td></tr>
+      <tr><td><b>Button</b><br><code>--text-button</code></td><td>14 → 16</td><td>Regular · UPPERCASE, tracked</td><td>Every button; Bentley Inventory in the bar</td><td>Buttons only.</td><td>—</td></tr>
+      <tr><td><b>Body</b><br><code>--text-body</code></td><td>18 · 18</td><td>Regular (form inputs Light)</td><td>Paragraphs; result counts; form inputs and choices; record rows (hours, specifications)</td><td>All running text; what a visitor types; data rows.</td><td>—</td></tr>
+      <tr><td><b>Lead</b><br><code>--text-lead</code></td><td>18 → 24</td><td>Regular · own case</td><td>The line under a chapter title; Bespoke's line; on inner pages the group headings (Sales, Service, Parts), department names in the hours, "Our Location"; the price in the car page's phone bar</td><td>A title's lead line; group headings (<code>h3</code>) on inner pages.</td><td>—</td></tr>
+      <tr><td><b>H3</b><br><code>--text-h3</code></td><td>22 → 30</td><td>Light · own case (model names Regular)</td><td>Card titles and card prices; section headings on inner pages (<code>h2.h2--small</code>: Opening Hours, Contact Information, Reviews); model names in the range; the routes inside Menu</td><td>A card's or model's name; an inner page's section headings.</td><td>—</td></tr>
+      <tr><td><b>Staff name</b><br><code>min(--text-h3, 1.65rem)</code></td><td>22 → 26.4</td><td>Light · own case</td><td>The name on a staff card</td><td>The staff card only — the demo site's size.</td><td>—</td></tr>
+      <tr><td><b>Inner page title</b><br><code>.sub__title</code></td><td>32 → 50</td><td>Light · own case</td><td>Finance Department, About Us, Contact Us</td><td>The one <code>h1</code> of an inner page (Parts, Sell, the calculator, the model pages too).</td><td>—</td></tr>
+      <tr><td><b>H2</b><br><code>--text-h2</code></td><td>32 → 56</td><td>Light</td><td>The price in the car page's offer (<code>.offer__price</code>); the car page's section headings (Enquire, Pricing details, More on the floor — <code>h2--small</code> there)</td><td>A section heading one step under its page's title: under the car's name (Display) on a car page. On an inner page, whose title is smaller, the same heading takes H3.</td><td>—</td></tr>
+      <tr><td><b>Display</b><br><code>--text-display</code></td><td>36 → 64</td><td>Light · own case</td><td>Chapter titles on the home page (The Model Range, New Bentley in stock, At home wherever it is parked); the listing's title (Inventory); the car's name on its page</td><td>Chapter titles; the title of the listing and of a car page.</td><td>Two held forms, both intended — keep them: <b>held to the screen</b>, <code>min(var(--text-display), 6.6vh)</code>, on the home page's one-screen chapters, so a chapter stays one screen tall on a short screen (59px at 1440×900: Specified by you, Expert care, Okeechobee Boulevard); and <b>fitted to its plate</b> over a photograph, between H2 and Display (Sell us your car 40, the pre-owned slides' car names 46, Bespoke 60). The car page's head price (<code>.vdp__price-value</code>, 28 → 38) is the plate's one figure and keeps its own size. Nothing else on the site may sit between the steps.</td></tr>
+      <tr><td><b>Hero</b><br><code>.hero__title</code></td><td>44 → 66 (at 1440)</td><td>Light · UPPERCASE</td><td>The slide's title on the home page's hero (The Azure range)</td><td>The hero slide's title only: a model or range name, which may be in capitals (the capitals rule).</td><td>—</td></tr>
+    </tbody></table>
   </section>
 
   <section class="ds-part" id="space">
@@ -353,15 +386,15 @@ page = f'''<!DOCTYPE html>
 
   <section class="ds-part" id="forms">
     <h2 class="ds-h2">Forms</h2>
-    <p class="ds-note">The enquiry on a car page: labels above, hairline fields, one call. Error and success colours are for form states only.</p>
+    <p class="ds-note">One form wherever a form is — the car page's enquiry, every inner page — drawn as bentleymotors.com draws its own (Request a test drive): the label on the field's line where the value will go — Body Light, Dark Grey 40%, in its own case — rising above the line at 14px once the field is chosen or filled (<code>js/page.js</code> marks the fields; without it the labels stay above their fields); the value in Body Light on a 1px line in the ink, 2px when the field has focus, no box round it; a list shows only its label until something is chosen; two columns, one on a phone; a list ends in the thin open chevron; the check box a 24px square with a 2px edge in Teal 70%, filled with a white tick when ticked; a choice a 20px circle in the same edge, a dot when chosen; group headings (<code>.sub__form-h</code>) in Bentley Light at H3. Photographs: a dashed field to drop them on or press Upload; each chosen one appears as a thumbnail with its name and its own ×. Error and success colours are for form states only.</p>
     <div class="ds-stage ds-stage--white">{wrap(VDP_ROOT, enquire)}</div>
   </section>
 
   <section class="ds-part" id="cards">
     <h2 class="ds-h2">Vehicle cards</h2>
     <p class="ds-note">One card everywhere: photograph, name, facts, and the price plate — <b>Final price</b> leads; MSRP and the two dealer charges sit beneath as the working. A lease offer carries its term and the money down (Bentley's word: "down").</p>
-    <h3 class="ds-h3">Flags on the photograph</h3>
-    <p class="ds-note">One flag at a time, at the photograph's top left. Lease flags are Heritage White with black type; Sale Pending is Bentley Green, Sold Dark Grey, both with white type. On the car page the offer carries its own flag, <b>Lease special</b> (see Car page).</p>
+    <h3 class="ds-h3">Flags under the photograph</h3>
+    <p class="ds-note">Never on the photograph — nothing may cover the car (the client's Bentley note). One flag at a time, as a band across the card directly under its photograph. <b>The band's room is kept only in a row where a card carries a flag</b>: the other cards in that row keep the same empty room, so the photographs, names and prices stay level across the row; a row with no flag has no band and no empty room. A row of lease flags (three lines) is taller than a row of one-line marks, and only that row. Built with CSS subgrid (each card spans three rows: photograph, band, body), so the browser levels each row on its own; on the one-row home rail, <code>:has()</code> keeps the room only when the rail holds a flag. <b>Certified Pre-Owned</b> is a band mark of its own (the page's ground, <code>--day</code>, black type, a hairline above), for a certified car with no other flag; a certified car with a lease keeps "Certified by Bentley" in its kind line, one flag at a time. The first line is the mark in capitals; a lease's terms and condition follow in their own case. Lease flags are Heritage White with black type; Sale Pending is Bentley Green, Sold Dark Grey, both with white type. On the car page the offer carries its own flag, <b>Lease special</b> (see Car page).</p>
     <div class="ds-cards">{flags}</div>
     <h3 class="ds-h3">On the home page rail</h3>
     <div class="ds-stage ds-cards">{wrap(CARD_HOME, homecard)}</div>
@@ -371,7 +404,7 @@ page = f'''<!DOCTYPE html>
 
   <section class="ds-part" id="vdp">
     <h2 class="ds-h2">Car page</h2>
-    <p class="ds-note">The head: name at the left with Save · Share · Email under it; the price plate at the right, level with the header's right edge — MSRP, the two charges, a rule, <b>Final price</b>, then Confirm availability.</p>
+    <p class="ds-note">The head: name at the left with Save · Share · Email under it; the price plate at the right, level with the header's right edge — MSRP, the two charges, a rule, <b>Final price</b>, then Confirm availability. <b>The photographs carry no flag</b> — nothing covers the car; a lease is the offer's, under its own flag <b>Lease special</b> beside the photographs (Alex, 2026-10-26).</p>
     <div class="ds-stage">{wrap(VDP_ROOT, vdptop)}</div>
     <h3 class="ds-h3">Offer and lease special</h3>
     <div class="ds-row" style="align-items:flex-start">
@@ -384,9 +417,11 @@ page = f'''<!DOCTYPE html>
 
   <section class="ds-part" id="header">
     <h2 class="ds-h2">Header &amp; footer</h2>
-    <p class="ds-note">Two lines on a desktop: the marque centred with the retailer's routes either side, then the four routes the client wants always on screen — <b>Bentley Inventory</b> (prominent), Special Offers, Financing, Contact Us. On a phone the four become a bar at the foot of the screen, and the site's terms sit in the first screen.</p>
+    <p class="ds-note">Two lines on a desktop. The first: the marque centred; at the left the demo site's eight routes — Home, New, Pre-Owned, Offers, Service, Parts, Finance, About — each but Home opening a panel of its pages in groups (hover, focus or a press; the group's name as a label, the pages in the body face, on the Satin Linen ground with a hairline); at the right the number, 561-926-9111, the site terms and Request Test Drive. Below 1536px the eight go behind Menu, where a press opens a group in place. The second line: the four routes the client wants always on screen — <b>Bentley Inventory</b> (prominent), Special Offers, Financing, Contact Us. On a phone the four become a bar at the foot of the screen, and the site's terms sit in the first screen.</p>
     <div class="ds-stage ds-stage--header">{header}</div>
     <div class="ds-frames" style="margin-top:var(--space-5)">{frame('top', 390, 844, 0.55)}</div>
+    <h3 class="ds-h3">Recently Viewed</h3>
+    <p class="ds-note">The demo site's widget, on every page (<code>js/page.js</code>, styles in <code>css/static.css</code>, class <code>.rv</code>). Every car page remembers its car in the visitor's browser (localStorage, key <code>bpb-recently-viewed</code>, the last eight, newest first). Once there is one, a tab sits at the lower right: the car icon, <b>Recently Viewed</b> in the button register (Teal 70%, uppercase, tracked) and the count in a light disc; on a phone, the icon and the count only, above the foot bar. A press opens the cars above it on a white plate with a hairline — each its first photograph from its page (4:3, 96px), its name and <b>Final price · Stock</b> in 14px — never the MSRP. The car opens in the same tab. Escape, the ×, or a press elsewhere closes it. The way back to the top stands above the tab. With a live feed, read the same fields from the vehicle record instead of the page.</p>
     <h3 class="ds-h3">Footer</h3>
     <div class="ds-stage ds-stage--header">{footer}</div>
   </section>
@@ -395,6 +430,42 @@ page = f'''<!DOCTYPE html>
     <h2 class="ds-h2">Home chapters</h2>
     <p class="ds-note">One chapter, one screen. Each is shown live, at 1440px and at 390px.</p>
     {sections}
+  </section>
+
+  <section class="ds-part" id="inner">
+    <h2 class="ds-h2">Inner pages</h2>
+    <p class="ds-note">About, Contact, Finance, Parts, Sell Your Vehicle, the Payment Calculator and the model page template (<code>about.html</code>, <code>contact.html</code>, <code>finance.html</code>, <code>parts.html</code>, <code>sell.html</code>, <code>calculator.html</code>, <code>bentayga-speed.html</code>) are built from the site's own parts: the header and footer of the home page, the listing's head, the car page's enquiry form. <code>css/subpages.css</code> holds only what those parts lack and loads last. Every inner page added later follows the same head and the same writing.</p>
+    <h3 class="ds-h3">The model page (template)</h3>
+    <p class="ds-note">First for the 2027 Bentayga Speed (<code>bentayga-speed.html</code>); every model page follows it. <b>The way in is the home page's Model Range</b>: a model's tile opens its page where one is built, its cars in stock otherwise (Alex, 2026-10-26). The order is the AAN master model page's (<i>aanmaster2027 /models/vantage/</i>), drawn in this site's parts: <b>1 · Hero</b> — Bentley's studio photograph of the model full width under the bar, the car whole with air round it (its height follows the width: <code>max(62vh, 38vw)</code>, never past the frame's 16:9); the words <b>under</b> the photograph, never on the car: at the left the eyebrow <i>Braman Bentley Palm Beach</i>, the year line (<i>All-New 2027</i>, Lead) and the model's name in capitals (the capitals rule); at the right one line from Bentley's words, then <b>View [model] in stock</b> and <b>Enquire</b>. <b>2 · Key figures</b> — <b>the page's one dark band, Bentley Green</b>, straight under the hero: Bentley's four as its US page gives them (Max speed, Max torque, 0–60 mph, Max power — imperial), four across (two by two on a phone), the figure at H2 Light in white, its unit small beside it, its name as a label over it; any condition Bentley attaches (the top speed's carbon ceramic brakes) under them at the legal size. <b>3 · Engine</b> — the master's lead and statement as one chapter, never two centred blocks in a row: the label and the heading at 5 columns, Bentley's words at 7 — the first paragraph at Lead size in the ink, the second as body. <b>4 · Film</b> — the full width of the screen (16:9, at most 82% of the window's height): the film's own cover frame with one round play button at its centre and its name at the lower left; YouTube loads and plays only after the press — never a bare embedded player. <b>5 · Stories</b> — words at 5 columns, picture at 7 (3:2); <b>the picture's top edge on the title's capitals</b> — not lower, not higher (the heading's line box trimmed to its cap height; Alex, 2026-10-26); the next mirrored on the plate; at least one photograph outside the studio (a detail, the cabin) so the page is not one grey; one column under 1024px, the words first. <b>6 · Cars in stock</b> — the listing's own cards (three, a route to all; filled from the inventory, never typed; when the exact model is not in stock, the closest line stands and says so). <b>7 · Enquiry</b> — the form, its message naming the model. Further technical specifications are added only as Bentley publishes them for the US — never invented. Words are Bentley's, verbatim, each paragraph under the heading it belongs to. Photographs are Bentley Motors' own media of that model, from its model page on bentleymotors.com (the retailer is authorised to use them); no placeholder stays on a published page. This is the master's layout (the version asked for); an alternative in this site's own composition follows.</p>
+    <h3 class="ds-h3">The model page — our version</h3>
+    <p class="ds-note">Built for the Flying Spur, Torcal, Continental GT and Continental GT Convertible (<code>flying-spur.html</code>, <code>torcal.html</code>, <code>continental-gt.html</code>, <code>continental-gtc.html</code>); the Bentayga Speed stays in the master's layout. Each model's home-page tile opens its page. <b>The photographs are the brightest Bentley has for the model</b> — its signature colour where it has one (the Torcal in Bentley's lime Torcal S, not the silver studio frames; Alex, 2026-10-26). The words take the place in the frame where the car is not: lower left (Flying Spur, Continental GT), upper left over the sky with the calls on the road (Torcal), lower right (Convertible); a wide studio frame with the car at its centre keeps only the chapter's name and heading on the wall, its lead opening the details. A model with no new car in stock shows its pre-owned ones under a heading that says so, or registers interest (Torcal). <b>One idea: Bentley's words stand inside its photographs</b> — on the road beside the car, on the studio wall, on the dark road at sunset — never in a box beside them. <b>The page is in named chapters, as Bentley's own model pages are</b> (Alex, 2026-10-26): <b>The Range · Exterior · Interior · Performance · Personalisation · In Stock</b>, each opened by its name as the site's own label (<code>.label</code>) — nothing drawn before it, and a row of the chapters under the hero that takes the visitor to each (<code>.mx__index</code>; a row to swipe below 1024px). <b>Hero</b> — Bentley's road photograph owns the first screen under the bar, the car in the right two thirds; at the lower left, on the bar's own left edge, the eyebrow, <i>New</i>, the model's name in capitals over two lines, Bentley's line and three calls: <b>View [model] in stock</b>, <b>Enquire</b>, and <b>the film</b> — a round play button with its name; the hero's photograph is the film's first frame, a press plays Bentley's own film in its place (YouTube asked only then), a close button or Escape returns. From 1024px, unless the visitor asks for less motion, <b>Bentley's own stage loop</b> for the model (bentleymotors.com's model page, muted, without its opening blur and closing logo card) runs in the photograph's place, with a round pause button at the hero's upper right; it rests while the film plays; a phone never downloads it. Over the loop the words take the inner pages' two-way shade, measured over every second of it. <b>The Range</b> — Bentley's heading at 5 columns, its words at 7; the models as Bentley's own portraits (held at 4:5 round the car), name and Bentley's line under each. <b>Exterior</b> — a studio photograph full width, the chapter's heading in black on the lit wall; then Bentley's exterior points (name + sentence) beside a mosaic of the details they name, each detail captioned with its own point. <b>Interior</b> — two mirrored rows: a cabin photograph to the screen's left edge with Bentley's interior points, then the rear passengers' controls with a second photograph to the right edge. <b>Performance</b> — the page's one dark band, Bentley Green: Bentley's words and its US figures, five across, with Bentley's own conditions under them. <b>Personalisation</b> — a second road photograph, the words in its darkest region, and <b>Build your own</b>. Then the cars in stock and the enquiry. <b>A photograph beside words starts on the words' title</b> — the title's capitals on the photograph's top edge (the heading's line box trimmed to its cap height); a chapter's name stands above that line. <b>Words over a photograph are measured on the composited render</b> (WCAG AA: 4.5 for text, 3 for headings at 24px and over); where a region fails — the evening sky did — the words move to a region that passes, never a heavier scrim. Nothing on the hero may meet the Recently Viewed tab (between 1024 and 1279px the film keeps only its round button). Below 1024px every photograph stands above its words.</p>
+
+    <h3 class="ds-h3">The page title</h3>
+    <p class="ds-note">One head on every inner page: a Bentley photograph full width under the bar, the words at its lower left. Two lines, always these two. <b>Capitals are kept for the names of the models only</b> (MULLINER, TORCAL); page titles and the line over them are written in their own case.</p>
+    <div class="ds-stage ds-stage--band">{wrap(SUB, subhead)}</div>
+    <table class="ds-table" style="margin-top:var(--space-5)"><thead><tr><th>Line</th><th>Markup</th><th>Rule</th></tr></thead><tbody>
+      <tr><td>Eyebrow</td><td><code>&lt;p class="label sub__label"&gt;Braman Bentley Palm Beach&lt;/p&gt;</code></td><td>Always exactly <b>Braman Bentley Palm Beach</b>, identical on every inner page: never the page's name, a department or a tagline. {val('text-xs')}, <b>in its own case — not capitals</b>, tracking 0.01em (as bentleymotors.com sets the small line over a title).</td></tr>
+      <tr><td>Title</td><td><code>&lt;h1 class="h2 sub__title"&gt;Finance Department&lt;/h1&gt;</code></td><td>The page's name, the one <code>h1</code> on the page, in Title Case and <b>shown as written — not capitals</b> (<code>text-transform: none</code>), as bentleymotors.com sets its titles. Bentley Light (300), 32px on a phone to 50px on a desktop, leading 1.08, no tracking.</td></tr>
+      <tr><td>Colour</td><td>—</td><td>White on the photograph (the eyebrow at 88%). Below 768px the words leave the photograph and stand under it in black, the eyebrow in Dark Grey 40%.</td></tr>
+      <tr><td>Photograph</td><td><code>.sub__band-pic</code></td><td>Bentley library or retail photography only. The whole car in the frame, the words on the road, ground or sky beside it — never on the car.</td></tr>
+    </tbody></table>
+
+    <h3 class="ds-h3">Writing</h3>
+    <table class="ds-table"><thead><tr><th>What</th><th>How it is written</th><th>Example</th></tr></thead><tbody>
+      <tr><td>Section heading</td><td><code>h2.h2.h2--small</code>, Title Case, as the demo site writes them.</td><td>Opening Hours · Contact Information · Meet Our Staff · Send Us a Message</td></tr>
+      <tr><td>Group heading</td><td><code>h3</code>, one or two words, Title Case.</td><td>Sales · Service · Parts · Our Location</td></tr>
+      <tr><td>Label</td><td><code>.label</code>: typed in normal case, uppercase from the CSS. Job titles, days, price labels. A form field's label (<code>.field__label</code>) is the exception: in its own case, as on bentleymotors.com.</td><td>Director of Luxury Sales · Mon – Thu · (field) First name*</td></tr>
+      <tr><td>Button</td><td>A verb first, typed in sentence case; the button style sets the capitals. Use the names the demo site already uses.</td><td>Get directions · Send to phone · Send message · Contact us · Apply for financing</td></tr>
+      <tr><td>Telephone</td><td>Always with dashes, as the client asked. The <code>href</code> is <code>tel:+1…</code>. A person's direct line reads "Call …".</td><td>561-926-9111 · Call 561-681-4903</td></tr>
+      <tr><td>Hours</td><td>Lower-case am/pm, an en dash between times, "Closed" for a closed day.</td><td>9:00 am – 8:00 pm · Closed</td></tr>
+      <tr><td>Form fields</td><td>Two columns on every page (one on a phone): a label in the label register, a ruled line, the value in Body Light. A choice from a list (<code>select.field__input.field__select</code>) ends in the listing's thin open chevron — never a filled arrow. Photographs to send: the browser's picker, its button drawn as the outlined button. A long form is split into headed groups (<code>.sub__form-h</code>, Lead), each under a hairline. On a car page and the inner pages the client's fields: first/last name, email/phone, best time to contact across, message, consent.</td><td>Sell Your Vehicle: Vehicle Info, Contact Info</td></tr>
+      <tr><td>Legal line</td><td>As bentleymotors.com sets its own legal text: <b>12px on 16px</b>, <code>--text-legal</code>, Regular, tracking 0.01em, Dark Grey 40%, in its own case — never larger, never in capitals; the one exception to the 14px floor. <b>Where:</b> the form's reCAPTCHA line (<code>.enquire__fine</code>), the footer's copyright (<code>.close__legal &gt; div</code>), the listing's disclaimer (<code>.srp__legal</code>), the car page's disclaimer and full lease terms (<code>.pricing__text</code>, <code>.pricing__fine</code>). <b>Not</b> what stands beside a price — a lease's term and money down, its rebate and credit line, the fees in a price (<code>.slide__stock</code>, <code>.card__flag-terms</code>, <code>.special__fine</code>, <code>.po-fees</code>): the price rules keep those clear, at their own size.</td><td>This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service apply.</td></tr>
+      <tr><td>Body copy</td><td>The dealer's own words, kept as they wrote them. No copy of our own, no placeholder text.</td><td>—</td></tr>
+    </tbody></table>
+
+    <h3 class="ds-h3">The staff card</h3>
+    <p class="ds-note">The demo site's card (Meet Our Staff), kept as it is there: a white plate drawn by a hairline (<code>--rule</code>), the portrait 4:3 across its top, then the job title as a label, the name in Bentley Light (26.4px at most), the direct line as "Call …", and under it a note if there is one (a language spoken). Three across, 40px apart, every card in a row as tall as the tallest; two on a tablet, one on a phone.</p>
+    <div class="ds-stage">{wrap(TEAM, member)}</div>
   </section>
 
   <section class="ds-part" id="rules">
@@ -414,11 +485,19 @@ page = f'''<!DOCTYPE html>
         <li>Photographs only; no video (dead cell-service pockets make a film look broken).</li>
         <li>Cars have air around them; frames in a row are equal.</li>
       </ul></section>
+      <section><h3>Forms (approved)</h3><ul>
+        <li>The label stands on the field's line, where the value will go — Body Light, Dark Grey 40%, in its own case — and rises above the line at 14px once the field has focus or a value, as bentleymotors.com does it. Approved by the client's side (Alex, 2026-10-26: "a good move"). Every form on the site, every new one.</li>
+        <li>Two columns; one on a phone. A 1px line in the ink, 2px with focus, no box round a field.</li>
+        <li>A list ends in a firm short chevron in the ink; until something is chosen it shows only its label.</li>
+        <li><b>The enquiry: address, form, hours</b> (Alex, 2026-10-26). The note <i>Fields marked with (*) are required.</i> is the form's first line, inside its plate, across both columns. Beside the form, the column holds the heading, Our Location, the department's phone, Get directions / Send to phone, and under them that department's hours (Parts Hours on Parts; Sales Hours on Finance and the model pages) in tighter record rows. From 1024px the column is as tall as the form: the heading's capitals on the plate's top edge, the hours' last rule on its bottom edge (<code>.enquire--fit</code>). Contact and About keep their three-department Opening Hours chapter; Sell keeps the client's order (form, then hours and location under it).</li>
+        <li><b>Dropdowns: the closed field is the browser's own <code>&lt;select&gt;</code></b> on the field's ruled line — the listing's filters (Condition, Model, Year, Sort by) and every form. <b>The open list is the site's own, as the demo site draws it</b> (Alex, 2026-10-26; <code>js/page7.js</code>, <code>.dd</code> in <code>static7.css</code>): it drops from the field's line (8px under it), its left edge on the field's, at least the field's width; a white plate with a hairline (<code>--rule</code>), no shadow; one choice to a 40px row, 16px, 16px side padding; <b>model names in capitals</b>; on the listing's picks the number of cars each choice leaves (<i>/8</i>, Dark Grey, 14px, at the right — counted with the other picks as they stand); the chosen row marked by a 2px line at its left, the row under the pointer or the keys on Satin Linen; <b>its height is its choices</b> — never the demo's empty foot; past ~10 choices it scrolls with a thin bar. A form's empty first choice (Make, Year) is only a prompt and is not listed. The chevron turns up while open. Keys: arrows, Home/End, Enter or Space, Escape, Tab. On a touch screen the phone's own picker opens instead.</li>
+        <li>Check box: a 24px square, a 2px edge in Teal 70%, a white tick on Teal when ticked. A choice: a 20px circle, a dot when chosen.</li>
+      </ul></section>
       <section><h3>Motion &amp; access</h3><ul>
         <li>Static: no scroll-driven effects, no sticking chapters, no reveals, no autoplay. Slides turn when the visitor turns them.</li>
         <li>Transitions only on controls: colour on hover ({val('dur-2')}), the slide change ({val('dur-4')}).</li>
         <li>Contrast verified on every ground (WCAG AA); focus always visible; a skip link first.</li>
-        <li>Body type never below 14px.</li>
+        <li>Body type never below 14px; the one exception is a legal line, 12px (<code>--text-legal</code>), as on bentleymotors.com.</li>
       </ul></section>
     </div>
   </section>

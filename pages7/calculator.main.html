@@ -1,0 +1,43 @@
+<main id="main" class="srp sub">
+
+  <!-- the head on the page's picture, as every inner page: Bentley Financial
+       Services' own frame (bentleymotors.com), the title at the lower left -->
+  <section class="srp__head sub__head--pic" aria-labelledby="sub-h">
+    <div class="sub__band-pic sub__band-pic--finance">
+      <img src="assets/bm/2026/own-finance.webp" srcset="assets/bm/2026/own-finance-1200.webp 1200w, assets/bm/2026/own-finance.webp 2560w" sizes="100vw" alt="" width="2560" height="1440" decoding="async">
+      <div class="page sub__band-words">
+        <p class="label sub__label">Braman Bentley Palm Beach</p>
+        <h1 class="h2 sub__title" id="sub-h">Payment Calculator</h1>
+      </div>
+    </div>
+  </section>
+
+  <!-- the calculator: the demo page's own words and fields, working. The demo's
+       first paragraph (what you could afford from a payment) is left out: the
+       page does not make that calculation. The figures are an estimate, as the
+       dealer's line under them says. -->
+  <section class="vdp__enquire sub__calc-ch" aria-labelledby="sub-h">
+    <div class="page">
+      <p class="body sub__calc-lede">Calculate the expected monthly payment of a vehicle by entering its price and a down payment you're comfortable with.</p>
+      <form class="sub__calc" onsubmit="return false" aria-label="Payment calculator">
+        <div class="enquire__form sub__calc-fields">
+          <label class="field field--wide"><span class="field__label">Vehicle price ($)</span><input class="field__input" type="text" inputmode="decimal" name="price" autocomplete="off"></label>
+          <label class="field"><span class="field__label">Down payment ($)</span><input class="field__input" type="text" inputmode="decimal" name="down" autocomplete="off"></label>
+          <label class="field"><span class="field__label">Trade-in value ($)</span><input class="field__input" type="text" inputmode="decimal" name="trade" autocomplete="off"></label>
+          <label class="field"><span class="field__label">Interest rate (% APR)</span><input class="field__input" type="text" inputmode="decimal" name="apr" value="4.99" autocomplete="off"></label>
+          <label class="field"><span class="field__label">Loan term</span><select class="field__input field__select" name="term"><option value="24">24 months</option><option value="36">36 months</option><option value="48">48 months</option><option value="60" selected>60 months</option><option value="72">72 months</option><option value="84">84 months</option></select></label>
+        </div>
+        <div class="sub__calc-result" aria-live="polite">
+          <p class="sub__calc-label">Estimated monthly payment</p>
+          <p class="sub__calc-pay"><span data-out="pay">$0</span><span class="sub__calc-per">/mo</span></p>
+          <dl class="record sub__calc-rows">
+            <dt>Amount financed</dt><dd data-out="financed">$0</dd>
+          </dl>
+          <a class="btn sub__calc-cta" href="https://www.bramanbentleypalmbeach.com/finance-application/">Apply now</a>
+          <p class="enquire__fine sub__calc-fine">Estimate only. Excludes taxes, title, registration, and dealer fees.</p>
+        </div>
+      </form>
+    </div>
+  </section>
+
+</main>

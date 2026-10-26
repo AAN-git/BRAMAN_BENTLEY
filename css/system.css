@@ -53,6 +53,7 @@
   /* Matched step for step to bentleymotors.com, measured at 1440 and 516.
      The one divergence is the floor: functional text never below 14px.     */
   --text-xs:      0.875rem;                                   /* 14 — floor */
+  --text-legal:   0.75rem;                                    /* 12 — legal lines only, as bentleymotors.com sets its own (lh 16px) */
   --text-sm:      0.9375rem;                                  /* 15         */
   --text-nav:     0.9375rem;                                  /* 15         */
   --text-body:    1.0625rem;                                  /* 17         */

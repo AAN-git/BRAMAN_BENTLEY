@@ -438,3 +438,340 @@ html main > section.retailer { background: var(--heritage-white); --rule: rgba(4
 @media (min-width: 768px) {
   .hero .hero__ctl, .hero:has(.slide.is-active) .hero__ctl { right: var(--edge); left: auto; bottom: 0.5rem; transform: none; }
 }
+
+/* --- The menu: the demo site's navigation (Alex, 2026-10-26) -------------
+   Eight routes; seven open a panel of their pages in groups, as the demo's
+   mega-menu does, drawn in this site's parts: the Satin Linen ground, a
+   hairline, the group's name as a label, the pages in the body face. On a
+   wide screen a panel opens under the bar on hover, focus or a press; below
+   1536 (where the eight no longer clear the marque by 40px) the routes live behind Menu and a press opens a group in place. */
+.mh__open {
+  display: inline-block; padding: var(--space-2) 0;
+  background: none; border: 0; color: inherit; cursor: pointer;
+  font: inherit; font-size: var(--text-xs); font-weight: 400;
+  letter-spacing: var(--track-label); text-transform: uppercase;
+  transition: color var(--dur-2) var(--ease-out);
+}
+.mh__open:hover, .mh__item[data-open] > .mh__open { color: var(--hover-ink); }
+.mh__panel ul { display: block; }
+.mh__group-h {
+  margin: 0 0 var(--space-3);
+  font-size: var(--text-xs); font-weight: 400; letter-spacing: var(--track-label);
+  text-transform: uppercase; color: var(--ink-2);
+}
+.mh .mh__panel a {
+  display: block; padding: 0.375rem 0;
+  font-size: var(--text-sm); font-weight: 400; line-height: 1.4;
+  letter-spacing: 0; text-transform: none; white-space: nowrap; color: var(--ink);
+}
+.mh .mh__panel a:hover { color: var(--hover-ink); }
+
+@media (min-width: 1536px) {
+  .mh__nav .mh__menu { gap: clamp(1rem, 7.1vw - 92px, 2rem); }   /* what the column leaves, the marque 40px clear */
+  .mh__nav .mh__menu > li { white-space: nowrap; }
+  .mh__item--sub { position: relative; }
+  /* the panel hangs from the bar's lower edge: its transparent top runs from
+     the route down to the bar's rule, so the pointer never leaves it */
+  .mh__panel {
+    position: absolute; z-index: 60; top: 100%; left: calc(-1 * var(--space-5));
+    padding-top: calc((var(--bar-h-compact) - 2.375rem) / 2);
+    visibility: hidden; opacity: 0;
+    transition: opacity var(--dur-2) var(--ease-out), visibility 0s linear var(--dur-2);
+  }
+  .mh__item--sub:hover > .mh__panel,
+  .mh__item--sub:focus-within > .mh__panel,
+  .mh__item[data-open] > .mh__panel {
+    visibility: visible; opacity: 1;
+    transition: opacity var(--dur-2) var(--ease-out), visibility 0s;
+  }
+  .mh__panel-in {
+    display: grid; grid-auto-flow: column; gap: var(--space-7);
+    padding: var(--space-5) var(--space-5) var(--space-4);
+    background: var(--day); border: 1px solid var(--rule);
+  }
+  .mh__panel--cols ul { columns: 2; column-gap: var(--space-7); }
+  .mh__panel--cols li { break-inside: avoid; }
+}
+
+/* below 1536: Menu opens the routes over the page, under the whole header */
+@media (min-width: 1024px) and (max-width: 1535px) {
+  .mh__toggle { display: inline-flex; justify-self: start; }
+  .mh__nav {
+    position: fixed; inset: var(--mh-h) 0 0 0; z-index: 49;
+    display: none; overflow-y: auto;
+    padding: var(--space-6) var(--edge) var(--space-8);
+    background: var(--day); border-top: 1px solid var(--rule);
+  }
+  .mh[data-open] .mh__nav { display: block; }
+}
+@media (max-width: 1535px) {
+  .mh__nav .mh__menu { display: block; max-width: 40rem; }
+  .mh__menu > li { border-bottom: 1px solid var(--rule); }
+  .mh__menu > li > a, .mh__open {
+    display: flex; width: 100%; justify-content: space-between; align-items: center;
+    padding: var(--space-4) 0; text-align: left;
+    font-size: var(--text-h3); font-weight: 300; letter-spacing: 0; text-transform: none;
+  }
+  .mh__open::after {
+    content: ""; width: 0.6em; height: 0.6em; flex: none; margin-right: 0.2em;
+    border-right: 1px solid currentColor; border-bottom: 1px solid currentColor;
+    transform: rotate(45deg) translateY(-25%);
+  }
+  .mh__item[data-open] > .mh__open::after { transform: rotate(225deg) translateY(-25%); }
+  .mh__panel { display: none; }
+  .mh__item[data-open] > .mh__panel { display: block; }
+  .mh__panel-in { display: grid; gap: var(--space-5); padding: 0 0 var(--space-5); }
+  .mh .mh__panel a { font-size: var(--text-body); white-space: normal; padding: var(--space-2) 0; }
+  .mh__menu > .mh__nav-terms { border-bottom: 0; }
+}
+/* the number is the bar's only words on the right now (the name before it is
+   gone): the rules that hid the name as the first span must not hide it */
+.mh__contact .mh__retailer span.mh__tel { display: inline; }
+/* behind Menu on a wide screen: an open group lays its columns side by side,
+   as its panel does, rather than one long list down the left */
+@media (min-width: 1024px) and (max-width: 1535px) {
+  .mh__nav .mh__menu { max-width: 56rem; }
+  .mh__panel-in { grid-auto-flow: column; justify-content: start; column-gap: var(--space-8); }
+}
+@media (max-width: 1023px) {
+  .mh__nav { padding-top: var(--space-3); }   /* no hole above the first route */
+}
+
+/* --- The client's form, everywhere a form is (Alex, 2026-10-26) ---------
+   The same fields on every page — first and last name, email and phone, the
+   best time to contact under the phone, across, the message, consent — in two
+   columns; one on a phone. The choices drawn as the Bentley guidelines draw
+   them (Digital Colour Use, the form example): a circle, open or filled, in
+   the field's own type. */
+.enquire__form:has(.sub__choice) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.enquire__form .sub__choice { grid-column: 1 / -1; }
+@media (max-width: 639px) { .enquire__form:has(.sub__choice) { grid-template-columns: 1fr; } }
+.sub__choice { margin: 0; padding: 0; border: 0; display: flex; flex-wrap: wrap; align-items: flex-end; gap: var(--space-3) var(--space-6); }
+.sub__choice legend { width: 100%; padding: 0; margin-block-end: var(--space-3); }
+.sub__choice label, .sub__consent {
+  display: inline-flex; align-items: center; gap: var(--space-3);
+  font-size: var(--text-body); font-weight: 300; line-height: 1.4; color: var(--ink);
+  cursor: pointer;
+}
+.sub__consent { align-items: flex-start; }
+.sub__choice input, .sub__consent input {
+  width: 18px; height: 18px; margin: 0; flex: none;
+  accent-color: var(--bentley-green);
+}
+.sub__consent input { margin-block-start: 2px; }
+/* the form's small print (the reCAPTCHA line): a legal line, set as
+   bentleymotors.com sets its own — 12px on 16px, Regular, tracking 0.01em, in
+   its own case (Alex, 2026-10-26: 16 is far too much) — on every page with a form */
+.enquire__form .enquire__fine { font-size: var(--text-legal); line-height: 1rem; font-weight: 400; letter-spacing: 0.01em; text-transform: none; color: var(--ink-2); }
+
+/* --- Legal lines, one register across the site (Alex, 2026-10-26) --------
+   Set as bentleymotors.com sets its own legal text: 12px on 16px, Regular,
+   tracking 0.01em, in its own case, the secondary ink. For the legal text that
+   stands apart — the form's reCAPTCHA line, the footer's copyright, the
+   listing's disclaimer under the grid, the car page's disclaimer and full lease
+   terms (#pricing). Not for what stands beside a price — a lease's term and
+   money down, its rebate and credit, the fees in a price: the price rules
+   (FTC) keep those clear and in reach, at their own size. */
+.enquire__form .enquire__fine,
+.close__legal > div,
+.srp__legal,
+.pricing__fine,
+.pricing__text {
+  font-size: var(--text-legal); line-height: 1rem; font-weight: 400;
+  letter-spacing: 0.01em; text-transform: none;
+}
+.enquire__form .enquire__fine, .srp__legal, .pricing__fine, .pricing__text { color: var(--ink-2); }
+
+/* --- Recently Viewed (the demo site's widget; js/page7.js) ----------------
+   A tab at the lower right in the button's own colour and register, the count
+   in a light disc; above it, on a press, the cars on a white plate drawn by a
+   hairline. The way back to the top stands above the tab. On a phone the tab
+   is the car and the count, above the foot bar. */
+.rv { position: fixed; right: var(--edge); bottom: var(--space-4); z-index: 45; display: flex; flex-direction: column; align-items: flex-end; gap: var(--space-2); }
+.rv__tab {
+  display: inline-flex; align-items: center; gap: var(--space-3);
+  min-height: 44px; padding: 0 var(--space-4);
+  border: 0; background: var(--teal-70); color: var(--white); cursor: pointer;
+  font: inherit; font-size: var(--text-button); font-weight: 400;
+  letter-spacing: var(--track-label); text-transform: uppercase;
+  transition: background-color var(--dur-2) var(--ease-out);
+}
+.rv__tab:hover, .rv__tab[aria-expanded="true"] { background: var(--bentley-green); }
+.rv__tab svg { width: 20px; height: 20px; fill: currentColor; flex: none; }
+.rv__count {
+  display: grid; place-items: center; min-width: 22px; height: 22px; padding: 0 6px;
+  border-radius: 11px; background: rgba(255, 255, 255, 0.28);
+  font-size: var(--text-xs); letter-spacing: 0; font-variant-numeric: tabular-nums;
+}
+.rv__panel {
+  width: min(22rem, calc(100vw - 2 * var(--gutter)));
+  max-height: min(60vh, 28rem); overflow-y: auto;
+  padding: var(--space-4); background: var(--day-plate); border: 1px solid var(--rule);
+}
+.rv__head { display: flex; justify-content: space-between; align-items: center; margin-block-end: var(--space-3); }
+.rv__title { margin: 0; font-size: var(--text-xs); letter-spacing: var(--track-label); text-transform: uppercase; color: var(--ink-2); }
+.rv__close { display: grid; place-items: center; width: 32px; height: 32px; margin: -6px -6px -6px 0; padding: 0; border: 0; background: none; color: var(--ink); font: inherit; font-size: 1.375rem; line-height: 1; cursor: pointer; }
+.rv__list { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-3); }
+.rv__item { display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: var(--space-3); align-items: center; color: var(--ink); text-decoration: none; }
+.rv__item img { display: block; width: 96px; height: auto; aspect-ratio: 4 / 3; object-fit: cover; background: var(--rule); }
+.rv__name { display: block; font-size: var(--text-xs); line-height: 1.35; transition: color var(--dur-2) var(--ease-out); }
+.rv__meta { display: block; margin-block-start: 2px; font-size: var(--text-xs); line-height: 1.35; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.rv__item:hover .rv__name { color: var(--hover-ink); }
+html.has-rv .totop { bottom: calc(var(--space-4) + 44px + var(--space-4)); }
+@media (max-width: 1023px) {
+  .rv { right: var(--gutter); bottom: calc(var(--dock-h) + var(--space-3)); }
+  html.has-rv .totop { bottom: calc(var(--dock-h) + var(--space-3) + 44px + var(--space-3)); }
+  body:has(.vdp__bar[data-on]) .rv { display: none; }   /* the car page's price bar takes that place */
+}
+@media (max-width: 767px) {
+  .rv__label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .rv__tab { padding: 0 var(--space-3); }
+}
+
+/* a choice from a list, in a form: the field's own ruled line, the choice on
+   it, and at its end the listing's own chevron — the thin open one the demo
+   site and the inventory's picks use, never a filled arrow (Alex, 2026-10-26) */
+.field__select {
+  appearance: none; -webkit-appearance: none; cursor: pointer;
+  padding-inline-end: var(--space-6);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none'%3E%3Cpath d='M2.5 5.5 8 11l5.5-5.5' stroke='%23585858' stroke-width='1.25'/%3E%3C/svg%3E");
+  background-size: 12px 12px;
+  background-position: right 2px center;
+  background-repeat: no-repeat;
+  text-overflow: ellipsis; white-space: nowrap;
+}
+.field__select option { color: var(--black); background: var(--white); }
+/* photographs to send: the browser's own picker, its button drawn as the
+   site's outlined button */
+.field__file { display: block; width: 100%; margin-block-start: var(--space-3); font: inherit; font-size: var(--text-body); font-weight: 300; color: var(--ink-2); }
+.field__file::file-selector-button {
+  margin-inline-end: var(--space-4); min-height: 44px; padding: 0 var(--space-5);
+  border: 1px solid var(--rule-strong); border-radius: 0; background: transparent; color: var(--ink);
+  font: inherit; font-size: var(--text-button); font-weight: 400; letter-spacing: var(--track-label); text-transform: uppercase;
+  cursor: pointer;
+}
+.field__file::file-selector-button:hover { border-color: var(--ink); }
+
+/* --- Form elements as bentleymotors.com draws them (request a test drive;
+   Alex, 2026-10-26: "check the form against Bentley's") ---------------------
+   The label in its own case, never capitals; the line under the field in the
+   ink; the check box a 24px square with a 2px edge in the button's colour, the
+   choice a circle in the same edge, both filled when chosen; group headings in
+   Bentley Light. The label stays above the field rather than inside it as on
+   bentleymotors.com — read at once by an older clientele, never hidden. */
+.field__label, .sub__choice legend { font-size: var(--text-xs); font-weight: 400; letter-spacing: 0.01em; text-transform: none; color: var(--ink-2); }
+.field__input { border-bottom-color: var(--ink); }
+.field__input.field__area { border-color: var(--ink); }
+.sub__choice input[type="radio"], .sub__consent input[type="checkbox"] {
+  appearance: none; -webkit-appearance: none; flex: none; margin: 0; cursor: pointer;
+  border: 2px solid var(--teal-70); background: transparent;
+  transition: background-color var(--dur-2) var(--ease-out), border-color var(--dur-2) var(--ease-out);
+}
+.sub__consent input[type="checkbox"] { width: 24px; height: 24px; border-radius: 0; margin-block-start: 0; }
+.sub__consent input[type="checkbox"]:checked {
+  background: var(--teal-70) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none'%3E%3Cpath d='M3.5 8.5l3 3 6-7' stroke='%23fff' stroke-width='1.6'/%3E%3C/svg%3E") center / 16px no-repeat;
+}
+.sub__choice input[type="radio"] { width: 20px; height: 20px; border-radius: 50%; }
+.sub__choice input[type="radio"]:checked { background: radial-gradient(circle, var(--teal-70) 0 4px, transparent 5px); }
+.sub__choice input:focus-visible, .sub__consent input:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+.sub__choice input:hover, .sub__consent input:hover { border-color: var(--bentley-green); }
+.sub__consent { gap: var(--space-4); }
+
+/* --- Labels on the line (bentleymotors.com, Request a test drive) --------
+   At rest the label stands where the value will go — on the field's line, in
+   Body Light, the secondary ink; chosen or filled, it rises above the line at
+   14px. The room it rises into is kept, so nothing moves. A list shows only
+   its label until something is chosen. (js/page7.js marks the fields.) */
+html.has-float .field--float { position: relative; padding-block-start: 1.375rem; }
+html.has-float .field--float > .field__label {
+  position: absolute; left: 0; right: 0; top: calc(1.375rem + var(--space-2) + var(--space-2));
+  font-size: var(--text-body); font-weight: 300; line-height: 1.4; letter-spacing: 0;
+  color: var(--ink-2); pointer-events: none; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  transition: top var(--dur-2) var(--ease-out), font-size var(--dur-2) var(--ease-out);
+}
+html.has-float .field--float:focus-within > .field__label,
+html.has-float .field--float.is-filled > .field__label {
+  top: 0; font-size: var(--text-xs); font-weight: 400; line-height: 1.375rem; letter-spacing: 0.01em;
+}
+html.has-float .field--float:not(.is-filled) > .field__select { color: transparent; }
+html.has-float .field--float > .field__select { padding-inline-end: var(--space-6); }
+/* the chevron as Bentley's: shorter, firmer, in the ink */
+.field__select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none'%3E%3Cpath d='M4 6l4 4 4-4' stroke='%23040404' stroke-width='2'/%3E%3C/svg%3E");
+  background-size: 14px 14px;
+}
+@media (prefers-reduced-motion: reduce) { html.has-float .field--float > .field__label { transition: none; } }
+/* focus as Bentley shows it: the line itself, firmer — no box round the field
+   (still a clear change for the keyboard) */
+.field__input:focus, .field__input:focus-visible { outline: none; border-bottom-width: 2px; padding-block-end: calc(var(--space-3) - 1px); }
+.field__input.field__area:focus, .field__input.field__area:focus-visible { border-width: 2px; }
+
+/* --- A card's mark under its photograph (Alex, 2026-10-26) ----------------
+   The lease, Sale Pending, Sold, Certified Pre-Owned: never on the photograph
+   (nothing may cover the car — the client's Bentley note) but the whole box
+   as a band across the card directly under it, in its own colours; the first
+   line the mark in capitals, a lease's terms and condition in their own case.
+   The band's room is kept only where a mark stands in the same row: beside a
+   marked card an unmarked one keeps the room empty, so the row stays level; a
+   row with no mark has no band at all (Alex: "the spacing only if a lease is
+   next to it"). In a grid the rows are subgrids, so this follows whatever the
+   number of columns or the filters show; on the home page's one-row rail it
+   follows whether the rail holds a mark. */
+.card .card__media .card__flag {
+  position: static; order: 2; width: 100%; max-width: none;
+  display: flex; flex-direction: column; justify-content: center; align-items: flex-start;
+  padding: var(--space-3) var(--space-5); white-space: normal; line-height: 1.35;
+}
+.card .card__media { display: flex; flex-direction: column; overflow: visible; background: none; }
+.card .card__media img { order: 1; display: block; background: #8d8d8d; }
+.card .card__flag-terms { letter-spacing: 0.01em; text-transform: none; }
+.card__flag.card__flag--cpo { background: var(--day); color: var(--ink); border-block-start: 1px solid var(--rule); }
+@supports (grid-template-rows: subgrid) {
+  .grid > li.card { display: grid; grid-row: span 3; grid-template-rows: subgrid; row-gap: 0; }
+  .grid > li.card[hidden] { display: none; }   /* a card the picks leave out stays gone: the subgrid's display must not bring it back */
+  .grid > li.card > .card__link { display: grid; grid-row: span 3; grid-template-rows: subgrid; row-gap: 0; }
+  .grid > li.card .card__media { display: contents; }
+  .grid > li.card .card__media img { grid-row: 1; }
+  .grid > li.card .card__media .card__flag { grid-row: 2; }
+  .grid > li.card .card__body { grid-row: 3; }
+}
+:root { --flag-1: calc(1.35 * var(--text-xs) + 2 * var(--space-3)); --flag-3: calc(3 * 1.35 * var(--text-xs) + 2 * var(--space-3)); }
+.stock__rail:has(.card__flag) .card__media .card__flag { min-height: var(--flag-1); }
+.stock__rail:has(.card__flag) .card__media:not(:has(.card__flag))::after { content: ""; order: 2; display: block; height: var(--flag-1); }
+.stock__rail:has(.card__flag--lease) .card__media .card__flag { min-height: var(--flag-3); }
+.stock__rail:has(.card__flag--lease) .card__media:not(:has(.card__flag))::after { height: var(--flag-3); }
+
+/* --- The open list of a dropdown (js/page7.js) — the demo site's list, in
+   this site's parts (Alex, 2026-10-26). It drops from the field's ruled line,
+   its left edge on the field's, at least the field's width; a white plate with
+   a hairline; a choice to a 40px row; model names in capitals; the count of
+   cars a choice leaves in grey at the right; its height is its choices — no
+   empty foot. The chosen one is marked by a line at its left edge. --------- */
+.pick.is-open, .field.is-open { z-index: 40; }
+.field { position: relative; }
+.dd {
+  position: absolute; z-index: 40; left: 0; top: calc(100% + var(--space-2));
+  min-width: 100%; width: max-content; max-width: min(24rem, calc(100vw - 2 * var(--gutter)));
+  max-height: min(60vh, 26rem); overflow-y: auto; overscroll-behavior: contain;
+  margin: 0; padding: var(--space-2) 0; list-style: none;
+  background: var(--white); border: 1px solid var(--rule);
+}
+.dd--end { left: auto; right: 0; }
+.dd__opt {
+  display: flex; align-items: center; justify-content: space-between; gap: var(--space-5);
+  min-height: 40px; padding: 0 var(--space-4);
+  font-size: var(--text-sm); font-weight: 400; line-height: 1.3; letter-spacing: 0.01em;
+  color: var(--black); text-transform: none; white-space: nowrap; cursor: pointer;
+}
+.dd--caps .dd__opt:not(:first-child) .dd__name { text-transform: uppercase; letter-spacing: 0.04em; }
+.dd__count { font-size: var(--text-xs); color: var(--dark-grey-40); font-variant-numeric: tabular-nums; }
+.dd__opt.is-active { background: var(--satin-linen-40); }
+.dd__opt[aria-selected="true"] { box-shadow: inset 2px 0 0 var(--black); }
+.dd__opt.is-none { color: var(--dark-grey-40); }
+.dd__opt[aria-disabled="true"] { color: var(--dark-grey-40); cursor: default; }
+/* the chevron turns up while its list is open */
+.pick.is-open .pick__glyph { transform: rotate(180deg); }
+.field.is-open > .field__select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none'%3E%3Cpath d='M4 10l4-4 4 4' stroke='%23040404' stroke-width='2'/%3E%3C/svg%3E");
+}
+.dd { scrollbar-width: thin; scrollbar-color: var(--dark-grey-40) transparent; }

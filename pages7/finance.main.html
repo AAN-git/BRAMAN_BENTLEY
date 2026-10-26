@@ -33,7 +33,7 @@
           </a>
         </li>
         <li class="range__item">
-          <a href="https://www.bramanbentleypalmbeach.com/payment-calculator/">
+          <a href="calculator7.html">
             <img src="assets/bm/2026/retail-consult.webp" srcset="assets/bm/2026/retail-consult-1200.webp 1200w, assets/bm/2026/retail-consult.webp 2160w" sizes="(min-width: 1024px) 40vw, 100vw" alt="A private consultation room at a Bentley retailer: a table, two chairs and a screen." width="2160" height="1620" loading="lazy" decoding="async">
             <span class="range__name">Payment calculator</span>
           </a>
@@ -53,21 +53,30 @@
        opens the theme's own modal (dev). -->
   <section class="vdp__enquire" aria-labelledby="enq-title">
     <div class="page">
-      <div class="enquire">
+      <div class="enquire enquire--fit">
         <div class="enquire__lede">
           <h2 class="h2 h2--small" id="enq-title">Contact Information</h2>
-          <p class="body">Fields marked with (*) are required.</p>
           <div class="sub__loc">
             <h3 class="sub__loc-h">Our Location</h3>
             <address class="body">Braman Bentley Palm Beach<br>2801 Okeechobee Blvd<br>West Palm Beach, FL 33409</address>
-            <dl class="record"><dt>Sales</dt><dd><a href="tel:+15619269111">561 926 9111</a></dd></dl>
+            <dl class="record"><dt>Sales</dt><dd><a href="tel:+15619269111">561-926-9111</a></dd></dl>
             <div class="actions">
               <a class="btn btn--line" href="https://www.bramanbentleypalmbeach.com/directions/">Get directions</a>
               <button class="btn btn--line" type="button" data-send-to-phone aria-haspopup="dialog">Send to phone</button>
             </div>
+            <div class="sub__dept sub__loc-hours">
+              <h3 class="sub__loc-h">Sales Hours</h3>
+              <dl class="record">
+                <dt>Mon – Thu</dt><dd>9:00 am – 8:00 pm</dd>
+                <dt>Friday</dt><dd>9:00 am – 7:00 pm</dd>
+                <dt>Saturday</dt><dd>9:00 am – 6:00 pm</dd>
+                <dt>Sunday</dt><dd>11:00 am – 5:00 pm</dd>
+              </dl>
+            </div>
           </div>
         </div>
         <form class="enquire__form" onsubmit="return false" aria-labelledby="enq-title">
+          <p class="enquire__req">Fields marked with (*) are required.</p>
           <label class="field"><span class="field__label">First name*</span><input class="field__input" type="text" name="fname" autocomplete="given-name" required></label>
           <label class="field"><span class="field__label">Last name*</span><input class="field__input" type="text" name="lname" autocomplete="family-name" required></label>
           <label class="field"><span class="field__label">Email*</span><input class="field__input" type="email" name="email" autocomplete="email" required></label>

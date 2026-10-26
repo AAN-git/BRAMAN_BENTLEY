@@ -29,14 +29,22 @@ CSS = {  # source -> handoff name, in the order the pages load them
     'css/vehicle7.css':   'css/vehicle.css',
     'css/day7.css':       'css/theme.css',
     'css/static7.css':    'css/static.css',
+    'css/subpages7.css':  'css/subpages.css',
 }
 JS = {
     'js/page7.js':     'js/page.js',
     'js/index7.js':    'js/home.js',
     'js/inventory.js': 'js/inventory.js',
     'js/vehicle.js':   'js/vehicle.js',
+    'js/sub7.js':      'js/sub.js',
 }
-PAGES = {'index7.html': 'index.html', 'inventory7.html': 'inventory.html'}
+PAGES = {'index7.html': 'index.html', 'inventory7.html': 'inventory.html',
+         # the inner pages (tools/subpages7.py): about, contact, finance
+         'about7.html': 'about.html', 'contact7.html': 'contact.html', 'finance7.html': 'finance.html',
+         'parts7.html': 'parts.html', 'sell7.html': 'sell.html',
+         'calculator7.html': 'calculator.html', 'bentayga-speed7.html': 'bentayga-speed.html',
+         'flying-spur7.html': 'flying-spur.html', 'torcal7.html': 'torcal.html',
+         'continental-gt7.html': 'continental-gt.html', 'continental-gtc7.html': 'continental-gtc.html'}
 
 def read(p): return open(ROOT + p, encoding='utf-8').read()
 
@@ -156,6 +164,7 @@ HEADS = {
     'css/inventory7.css': '/* Bentley Palm Beach — the listing (SRP): filters, grid, sort. */\n\n',
     'css/vehicle7.css': '/* Bentley Palm Beach — the vehicle page (VDP): head, price plate, gallery,\n   360, lightbox, specification, enquiry. */\n\n',
     'css/day7.css': '/* Bentley Palm Beach — the theme: Satin Linen 40% (the client\'s choice).\n   <html class="theme-satin"> carries it. Where a selector repeats the class\n   (html.theme-satin.theme-satin) it keeps the weight the original look\n   switch had, so the cascade is exactly as approved — do not shorten it. */\n\n',
+    'css/subpages7.css': '/* Bentley Palm Beach — the inner pages (about, contact, finance): the page\n   title, the picture band, the staff card, hours, location. Loads last on an\n   inner page, after static.css. */\n\n',
     'css/static7.css': '/* Bentley Palm Beach — the static page (client, 2026-10-04: no scroll\n   layer, no motion on arrival): last in the cascade, wins over the above. */\n\n',
 }
 
@@ -164,6 +173,7 @@ def relink(s):
     for a, b in list(CSS.items()) + list(JS.items()):
         s = re.sub(re.escape(a) + r'(\?v=[^"]*)?"', b + '"', s)
     s = s.replace('index7.html', 'index.html').replace('inventory7.html', 'inventory.html')
+    for n in ('about', 'contact', 'finance', 'parts', 'sell', 'calculator', 'bentayga-speed', 'flying-spur', 'torcal', 'continental-gtc', 'continental-gt'): s = s.replace(f'{n}7.html', f'{n}.html')
     s = s.replace('vehicles7/', 'vehicles/')
     return s
 
