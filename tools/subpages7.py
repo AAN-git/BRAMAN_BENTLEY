@@ -79,6 +79,10 @@ PAGES = {
                 'Pre-owned inventory specials at Bentley Palm Beach, West Palm Beach.'),
     'incentives': ('Finance Offers and Lease Specials | Bentley Palm Beach',
                 'Current lease deals and finance offers at Bentley Palm Beach, West Palm Beach: Bentayga, Bentayga EWB, Continental and Flying Spur.'),
+    'testimonials': ('Customer Testimonials | Bentley Palm Beach',
+                'Customer testimonials for Braman Bentley Palm Beach, West Palm Beach, from DealerRater.'),
+    'privacy': ('Privacy Policy | Bentley Palm Beach',
+                'The privacy policy of Bentley Palm Beach, West Palm Beach.'),
     'finance': ('Finance Department | Bentley Palm Beach',
                 'Bentley Palm Beach finance department, West Palm Beach: apply for financing, value your trade, estimate a payment, or speak with the finance team.'),
 }

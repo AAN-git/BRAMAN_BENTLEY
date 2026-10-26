@@ -131,6 +131,8 @@ INNER = {CONTACT: 'contact7.html', FINANCE: 'finance7.html',
          'https://www.bramanbentleypalmbeach.com/bentley-palm-beach-test-drive-videos/': 'test-drive-videos7.html',
          'https://www.bramanbentleypalmbeach.com/search/special-west-palm-beach-fl/?cy=33409&amp;tp=special': 'specials7.html',
          'https://www.bramanbentleypalmbeach.com/incentives/': 'incentives7.html',
+         'https://www.bramanbentleypalmbeach.com/privacy-policy/': 'privacy7.html',
+         'https://www.bramanbentleypalmbeach.com/DR-reviews/': 'testimonials7.html',
          # the form pages (Alex, 2026-10-26), on the Sell / Ask a Tech template
          'https://www.bramanbentleypalmbeach.com/schedule-new-vehicle-test-drive/': 'test-drive-new7.html',
          'https://www.bramanbentleypalmbeach.com/schedule-used-vehicle-test-drive/': 'test-drive-used7.html',
@@ -227,14 +229,14 @@ MENU = [
         _r('Hours', 'contact7.html#hours-h'),
         _r('Meet the Staff', 'about7.html#team'),
         _r('Contact Us', 'contact7.html'),
-        _r('Testimonials', '/DR-reviews/'),
+        _r('Testimonials', 'testimonials7.html'),
         _r('Dealership Informational Videos', 'informational-videos7.html'),
         _r('Bentley Test Drive Videos', 'test-drive-videos7.html'),
         _r('Home Delivery Program', 'home-delivery7.html'),
         _r('Bentley Blog', 'https://blog.bramanbentleypalmbeach.com/'),
         _r('Magazine', 'http://www.clubbraman.com/magazine/'),
         _r('Join Our Team', 'https://www.bramanmotorcars.com/current-job-opportunities/'),
-        _r('Privacy Policy', '/privacy-policy/')])]),
+        _r('Privacy Policy', 'privacy7.html')])]),
 ]
 def _href(h, pre):
     if h.startswith('/'): return f'{DEMO}{h}" data-demo="'   # a demo page: not rebuilt on ours yet

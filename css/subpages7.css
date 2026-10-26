@@ -1303,3 +1303,19 @@ html main.sub > .sub__specials { padding-block: var(--space-9) var(--space-10); 
 html main.sub > .sub__portal--even { padding-block: var(--space-8) var(--space-10); }
 @media (max-width: 1023px) { .sub__portal .range__row.sub__tiles.sub__tiles--even { grid-template-columns: repeat(2, minmax(0, 1fr)); height: auto; } }
 @media (max-width: 767px) { .sub__portal .range__row.sub__tiles.sub__tiles--even { grid-template-columns: 1fr; } }
+
+/* Testimonials: the review plates as a grid of three, the whole list */
+html main.sub > .sub__reviews--all { padding-block: var(--space-9) var(--space-10); }
+.sub__reviews--all .sub__review-list { margin-block-start: var(--space-6); }
+.sub__reviews--all .sub__review-list blockquote p { font-size: var(--text-body); font-weight: 400; }
+.sub__reviews--all .actions { margin-block-start: var(--space-7); }
+@media (min-width: 768px) and (max-width: 1023px) { .sub__reviews--all .sub__review-list { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.sub__head--pic .sub__band-pic--door img { object-position: 50% 55%; }
+/* a legal page (Privacy Policy): one reading column on the page's ground */
+html main.sub > .sub__prose-ch { padding-block: var(--space-8) var(--space-10); }
+.sub__prose { max-width: 46rem; }
+.sub__prose .body { margin: var(--space-4) 0 0; }
+.sub__prose-h { margin: var(--space-8) 0 0; font-size: var(--text-h3); font-weight: 300; line-height: var(--leading-heading); color: var(--ink); }
+.sub__prose-h3 { margin: var(--space-6) 0 0; font-size: var(--text-lead); font-weight: 400; line-height: 1.3; color: var(--ink); }
+.sub__prose-list { margin: var(--space-4) 0 0; padding-inline-start: 1.25em; }
+.sub__prose-list li { margin-block-start: var(--space-2); color: var(--ink-2); }
