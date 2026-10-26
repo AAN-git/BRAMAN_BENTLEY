@@ -1272,3 +1272,15 @@ html.has-float .field--float:not(.is-filled):not(:focus-within) > input[type="da
 .sub__head--pic .sub__band-pic--service img { object-position: 50% 40%; }
 .sub__tiles .range__item img.sub__tile-collect { object-position: 62% 50%; }   /* the owner and the grille both in the tile */
 .sub__tiles .range__item img.sub__tile-wings { object-position: 66% 40%; }   /* the wings, not the cloth */
+
+@media (min-width: 1280px) and (max-width: 1799px) {   /* a car that reaches the frame's middle (Bentayga EWB): the words under the photograph until 1800px, measured */
+  .mx__hero--late .mx__hero-pic img { height: auto; aspect-ratio: 2 / 1; }
+  .mx__hero--late .mx__hero-words { position: static; align-items: flex-start; text-align: left; padding: var(--space-7) var(--edge) var(--space-8); }
+  .mx__hero--late .mx__tagline { margin-inline-start: 0; color: var(--ink-2); }
+  .mx__hero--late .mdl__calls { justify-content: flex-start; }
+  .mx__hero.mx__hero--late::after { content: none; }
+  .mx__hero--late .sub__label, .mx__hero--late .sub__title { color: var(--ink); }
+  .mx__hero--late { --ink: var(--black); --ink-2: var(--dark-grey-40); --rule-strong: var(--dark-grey-40); }
+  .mx__hero--late .mx__film-label { display: flex; }
+  html.has-rv .mx__hero--late .mx__hero-words { padding-block-end: var(--space-8); }
+}

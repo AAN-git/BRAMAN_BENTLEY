@@ -55,6 +55,12 @@ PAGES = {
                    'Order genuine Bentley parts from Bentley Palm Beach, West Palm Beach. Parts 561-926-9112.'),
     'service': ('Bentley Service Department | Bentley Palm Beach',
                 'Bentley Palm Beach service department, West Palm Beach: schedule service, service specials, ask a tech, safety recalls and our service staff. Service 561-926-9110.'),
+    'continental-gt-speed-edition-12': ('The Continental GT Speed Edition 12 | Bentley Palm Beach',
+                'The Bentley Continental GT Speed Edition 12 at Bentley Palm Beach, West Palm Beach: the W12 engine, the Edition 12 details, the cabin, Continental GTs in stock and an enquiry.'),
+    'flying-spur-speed-edition-12': ('The Flying Spur Speed Edition 12 | Bentley Palm Beach',
+                'The Bentley Flying Spur Speed Edition 12 at Bentley Palm Beach, West Palm Beach: one of 120, the W12 engine and its performance, Flying Spurs in stock and an enquiry.'),
+    'bentayga-ewb': ('New Bentayga Extended Wheelbase | Bentley Palm Beach',
+                'The new Bentley Bentayga Extended Wheelbase at Bentley Palm Beach, West Palm Beach: its design, cabin, performance and technology, Bentayga EWBs in stock and an enquiry.'),
     'finance': ('Finance Department | Bentley Palm Beach',
                 'Bentley Palm Beach finance department, West Palm Beach: apply for financing, value your trade, estimate a payment, or speak with the finance team.'),
 }

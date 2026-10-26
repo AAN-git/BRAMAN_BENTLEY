@@ -122,6 +122,9 @@ INNER = {CONTACT: 'contact7.html', FINANCE: 'finance7.html',
          'https://www.bramanbentleypalmbeach.com/informational-videos/': 'informational-videos7.html',
          'https://www.bramanbentleypalmbeach.com/hours/': 'contact7.html#hours-h',
          'https://www.bramanbentleypalmbeach.com/service-department/': 'service7.html',
+         'https://www.bramanbentleypalmbeach.com/continental-gt-speed-edition-12/': 'continental-gt-speed-edition-127.html',
+         'https://www.bramanbentleypalmbeach.com/flying-spur-speed-edition-12/': 'flying-spur-speed-edition-127.html',
+         'https://www.bramanbentleypalmbeach.com/bentayga-extended-wheelbase/': 'bentayga-ewb7.html',
          # the form pages (Alex, 2026-10-26), on the Sell / Ask a Tech template
          'https://www.bramanbentleypalmbeach.com/schedule-new-vehicle-test-drive/': 'test-drive-new7.html',
          'https://www.bramanbentleypalmbeach.com/schedule-used-vehicle-test-drive/': 'test-drive-used7.html',
@@ -180,9 +183,9 @@ MENU = [
             _r('Bentley Test Drive Videos', '/bentley-palm-beach-test-drive-videos/'),
             _r('Current Incentives', '/incentives/'),
             _r('Bentayga Speed', 'bentayga-speed7.html'),
-            _r('Continental GT Speed Edition 12', '/continental-gt-speed-edition-12/'),
-            _r('Flying Spur Speed Edition 12', '/flying-spur-speed-edition-12/'),
-            _r('The New Bentayga Extended Wheelbase', '/bentayga-extended-wheelbase/')]),
+            _r('Continental GT Speed Edition 12', 'continental-gt-speed-edition-127.html'),
+            _r('Flying Spur Speed Edition 12', 'flying-spur-speed-edition-127.html'),
+            _r('The New Bentayga Extended Wheelbase', 'bentayga-ewb7.html')]),
     ]),
     ('Pre-Owned', [
         ('Pre-Owned Inventory', [
