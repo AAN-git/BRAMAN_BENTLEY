@@ -71,6 +71,14 @@ PAGES = {
                 'Bentley Certified Pre-Owned at Bentley Palm Beach, West Palm Beach: the pre-owned inspection, the Bentley warranty, roadside assistance and owner benefits.'),
     'test-drive-videos': ('New Bentley Vehicle Test Drive Videos | Bentley Palm Beach',
                 'Bentley test drive videos from Braman Bentley Palm Beach, West Palm Beach: watch the films and schedule your test drive.'),
+    'specials': ('All Inventory Specials | Bentley Palm Beach',
+                'All inventory specials at Bentley Palm Beach, West Palm Beach: new and pre-owned Bentleys on special.'),
+    'specials-new': ('New Inventory Specials | Bentley Palm Beach',
+                'New Bentley inventory specials at Bentley Palm Beach, West Palm Beach.'),
+    'specials-used': ('Used Inventory Specials | Bentley Palm Beach',
+                'Pre-owned inventory specials at Bentley Palm Beach, West Palm Beach.'),
+    'incentives': ('Finance Offers and Lease Specials | Bentley Palm Beach',
+                'Current lease deals and finance offers at Bentley Palm Beach, West Palm Beach: Bentayga, Bentayga EWB, Continental and Flying Spur.'),
     'finance': ('Finance Department | Bentley Palm Beach',
                 'Bentley Palm Beach finance department, West Palm Beach: apply for financing, value your trade, estimate a payment, or speak with the finance team.'),
 }
@@ -99,11 +107,18 @@ def stock(m):
     pick = [c for c in CARDS if f'data-model="{model}"' in c and f'data-condition="{cond}"' in c][:n]
     return '<ul class="grid sub__stock-grid">\n' + '\n'.join(pick) + '\n      </ul>'
 STOCK = re.compile(r'<!-- STOCK model="([^"]+)" condition="([^"]+)" n="(\d+)" -->')
+# a specials page's cars: <!-- STOCKS ids="V69374,V69245" --> is filled with the
+# listing's own cards for those stock numbers, in that order (a sold car drops out)
+def stocks(m):
+    ids = m.group(1).split(',')
+    pick = [c for i in ids for c in CARDS if f'data-stock="{i}"' in c]
+    return '<ul class="grid sub__stock-grid">\n' + '\n'.join(pick) + '\n      </ul>'
+STOCKS = re.compile(r'<!-- STOCKS ids="([^"]+)" -->')
 
 for name, (title, desc) in PAGES.items():
     h = re.sub(r'<title>.*?</title>', f'<title>{title}</title>', head, count=1, flags=re.S)
     h = re.sub(r'<meta name="description" content="[^"]*">', f'<meta name="description" content="{desc}">', h, count=1)
-    body = STOCK.sub(stock, read(f'pages7/{name}.main.html'))
+    body = STOCKS.sub(stocks, STOCK.sub(stock, read(f'pages7/{name}.main.html')))
     out = h + body.rstrip() + '\n' + foot
     out = out.replace('</body>', f'<script src="js/sub7.js?v={stamp("js/sub7.js")}" defer></script>\n</body>', 1)
     # the page's own routes in the bar and the menu say where the visitor is

@@ -129,6 +129,8 @@ INNER = {CONTACT: 'contact7.html', FINANCE: 'finance7.html',
          'https://www.bramanbentleypalmbeach.com/business-finance-app/': 'business-finance7.html',
          'https://www.bramanbentleypalmbeach.com/bentley-palm-beach-difference/': 'difference7.html',
          'https://www.bramanbentleypalmbeach.com/bentley-palm-beach-test-drive-videos/': 'test-drive-videos7.html',
+         'https://www.bramanbentleypalmbeach.com/search/special-west-palm-beach-fl/?cy=33409&amp;tp=special': 'specials7.html',
+         'https://www.bramanbentleypalmbeach.com/incentives/': 'incentives7.html',
          # the form pages (Alex, 2026-10-26), on the Sell / Ask a Tech template
          'https://www.bramanbentleypalmbeach.com/schedule-new-vehicle-test-drive/': 'test-drive-new7.html',
          'https://www.bramanbentleypalmbeach.com/schedule-used-vehicle-test-drive/': 'test-drive-used7.html',
@@ -185,7 +187,7 @@ MENU = [
         ('Research', [
             _r('Reasons to Choose Braman', 'difference7.html'),
             _r('Bentley Test Drive Videos', 'test-drive-videos7.html'),
-            _r('Current Incentives', '/incentives/'),
+            _r('Current Incentives', 'incentives7.html'),
             _r('Bentayga Speed', 'bentayga-speed7.html'),
             _r('Continental GT Speed Edition 12', 'continental-gt-speed-edition-127.html'),
             _r('Flying Spur Speed Edition 12', 'flying-spur-speed-edition-127.html'),
@@ -206,8 +208,8 @@ MENU = [
             _r('Get a Quote', 'quote-used7.html')]),
     ]),
     ('Offers', [('', [
-        _r('New Vehicle Specials', '/new-inventory-specials/'),
-        _r('Pre-Owned Vehicle Specials', '/used-inventory-specials/')])]),
+        _r('New Vehicle Specials', 'specials-new7.html'),
+        _r('Pre-Owned Vehicle Specials', 'specials-used7.html')])]),
     ('Service', [('', [
         _r('Service Department', 'service7.html'),
         _r('Ask a Tech', 'ask-a-tech7.html'),
