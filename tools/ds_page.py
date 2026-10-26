@@ -266,7 +266,8 @@ SUB_PHONE = ('<div class="ds-phones">'
     + '</div>')
 
 SUB_FORMPAGE = block('Form page — words, form, then the details', 'ex-sub-form', (1200, 924), [
-    ('Order', 'For a page that is mainly a form (Ask a Tech, Sell Your Vehicle): the dealer\'s words first (18px, Dark Grey), then the form plate across the column, then the location and hours under it.'),
+    ('Order', 'For a page that is mainly a form (Ask a Tech, Sell Your Vehicle): the form\'s own heading, then the dealer\'s words (18px, Dark Grey), then the form plate across the column, then the location and hours under it.'),
+    ('Heading', 'Every form has its own heading over the words, a section heading in Title Case (24px): Ask Your Question, Tell Us About Your Vehicle. Never the page title again, never no heading at all; the form is labelled by it.'),
     ('Plate', 'As the enquiry\'s: white, hairline, padding 46px, two columns of fields; longer forms in headed groups (Lead, a hairline above each).'),
 ], ref='Ask a Tech')
 

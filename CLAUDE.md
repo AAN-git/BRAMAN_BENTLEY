@@ -47,6 +47,11 @@ See README.md for the directions, the data and the build.
 - **Forms (Alex, 2026-10-26):** one form wherever a form is (inner pages and
   every car page): first/last name, email/phone in two columns, best time to
   contact under the phone across, message, consent; one column on a phone.
+- **Form heading (Alex, 2026-10-26):** every form page has the form's own
+  heading over the dealer's words (h2 h2--small, Title Case, the form's
+  aria-labelledby): Ask a Tech "Ask Your Question", Sell Your Vehicle "Tell Us
+  About Your Vehicle". Never the page title repeated, never no heading. In the
+  DS (Form page → Heading).
 - **Legal lines (Alex, 2026-10-26):** 16px was "far too much". Legal text that
   stands apart (reCAPTCHA, copyright, the price disclaimer, full lease terms)
   is 12px on 16px, as bentleymotors.com — token --text-legal, the one exception
