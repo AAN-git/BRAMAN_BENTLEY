@@ -95,6 +95,20 @@ body { padding-block-end: var(--dock-h); }
   .srp__head { padding-block-start: calc(var(--mh-h) + 2vh); }
   .vdp__top { padding-block-start: calc(var(--mh-h) + 1vh); }
 }
+/* the car's page on a phone: the car first (Alex, 2026-10-26: the first screen
+   was the price box, the photographs under it). The name, then the
+   photographs, then the price and its call — the top block's three parts
+   placed around the photographs without moving the markup */
+@media (max-width: 767px) {
+  main.vdp { display: flex; flex-direction: column; }
+  main.vdp > * { order: 5; }
+  main.vdp > .vdp__top, main.vdp > .vdp__top > .page, main.vdp .vdp__head { display: contents; }
+  main.vdp .vdp__crumbs, main.vdp .vdp__name, main.vdp .vdp__figure { padding-inline: var(--gutter); }
+  main.vdp .vdp__crumbs { order: 1; padding-block-start: calc(var(--mh-h) + 1vh); }
+  main.vdp .vdp__name { order: 2; margin-block-start: var(--space-5); }
+  main.vdp > .film { order: 3; margin-block-start: var(--space-6); }
+  main.vdp .vdp__figure { order: 4; margin-block-start: var(--space-6); }
+}
 
 /* --- 2 · The hero: under the header, never behind it -------------------- */
 main:has(> .hero) { padding-block-start: var(--mh-h); }

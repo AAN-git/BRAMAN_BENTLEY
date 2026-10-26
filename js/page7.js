@@ -316,3 +316,23 @@
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init); else init();
 })();
+
+/* the menu button says what it does (Alex, 2026-10-26): open, it reads Close
+   and its three lines become a cross, as bentleymotors.com's own. Each page's
+   script opens the menu and sets aria-expanded; this follows that state, so
+   the shared scripts (inventory.js, vehicle.js) stay as direction 6 has them */
+(function () {
+  function init() {
+    var toggle = document.querySelector(".mh__toggle");
+    if (!toggle || !window.MutationObserver) return;
+    var label = toggle.querySelector("span"), icon = toggle.querySelector("path");
+    function paint() {
+      var open = toggle.getAttribute("aria-expanded") === "true";
+      if (label) label.textContent = open ? "Close" : "Menu";
+      if (icon) icon.setAttribute("d", open ? "M3 0l12 12M15 0L3 12" : "M0 1h18M0 6h18M0 11h18");
+    }
+    new MutationObserver(paint).observe(toggle, { attributes: true, attributeFilter: ["aria-expanded"] });
+    paint();
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init); else init();
+})();

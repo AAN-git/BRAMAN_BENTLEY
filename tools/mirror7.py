@@ -7,7 +7,7 @@ each re-pointed to the direction-7 set (index7, inventory7, vehicles7 and the
 older clientele — no scroll layer, no motion on arrival — and the routes to
 the inventory, the specials, financing and contact always on screen.
 build.py runs this after mirror6.py; on its own: python3 tools/mirror7.py"""
-import os, re, hashlib
+import os, re, json, hashlib
 
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..') + '/'
 
@@ -117,11 +117,26 @@ INNER = {CONTACT: 'contact7.html', FINANCE: 'finance7.html',
          'https://www.bramanbentleypalmbeach.com/parts-department/': 'parts7.html',
          'https://www.bramanbentleypalmbeach.com/sell-your-vehicle/': 'sell7.html',
          'https://www.bramanbentleypalmbeach.com/payment-calculator/': 'calculator7.html',
-         'https://www.bramanbentleypalmbeach.com/bentley-home-delivery-program/': 'home-delivery7.html'}
+         'https://www.bramanbentleypalmbeach.com/bentley-home-delivery-program/': 'home-delivery7.html',
+         'https://www.bramanbentleypalmbeach.com/ask-a-tech/': 'ask-a-tech7.html',
+         'https://www.bramanbentleypalmbeach.com/hours/': 'contact7.html#hours-h',
+         # the home page's routes into the stock and the models (Alex, 2026-10-26:
+         # "link all the pages together") — ours wherever we have the page
+         'https://www.bramanbentleypalmbeach.com/search/new-bentley-west-palm-beach-fl/?cy=33409&amp;tp=new': 'inventory7.html?condition=new',
+         'https://www.bramanbentleypalmbeach.com/search/new-bentayga-ewb-west-palm-beach-fl/?cy=33409&amp;md=13889&amp;tp=new': 'inventory7.html?condition=new&amp;model=Bentayga+EWB',
+         'https://www.bramanbentleypalmbeach.com/search/new-continental-gtc-west-palm-beach-fl/?cy=33409&amp;md=4607&amp;tp=new': 'continental-gtc7.html',
+         'https://www.bramanbentleypalmbeach.com/search/new-continental-gt-west-palm-beach-fl/?cy=33409&amp;md=335&amp;tp=new': 'continental-gt7.html',
+         'https://www.bramanbentleypalmbeach.com/search/new-bentley-flying-spur-west-palm-beach-fl/?cy=33409&amp;md=2837&amp;tp=new': 'flying-spur7.html'}
+# a car's page on the retailer's site -> its page here (data/inventory.json)
+for _car in json.load(open(ROOT + 'data/inventory.json', encoding='utf-8'))['vehicles']:
+    if _car.get('dealer_url') and _car.get('page') and os.path.exists(ROOT + _car['page'].replace('vehicles/', 'vehicles6/')):
+        INNER[_car['dealer_url']] = _car['page'].replace('vehicles/', 'vehicles7/')
 def inner(s, pre):
     for url, f in INNER.items():
         s = s.replace(f'href="{url}"', f'href="{pre}{f}"')
-    return s
+    # "All pre-owned" under the home page's pre-owned cars: the listing's own
+    return s.replace('href="https://www.bramanbentleypalmbeach.com/braman-bentley-cpo/">All pre-owned',
+                     f'href="{pre}inventory7.html?condition=used">All pre-owned')
 
 # The menu (Alex, 2026-10-26): the demo site's own navigation, so every page of
 # the site can be reached from ours, and each route says where it lands — on
@@ -189,7 +204,7 @@ MENU = [
         _r('Payment Calculator', 'calculator7.html')])]),
     ('About', [('', [
         _r('About Us', 'about7.html'),
-        _r('Hours', '/hours/'),
+        _r('Hours', 'contact7.html#hours-h'),
         _r('Meet the Staff', 'about7.html#team'),
         _r('Contact Us', 'contact7.html'),
         _r('Testimonials', '/DR-reviews/'),

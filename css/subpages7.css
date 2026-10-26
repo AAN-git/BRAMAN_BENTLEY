@@ -1214,3 +1214,7 @@ html main.sub > .sub__promo { padding-block: var(--space-9) 0; }
   .sub__strip { flex-direction: column; align-items: flex-start; }
 }
 @media (max-width: 767px) { .sub__strip .actions, .sub__strip .btn { width: 100%; } .sub__strip .btn { justify-content: center; } }
+/* a page's statement over its plates (Home Delivery: the banner's headline) */
+html main.sub > .sub__lead { padding-block: var(--space-9) 0; }
+.sub__lead-h, .sub .sub__lead-h.h2--small { margin: 0; max-width: none; font-size: var(--text-h3); line-height: var(--leading-heading); }   /* a section heading, as the inner pages set theirs */
+html main.sub > .sub__lead + .sub__promo { padding-block-start: var(--space-6); }
