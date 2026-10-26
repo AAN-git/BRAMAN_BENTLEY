@@ -125,6 +125,8 @@ INNER = {CONTACT: 'contact7.html', FINANCE: 'finance7.html',
          'https://www.bramanbentleypalmbeach.com/continental-gt-speed-edition-12/': 'continental-gt-speed-edition-127.html',
          'https://www.bramanbentleypalmbeach.com/flying-spur-speed-edition-12/': 'flying-spur-speed-edition-127.html',
          'https://www.bramanbentleypalmbeach.com/bentayga-extended-wheelbase/': 'bentayga-ewb7.html',
+         'https://www.bramanbentleypalmbeach.com/finance-application/': 'finance-application7.html',
+         'https://www.bramanbentleypalmbeach.com/business-finance-app/': 'business-finance7.html',
          # the form pages (Alex, 2026-10-26), on the Sell / Ask a Tech template
          'https://www.bramanbentleypalmbeach.com/schedule-new-vehicle-test-drive/': 'test-drive-new7.html',
          'https://www.bramanbentleypalmbeach.com/schedule-used-vehicle-test-drive/': 'test-drive-used7.html',
@@ -213,8 +215,8 @@ MENU = [
         _r('Order Parts', 'order-parts7.html')])]),
     ('Finance', [('', [
         _r('Finance Department', 'finance7.html'),
-        _r('Personal Finance Application', '/finance-application/'),
-        _r('Business Finance Application', '/business-finance-app/'),
+        _r('Personal Finance Application', 'finance-application7.html'),
+        _r('Business Finance Application', 'business-finance7.html'),
         _r('Payment Calculator', 'calculator7.html')])]),
     ('About', [('', [
         _r('About Us', 'about7.html'),

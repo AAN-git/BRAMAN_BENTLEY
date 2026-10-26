@@ -61,6 +61,10 @@ PAGES = {
                 'The Bentley Flying Spur Speed Edition 12 at Bentley Palm Beach, West Palm Beach: one of 120, the W12 engine and its performance, Flying Spurs in stock and an enquiry.'),
     'bentayga-ewb': ('New Bentayga Extended Wheelbase | Bentley Palm Beach',
                 'The new Bentley Bentayga Extended Wheelbase at Bentley Palm Beach, West Palm Beach: its design, cabin, performance and technology, Bentayga EWBs in stock and an enquiry.'),
+    'finance-application': ('Finance Application | Bentley Palm Beach',
+                'Apply for financing at Bentley Palm Beach, West Palm Beach: the personal finance application. Sales 561-926-9111.'),
+    'business-finance': ('Business Finance Application | Bentley Palm Beach',
+                'Apply for business financing at Bentley Palm Beach, West Palm Beach: the business finance application. Sales 561-926-9111.'),
     'finance': ('Finance Department | Bentley Palm Beach',
                 'Bentley Palm Beach finance department, West Palm Beach: apply for financing, value your trade, estimate a payment, or speak with the finance team.'),
 }

@@ -1284,3 +1284,9 @@ html.has-float .field--float:not(.is-filled):not(:focus-within) > input[type="da
   .mx__hero--late .mx__film-label { display: flex; }
   html.has-rv .mx__hero--late .mx__hero-words { padding-block-end: var(--space-8); }
 }
+
+/* the finance applications: the demo's notices inside the form, across both
+   columns, at the legal size (the 12px exception) */
+.enquire__form .sub__legal { grid-column: 1 / -1; margin: 0; max-width: 72rem; }
+.sub__head--pic .sub__band-pic--veneer img { object-position: 50% 50%; }
+.sub__head--pic .sub__band-pic--leather img { object-position: 50% 50%; }
