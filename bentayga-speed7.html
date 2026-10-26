@@ -15,7 +15,7 @@
 <link rel="stylesheet" href="css/vehicle7.css?v=d890d4b68f">
 <link rel="stylesheet" href="css/day7.css?v=b15555fce4">
 <link rel="stylesheet" href="css/static7.css?v=21a988cec3">
-<link rel="stylesheet" href="css/subpages7.css?v=d4b927d761">
+<link rel="stylesheet" href="css/subpages7.css?v=13314e9bcc">
 <script src="js/page7.js?v=f66d41cc4f" defer></script>
 <script>
   /* Direction 7 keeps direction 6's look: the look is the link's, ?look=1..4; the client chose 2 (css/day7.css) */
@@ -84,121 +84,187 @@
   </nav>
 </header>
 
-<main id="main" class="srp sub sub--model">
+<main id="main" class="srp sub sub--model sub--mx">
 
-  <!-- The model page template (Alex, 2026-10-26), first for the 2027 Bentayga
-       Speed. Built on the AAN master model page's order (aanmaster2027,
-       /models/vantage/ — Kirsten's version): hero with the model's name and two
-       calls, the key figures (the one dark band), the engine (the master's lead
-       and statement as one chapter), the film, the story chapters (words and
-       picture, alternating), then the model's cars in stock and the enquiry. Drawn in this site's parts and tokens.
-       The words are the demo page's (bentleymotors.com's), verbatim; the demo's
-       two crossed paragraphs are put back under their own headings (the cabin's
-       hides under Interior, the dark tint bodywork under Exterior).
-       The studio photograph holds the car in its middle, so the hero's words
-       stand under it (as bentleymotors.com sets a studio stage), never on the
-       car. The master's closing call band is the enquiry here.
-       Photographs: Bentley Motors' own Bentayga Speed media (bentleymotors.com),
-       used with the retailer's authorisation; the film's frame is Bentley's
-       own (its YouTube film's cover).
-       The key figures are Bentley's, as its US page states them. -->
-  <section class="srp__head mdl__hero" aria-labelledby="sub-h">
-    <div class="mdl__hero-pic">
-      <img src="assets/bm/2026/speed-exterior.webp" srcset="assets/bm/2026/speed-exterior-1200.webp 1200w, assets/bm/2026/speed-exterior.webp 2560w" sizes="100vw" alt="A Bentayga Speed in dark grey-green, from the rear three-quarter, in Bentley's studio: dark tint detailing, red accents along the sills, black and silver wheels." width="2560" height="1440" decoding="async" fetchpriority="high">
+  <!-- The model page, our version, for the 2027 Bentayga Speed (Alex,
+       2026-10-26: "redo it in our model design, not the master's" — the AAN
+       master version is retired). As the Flying Spur: Bentley's words inside
+       its photographs, the page in named chapters with a row under the hero to
+       each, the kinds of mass changing between the photographs.
+       Words: bentleymotors.com's Bentayga Speed page, verbatim. Figures: the
+       Bentayga Speed as Bentley states them (imperial). Photographs and the
+       stage loop: Bentley Motors' own Bentayga Speed media, used with the
+       retailer's authorisation. On a phone every photograph stands above its
+       words, as everywhere on the site. -->
+
+  <!-- the hero: the white Bentayga on the beach, the car in the right half,
+       the name on the sand at the lower left. From 1024px, unless the visitor
+       asks for less motion, Bentley's own stage loop (bentleymotors.com's
+       Bentayga Speed page, its opening shot and closing card left out) runs
+       muted in the photograph's place, with a pause button; the third call
+       plays Bentley's film with sound (js/sub7.js) -->
+  <section class="srp__head mx__hero" aria-labelledby="sub-h">
+    <div class="mx__hero-stage" data-film="YnCBZ2q8DRc" data-title="The Extraordinary New Bentley Bentayga — Bentley Motors" data-loop="assets/bm/2026/bs-stage-film-1920.mp4" data-loop-poster="assets/bm/2026/bs-stage-film-poster.webp">
+    <picture class="mx__hero-pic">
+      <source media="(max-width: 767px)" srcset="assets/bm/2026/bs-stage-square.webp 1080w" sizes="100vw">
+      <img src="assets/bm/2026/bs-stage.webp" srcset="assets/bm/2026/bs-stage-1200.webp 1200w, assets/bm/2026/bs-stage.webp 1920w" sizes="100vw" alt="A white Bentayga on a beach, from the rear three-quarter, throwing up sand and spray at the water's edge." width="1920" height="1080" decoding="async" fetchpriority="high">
+    </picture>
     </div>
-    <div class="page mdl__hero-words">
-      <div>
-        <p class="label sub__label">Braman Bentley Palm Beach</p>
-        <h1 class="sub__title mdl__title" id="sub-h"><span class="mdl__year">All-New 2027</span> <span class="mdl__name">Bentayga Speed</span></h1>
-      </div>
-      <div class="mdl__hero-side">
-        <p class="mdl__tagline">The most powerful Bentayga that Bentley has ever built.</p>
-        <div class="actions mdl__calls">
-          <a class="btn" href="#stock">View Bentayga in stock</a>
-          <a class="btn btn--line" href="#enq-title">Enquire</a>
-        </div>
+    <div class="page mx__hero-words">
+      <p class="label sub__label">Braman Bentley Palm Beach</p>
+      <h1 class="sub__title mdl__title" id="sub-h"><span class="mdl__year">All-New 2027</span> <span class="mdl__name">Bentayga Speed</span></h1>
+      <p class="mx__tagline">The most powerful Bentayga that Bentley has ever built.</p>
+      <div class="actions mdl__calls">
+        <a class="btn" href="#stock">View Bentayga in stock</a>
+        <a class="btn btn--line" href="#enq-title">Enquire</a>
+        <button class="mx__film-btn" type="button" data-film-open aria-label="Play the film: The Extraordinary New Bentley Bentayga, by Bentley Motors">
+          <span class="mx__film-ring" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" focusable="false"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg></span>
+          <span class="mx__film-label"><span class="label">Film</span><span>The Extraordinary New Bentayga</span></span>
+        </button>
       </div>
     </div>
   </section>
 
-  <!-- the key figures: the master's stats band, Bentley's four (its US page,
-       imperial), the top speed's condition under them as Bentley states it -->
-  <section class="mdl__stats" aria-label="Key figures">
+  <!-- the chapters, as Bentley's model pages list theirs -->
+  <nav class="mx__index" aria-label="On this page">
     <div class="page">
-      <dl class="mdl__stats-row">
-        <div class="mdl__stat"><dt class="label">Max speed*</dt><dd>193<span>mph</span></dd></div>
-        <div class="mdl__stat"><dt class="label">Max torque</dt><dd>627<span>lb-ft</span></dd></div>
-        <div class="mdl__stat"><dt class="label">0–60 mph</dt><dd>3.4<span>s</span></dd></div>
-        <div class="mdl__stat"><dt class="label">Max power</dt><dd>641<span>bhp</span></dd></div>
-      </dl>
-      <p class="mdl__stats-note">*Top speed with optional carbon ceramic brakes. Bentayga Speed, 4.0 litre V8. Figures from Bentley Motors.</p>
+      <ul>
+        <li><a href="#exterior">Exterior</a></li>
+        <li><a href="#interior">Interior</a></li>
+        <li><a href="#performance">Performance</a></li>
+        <li><a href="#personalisation">Personalisation</a></li>
+        <li><a href="#stock">In Stock</a></li>
+      </ul>
     </div>
-  </section>
+  </nav>
 
-  <!-- the engine: the master's lead and statement as one chapter — the
-       heading at the left, Bentley's two paragraphs at the right, the first at
-       the lead size -->
-  <section class="mdl__engine" aria-labelledby="eng-h">
+  <!-- the statement: Bentley's heading and words for the Speed -->
+  <section class="mdl__engine mx__statement" aria-labelledby="st-h">
     <div class="page mdl__engine-grid">
       <div>
-        <p class="label">New Bentayga Speed</p>
-        <h2 class="h2 mdl__h" id="eng-h">An Engine Like No Other</h2>
+        <p class="label mx__chapter">Bentayga Speed</p>
+        <h2 class="h2 mdl__h" id="st-h">Unprecedented V8 Performance</h2>
       </div>
       <div class="mdl__engine-text">
-        <p class="mdl__lead-text">Featuring a phenomenal twin-turbocharged 4.0 litre V8 engine, now tuned to deliver a full 850 Nm of torque and 650 PS, the new Bentayga Speed is the most powerful Bentayga that Bentley has ever built. A showcase of sporting luxury and exhilarating performance, it is a vehicle without equal.</p>
+        <p class="mdl__lead-text">Featuring a phenomenal twin-turbocharged 4.0 litre V8 engine, now tuned to deliver a full 850 Nm of torque and 650 PS, the Bentayga Speed is the most powerful Bentayga that Bentley has ever built. A showcase of sporting luxury and exhilarating performance, it is a vehicle without equal.</p>
         <p class="body">As one of the last production Bentleys to be fitted with a pure V8 engine before the company completes its transition to hybrid and electric propulsion, the Bentayga Speed offers a unique opportunity for those who appreciate the power and the unmistakable roar of a V8 unleashed. This is the fastest and most powerful Bentayga ever produced.</p>
       </div>
     </div>
   </section>
 
-  <!-- the film: the demo page's own (Bentley Motors on YouTube), the full
-       width of the screen; its own frame stands until a press, and only then
-       does YouTube load and play (js/sub7.js) -->
-  <section class="mdl__film" aria-label="Film">
-    <div class="mdl__film-frame" data-film="YnCBZ2q8DRc" data-title="The Extraordinary New Bentley Bentayga — Bentley Motors">
-      <img src="assets/bm/2026/bentayga-film-poster.webp" srcset="assets/bm/2026/bentayga-film-poster-1200.webp 1200w, assets/bm/2026/bentayga-film-poster.webp 1280w" sizes="100vw" alt="" width="1280" height="720" loading="lazy" decoding="async">
-      <button class="mdl__play" type="button" aria-label="Play the film: The Extraordinary New Bentley Bentayga">
-        <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg>
-      </button>
-      <p class="mdl__film-cap"><span class="label">Film</span> The Extraordinary New Bentley Bentayga</p>
+  <!-- EXTERIOR · the car filling the studio frame: only the chapter's name and
+       its heading on the wall, high at the right above the bonnet (as the
+       Continental GT); the lead opens the details beneath -->
+  <section class="mx__scene mx__scene--wall mx__scene--right mx__scene--frame mx__scene--high" id="exterior" aria-labelledby="ds-h">
+    <div class="mx__scene-pic">
+      <img src="assets/bm/2026/bs-studio.webp" srcset="assets/bm/2026/bs-studio-1200.webp 1200w, assets/bm/2026/bs-studio.webp 1920w" sizes="100vw" alt="A Bentayga Speed in Storm Grey Satin from above the front three-quarter, at the left of a pale studio: black matrix grille, red-edged sills, 23-inch wheels." width="1920" height="1080" loading="lazy" decoding="async">
     </div>
-  </section>
-
-  <!-- the stories: words at 5, picture at 7; the second mirrored, on the plate -->
-  <section class="mdl__story" aria-labelledby="ext-h">
-    <div class="page mdl__story-grid">
-      <div class="mdl__story-text">
-        <h2 class="h2 mdl__h" id="ext-h">Unmistakable Exterior Details</h2>
-        <p class="body">A dominant presence on the road, the new Bentayga Speed features dark tint exterior detailing across its sleek bodywork, from its imposing matrix front grille to its oval tailpipe finishers at the rear.</p>
-        <p class="body">In addition to seven standard exterior colours, there is an extended range of optional finishes that includes new satin colours, a range of duo-tone options and the revived Mulliner Legacy Colours range. Introduced with the launch of Bentayga Atelier Edition, this range makes five beautiful heritage colours easily accessible once again. Taken together, these paint ranges give you around 80 finishes to choose from.</p>
-        <p class="body">A wide range of wheels are available, in sizes of up to 23”, all of which can be complemented with a custom brake calliper colour. The range includes shades from the classic sports red to subtle, silvery Ice, as well as more striking choices including Mandarin, Hyper Green, Signal Yellow and Klein Blue.</p>
-      </div>
-      <div class="mdl__story-pic">
-        <img src="assets/bm/2026/speed-front.webp" srcset="assets/bm/2026/speed-front-1200.webp 1200w, assets/bm/2026/speed-front.webp 1920w" sizes="(max-width: 1023px) 100vw, 58vw" alt="The Bentayga Speed from the front three-quarter in Bentley's studio: the dark matrix grille, the red-edged sills and the large black wheels." width="1920" height="1440" loading="lazy" decoding="async">
+    <div class="page mx__scene-words">
+      <div class="mx__scene-col">
+        <p class="label mx__chapter">Exterior</p>
+        <h2 class="h2 mdl__h" id="ds-h">This Is What Power Looks Like</h2>
       </div>
     </div>
   </section>
 
-  <section class="mdl__story mdl__story--flip" aria-labelledby="int-h">
-    <div class="page mdl__story-grid">
-      <div class="mdl__story-text">
-        <h2 class="h2 mdl__h" id="int-h">Exquisite Interior Design</h2>
-        <p class="body">The entire cabin is clad in handcrafted hides available in a wide range of colours, featuring a contemporary new Precision Diamond Quilting pattern, created specifically for Bentley’s Speed models.</p>
-        <p class="body">Inside the cabin, you can choose from Bentley’s entire range of 15 primary hide colours, with the unique Speed colour layout offering further opportunities for personalisation, including accent colours, contrast stitching and contrast piping.</p>
-        <p class="body">All this is just the beginning, however, when you commission a Bentayga Speed. To explore the possibilities further, configure yours today.</p>
+  <section class="mx__details" aria-label="Exterior details">
+    <div class="page mx__details-grid">
+      <div class="mx__details-text mx__points">
+        <p class="mdl__lead-text mx__details-lead">A dominant presence on the road, the Bentayga Speed features dark tint exterior detailing across its sleek bodywork, from its imposing matrix front grille to its oval tailpipe finishers at the rear.</p>
+        <div class="mx__point"><h3 class="mx__point-h">Akrapovic Titanium Sports Exhaust</h3><p class="body">With a sports exhaust fitted as standard, the Bentayga Speed sounds truly incredible. Add the optional titanium Akrapovic Sports Exhaust system, however, and you will have the loudest and most muscular sounding Bentayga model ever. Enhancing both the volume and the character of the car’s rich V8 exhaust note, its effects can be experienced both inside and outside the cabin. All you need to do is switch to Sport Mode and put your foot down.</p></div>
+        <div class="mx__point"><h3 class="mx__point-h">Bentayga Styling Specification</h3><p class="body">The kit consists of a front splitter, rear diffuser, boot lip spoiler, and side sills branded with Bentley wings and has been designed to support the car's aerodynamic performance. If you choose to add the carbon fibre version, you can add a pinstripe in a colour that matches your choice of brake callipers.</p></div>
+      </div>
+      <figure class="mx__detail mx__detail--tall">
+        <img src="assets/bm/2026/bs-wheel-700.webp" srcset="assets/bm/2026/bs-wheel-700.webp 700w, assets/bm/2026/bs-wheel.webp 1100w" sizes="(max-width: 767px) 100vw, 28vw" alt="A 23-inch Bentayga Speed wheel close up, black painted and bright machined, a red brake calliper behind it." width="1100" height="2200" loading="lazy" decoding="async">
+        <figcaption><span class="mx__point-h">23” Wheels</span> The optional 23” wheels – the biggest on any Bentley – are finished in grey satin as standard, however a black painted and bright machined option is also available, as is a stunning black gloss version. All three have been designed to look incredible, especially when paired with one of the eye-catching brake calliper colours available from Mulliner.</figcaption>
+      </figure>
+      <figure class="mx__detail">
+        <img src="assets/bm/2026/bs-rear-1200.webp" srcset="assets/bm/2026/bs-rear-1200.webp 1200w, assets/bm/2026/bs-rear.webp 1920w" sizes="(max-width: 767px) 100vw, 30vw" alt="The Bentayga Speed from the rear three-quarter: grey tail lamps, the dark diffuser, red accents along the sills." width="1920" height="1080" loading="lazy" decoding="async">
+        <figcaption><span class="mx__point-h">Grey Tail Lamps</span> Wherever your gaze falls, you will see truly magnificent examples of sports styling, including grey tail and head lamps.</figcaption>
+      </figure>
+      <figure class="mx__detail">
+        <img src="assets/bm/2026/bs-front-1200.webp" srcset="assets/bm/2026/bs-front-1200.webp 1200w, assets/bm/2026/bs-front.webp 1920w" sizes="(max-width: 767px) 100vw, 30vw" alt="The Bentayga Speed head on in the studio: the black matrix grille and the dark front splitter." width="1920" height="1080" loading="lazy" decoding="async">
+        <figcaption><span class="mx__point-h">Blackline Specification</span> For an even more imposing alternative to the dark tint exterior detailing, you can opt to add the Blackline Specification, which turns all the exterior brightware black – now including the winged Bentley badges, for the first time.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- INTERIOR · two rows, mirrored: the quilted seats to the screen's left
+       edge with Bentley's cabin points; then the Speed graphics with the
+       steering wheel and fascia to the screen's right edge -->
+  <section class="mx__cabin" id="interior" aria-labelledby="cb-h">
+    <div class="mx__cabin-grid">
+      <div class="mx__cabin-pic">
+        <img src="assets/bm/2026/bs-cabin-1200.webp" srcset="assets/bm/2026/bs-cabin-1200.webp 1200w, assets/bm/2026/bs-cabin.webp 2400w" sizes="(max-width: 1023px) 100vw, 60vw" alt="The Bentayga Speed cabin: black hide in Precision Diamond Quilting, red accents on the doors and the console, carbon fibre on the fascia." width="2400" height="1350" loading="lazy" decoding="async">
+      </div>
+      <div class="mx__cabin-words">
+        <p class="label mx__chapter">Interior</p>
+        <h2 class="h2 mdl__h" id="cb-h">Precision Diamond Quilting</h2>
+        <p class="mdl__lead-text">The entire cabin is wrapped in meticulously handcrafted hides, offered in a broad palette of colours, and showcases an all-new Precision Diamond Quilting pattern—exclusively designed for Bentley’s Speed models.</p>
+        <div class="mx__points">
+          <div class="mx__point"><h3 class="mx__point-h">Speed Colour Split</h3><p class="body">A new colour layout has been created for the Bentayga Speed, combining your choice of primary hide colour with eye-catching accent sections finished in Dinamica, where you and your passengers will benefit from the extra grip afforded by its tactile texture.</p></div>
+          <div class="mx__point"><h3 class="mx__point-h">Speed Emblems</h3><p class="body">The prestigious ‘Speed’ emblem can be seen in numerous places in the car, from the badges on the fascia to the embroidery on the upright sections of the seats – making sure that all occupants are aware of your car’s identity.</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="mx__cabin-grid mx__cabin-grid--mirror">
+      <div class="mx__cabin-words">
+        <h3 class="mx__point-h mx__point-h--lead">Speed Graphics</h3>
+        <p class="body">Like all Bentleys, the Bentayga Speed offers a choice of styles for the graphics in the driver’s information panel behind the steering wheel, however it also features an option designed specifically for the Speed models.</p>
+        <p class="mx__fine">Models are shown for illustration purposes only. Features vary by markets and can change at short notice. Please contact your Bentley Motors retailer for details of current model specifications.</p>
+      </div>
+      <div class="mx__cabin-pic">
+        <img src="assets/bm/2026/bs-dash-1200.webp" srcset="assets/bm/2026/bs-dash-1200.webp 1200w, assets/bm/2026/bs-dash.webp 1920w" sizes="(max-width: 1023px) 100vw, 60vw" alt="The Bentayga Speed's steering wheel and fascia: black hide with red accents, the driver's information panel behind the wheel." width="1920" height="1080" loading="lazy" decoding="async">
+      </div>
+    </div>
+  </section>
+
+  <!-- PERFORMANCE · the page's one dark band, Bentley Green: Bentley's words
+       and its figures for the Speed's V8 -->
+  <section class="mx__power" id="performance" aria-labelledby="pw-h">
+    <div class="page">
+      <div class="mdl__engine-grid">
+        <div>
+          <p class="label mx__chapter">Performance</p>
+          <h2 class="h2 mdl__h" id="pw-h">Engineered for Exhilaration</h2>
+        </div>
+        <div class="mdl__engine-text">
+          <p class="mdl__lead-text">Tuned specifically for the elite performance requirements of this Bentley model, the twin-turbocharged, 4.0 litre V8 engine delivers 641 bhp (650 PS) and 850 Nm (627 lb-ft) of torque – which translates directly into a 0-60 mph time of just 3.4 seconds – an incredible figure for a vehicle as spacious and luxurious as this. Maximum speed is equally exciting, at a full 193 mph (310 km/h)*.</p>
+          <p class="body">In tandem with the biggest wheels ever fitted to a production Bentley are the biggest brakes. Choose the 23” wheels and you will also gain Carbon Ceramic Brakes, which feature 10 pistons on each of the front callipers, helping to deliver incredibly responsive stopping performance.</p>
+        </div>
+      </div>
+      <dl class="mx__figures">
+        <div class="mdl__stat"><dt class="label">Max speed*</dt><dd>193<span>mph</span></dd></div>
+        <div class="mdl__stat"><dt class="label">Max torque</dt><dd>627<span>lb-ft</span></dd></div>
+        <div class="mdl__stat"><dt class="label">0–60 mph</dt><dd>3.4<span>s</span></dd></div>
+        <div class="mdl__stat"><dt class="label">Max power</dt><dd>641<span>bhp</span></dd></div>
+      </dl>
+      <p class="mdl__stats-note">*With optional carbon ceramic brakes. Bentayga Speed, 4.0 litre V8. Figures from Bentley Motors.</p>
+    </div>
+  </section>
+
+  <!-- PERSONALISATION · the white Bentayga Speed in the snow to the screen's
+       left edge, Bentley's words beside it on the page's ground (the snow is
+       too bright to carry words) -->
+  <section class="mx__personal" id="personalisation" aria-labelledby="ps-h">
+    <div class="mx__cabin-grid">
+      <div class="mx__cabin-pic">
+        <img src="assets/bm/2026/bs-snow-1200.webp" srcset="assets/bm/2026/bs-snow-1200.webp 1200w, assets/bm/2026/bs-snow.webp 2400w" sizes="(max-width: 1023px) 100vw, 60vw" alt="A white Bentayga Speed driving through deep snow, a pine forest behind it." width="2400" height="1029" loading="lazy" decoding="async">
+      </div>
+      <div class="mx__cabin-words">
+        <p class="label mx__chapter">Personalisation</p>
+        <h2 class="h2 mdl__h" id="ps-h">Take Things Even Further</h2>
+        <p class="mdl__lead-text">In addition to seven standard exterior colours, there is an extended range of optional finishes that includes new satin colours, a range of duo-tone options and the revived Mulliner Legacy Colours range. Taken together, these paint ranges give you around 80 finishes to choose from.</p>
+        <p class="body">Inside the cabin, you can choose from Bentley’s entire range of 15 primary hide colours, with the unique Speed colour layout offering further opportunities for personalisation, including accent colours, contrast stitching and contrast piping. All this is just the beginning, however, when you commission a Bentayga Speed. To explore the possibilities further, configure yours today.</p>
         <div class="actions">
           <a class="btn btn--line" href="https://www.bentleymotors.com/en/misc/car-configurator.html">Build your own</a>
         </div>
       </div>
-      <div class="mdl__story-pic">
-        <img src="assets/bm/2026/speed-seat.webp" srcset="assets/bm/2026/speed-seat-1200.webp 1200w, assets/bm/2026/speed-seat.webp 1920w" sizes="(max-width: 1023px) 100vw, 58vw" alt="A Bentayga Speed front seat close up: black hide in Precision Diamond Quilting, the Speed name stitched in green, green hide at its side." width="1920" height="1280" loading="lazy" decoding="async">
-      </div>
     </div>
   </section>
 
-  <!-- the model's cars in stock, from the inventory at every build
-       (tools/subpages7.py fills the marker; no Bentayga Speed is in stock, so
-       the new Bentaygas stand) -->
+  <!-- IN STOCK · the model's cars in stock, from the inventory at every build
+       (no Bentayga Speed is in stock, so the new Bentaygas stand) -->
   <section class="sub__stock" id="stock" aria-labelledby="stock-h">
     <div class="page">
       <div class="sub__stock-head">
@@ -264,8 +330,7 @@
     </div>
   </section>
 
-  <!-- the enquiry: the demo page's "Inquire Below", the form alone on its plate
-       at the right, as on Finance -->
+  <!-- the enquiry -->
   <section class="vdp__enquire" aria-labelledby="enq-title">
     <div class="page">
       <div class="enquire enquire--fit">

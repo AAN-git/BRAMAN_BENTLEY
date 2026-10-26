@@ -995,6 +995,11 @@ html main.sub > nav.mx__index { border-bottom: 1px solid var(--rule); }
 .mx__detail img.mx__detail-top { object-position: 50% 20%; }
 .mx__model img.mx__fit-right { object-position: 100% 60%; }   /* the car stands at the right of the frame */
 .mx__scene--right .mx__scene-pic img { height: min(42.86vw, 88svh); }   /* the 7:3 frame whole: the car keeps its size and the wall its width */
+.mx__scene--right.mx__scene--frame .mx__scene-pic img { height: min(56.25vw, 88svh); }   /* a 16:9 frame whole, when the car fills its height (Bentayga Speed) */
+@media (min-width: 1024px) and (max-width: 1439px) {   /* the wall above the bonnet is too low for the heading until 1440px (measured): the words under the photograph, as on a tablet */
+  .mx__scene--frame .mx__scene-words { position: static; padding: var(--space-6) var(--gutter) 0; }   /* the details beneath bring their own air */
+  .mx__scene--frame .mx__scene-col { margin-inline-start: 0; width: auto; }
+}
 /* a split row on the page's own ground (Personalisation when its photograph
    has no free ground for words) */
 html main.sub > section.mx__personal { padding-block: var(--space-10); }

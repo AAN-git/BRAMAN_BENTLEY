@@ -93,8 +93,10 @@ See README.md for the directions, the data and the build.
   model page (authorised), no placeholder tags; the key figures are Bentley's US
   four (mph, lb-ft, 0–60, bhp). A story's photograph starts on its title's
   capitals — not lower, not higher.
-- **Model pages, two versions (Alex, 2026-10-26):** Bentayga Speed stays the AAN
-  master layout (Kirsten); every other model gets OUR version, "maximally
+- **Model pages, two versions (Alex, 2026-10-26):** first Bentayga Speed stayed
+  the AAN master layout (Kirsten) — withdrawn the same day ("redo Bentayga Speed
+  in our model design, not the master"): every model page, Bentayga Speed
+  included, is OUR version, "maximally
   striking": Bentley's words inside its photographs (road, studio wall, dark road
   at sunset), the kinds of mass changing between them. Flying Spur first, then
   Torcal, then the rest. Model photos/figures from bentleymotors.com (US).
@@ -111,7 +113,8 @@ See README.md for the directions, the data and the build.
 - **Model pages — bright car (Alex, 2026-10-26):** "the Torcal needed a bright
   car — this is very dull": use the model's most vivid Bentley frames (Torcal =
   lime Torcal S), not the silver studio set. Our-version pages now: Flying Spur,
-  Torcal, Continental GT, Continental GT Convertible (Bentayga = master).
+  Torcal, Continental GT, Continental GT Convertible, Bentayga Speed (white
+  Bentayga on the beach — Bentley's stage loop; the snow for Personalisation).
 - **Ready components only (Alex, 2026-10-26):** a demo page rebuilt on git is
   assembled from the DS's components and the templates (offer plate and its
   variations, enquiry block, hours chapter, page head…), the demo's words and
