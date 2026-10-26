@@ -258,6 +258,8 @@ page = f'''<!DOCTYPE html>
   .ds-stage main, .ds-stage section, .ds-stage .page {{ min-height: 0; height: auto; padding: 0; margin: 0; width: auto; max-width: none; position: static; }}
   .ds-stage .mh {{ position: relative !important; top: auto; transform: none; }}
   .ds-stage--header {{ padding: 0; }}
+  /* the phone's bottom bar shown in the sample, not fixed over this page */
+  .ds-stage--header .mh__deck {{ position: static; }}
   .ds-stage .vdp__grid {{ display: block; }}
   .ds-stage .vdp__side, .ds-stage .vdp__main {{ width: auto; max-width: 460px; }}
   .ds-stage .stock__in, .ds-stage .stock__frame {{ padding: 0; margin: 0; min-height: 0; height: auto; }}
@@ -279,7 +281,12 @@ page = f'''<!DOCTYPE html>
   @media (max-width: 767px) {{
     .ds-toc {{ flex-wrap: nowrap; overflow-x: auto; white-space: nowrap; }}
     .ds-type {{ grid-template-columns: 1fr; gap: var(--space-2); }}
-    .ds-space {{ grid-template-columns: 110px 1fr 60px; }}
+    .ds-space {{ grid-template-columns: 1fr auto; }}
+    .ds-space__bar {{ grid-column: 1 / -1; grid-row: 2; }}
+    /* wide tables and the desktop previews scroll in their own box, not the page */
+    .ds-table {{ display: block; overflow-x: auto; }}
+    .ds-frames {{ flex-wrap: nowrap; overflow-x: auto; }}
+    .ds-frame {{ flex: none; }}
   }}
 </style>
 </head>
@@ -567,3 +574,14 @@ page = f'''<!DOCTYPE html>
 '''
 open(OUT + 'design-system.html', 'w', encoding='utf-8', newline='\n').write(page)
 print('design-system.html:', len(cards), 'listing cards,', len(SECTIONS), 'chapters')
+
+# the same page for the git preview, at the repo root: the repo's own
+# stylesheets (the handoff's are cleaned copies of them), its assets, and its
+# pages under their "7" names
+GIT_CSS = {'tokens': 'system', 'site': 'index7', 'cards': 'cards', 'inventory': 'inventory7',
+           'vehicle': 'vehicle7', 'theme': 'day7', 'static': 'static7', 'subpages': 'subpages7'}
+git = re.sub(r'href="css/(\w+)\.css"', lambda m: 'href="css/%s.css"' % GIT_CSS[m.group(1)], page)
+git = re.sub(r'href="([a-z-]+)\.html', r'href="\g<1>7.html', git)
+git = git.replace('href="vehicles/', 'href="vehicles7/')
+open(ROOT + 'design-system7.html', 'w', encoding='utf-8', newline='\n').write(git)
+print('design-system7.html: git copy')
