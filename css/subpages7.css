@@ -450,6 +450,7 @@ html main.sub > .sub__dept-ch { padding-block: var(--space-9) 0; }
    plate the page column's full width in two columns, its two groups headed;
    the hours and the location under it (the client's layout for these pages) */
 .sub__sell-lede { max-width: 46rem; margin-block-end: var(--space-6); }
+.sub__sell-lede .h2--small { margin: 0 0 var(--space-4); font-size: var(--text-h3); line-height: var(--leading-heading); }   /* the form's own heading, never the page title again */
 .sub .enquire__form.sub__sellform { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 @media (max-width: 639px) { .sub .enquire__form.sub__sellform { grid-template-columns: 1fr; } }
 .sub__form-h {
