@@ -1181,3 +1181,36 @@ html main.sub > .sub__promo { padding-block: var(--space-9) 0; }
 @media (max-width: 1023px) { .sub__promo-plate { grid-template-columns: 1fr; } .sub__promo-pic img { height: auto; aspect-ratio: 16 / 9; min-height: 0; } }
 @media (max-width: 767px) { html main.sub > .sub__promo { padding-block: var(--space-8) 0; } .sub__promo-cta { width: 100%; justify-content: center; } }
 .sub .sub__promo + .sub__sell { padding-block-start: var(--space-9); }
+
+/* the plate's variations (design system, Offer banner; Home Delivery, Alex
+   2026-10-26): mirrored — the words first; light — the words on White with
+   the Teal button; the strip — one line on Bentley Green, no photograph.
+   A list of the offer's points under its words, ruled as the hours are. */
+@media (min-width: 1024px) { .sub__promo-plate--rev { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } }   /* half and half: the words run long */
+.sub__promo-plate--light .sub__promo-words { background: var(--white); color: var(--ink); --ink: var(--black); --ink-2: var(--dark-grey-40); --rule: rgba(4, 4, 4, 0.16); }
+.sub__promo-plate--light .sub__promo-h { color: var(--black); }
+.sub__promo-plate--light .sub__promo-cta { background: var(--teal-70); color: var(--white); border-color: var(--teal-70); }
+.sub__promo-plate--light .sub__promo-cta:hover { background: #6F836F; border-color: #6F836F; color: var(--white); }
+.sub__promo-words .label + .sub__promo-h { margin-block-start: var(--space-4); }
+.sub__promo-words { --rule: rgba(255, 255, 255, 0.22); }
+.sub__promo-list { margin: var(--space-5) 0 0; padding: 0; list-style: none; width: 100%; font-size: var(--text-body); color: var(--ink); }
+.sub__promo-list li { padding-block: var(--space-2); border-block-end: 1px solid var(--rule); }
+.sub__promo-list li:first-child { border-block-start: 1px solid var(--rule); }
+.sub__band-pic--delivery img, .sub__head--pic .sub__band-pic--delivery img { object-position: 50% 68%; }
+.sub__promo-pic--sunset img { object-position: 62% 60%; }
+.sub__strip {
+  display: flex; align-items: center; justify-content: space-between; gap: var(--space-6);
+  min-height: 88px; padding: var(--space-5) clamp(1.5rem, 3.2vw, 3rem);
+  background: var(--bentley-green); color: var(--white);
+  --ink: var(--white); --ink-2: rgba(255, 255, 255, 0.84); --rule-strong: rgba(255, 255, 255, 0.7);
+}
+.sub__strip-line { margin: 0; max-width: 40rem; font-size: var(--text-body); color: var(--white); }
+.sub__strip .actions { flex: none; margin: 0; }
+.sub__strip .sub__promo-cta { margin: 0; }
+.sub__strip .btn--line { color: var(--white); border-color: rgba(255, 255, 255, 0.7); }
+.sub__strip .btn--line:hover { color: var(--bentley-green); background: var(--white); border-color: var(--white); }
+@media (max-width: 1023px) {
+  .sub__promo-plate--rev .sub__promo-pic { order: -1; }
+  .sub__strip { flex-direction: column; align-items: flex-start; }
+}
+@media (max-width: 767px) { .sub__strip .actions, .sub__strip .btn { width: 100%; } .sub__strip .btn { justify-content: center; } }

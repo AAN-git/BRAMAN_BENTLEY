@@ -116,7 +116,8 @@ INNER = {CONTACT: 'contact7.html', FINANCE: 'finance7.html',
          'https://www.bramanbentleypalmbeach.com/meet-our-staff/': 'about7.html#team',
          'https://www.bramanbentleypalmbeach.com/parts-department/': 'parts7.html',
          'https://www.bramanbentleypalmbeach.com/sell-your-vehicle/': 'sell7.html',
-         'https://www.bramanbentleypalmbeach.com/payment-calculator/': 'calculator7.html'}
+         'https://www.bramanbentleypalmbeach.com/payment-calculator/': 'calculator7.html',
+         'https://www.bramanbentleypalmbeach.com/bentley-home-delivery-program/': 'home-delivery7.html'}
 def inner(s, pre):
     for url, f in INNER.items():
         s = s.replace(f'href="{url}"', f'href="{pre}{f}"')
@@ -143,8 +144,8 @@ MENU = [
         ('Shopping Tools', [
             _r('Schedule Test Drive', '/schedule-new-vehicle-test-drive/'),
             _r('Sell Us Your Vehicle', 'sell7.html'),
-            _r('Home Delivery Program', '/bentley-home-delivery-program/'),
-            _r('Online Buying Program', '/bentley-home-delivery-program/'),
+            _r('Home Delivery Program', 'home-delivery7.html'),
+            _r('Online Buying Program', 'home-delivery7.html'),
             _r('Get a Quote', '/new-vehicle-quick-quote/'),
             _r('Value Your Trade', '/value-trade-in/'),
             _r('Build Your Own', 'https://www.bentleymotors.com/en/misc/car-configurator.html')]),
@@ -166,8 +167,8 @@ MENU = [
             _r('Sell Us Your Vehicle', 'sell7.html'),
             _r('Find My Car', '/find-my-car/'),
             _r('Schedule Test Drive', '/schedule-used-vehicle-test-drive/'),
-            _r('Home Delivery Program', '/bentley-home-delivery-program/'),
-            _r('Online Buying Program', '/bentley-home-delivery-program/'),
+            _r('Home Delivery Program', 'home-delivery7.html'),
+            _r('Online Buying Program', 'home-delivery7.html'),
             _r('Value Your Trade', '/value-trade-in/'),
             _r('Get a Quote', '/used-vehicle-quick-quote/')]),
     ]),
@@ -194,7 +195,7 @@ MENU = [
         _r('Testimonials', '/DR-reviews/'),
         _r('Dealership Informational Videos', '/informational-videos/'),
         _r('Bentley Test Drive Videos', '/bentley-palm-beach-test-drive-videos/'),
-        _r('Home Delivery Program', '/bentley-home-delivery-program/'),
+        _r('Home Delivery Program', 'home-delivery7.html'),
         _r('Bentley Blog', 'https://blog.bramanbentleypalmbeach.com/'),
         _r('Magazine', 'http://www.clubbraman.com/magazine/'),
         _r('Join Our Team', 'https://www.bramanmotorcars.com/current-job-opportunities/'),

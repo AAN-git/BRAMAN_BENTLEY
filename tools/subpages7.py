@@ -33,6 +33,8 @@ PAGES = {
                         'The new Bentley Continental GT Convertible at Bentley Palm Beach, West Palm Beach: the five models, the four-layer roof, the cabin, the High Performance Hybrid, Convertibles in stock and an enquiry.'),
     'ask-a-tech': ('Ask a Tech | Bentley Palm Beach',
                    'Ask a Bentley technician at Bentley Palm Beach, West Palm Beach: describe the problem and a technician will contact you. Service 561-926-9110.'),
+    'home-delivery': ('Bentley Home Delivery Program | Bentley Palm Beach',
+                      'Bentley Palm Beach home delivery program, West Palm Beach: start your vehicle purchase online and schedule a test drive at your home or office.'),
     'finance': ('Finance Department | Bentley Palm Beach',
                 'Bentley Palm Beach finance department, West Palm Beach: apply for financing, value your trade, estimate a payment, or speak with the finance team.'),
 }

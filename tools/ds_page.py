@@ -213,7 +213,7 @@ MENU = block('Header and menu', 'ex-menu', (1400, 437), [
 SUB_HEAD = block('Page head — the photograph', 'ex-sub-head', (1200, 433), [
     ('Photograph', 'The full width of the screen, straight under the header. <b>Height <code>clamp(320px, 42vh, 460px)</code></b> — 378px at 1440×900, 454px at 1920×1080: a band, under half the screen, not a hero. <code>object-fit: cover</code>; <code>object-position</code> set for each photograph (Parts 50% 42%).'),
     ('Words', 'At the lower left, on the page column\'s left edge; <code>clamp(32px, 4vw, 56px)</code> above the photograph\'s bottom.'),
-    ('Eyebrow', '<i>Braman Bentley Palm Beach</i> — always exactly this. 14px Regular, own case, tracking 0.01em, white 88%.'),
+    ('Eyebrow', '<i>Braman Bentley Palm Beach</i> — always exactly this. Bentley 14px Regular (<code>.label.sub__label</code>), line 21px, own case, tracking 0.01em, white 88%; 12px above the title.'),
     ('Title', 'The page\'s name in Title Case. 50px on a desktop, 32px on a phone; Light 300; leading 1.08; white.'),
     ('Shade', 'Only under the words: <code>linear-gradient(90deg, rgba(4,4,4,.62) 0, rgba(4,4,4,.32) 38%, transparent 62%)</code> + <code>linear-gradient(0deg, rgba(4,4,4,.38) 0, transparent 55%)</code>.'),
     ('Phone', 'Below 768px the photograph is a 16:9 band (211px at 375px) and the words stand <b>under</b> it, in black on Satin Linen, the eyebrow in Dark Grey 40% (example under the tiles).'),
@@ -280,6 +280,71 @@ SUB_PROMO = block('Offer plate', 'ex-sub-promo', (1200, 446), [
     ('Grid', '<code>7fr 5fr</code> — the photograph 769 × 432px (<code>object-position 50% 60%</code>), the words 549px.'),
     ('Words', 'On Bentley Green, padding 46px. Heading 30px Light white; the offer\'s own line 18px, white 84%; its one call as a light button.'),
 ], ref='Ask a Tech')
+
+# --- the offer plate's variations, for a dealer's own offers (DS only: the
+# words and the offer are an invented specimen, marked as such) --------------
+AD_PIC = ('<img src="assets/bm/2026/fs-stage-1200.webp" alt="A blue Flying Spur on a coast road, dunes behind it." '
+          'width="1200" height="800" loading="lazy" decoding="async">')
+AD_WORDS = ('<p class="label">Special offer · example</p>'
+            '<h3 class="sub__promo-h">Your Flying Spur, delivered to your door.</h3>'
+            '<p class="sub__promo-text">Invented copy for this specimen — the dealer\'s own offer goes here, in its own words.</p>')
+AD_CTA = '<a class="btn sub__promo-cta" href="#inner">See the offer</a>'
+AD_LEGAL = '<p class="ds-ad__legal">Example only, not a live offer. The offer\'s terms stand here at the legal size.</p>'
+AD_WIDE = ('<div class="ds-ad ds-ad--wide"><div class="sub__promo-words">' + AD_WORDS + AD_CTA + AD_LEGAL
+           + '</div><div class="ds-ad__pic">' + AD_PIC + '</div></div>')
+AD_LIGHT = ('<div class="ds-ad ds-ad--wide ds-ad--light"><div class="ds-ad__pic">' + AD_PIC + '</div><div class="ds-ad__words">'
+            + AD_WORDS.replace('sub__promo-h', 'sub__promo-h ds-ad__h').replace('sub__promo-text', 'sub__promo-text ds-ad__text')
+            + '<a class="btn ds-ad__cta" href="#inner">See the offer</a>' + AD_LEGAL + '</div></div>')
+# words on the photograph need a frame whose lower left is empty road: the car right
+AD_PIC_ROAD = ('<img src="assets/bm/2026/spur-norcal-flipped.webp" alt="A green Flying Spur on a hilltop at dusk, the city behind it." '
+               'width="2400" height="1601" loading="lazy" decoding="async" style="object-position: 50% 72%">')
+AD_PHOTO = ('<div class="ds-ad ds-ad--photo"><div class="ds-ad__pic">' + AD_PIC_ROAD + '</div><div class="ds-ad__over">'
+            + AD_WORDS + AD_CTA + '</div></div>')
+AD_STACK = ('<div class="ds-ad ds-ad--stack"><div class="ds-ad__pic">' + AD_PIC + '</div><div class="ds-ad__bar">'
+            '<div><p class="label">Special offer · example</p><h3 class="sub__promo-h">Your Flying Spur, delivered to your door.</h3></div>'
+            + AD_CTA + '</div></div>')
+AD_STRIP = ('<div class="ds-ad ds-ad--strip"><p class="label">Special offer · example</p>'
+            '<p class="ds-ad__line">Complimentary home delivery on every new Bentley.</p>'
+            '<a class="btn sub__promo-cta" href="#inner">See the offer</a></div>')
+AD_CARD = ('<li class="ds-adcard"><a class="ds-adcard__link" href="#inner"><span class="ds-adcard__pic">' + AD_PIC + '</span>'
+           '<span class="sub__promo-words ds-adcard__words">' + AD_WORDS.replace('<h3', '<span').replace('</h3>', '</span>').replace('<p ', '<span ').replace('</p>', '</span>')
+           + '<span class="btn sub__promo-cta">See the offer</span></span></a></li>')
+AD_GRID = wrap(CARD_SRP, cards[1][1] + cards[2][1] + AD_CARD)
+SUB_ADS = ('<article class="ds-block"><h3 class="ds-h3">Offer banner — three variations</h3>'
+           '<p class="ds-note">The offer plate\'s parts — Bentley Green, white words, the light button, a Bentley photograph — '
+           'cut to three places a dealer offer can stand. The words and the offer here are <b>invented for the specimen</b>; '
+           'a live banner carries the dealer\'s own offer, its terms at the legal size. One banner per page.</p>'
+           '<h4 class="ds-h4">All variations at a glance</h4><div class="ds-minis">'
+           + ''.join(f'<figure class="ds-mini"><div class="ds-mini__box">{h}</div><figcaption>{t}</figcaption></figure>'
+                     for t, h in [('Offer plate — as on Ask a Tech', '<div class="ds-ad ds-ad--wide ds-ad--plate"><div class="ds-ad__pic">' + AD_PIC + '</div><div class="sub__promo-words">' + AD_WORDS + AD_CTA + '</div></div>'),
+                                  ('1a · Mirrored, words left', AD_WIDE), ('1b · Light plate', AD_LIGHT),
+                                  ('1c · Words on the photograph', AD_PHOTO), ('1d · Photograph over, bar under', AD_STACK),
+                                  ('2 · Strip', AD_STRIP)])
+           + '</div>'
+           '<h4 class="ds-h4">1a · Across the page — the plate mirrored, words left</h4><div class="ds-stage">' + AD_WIDE + '</div>'
+           '<h4 class="ds-h4">1b · Across the page — on a light plate</h4><div class="ds-stage">' + AD_LIGHT + '</div>'
+           '<h4 class="ds-h4">1c · Across the page — the words on the photograph</h4><div class="ds-stage">' + AD_PHOTO + '</div>'
+           '<h4 class="ds-h4">1d · Across the page — the photograph over, a bar under it</h4><div class="ds-stage">' + AD_STACK + '</div>'
+           '<table class="ds-table ds-spec"><tbody>'
+           '<tr><th scope="row">Where</th><td>Between two chapters of a page (home, a model page, an inner page), at the page column\'s width.</td></tr>'
+           '<tr><th scope="row">1a</th><td><code>5fr 7fr</code> — the words first, on Bentley Green, padding <code>clamp(24px, 3.2vw, 48px)</code>; the photograph right, 2.4 : 1, the car whole (<code>object-position 53% 60%</code>). Label 14px, white 84%; heading 30px Light white; the line 18px, white 84%; the light button; the terms 12px on 16px, white 84%.</td></tr>'
+           '<tr><th scope="row">1b</th><td><code>7fr 5fr</code> — the photograph left, the words on a White plate with a hairline: label and line Dark Grey 40%, heading 30px Light Black, the Teal 70% button (<code>.btn</code>), the terms Dark Grey 40%. For a page whose chapters already carry Bentley Green.</td></tr>'
+           '<tr><th scope="row">1c</th><td>The photograph across, 2.4 : 1, a frame with the car to the right and empty road at the lower left; the words there, never on the car, under the model hero\'s corner shade (<code>radial-gradient(ellipse 55% 80% at 0 100%, rgba(4,4,4,.76), rgba(4,4,4,.44) 48%, transparent)</code>), padding <code>clamp(24px, 3.2vw, 48px)</code>. Measured on the render as Text on photographs says; a photograph whose lower left is light takes 1a instead.</td></tr>'
+           '<tr><th scope="row">1d</th><td>The photograph across, 3 : 1; under it a Bentley Green bar, padding <code>24px clamp(24px, 3.2vw, 48px)</code>: label and heading (30px Light white) at the left, the light button at the right, on the heading\'s last line.</td></tr>'
+           '<tr><th scope="row">Phone</th><td>One column: the photograph 16:9 on top, the words under it on their plate (1c: on Bentley Green); the button the column\'s width.</td></tr>'
+           '</tbody></table>'
+           '<h4 class="ds-h4">2 · A strip</h4><div class="ds-stage">' + AD_STRIP + '</div>'
+           '<table class="ds-table ds-spec"><tbody>'
+           '<tr><th scope="row">Where</th><td>Over the listing\'s first row, or under a page head: a short offer that needs no picture.</td></tr>'
+           '<tr><th scope="row">Form</th><td>Bentley Green, one line, 88px high, padding 0 32px: label · the line (18px white) · the light button at the right.</td></tr>'
+           '<tr><th scope="row">Phone</th><td>The label, the line and the button one under another, the button the column\'s width.</td></tr>'
+           '</tbody></table>'
+           '<h4 class="ds-h4">3 · In a row of cards</h4><div class="ds-stage ds-stage--grid">' + AD_GRID + '</div>'
+           '<table class="ds-table ds-spec"><tbody>'
+           '<tr><th scope="row">Where</th><td>In the listing or In Stock, in a card\'s place — never the first place, never more than one in view.</td></tr>'
+           '<tr><th scope="row">Form</th><td>The card\'s width and its photograph (4:3, the car whole); under it the words on Bentley Green to the card\'s foot. Cards in a row keep one height: the banner is as tall as the cards, its button on their View details line.</td></tr>'
+           '<tr><th scope="row">Phone</th><td>One card in the column, as the cards.</td></tr>'
+           '</tbody></table></article>')
 
 MX_BLOCKS = ''.join([
     block('Hero', 'ex-mx-hero', (1200, 817), [
@@ -395,6 +460,67 @@ page = f'''<!DOCTYPE html>
   .ds-stage--photo {{ background: #040404 url("assets/bm/2026/spur-norcal.webp") center / cover; --ink: var(--white); color: var(--white); }}
   .ds-row {{ display: flex; flex-wrap: wrap; gap: var(--space-5); align-items: center; }}
   .ds-item {{ min-width: 0; }}
+  /* the offer banner's variations (an invented specimen, DS only) */
+  .ds-h4 {{ margin: var(--space-7) 0 var(--space-4); font-size: var(--text-xs); font-weight: 400; letter-spacing: var(--track-label); text-transform: uppercase; color: var(--ink); }}
+  .ds-ad {{ background: var(--bentley-green); color: var(--white); }}
+  .ds-ad--wide {{ display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); border: 1px solid var(--rule); }}
+  .ds-ad--wide .sub__promo-words .label {{ margin-block-end: var(--space-4); }}
+  .ds-ad__pic img {{ display: block; width: 100%; height: 100%; aspect-ratio: 2.4 / 1; object-fit: cover; object-position: 53% 60%; }}
+  .ds-ad__legal {{ margin: var(--space-5) 0 0; font-size: var(--text-legal); line-height: 1rem; color: rgba(255, 255, 255, 0.84); }}
+  .ds-minis {{ display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 360px), 1fr)); gap: var(--space-6); }}
+  .ds-mini {{ margin: 0; }}
+  .ds-mini__box {{ overflow: hidden; }}
+  .ds-mini__box > .ds-ad {{ width: 1175px; zoom: 0.32; pointer-events: none; }}   /* the banner at its width on the page, drawn small */
+  .ds-mini figcaption {{ margin-block-start: var(--space-3); font-size: var(--text-xs); letter-spacing: var(--track-label); text-transform: uppercase; color: var(--ink); }}
+  .ds-ad--plate {{ grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); }}
+  .ds-ad--light {{ grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); background: var(--white); color: var(--ink); }}
+  .ds-ad__words {{ display: flex; flex-direction: column; justify-content: center; align-items: flex-start; padding: clamp(1.5rem, 3.2vw, 3rem); }}
+  .ds-ad__words .label {{ margin: 0 0 var(--space-4); color: var(--dark-grey-40); }}
+  .ds-ad__h {{ color: var(--black); }}
+  .ds-ad__text {{ color: var(--dark-grey-40); }}
+  .ds-ad__cta {{ margin-block-start: var(--space-6); }}
+  .ds-ad--light .ds-ad__legal {{ color: var(--dark-grey-40); }}
+  .ds-ad--photo {{ position: relative; isolation: isolate; }}
+  .ds-ad--photo::after {{ content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none; background: radial-gradient(ellipse 55% 80% at 0 100%, rgba(4,4,4,.76) 0, rgba(4,4,4,.44) 48%, transparent); }}
+  .ds-ad__over {{ position: absolute; left: 0; bottom: 0; z-index: 1; max-width: 25rem; padding: clamp(1.5rem, 3.2vw, 3rem); --ink-2: rgba(255,255,255,.84); }}
+  .ds-ad__over .label {{ margin: 0 0 var(--space-4); color: rgba(255,255,255,.84); }}
+  .ds-ad__over .sub__promo-text {{ color: rgba(255,255,255,.84); }}
+  .ds-ad--stack .ds-ad__pic img {{ aspect-ratio: 3 / 1; }}
+  .ds-ad__bar {{ display: flex; align-items: flex-end; justify-content: space-between; gap: var(--space-6); padding: var(--space-5) clamp(1.5rem, 3.2vw, 3rem); }}
+  .ds-ad__bar .label {{ margin: 0 0 var(--space-2); color: rgba(255,255,255,.84); }}
+  .ds-ad__bar .sub__promo-cta {{ margin: 0; flex: none; }}
+  .ds-ad--strip {{ display: flex; align-items: center; gap: var(--space-6); min-height: 88px; padding: var(--space-4) var(--space-6); }}
+  .ds-ad--strip .label {{ margin: 0; color: rgba(255, 255, 255, 0.84); white-space: nowrap; }}
+  .ds-ad__line {{ margin: 0; flex: 1 1 auto; font-size: var(--text-body); color: var(--white); }}
+  .ds-ad--strip .sub__promo-cta {{ margin: 0; flex: none; }}
+  .ds-stage--grid .grid {{ display: grid; }}
+  .ds-adcard {{ display: grid; min-width: 0; }}
+  .ds-adcard__link {{ display: flex; flex-direction: column; color: inherit; text-decoration: none; border: 1px solid var(--rule); }}
+  .ds-adcard__pic img {{ display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; object-position: 53% 60%; }}
+  .ds-adcard__words {{ flex: 1 1 auto; justify-content: flex-start; padding: var(--space-5); }}   /* the card body's padding: the button sits on View details' line */
+  .ds-adcard__words > span {{ display: block; }}
+  .ds-adcard__words .label {{ margin-block-end: var(--space-4); }}
+  .ds-adcard__words .sub__promo-cta {{ margin-block-start: auto; }}
+  .ds-adcard__words .sub__promo-text {{ margin-block-end: var(--space-6); }}
+  @supports (grid-template-rows: subgrid) {{
+    .grid > li.ds-adcard {{ grid-row: span 9; grid-template-rows: subgrid; row-gap: 0; }}
+    .grid > li.ds-adcard > .ds-adcard__link {{ display: grid; grid-row: span 9; grid-template-rows: subgrid; row-gap: 0; }}
+    .grid > li.ds-adcard .ds-adcard__pic {{ grid-row: 1; }}
+    .grid > li.ds-adcard .ds-adcard__words {{ grid-row: 2 / span 8; }}
+  }}
+  @media (max-width: 1023px) {{
+    .ds-ad--wide {{ grid-template-columns: 1fr; }}
+    .ds-ad--wide .ds-ad__pic {{ order: -1; }}
+    .ds-ad__pic img, .ds-ad--stack .ds-ad__pic img {{ aspect-ratio: 16 / 9; }}
+    .ds-ad__over {{ position: static; max-width: none; background: var(--bentley-green); }}
+    .ds-ad--photo::after {{ content: none; }}
+  }}
+  @media (max-width: 767px) {{
+    .ds-ad--strip, .ds-ad__bar {{ flex-direction: column; align-items: stretch; gap: var(--space-3); padding: var(--space-5); }}
+    .ds-ad .ds-ad__cta {{ width: 100%; justify-content: center; }}
+    .ds-ad .sub__promo-cta {{ width: 100%; justify-content: center; }}
+    .ds-stage--grid .grid {{ grid-template-columns: 1fr; }}
+  }}
   .ds-cards {{ display: grid; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); gap: var(--space-6); align-items: start; }}
   .ds-cards .grid, .ds-cards .stock__rail {{ display: block; margin: 0; padding: 0; transform: none; width: auto; }}
   /* cards in a row stand level and equally tall, as in the listing: caption,
@@ -689,6 +815,7 @@ page = f'''<!DOCTYPE html>
     {SUB_FORMPAGE}
     {SUB_THREE}
     {SUB_PROMO}
+    {SUB_ADS}
     <h3 class="ds-h3">Per page</h3>
     <table class="ds-table"><thead><tr><th>Page</th><th>Its blocks</th></tr></thead><tbody>
       <tr><td><a href="contact.html">Contact Us</a></td><td>Head · message + form · Opening Hours (Sales, Service, Parts in a row) · the location with the showroom photograph · map.</td></tr>
