@@ -1243,3 +1243,23 @@ html main.sub > .sub__lead + .sub__promo { padding-block-start: var(--space-6); 
 .sub__promo-pic--lounge img { object-position: 50% 55%; }
 @media (max-width: 1023px) { .sub__promo-plate--stack .mdl__film-frame img { aspect-ratio: 16 / 9; } }
 @media (max-width: 767px) { .sub__promo-bar { flex-direction: column; align-items: stretch; gap: var(--space-4); } }
+
+/* the form pages (Alex, 2026-10-26: "each its own picture"), on the Sell /
+   Ask a Tech template: each head's crop keeps its car whole, clear of the
+   title at the lower left */
+.sub__head--pic .sub__band-pic--moor img { object-position: 50% 70%; }   /* the heather under the car carries the title */
+.sub__head--pic .sub__band-pic--mountain img { object-position: 50% 92%; }
+.sub__head--pic .sub__band-pic--moor-dusk img { object-position: 50% 90%; }
+.sub__head--pic .sub__band-pic--lamps img { object-position: 50% 88%; }   /* the lamps high, the title on the dark bodywork under them */
+.sub__head--pic .sub__band-pic--handover img { object-position: 50% 62%; }
+.sub__head--pic .sub__band-pic--hangar img { object-position: 50% 95%; }   /* No. 9 whole at the front, the empty floor under the title */
+.sub__head--pic .sub__band-pic--workshop img { object-position: 50% 82%; }   /* the workshop floor at the lower left carries the title */
+.sub__head--pic .sub__band-pic--cradles img { object-position: 50% 70%; }
+@media (min-width: 1600px) {   /* the widest heads crop the frame hardest: the roofs kept */
+  .sub__head--pic .sub__band-pic--mountain img { object-position: 50% 80%; }
+  .sub__head--pic .sub__band-pic--moor-dusk img { object-position: 50% 78%; }
+  .sub__head--pic .sub__band-pic--handover img { object-position: 50% 40%; }
+}
+/* a date field holds the browser's own mm/dd/yyyy until it is chosen: hidden,
+   as a select's first choice is, so the label alone stands on the line */
+html.has-float .field--float:not(.is-filled):not(:focus-within) > input[type="date"] { color: transparent; }

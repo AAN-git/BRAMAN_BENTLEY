@@ -1,0 +1,60 @@
+<main id="main" class="srp sub">
+
+  <!-- Get a New Vehicle Quote: the demo page (/new-vehicle-quick-quote/), its words and fields verbatim.
+       The head on the page's own picture, as every inner page: a white Torcal on a moorland road at sunset (Bentley Media, 2026) — the car at the right, the words on the dark moor at the left -->
+  <section class="srp__head sub__head--pic" aria-labelledby="sub-h">
+    <div class="sub__band-pic sub__band-pic--moor-dusk">
+      <img src="assets/bm/2026/quote-new-torcal.webp" sizes="100vw" alt="" decoding="async">
+      <div class="page sub__band-words">
+        <p class="label sub__label">Braman Bentley Palm Beach</p>
+        <h1 class="h2 sub__title" id="sub-h">New Vehicle Quote</h1>
+      </div>
+    </div>
+  </section>
+
+  <!-- the words above the form across the page, the form under them (the
+       Sell Your Vehicle template); the fields and lists are the demo page's -->
+  <section class="vdp__enquire sub__sell" aria-labelledby="quote-new-h">
+    <div class="page">
+      <div class="sub__sell-lede">
+        <h2 class="h2 h2--small" id="quote-new-h">Request Your Quote</h2>
+        <p class="body">Interested in a sales quote on one of our vehicles? Please fill out the form below with your contact information along with the Make and Model of the vehicle you're interested in.</p>
+      </div>
+      <form class="enquire__form sub__sellform" onsubmit="return false" aria-labelledby="quote-new-h">
+          <p class="enquire__req">Fields marked with (*) are required.</p>
+          <label class="field"><span class="field__label">First name*</span><input class="field__input" type="text" name="fname" autocomplete="given-name" required></label>
+          <label class="field"><span class="field__label">Last name*</span><input class="field__input" type="text" name="lname" autocomplete="family-name" required></label>
+          <label class="field"><span class="field__label">Email*</span><input class="field__input" type="email" name="email" autocomplete="email" required></label>
+          <label class="field"><span class="field__label">Phone*</span><input class="field__input" type="tel" name="phone" autocomplete="tel" required></label>
+          <label class="field field--wide"><span class="field__label">Message*</span><textarea class="field__input field__area" name="message" rows="3" required></textarea></label>
+          <label class="field field--wide sub__consent"><input type="checkbox" name="i_agree"> Please note that by completing this form, you agree to being contacted via text, phone and email.</label>
+          <div class="enquire__send"><button class="btn" type="submit">Send</button><span class="enquire__fine">This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service apply.</span></div>
+        </form>
+    </div>
+  </section>
+
+  <!-- the hours and the location under the form (the demo page's own) -->
+  <section class="sub__dept-ch sub__after" aria-label="Hours and location">
+    <div class="page sub__dept-grid">
+      <div class="sub__dept">
+        <h3 class="sub__loc-h">Sales Hours</h3>
+        <dl class="record">
+          <dt>Mon – Thu</dt><dd>9:00 am – 8:00 pm</dd>
+          <dt>Friday</dt><dd>9:00 am – 7:00 pm</dd>
+          <dt>Saturday</dt><dd>9:00 am – 6:00 pm</dd>
+          <dt>Sunday</dt><dd>11:00 am – 5:00 pm</dd>
+        </dl>
+      </div>
+      <div class="sub__loc">
+        <h3 class="sub__loc-h">Our Location</h3>
+        <address class="body">Braman Bentley Palm Beach<br>2801 Okeechobee Blvd<br>West Palm Beach, FL 33409</address>
+        <dl class="record"><dt>Sales</dt><dd><a href="tel:+15619269111">561-926-9111</a></dd></dl>
+        <div class="actions">
+          <a class="btn btn--line" href="https://www.bramanbentleypalmbeach.com/directions/">Get directions</a>
+          <button class="btn btn--line" type="button" data-send-to-phone aria-haspopup="dialog">Send to phone</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>

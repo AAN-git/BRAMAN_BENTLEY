@@ -121,6 +121,15 @@ INNER = {CONTACT: 'contact7.html', FINANCE: 'finance7.html',
          'https://www.bramanbentleypalmbeach.com/ask-a-tech/': 'ask-a-tech7.html',
          'https://www.bramanbentleypalmbeach.com/informational-videos/': 'informational-videos7.html',
          'https://www.bramanbentleypalmbeach.com/hours/': 'contact7.html#hours-h',
+         # the form pages (Alex, 2026-10-26), on the Sell / Ask a Tech template
+         'https://www.bramanbentleypalmbeach.com/schedule-new-vehicle-test-drive/': 'test-drive-new7.html',
+         'https://www.bramanbentleypalmbeach.com/schedule-used-vehicle-test-drive/': 'test-drive-used7.html',
+         'https://www.bramanbentleypalmbeach.com/new-vehicle-quick-quote/': 'quote-new7.html',
+         'https://www.bramanbentleypalmbeach.com/used-vehicle-quick-quote/': 'quote-used7.html',
+         'https://www.bramanbentleypalmbeach.com/value-trade-in/': 'value-trade7.html',
+         'https://www.bramanbentleypalmbeach.com/find-my-car/': 'find-my-car7.html',
+         'https://www.bramanbentleypalmbeach.com/vehicle-recall-request/': 'recall7.html',
+         'https://www.bramanbentleypalmbeach.com/order-parts/': 'order-parts7.html',
          # the home page's routes into the stock and the models (Alex, 2026-10-26:
          # "link all the pages together") — ours wherever we have the page
          'https://www.bramanbentleypalmbeach.com/search/new-bentley-west-palm-beach-fl/?cy=33409&amp;tp=new': 'inventory7.html?condition=new',
@@ -158,12 +167,12 @@ MENU = [
             _r('Search Flying Spur', 'inventory7.html?condition=new&amp;model=Flying+Spur'),
             _r('Search Bentayga EWB', 'inventory7.html?condition=new&amp;model=Bentayga+EWB')]),
         ('Shopping Tools', [
-            _r('Schedule Test Drive', '/schedule-new-vehicle-test-drive/'),
+            _r('Schedule Test Drive', 'test-drive-new7.html'),
             _r('Sell Us Your Vehicle', 'sell7.html'),
             _r('Home Delivery Program', 'home-delivery7.html'),
             _r('Online Buying Program', 'home-delivery7.html'),
-            _r('Get a Quote', '/new-vehicle-quick-quote/'),
-            _r('Value Your Trade', '/value-trade-in/'),
+            _r('Get a Quote', 'quote-new7.html'),
+            _r('Value Your Trade', 'value-trade7.html'),
             _r('Build Your Own', 'https://www.bentleymotors.com/en/misc/car-configurator.html')]),
         ('Research', [
             _r('Reasons to Choose Braman', '/bentley-palm-beach-difference/'),
@@ -181,12 +190,12 @@ MENU = [
             _r('What is a Braman Certified Pre-Owned?', '/braman-bentley-cpo/')]),
         ('Shopping Tools', [
             _r('Sell Us Your Vehicle', 'sell7.html'),
-            _r('Find My Car', '/find-my-car/'),
-            _r('Schedule Test Drive', '/schedule-used-vehicle-test-drive/'),
+            _r('Find My Car', 'find-my-car7.html'),
+            _r('Schedule Test Drive', 'test-drive-used7.html'),
             _r('Home Delivery Program', 'home-delivery7.html'),
             _r('Online Buying Program', 'home-delivery7.html'),
-            _r('Value Your Trade', '/value-trade-in/'),
-            _r('Get a Quote', '/used-vehicle-quick-quote/')]),
+            _r('Value Your Trade', 'value-trade7.html'),
+            _r('Get a Quote', 'quote-used7.html')]),
     ]),
     ('Offers', [('', [
         _r('New Vehicle Specials', '/new-inventory-specials/'),
@@ -194,10 +203,10 @@ MENU = [
     ('Service', [('', [
         _r('Service Department', '/service-department/'),
         _r('Ask a Tech', 'ask-a-tech7.html'),
-        _r('Vehicle Recall Request', '/vehicle-recall-request/')])]),
+        _r('Vehicle Recall Request', 'recall7.html')])]),
     ('Parts', [('', [
         _r('Parts Department', 'parts7.html'),
-        _r('Order Parts', '/order-parts/')])]),
+        _r('Order Parts', 'order-parts7.html')])]),
     ('Finance', [('', [
         _r('Finance Department', 'finance7.html'),
         _r('Personal Finance Application', '/finance-application/'),

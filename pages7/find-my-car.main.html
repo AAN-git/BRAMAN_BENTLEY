@@ -1,0 +1,66 @@
+<main id="main" class="srp sub">
+
+  <!-- Find My Car: the demo page (/find-my-car/), its words and fields verbatim; the demo shows no hours or location here, the sales ones stand as on Sell Your Vehicle.
+       The head on the page's own picture, as every inner page: a hangar of Bentley Blowers, No. 9 at the front with its lamps lit (Bentley Media) — the car whole in the middle, the words on the hangar floor at the left -->
+  <section class="srp__head sub__head--pic" aria-labelledby="sub-h">
+    <div class="sub__band-pic sub__band-pic--hangar">
+      <img src="assets/bm/2026/find-hangar.webp" sizes="100vw" alt="" decoding="async">
+      <div class="page sub__band-words">
+        <p class="label sub__label">Braman Bentley Palm Beach</p>
+        <h1 class="h2 sub__title" id="sub-h">Find My Car</h1>
+      </div>
+    </div>
+  </section>
+
+  <!-- the words above the form across the page, the form under them (the
+       Sell Your Vehicle template); the fields and lists are the demo page's -->
+  <section class="vdp__enquire sub__sell" aria-labelledby="find-my-car-h">
+    <div class="page">
+      <div class="sub__sell-lede">
+        <h2 class="h2 h2--small" id="find-my-car-h">Tell Us What You're Looking For</h2>
+        <p class="body">Is the vehicle you're looking for not on our website? Our dealership can find nearly any vehicle you're looking for. We have the tools to find exactly what you're looking for! Simply enter in the vehicle information below along with your contact information and we will begin a search.</p>
+      </div>
+      <form class="enquire__form sub__sellform" onsubmit="return false" aria-labelledby="find-my-car-h">
+          <p class="enquire__req">Fields marked with (*) are required.</p>
+          <label class="field"><span class="field__label">First name*</span><input class="field__input" type="text" name="fname" autocomplete="given-name" required></label>
+          <label class="field"><span class="field__label">Last name*</span><input class="field__input" type="text" name="lname" autocomplete="family-name" required></label>
+          <label class="field"><span class="field__label">Email*</span><input class="field__input" type="email" name="email" autocomplete="email" required></label>
+          <label class="field"><span class="field__label">Phone*</span><input class="field__input" type="tel" name="phone" autocomplete="tel" required></label>
+          <fieldset class="field sub__choice">
+            <legend class="field__label">Best time to contact*</legend>
+            <label><input type="radio" name="contact_mode" value="Morning"> Morning</label>
+            <label><input type="radio" name="contact_mode" value="Afternoon"> Afternoon</label>
+            <label><input type="radio" name="contact_mode" value="Evening"> Evening</label>
+          </fieldset>
+          <label class="field field--wide"><span class="field__label">Message</span><textarea class="field__input field__area" name="message" rows="3"></textarea></label>
+          <label class="field field--wide sub__consent"><input type="checkbox" name="i_agree"> Please note that by completing this form, you agree to being contacted via text, phone and email.</label>
+          <div class="enquire__send"><button class="btn" type="submit">Send message</button><span class="enquire__fine">This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service apply.</span></div>
+        </form>
+    </div>
+  </section>
+
+  <!-- the hours and the location under the form (the demo page's own) -->
+  <section class="sub__dept-ch sub__after" aria-label="Hours and location">
+    <div class="page sub__dept-grid">
+      <div class="sub__dept">
+        <h3 class="sub__loc-h">Sales Hours</h3>
+        <dl class="record">
+          <dt>Mon – Thu</dt><dd>9:00 am – 8:00 pm</dd>
+          <dt>Friday</dt><dd>9:00 am – 7:00 pm</dd>
+          <dt>Saturday</dt><dd>9:00 am – 6:00 pm</dd>
+          <dt>Sunday</dt><dd>11:00 am – 5:00 pm</dd>
+        </dl>
+      </div>
+      <div class="sub__loc">
+        <h3 class="sub__loc-h">Our Location</h3>
+        <address class="body">Braman Bentley Palm Beach<br>2801 Okeechobee Blvd<br>West Palm Beach, FL 33409</address>
+        <dl class="record"><dt>Sales</dt><dd><a href="tel:+15619269111">561-926-9111</a></dd></dl>
+        <div class="actions">
+          <a class="btn btn--line" href="https://www.bramanbentleypalmbeach.com/directions/">Get directions</a>
+          <button class="btn btn--line" type="button" data-send-to-phone aria-haspopup="dialog">Send to phone</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
