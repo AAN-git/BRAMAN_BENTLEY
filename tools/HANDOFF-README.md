@@ -2,7 +2,7 @@
 
 The approved mockup, as designed: plain HTML, CSS and a little vanilla JS. No build step, no framework, no server-side code.
 
-**Start with `design-system.html`** — every element on the site, all variants, shown on the site's own stylesheets, with the rules for using them.
+**Start with `design-system.html`** — its first chapter, *Handoff*, lists what to change on the demo, page by page, with links to the approved pages; the chapters after it show every element on the site's own stylesheets, with the rules for using them.
 
 ## Pages
 
@@ -11,7 +11,7 @@ The approved mockup, as designed: plain HTML, CSS and a little vanilla JS. No bu
 | `index.html` | Home |
 | `inventory.html` | The listing (SRP) — filters work from the URL: `?condition=new`, `?condition=used`, `?condition=certified`, `?model=Continental+GT` |
 | `vehicles/<stock>.html` | One page per car (VDP) — 60 cars, captured from the retailer's listings |
-| `about.html`, `contact.html`, `finance.html`, `parts.html`, `sell.html`, `calculator.html` | The inner pages: About Us (with the staff), Contact Us, Finance Department, Parts Department, Sell Your Vehicle, Payment Calculator (working: standard amortised payment, `js/sub.js`). `bentayga-speed.html` is the **model page in the AAN master's layout**; `flying-spur.html`, `torcal.html`, `continental-gt.html` and `continental-gtc.html` are **our version of the model page** — Bentley's words inside its photographs (see the design system, "Inner pages"): its photographs are placeholders, marked, until Bentayga Speed media is supplied; its cars in stock are the listing's cards for that model. The page title and the writing rules for every inner page are in the design system, "Inner pages" |
+| `about.html`, `contact.html`, `finance.html`, `parts.html`, `sell.html`, `calculator.html` | The inner pages: About Us (with the staff), Contact Us, Finance Department, Parts Department, Sell Your Vehicle, Payment Calculator (working: standard amortised payment, `js/sub.js`). `bentayga-speed.html` is the **model page in the AAN master's layout**; `flying-spur.html`, `torcal.html`, `continental-gt.html` and `continental-gtc.html` are **our version of the model page** — Bentley's words inside its photographs (see the design system, "Inner pages"); their cars in stock are the listing's cards for that model. The page title and the writing rules for every inner page are in the design system, "Inner pages" |
 | `design-system.html` | The design system |
 
 Open any file in a browser. The fonts load best from a local server (`python3 -m http.server` in this folder, then `http://localhost:8000/`).

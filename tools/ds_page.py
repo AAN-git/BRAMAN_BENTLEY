@@ -187,7 +187,7 @@ sections = '\n'.join(f'''<article class="ds-section" id="ds-{a}">
   <p class="ds-cap"><a href="index.html#{a}">Open in the page →</a></p>
 </article>''' for a, n, u in SECTIONS)
 
-TOC = [('colour', 'Colour'), ('type', 'Type'), ('space', 'Space & layout'), ('buttons', 'Buttons'),
+TOC = [('handoff', 'Handoff'), ('colour', 'Colour'), ('type', 'Type'), ('space', 'Space & layout'), ('buttons', 'Buttons'),
        ('links', 'Links & labels'), ('forms', 'Forms'), ('cards', 'Vehicle cards'), ('vdp', 'Car page'),
        ('header', 'Header'), ('sections', 'Home chapters'), ('inner', 'Inner pages'), ('rules', 'Rules')]
 toc = ''.join(f'<a href="#{a}">{n}</a>' for a, n in TOC)
@@ -289,9 +289,45 @@ page = f'''<!DOCTYPE html>
     <p class="ds-cap">Bentley Palm Beach · Direction 7 · handoff</p>
     <h1>Design System</h1>
     <p>Every element of the site, on the site's own stylesheets: what you see here is the real component, not a drawing of it. Values are read from <code>css/tokens.css</code>; the theme is Satin Linen 40% (<code>&lt;html class="theme-satin"&gt;</code>).</p>
-    <p>The page is static by the client's brief (2026-10-04, an older clientele): no scroll effects, no autoplay, no video. Photographs are the design.</p>
+    <p>The page is static by the client's brief (2026-10-04, an older clientele): no scroll effects. Photographs are the design. The one exception is the model pages' hero: Bentley's own stage loop, muted, from 1024px, with a pause button, replaced by its photograph on phones and when the visitor asks for less motion.</p>
   </header>
   <nav class="ds-toc" aria-label="Design system">{toc}</nav>
+
+  <section class="ds-part" id="handoff">
+    <h2 class="ds-h2">Handoff — what to change on the demo</h2>
+    <p class="ds-note">For the developers bringing the demo (<i>bramanbentleypalmbeach.aandemo.com</i>) in line with the approved design. Each row: the page on the demo, the approved page on git, and what changes. <b>How to work:</b> open both side by side; take spacing, sizes and colours from <code>css/tokens.css</code> and the components below in this design system — never from a screenshot; copy and figures exactly as on the approved page (they are the dealer's own or bentleymotors.com's, verbatim); keep every photograph's crop (<code>object-position</code>) as set. When something on the demo cannot follow a rule here, ask before inventing — the site is <b>strictly Bentley style</b>: no device, rule, mark or ornament that Bentley's guidelines, bentleymotors.com or these pages do not already have.</p>
+
+    <h3 class="ds-h3">1 · Site-wide — every page</h3>
+    <table class="ds-table"><thead><tr><th>Area</th><th>Change</th><th>Where in this system</th></tr></thead><tbody>
+      <tr><td><b>Menu</b></td><td>The demo's own navigation, as built: eight groups; a panel per group; inline in the bar from 1536px, an accordion below. Routes to our pages where we have one. "Browse by Make" and "One-Owner Vehicles" left out (other brands may not be advertised).</td><td>Header</td></tr>
+      <tr><td><b>Recently Viewed</b></td><td>The tab at the lower right (count, then the cars: photograph, name, <b>Final price · Stock</b> — never MSRP). Nothing else may sit under it.</td><td>Header</td></tr>
+      <tr><td><b>Page title</b></td><td>Every inner page: eyebrow <i>Braman Bentley Palm Beach</i>, the title in its own case (Finance Department, Contact Us). Capitals only for model names (TORCAL, MULLINER).</td><td>Inner pages → The page title</td></tr>
+      <tr><td><b>Type sizes</b></td><td>Only the roles in the type table. Legal lines (reCAPTCHA, disclaimers) 12/16px, as bentleymotors.com sets them.</td><td>Type</td></tr>
+      <tr><td><b>Forms</b></td><td>Two columns (one on a phone). Bentley's floating labels on the line; 1px line, 2px on focus, no box; 24px square check box, 20px circle radio, Teal 70% edge. <i>Best time to contact</i> under Phone. <i>Fields marked with (*) are required.</i> is the form's first line, inside its plate.</td><td>Forms · Rules</td></tr>
+      <tr><td><b>Dropdowns</b></td><td>Closed: the native select on the field's line, firm chevron. Open: the site's own list dropped from that line, left-aligned, at least the field's width, 40px rows, model names in capitals, car counts on the listing's filters, height = its choices. Phones keep the native picker.</td><td>Rules → Forms</td></tr>
+      <tr><td><b>Enquiry block</b></td><td>Beside the form: heading, Our Location, the department's phone, Get directions / Send to phone, and the department's hours under them. From 1024px the column is as tall as the form — heading on the plate's top edge, last hours rule on its bottom edge.</td><td>Rules → Forms</td></tr>
+      <tr><td><b>Vehicle cards</b></td><td>Every mark (lease, Sale Pending, New Arrival, Sold, Certified Pre-Owned) as a band <b>under</b> the photograph, never on it. Empty room for the band only in a row where a card has a mark. On the car page, no flag on the photographs.</td><td>Vehicle cards · Car page</td></tr>
+      <tr><td><b>Model Range (home)</b></td><td>Each model's tile opens its model page (Bentayga → Bentayga Speed; Flying Spur, Torcal, Continental GT, GT Convertible → theirs).</td><td>Home chapters</td></tr>
+    </tbody></table>
+
+    <h3 class="ds-h3">2 · Pages</h3>
+    <table class="ds-table"><thead><tr><th>Page</th><th>Approved (git)</th><th>What changes on the demo</th></tr></thead><tbody>
+      <tr><td><b>Contact Us</b></td><td><a href="https://aan-git.github.io/BRAMAN_BENTLEY/contact7.html">contact7.html</a></td><td>New design: picture head; message + form; Opening Hours as a chapter (Sales, Service, Parts in a row); location chapter with the showroom photograph; map, toned Heritage White.</td></tr>
+      <tr><td><b>Finance Department</b></td><td><a href="https://aan-git.github.io/BRAMAN_BENTLEY/finance7.html">finance7.html</a></td><td>Four tiles (Finance application — the lead, Value your trade, Payment calculator, View inventory); enquiry with Sales Hours; Google reviews rail last.</td></tr>
+      <tr><td><b>About Us / Meet the Staff</b></td><td><a href="https://aan-git.github.io/BRAMAN_BENTLEY/about7.html">about7.html</a></td><td>Intro in the page column; staff cards as on the demo (4:3 portrait, job title, name, direct line, a note such as "Also speaks Russian" under the phone); Opening Hours chapter; enquiry; map.</td></tr>
+      <tr><td><b>Parts Department</b></td><td><a href="https://aan-git.github.io/BRAMAN_BENTLEY/parts7.html">parts7.html</a></td><td>Inner-page template. Head: Bentley's technician photograph. Four tiles, each picture showing its route. Department chapter with Bentley's "Genuine parts" text and the Parts Manager card; enquiry with Parts Hours; map; Google reviews last, below the map. <i>Buy tires</i> link on the demo names Edmonton — confirm the URL.</td></tr>
+      <tr><td><b>Sell Your Vehicle</b></td><td><a href="https://aan-git.github.io/BRAMAN_BENTLEY/sell7.html">sell7.html</a></td><td>The client's order: words, then the form (two columns), then hours and location under it. Photos field: drag-and-drop zone with thumbnails, each with its own remove.</td></tr>
+      <tr><td><b>Payment Calculator</b></td><td><a href="https://aan-git.github.io/BRAMAN_BENTLEY/calculator7.html">calculator7.html</a></td><td>Working calculator (standard amortised payment, <code>js/sub.js</code>); result plate on Bentley Green; on a phone the result above the fields.</td></tr>
+      <tr><td><b>Ask a Tech</b></td><td><a href="https://aan-git.github.io/BRAMAN_BENTLEY/ask-a-tech7.html">ask-a-tech7.html</a></td><td>Rebuilt on the inner-page template, in the client's order: picture head, the words, the form (two columns, the note inside it), then in a row: Take the Next Step (four routes), Service Hours, Our Location. <b>The Sunbit banner is rebuilt</b>: the demo's artwork advertises <i>Rolls-Royce</i> parts and service on the Bentley site, with its words baked into the picture. Now a plate under the head — a Bentley photograph at the left, the banner's words as text on Bentley Green ("Bentley" in place of "Rolls-Royce", to be confirmed by the client), one white <i>See your options</i> call to the Sunbit application page (confirm the live URL).</td></tr>
+      <tr><td><b>2027 Bentayga Speed</b></td><td><a href="https://aan-git.github.io/BRAMAN_BENTLEY/bentayga-speed7.html">bentayga-speed7.html</a></td><td>The AAN master model-page layout: hero, key figures on Bentley Green, engine, film, exterior / interior stories, cars in stock, enquiry.</td></tr>
+      <tr><td><b>Model pages</b> (new)</td><td><a href="https://aan-git.github.io/BRAMAN_BENTLEY/flying-spur7.html">flying-spur7</a> · <a href="https://aan-git.github.io/BRAMAN_BENTLEY/torcal7.html">torcal7</a> · <a href="https://aan-git.github.io/BRAMAN_BENTLEY/continental-gt7.html">continental-gt7</a> · <a href="https://aan-git.github.io/BRAMAN_BENTLEY/continental-gtc7.html">continental-gtc7</a></td><td>Our model page: chapters The Range · Exterior · Interior · Performance · Personalisation · In Stock, with a chapter bar under the hero. Bentley's stage loop in the hero where Bentley has one (from 1024px, pause button, photograph on phones and with reduced motion); the official Bentley Motors film from the hero's third call. Copy, US figures, photographs and films from bentleymotors.com / Bentley Motors only.</td></tr>
+      <tr><td><b>Inventory (SRP)</b></td><td><a href="https://aan-git.github.io/BRAMAN_BENTLEY/inventory7.html">inventory7.html</a></td><td>Card marks and dropdowns as in section 1. Filters work from the URL (<code>?condition=new&amp;model=Bentayga</code>).</td></tr>
+      <tr><td><b>Car page (VDP)</b></td><td><a href="https://aan-git.github.io/BRAMAN_BENTLEY/vehicles7/v66142t.html">vehicles7/…</a></td><td>No lease flag on the photographs — the lease is the offer's, under <i>Lease special</i>. The client form as in section 1.</td></tr>
+    </tbody></table>
+
+    <h3 class="ds-h3">3 · Files in this handoff</h3>
+    <p class="ds-note">Plain HTML, CSS and a little vanilla JS — no build step. Stylesheets in this order: <code>tokens, site, cards, inventory, vehicle, theme, static, subpages</code> (see <code>README.md</code>). The approved pages here are named without the "7" of the git preview (<code>parts.html</code> = <code>parts7.html</code>). Photographs and films under <code>assets/bm/2026/</code> are Bentley Motors' own, used with the retailer's authorisation; keep their file names.</p>
+  </section>
 
   <section class="ds-part" id="colour">
     <h2 class="ds-h2">Colour</h2>

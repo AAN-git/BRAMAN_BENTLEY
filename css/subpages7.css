@@ -1125,3 +1125,59 @@ html main.sub > section.mx__dept { padding-block: var(--space-10); border-top: 0
 /* the hours under the address: tighter rows than a timetable chapter, so a
    four-day week still fits beside the form */
 .sub__loc .sub__loc-hours .record dt, .sub__loc .sub__loc-hours .record dd { padding-block: var(--space-2); }
+/* Ask a Tech: the head's crop keeps the technician and the wheel; under the
+   form three columns — the next steps, the service hours, the location */
+.sub__head--pic .sub__band-pic--tech img { object-position: 50% 40%; }
+.sub__after--three .sub__dept-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(2rem, 4vw, 4rem); }
+.sub__after--three .sub__dept { max-width: none; }
+.sub__after--three .sub__rows { margin-block-start: var(--space-4); }
+.sub__after--three .sub__dept-tel { margin-block-start: var(--space-3); }
+@media (max-width: 1023px) { .sub__after--three .sub__dept-grid { grid-template-columns: 1fr; } }
+.sub__head--pic .sub__band-pic--tech img { object-position: 28% 32%; }
+.sub__after--three .sub__loc .actions { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+@media (max-width: 1279px) and (min-width: 768px) {
+  .sub__after--three .sub__dept-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .sub__after--three .sub__loc { grid-column: 1 / -1; }
+}
+
+/* Our Location is one block everywhere (Alex, 2026-10-26): the lead-size
+   heading, the address, the department's phone row, the two buttons side by
+   side — under a form as beside one. The columns under the form take the same
+   heading size. */
+.sub__after .sub__loc-h { font-size: var(--text-lead); font-weight: 400; line-height: inherit; }
+.sub__after .sub__loc .actions { flex-wrap: nowrap; }
+@media (min-width: 1280px) { .sub__after--three .sub__dept-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1.25fr); } }
+.sub__after--three .sub__loc .actions { flex-wrap: nowrap; }
+.sub__after .sub__dept .record { margin-block-start: var(--space-5); }
+@media (max-width: 1279px) and (min-width: 768px) {
+  .sub__after--three .sub__dept-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 767px) {
+  .sub__after .sub__loc .actions, .sub__after--three .sub__loc .actions { flex-wrap: wrap; }
+}
+/* the three columns under the form start their first rule on one line */
+.sub__after--three .sub__rows, .sub__after--three .sub__dept .record { margin-block-start: var(--space-5); }
+@media (max-width: 1023px) {
+  .sub .sub__after .sub__loc .actions { flex-wrap: wrap; }
+}
+@media (max-width: 767px) { .sub .sub__after .sub__loc .actions .btn { flex: 1 1 100%; } }
+
+/* the payment-plan banner (Ask a Tech): the calculator's plate — a Bentley
+   photograph at the left, the words on Bentley Green at the right, one white
+   call; the banner's words as text, never baked into a picture */
+html main.sub > .sub__promo { padding-block: var(--space-9) 0; }
+.sub__promo-plate { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); border: 1px solid var(--rule); }
+.sub__promo-pic img { display: block; width: 100%; height: 100%; min-height: 18rem; object-fit: cover; object-position: 50% 60%; }
+.sub__promo-words {
+  display: flex; flex-direction: column; justify-content: center; align-items: flex-start;
+  padding: clamp(1.5rem, 3.2vw, 3rem); background: var(--bentley-green); color: var(--white);
+  --ink: var(--white); --ink-2: rgba(255, 255, 255, 0.84);
+}
+.sub__promo-words .label { margin: 0; color: var(--ink-2); }
+.sub__promo-h { margin: 0; font-size: var(--text-h3); font-weight: 300; line-height: var(--leading-heading); color: var(--white); }
+.sub__promo-text { margin: var(--space-4) 0 0; font-size: var(--text-body); color: var(--ink-2); }
+.sub__promo-cta { margin-block-start: var(--space-6); background: var(--white); color: var(--bentley-green); border-color: var(--white); }
+.sub__promo-cta:hover { background: var(--heritage-white); border-color: var(--heritage-white); color: var(--bentley-green); }
+@media (max-width: 1023px) { .sub__promo-plate { grid-template-columns: 1fr; } .sub__promo-pic img { height: auto; aspect-ratio: 16 / 9; min-height: 0; } }
+@media (max-width: 767px) { html main.sub > .sub__promo { padding-block: var(--space-8) 0; } .sub__promo-cta { width: 100%; justify-content: center; } }
+.sub .sub__promo + .sub__sell { padding-block-start: var(--space-9); }

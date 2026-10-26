@@ -44,7 +44,8 @@ PAGES = {'index7.html': 'index.html', 'inventory7.html': 'inventory.html',
          'parts7.html': 'parts.html', 'sell7.html': 'sell.html',
          'calculator7.html': 'calculator.html', 'bentayga-speed7.html': 'bentayga-speed.html',
          'flying-spur7.html': 'flying-spur.html', 'torcal7.html': 'torcal.html',
-         'continental-gt7.html': 'continental-gt.html', 'continental-gtc7.html': 'continental-gtc.html'}
+         'continental-gt7.html': 'continental-gt.html', 'continental-gtc7.html': 'continental-gtc.html',
+         'ask-a-tech7.html': 'ask-a-tech.html'}
 
 def read(p): return open(ROOT + p, encoding='utf-8').read()
 
@@ -173,7 +174,7 @@ def relink(s):
     for a, b in list(CSS.items()) + list(JS.items()):
         s = re.sub(re.escape(a) + r'(\?v=[^"]*)?"', b + '"', s)
     s = s.replace('index7.html', 'index.html').replace('inventory7.html', 'inventory.html')
-    for n in ('about', 'contact', 'finance', 'parts', 'sell', 'calculator', 'bentayga-speed', 'flying-spur', 'torcal', 'continental-gtc', 'continental-gt'): s = s.replace(f'{n}7.html', f'{n}.html')
+    for n in ('about', 'contact', 'finance', 'parts', 'sell', 'calculator', 'bentayga-speed', 'flying-spur', 'torcal', 'continental-gtc', 'continental-gt', 'ask-a-tech'): s = s.replace(f'{n}7.html', f'{n}.html')
     s = s.replace('vehicles7/', 'vehicles/')
     return s
 

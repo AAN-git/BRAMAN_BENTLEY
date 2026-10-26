@@ -176,7 +176,7 @@ MENU = [
         _r('Pre-Owned Vehicle Specials', '/used-inventory-specials/')])]),
     ('Service', [('', [
         _r('Service Department', '/service-department/'),
-        _r('Ask a Tech', '/ask-a-tech/'),
+        _r('Ask a Tech', 'ask-a-tech7.html'),
         _r('Vehicle Recall Request', '/vehicle-recall-request/')])]),
     ('Parts', [('', [
         _r('Parts Department', 'parts7.html'),
